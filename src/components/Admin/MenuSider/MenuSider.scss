@@ -1,0 +1,19 @@
+@import '../../../scss/index.scss';
+
+.admin-sider{
+    position: fixed;
+    left: 0;
+    top: 65px;
+    height: 100vh;
+    overflow: auto;
+    background: $background-orange-ligth;
+
+    &__menu{
+        margin-top: 20px;
+        background-color: $background-orange-ligth;
+    }
+
+    &__item{
+        background: $background-orange;
+    }
+}

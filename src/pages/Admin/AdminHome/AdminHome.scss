@@ -1,0 +1,15 @@
+@import '../../../scss/index.scss';
+
+.Home{
+    background: $background-orange;
+    text-align: center;
+    padding-top: 1.5em;
+    margin: 20px;
+    height: 5em;
+    border-radius: 18px;
+
+    h1{
+        color: white;
+        font-size: 18px;
+    }
+}

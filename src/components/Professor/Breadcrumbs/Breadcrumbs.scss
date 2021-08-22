@@ -1,0 +1,19 @@
+@import '../../../scss/index.scss';
+
+.breadcrumbs,.bc{
+    display: flex;
+    a{
+        color: white;
+    }
+}
+
+.breadcrumbs{
+    align-items: center;
+}
+
+.bc {
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+

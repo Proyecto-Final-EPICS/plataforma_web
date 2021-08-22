@@ -1,0 +1,47 @@
+@import '../../../scss/index.scss';
+
+.contenedor{
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 18px;
+    background: $background-purple-light;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);       
+    color: white;
+    font-family: 'Secular one',sans-serif;
+
+    &__titulo{
+        text-align: center;
+        h1{
+            color: white;
+            font-weight: bold;
+            font-family: 'Secular one',sans-serif;
+            font-size: 20px;    
+        }
+        
+    }
+}
+
+.consejo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    &__contenido{
+        font-size: 1.2em;
+        text-align: center;
+        //border: 1px solid black;
+        margin-bottom: 25px;
+    }
+
+    &__icono{
+        background: $font-purple-dark;
+        align-self: center;
+        justify-self: center;
+        border: 1px solid white;
+        border-radius: 18px;
+        margin-left: 10px;
+        padding: 10px;
+        margin-bottom: 25px;
+    }
+}

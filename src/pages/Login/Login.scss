@@ -1,0 +1,36 @@
+@import "../../scss/index.scss";
+
+.sign-in{
+    background-color: $background-login;
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh; /*vh significa altura viewport*/
+
+        &__logo{
+            padding: 60px 0px 10px 0px;
+            img{
+                width: 120px;
+            }
+        }
+
+        &-form{
+            background-color: $background-purple-light;
+            padding: 20px;
+            border-radius: 10%;
+            height: 60vh;
+            box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+
+            &-titulo{
+               text-align: center;
+               margin-top: 20%;
+               margin-bottom: 5%;
+               font-family: 'Secular one',sans-serif;
+               font-size: 2em;
+               color: $font-purple-dark;
+            }
+        }
+    }
+}

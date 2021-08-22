@@ -1,0 +1,26 @@
+@import '../../../scss/index.scss';
+
+.home-professor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    margin-top: 50px;
+
+    &__content{
+        width: 20em;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+        background: $background-orange;
+        transition: all .2s;
+
+        &:hover{
+            background: $primary-color-hover;
+        }
+    }
+
+}

@@ -1,0 +1,35 @@
+@import '../../../scss/index.scss';
+
+
+.col-je__titulo{
+    background: $background-purple-light3;
+    border-radius: 20px;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+    padding: 5px;
+    margin-bottom: 15px;
+    width: 15%;
+    font-family: 'Secular one',sans-serif;
+    color: $font-grey;
+    text-align: center;
+    font-size: 15px;
+}
+
+.je-contenido{
+    &__header{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: $background-purple-light4;
+        font-family: 'Secular one',sans-serif;
+        margin-bottom: 15px;
+        border-radius: 20px;
+    
+        &__col{
+            //margin-top: 5px;
+            font-size: 18px;
+            text-align: center;
+            h1{
+                color: $font-grey;
+            }
+        }
+    }
+}

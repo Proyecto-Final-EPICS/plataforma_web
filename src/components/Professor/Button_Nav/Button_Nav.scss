@@ -1,0 +1,35 @@
+.button-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a{
+        color:white;
+    }
+    
+
+
+    &__icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 5px solid white;
+        background: rgb(248,248,248);
+        box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        img{
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+    }
+
+    &__texto{
+        font-family: 'Secular one',sans-serif;
+        font-size: 24px;
+        text-align: center;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,53 @@
+@import '../../../scss/index.scss';
+
+.content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5%;
+
+    a{
+        color:white;
+    }
+   &__card{
+        background: $background-orange;
+        border-radius: 18px;
+        box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);       
+        width: 20em;
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .2s;
+
+        &:hover{
+            background: $primary-color-hover;
+        }
+
+
+        &__image{
+            border: 5px solid white;
+            background: rgb(248,248,248);
+            box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+
+            img{
+                width: 120px;
+                height: 120px;
+                margin: 25px;
+            }
+        }
+
+        &__text{
+            font-family: 'Secular one',sans-serif;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+    }       
+    
+}

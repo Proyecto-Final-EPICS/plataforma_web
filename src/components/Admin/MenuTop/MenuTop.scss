@@ -1,0 +1,57 @@
+@import '../../../scss/index.scss';
+
+.admin-menu-top{
+    display: flex;
+    
+    button{
+        color: $font-light;
+
+        &:hover{
+            color: $primary-color;
+        }
+        
+        &:focus,
+        &active{
+            color: $font-light;
+        }
+        
+    }
+
+    &__left{
+        &-logo{
+            display: inline;
+            width: 50px;
+            
+        }
+
+    }
+
+    &__right{
+        background: $background-purple-dark;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        color: white;
+        font-family: 'Secular one',sans-serif;
+        width: 10em;
+        height: 65px;
+        right: 0;
+        border-radius: 50px 0px 0px 50px;
+        font-size: 20px;
+
+        &__image{
+            border-radius: 50%;
+            color: white;
+        }
+
+        &__user{
+            color: white;
+            margin-left: 20px;
+        }
+
+        &__arrow{
+            background-color: white;
+        }
+    }
+}

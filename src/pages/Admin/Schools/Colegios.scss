@@ -1,0 +1,53 @@
+@import '../../../scss/index.scss';
+
+
+
+.colegio__button{
+    background: $background-purple-dark;
+    border-radius: 20px;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+    padding: 5px;
+    margin-bottom: 20px;
+    width: 180px;
+    height: 15%;
+    font-family: 'Secular one',sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    border: none;
+}
+.admin-colegio-contenido{
+    padding: 2em;
+
+    &__header{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 10px;
+        background:  $background-orange-ligth;
+        font-family: 'Secular one',sans-serif;
+        margin-bottom: 15px;
+        border-radius: 20px;
+        text-align: center;
+        min-width: min-content;
+        padding-right: 5em;
+
+        &__col{
+            width: 95%;
+            height: 87%;
+            min-width: 85px;
+            font-size: 18px;
+            text-align: center;
+            h1{
+                color: $font-grey;
+            }
+        }
+    
+    }
+
+    &__content{
+        //background: $background-purple-dark;
+        border-radius: 20px;
+    }
+}
+
+

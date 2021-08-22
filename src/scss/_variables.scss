@@ -1,0 +1,64 @@
+$defaultFontSize: 16px;
+
+$primary-color: #0098d3;
+$primary-color-hover: #f1cc94;
+
+$menu-color:#252527;
+
+//Fonts
+$font-light:#ffffff;
+$font-grey-light:#e8e8e8;
+$font-grey:#5B5454;
+$font-grey-dark: #000000;
+$font-dark-light:#252527;
+$font-parterns1: #716b5d;
+$font-purple-dark: #4D3B6A;
+$font-input: #DAC9FF;
+
+
+
+//Backgrounds
+$background-purple-light: #ABA1C6;
+$background-purple-light2: #C5A1FF;
+$background-purple-light3: #DEC9FF;
+$background-purple-light4 : #A27BE130;
+$background-orange: #FFAD31;
+$background-orange-ligth: #fbd090;
+$background-purple-middle: #A27BE1;
+$background-purple-dark: #B485FF;
+$background-light:#ffffff;
+$background-grey-light:#e8e8e8;
+$background-grey:#808080;
+$background-grey-dark: #595959;
+$background-dark-light:#252527;
+$background-dark:#000;
+$background-success: #84b84c1f;
+$background-error: #ff00001f;
+$background-home-web: #e9e9e9;
+$background-home-light-web:#f9f9ff;
+$background-login: #e4e8f1;
+
+
+$success: #84b84c;
+$error: #f00;   
+
+//Social Color
+$facebook: #3b5998;
+$instagram: #f6baba;
+
+//Responsive down size
+$media-breackpoint-down-xs: 413.98px;
+$media-breackpoint-down-sm: 573.98px;
+$media-breackpoint-down-md: 767.98px;
+$media-breackpoint-down-lg: 991.98px;
+$media-breackpoint-down-xl: 1199.98px;
+
+//Repsonsive up size
+$media-breackpoint-up-xs: 320px;
+$media-breackpoint-up-sm: 576px;
+$media-breackpoint-up-md: 768px;
+$media-breackpoint-up-lg: 992px;
+$media-breackpoint-up-xl: 1200px;
+
+//Fonts
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
