@@ -8,10 +8,10 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 #Instalamos las dependencias
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install 
-RUN npm install -g react-create-app 
+# COPY package.json ./
+# COPY package-lock.json ./
+# RUN npm install 
+# RUN npm install -g react-create-app 
 
 
 #Add app

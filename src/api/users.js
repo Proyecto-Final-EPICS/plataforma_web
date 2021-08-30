@@ -33,7 +33,6 @@ export function signinAPI(data){
 
     return fetch(url,params)
     .then(response => {
-        console.log(response)
         return response.json()
     })
     .then(result => {

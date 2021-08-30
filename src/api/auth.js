@@ -16,12 +16,11 @@ export function getAccessTokenApi(){
 
 function willExpireToken(token){
     const seconds = 60;
-    const metaToken = jwtDecode(token);
-    const { exp } = metaToken;
-    const now = (Date.now() + seconds) / 1000;
-    return now>exp;
+    const {exp} = jwtDecode(token);
+    // const now = (Date.now() + seconds) / 1000;
+    const now = Date.now() / 1000 + seconds;
+    return now > exp;
 }
-
 
 export function logout(){
     localStorage.removeItem(ACCESS_TOKEN);

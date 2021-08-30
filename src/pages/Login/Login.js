@@ -18,7 +18,6 @@ import Logo from '../../assets/img/palanca-de-mando.png';
 export default function Login(){
     const { Content } = Layout;
 
-
     //Si el user está logeado no lo deja entrar al login
     if(getAccessTokenApi()){
       return <Redirect to="/home" />
@@ -41,11 +40,9 @@ export default function Login(){
                       <LoginForm/>
                     </Col>
                   </Row>
-              </div>    
+              </div>
           </Content>
       </Layout>
-
-
     );
 }
 

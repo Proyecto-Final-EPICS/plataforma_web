@@ -12,7 +12,6 @@ import Modal from '../../../components/Modal';
 //API
 import {getEstudiantesByColegio} from '../../../api/colegio';
 
-
 //Estilos
 import './Colegio.scss';
 
@@ -27,8 +26,6 @@ export default function Colegio(){
     const [isVisibleModal,setIsVisibleModal] = useState(false);
     const [modalTitle,setModalTitle] = useState("");
     const [modalContent,setModalContent] = useState(null);
-
-  
 
     useEffect(()=>{
         let isMounted = true;
@@ -51,10 +48,8 @@ export default function Colegio(){
         )
     }
 
-
     return(
         <Layout>
-
             <Modal
                 title={modalTitle}
                 isVisible={isVisibleModal}

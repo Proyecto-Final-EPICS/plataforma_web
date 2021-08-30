@@ -37,12 +37,9 @@ export default function Colegios(){
         })
         return () =>{isMounted = false};
     },[])
-
    
     return(
         <Layout>
-           
-
             <div className="colegio__titulo">
                 Colegios asignados
             </div>

@@ -37,8 +37,7 @@ export default function ListStudents(props) {
 function Students(props) {
     const { students } = props;
     const location = useLocation().pathname.split("/")[3];
-
-   
+    
     return (
         <List
             grid={{gutter: 16, column: 1}}
@@ -54,7 +53,7 @@ function Students(props) {
 }
 
 function Student(props) {
-    const { student,colegio } = props;
+    const { student, colegio } = props;
     return (
        <Card className="card">
             <List.Item
@@ -76,10 +75,9 @@ function Student(props) {
                             <img src={Lapiz} className="card__content-est__edit__image" alt="icono de editar"/>
                         </Button> */}
 
-                        
                         <Link to ={`/home/colegios/${colegio}/estudiantes/${student.studentName}-${student.username}`} >
                             <Button type="primary" className="card__content-est__button">
-                                Entrar
+                                Acceder
                             </Button>
                         </Link>
 

@@ -1,6 +1,6 @@
 //Layouts
-import LayoutAdmin from '../layouts/LayoutAdmin';
-import LayoutProfessor from '../layouts/LayoutProfessor';
+import LayoutAdmin from '../pages/Admin';
+import LayoutProfessor from '../pages/Professor';
 
 //Pages for everybody
 import Login from '../pages/Login';

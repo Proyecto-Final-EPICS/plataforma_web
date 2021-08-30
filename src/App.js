@@ -3,8 +3,6 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import "antd/dist/antd.css";
 
-
-
 //Fichero de configuración de rutas
 import routes from './config/routes';
 
@@ -23,7 +21,7 @@ function App(){
       <Router>
         <Switch>
           {routes.map((route,index)=>(
-            <RouteWithSubRoutes key={index}{...route}/>
+            <RouteWithSubRoutes key={index} {...route}/>
           ))}
         </Switch>
       </Router>
@@ -31,11 +29,8 @@ function App(){
   );
 }
 
-
-
-
 //Renderiza ruta padre y pasa rutas hijas al componente
-function RouteWithSubRoutes(route){  
+function RouteWithSubRoutes(route){
   return (
     <Route
       path = {route.path}

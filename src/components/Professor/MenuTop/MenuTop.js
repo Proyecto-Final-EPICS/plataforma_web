@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import {Button,Menu,Dropdown} from 'antd';
 import {PoweroffOutlined,DownOutlined,UserOutlined} from '@ant-design/icons';
 
-
 //Api
 import {logout} from '../../../api/auth';
 import {getAccessTokenApi} from '../../../api/auth'; 
@@ -18,14 +17,10 @@ import './MenuTop.scss';
 //Assets
 import logo from '../../../assets/img/palanca-de-mando.png';
 
-
-
 export default function MenuTop(){
-    
     const {user} = useAuth().user;
 
-
-    const logoutUser =  () => {
+    const logoutUser = () => {
         logout();
         window.location.reload();
     }
@@ -40,7 +35,6 @@ export default function MenuTop(){
             </Menu.Item>
         </Menu>
     )
-
 
     return(
         <div className="menu-top">

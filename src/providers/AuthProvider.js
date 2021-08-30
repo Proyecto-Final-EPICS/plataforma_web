@@ -9,7 +9,7 @@ export const AuthContext = createContext();
 
 export default function AuthProvider(props){
     const { children } = props; //Children hace referencia a cualquier pagina
-    const [user,setUser] = useState({
+    const [user, setUser] = useState({
         user: null,//No logeado
         isLoading: true //Está cargando
     });

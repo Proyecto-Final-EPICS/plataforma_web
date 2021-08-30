@@ -1,1 +1,1 @@
-export { default } from "./Professor";
+export { default } from "./LayoutProfessor";
