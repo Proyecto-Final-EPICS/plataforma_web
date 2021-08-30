@@ -1,6 +1,7 @@
 //Layouts
 import LayoutAdmin from '../pages/Admin';
 import LayoutProfessor from '../pages/Professor';
+import LayoutStatistic from '../pages/Statistic';
 
 //Pages for everybody
 import Login from '../pages/Login';
@@ -22,6 +23,9 @@ import Students_Games from '../pages/Professor/Students_Games';
 import GamesStudent from '../pages/Professor/GamesStudent';
 import Menu_Cards from '../pages/Professor/Menu_Cards';
 import Graficos from '../pages/Professor/Graficos';
+
+//Pages Statistic
+import StatisticHome from '../pages/Statistic/StatisticHome'
 
 const routes = [//Es el sistema de rutas, el array contiene todas las rutas
     {
@@ -119,6 +123,21 @@ const routes = [//Es el sistema de rutas, el array contiene todas las rutas
             {
                 path: "/admin-home/schools",
                 component: AdminSchool,
+                exact: true
+            },
+            {
+                component: Error404
+            }
+        ]
+    },
+    {
+        path: "/statistics",
+        component: LayoutStatistic,
+        exact: false,
+        routes:[
+            {
+                path: "/statistics",
+                component: StatisticHome,
                 exact: true
             },
             {
