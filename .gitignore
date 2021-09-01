@@ -3,3 +3,9 @@
 
 # Variables de entorno
 /.env
+
+# íconos
+/src/assets/icons
+
+# Imágenes
+/src/assets/img

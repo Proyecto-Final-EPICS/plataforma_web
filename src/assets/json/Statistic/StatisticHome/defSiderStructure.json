@@ -1,0 +1,36 @@
+{
+    "param1": {
+        "title": "Param1",
+        "icon": null,
+        "options": {
+            "op1": {
+                "title": "Op1",
+                "icon": null,
+                "sel": false
+            },
+            "op2": {
+                "title": "Op2",
+                "icon": null,
+                "sel": false
+            }
+        },
+        "all": false
+    },
+    "param2": {
+        "title": "Param2",
+        "icon": null,
+        "options": {
+            "op1": {
+                "title": "Op1",
+                "icon": null,
+                "sel": false
+            },
+            "op2": {
+                "title": "Op2",
+                "icon": null,
+                "sel": false
+            }
+        },
+        "all": false
+    }
+}

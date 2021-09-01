@@ -1,0 +1,10 @@
+{
+    "param1": {
+        "all": false,
+        "options": ["op1"]
+    },
+    "param2": {
+        "all": true,
+        "options": ["op1", "op2", "op3"]
+    }
+}

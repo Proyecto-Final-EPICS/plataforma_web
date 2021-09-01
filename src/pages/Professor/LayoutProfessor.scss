@@ -1,0 +1,37 @@
+@import '../../scss/index.scss';
+
+.layout-professor{
+    transition: margin-left 0.2s;
+    box-sizing: border-box;
+
+    &__header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        padding: 0;
+        height: 65px;
+        background-color: $background-purple-middle;
+    }
+
+    &__content{
+        min-height: calc(100vh - 200px);
+        padding: 20px 25px 25px 25px;
+    }
+
+    &__breadcrumbs{
+        background: $background-purple-light2;
+        text-align: left;
+        padding: 80px 1px 4px 25px;
+        color: white !important;
+        font-family: 'Secular one', sans-serif;
+        font-size: 1.2em;
+    }
+
+
+
+    &__footer{
+        padding: 32px;
+    }
+}

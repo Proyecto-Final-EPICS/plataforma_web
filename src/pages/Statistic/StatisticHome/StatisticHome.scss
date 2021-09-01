@@ -1,0 +1,42 @@
+@import '../../../scss/index.scss'; 
+
+.contenido{
+
+    &__sider {
+        font-family: 'Secular one',sans-serif;
+        background-color: $background-orange;
+        min-height: 80vh;
+        
+        &__logo {
+            height: 32px;
+            margin: 16px;
+            background-color: white;
+            color: black;
+            text-align: center;
+            
+        }
+    }
+
+    &__header{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        background: $background-purple-light4;
+        font-family: 'Secular one',sans-serif;
+        margin-bottom: 15px;
+        border-radius: 20px;
+
+        &__col{
+            //margin-top: 5px;
+            font-size: 18px;
+            text-align: center;
+            h1{
+                color: $font-grey;
+            }
+        }
+    }
+
+    &__content{
+        //background: $background-purple-dark;
+        border-radius: 20px;
+    }
+}
