@@ -6,5 +6,9 @@
     "param2": {
         "all": true,
         "options": ["op1", "op2", "op3"]
+    },
+    "param3": {
+        "all": false,
+        "options": ["op3"]
     }
 }

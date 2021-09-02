@@ -6,14 +6,14 @@ import {Layout, Button, Menu} from 'antd';
 //Componentes
 import ListStudents from '../../../components/Statistic/Students/ListStudents';
 import Modal from '../../../components/Modal';
+import Parameter from '../../../components/Statistic/Sider/Parameter';
 
 //Íconos
 import {
     UserOutlined, 
     TeamOutlined, 
     RocketTwoTone, 
-    EyeOutlined, 
-    CalendarOutlined, 
+    EyeOutlined,
 } from '@ant-design/icons';
 
 //Recursos
@@ -29,8 +29,8 @@ import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 //...
 const {Sider, Content, Header} = Layout;
-const {SubMenu} = Menu;
-console.log(UserOutlined)
+// const {SubMenu} = Menu;
+
 StatisticHome.defaultProps = {
     siderParams: defSiderParams,
 }
@@ -51,9 +51,7 @@ export default function StatisticHome(props){
     const receiveParams = () => {
         const temp = defSiderStructure;
 
-        temp.param1.options.op1.icon = UserOutlined;
-        temp.param1.options.op2.icon = TeamOutlined;
-        temp.param2.icon = RocketTwoTone;
+        setDefaultIcons(temp);
 
         for (let p in defSiderParams) {
             temp[p].all = defSiderParams[p].all;
@@ -70,6 +68,31 @@ export default function StatisticHome(props){
         }
         setSiderStructure(temp);
     }
+
+    let openKeys = (() => {
+        return Array.from({length: Object.keys(siderStructure).length}, (_, i) => String(i));
+    })();
+    console.log(openKeys);
+
+    const selectedKeys = (() => {
+        const keys = [];
+        
+        let numParam = 0;
+        for(let param in siderStructure) {
+            
+            let numOp = 0;
+            for(let op in siderStructure[param].options) {
+                
+                if(siderStructure[param].options[op].sel){
+                    keys.push(String(numParam)+String(numOp));
+                }
+                numOp++;
+            }
+            numParam++;
+        }
+        return keys;
+    })();
+    console.log(selectedKeys)
 
     useEffect(() => {
         receiveParams();
@@ -88,14 +111,22 @@ export default function StatisticHome(props){
             <Sider
                 className="contenido__sider"
                 collapsible
-                collapsed={siderCollapsed}
+                defaultCollapsed={true}
                 onCollapse={() => {setSiderCollapsed(!siderCollapsed)}}
+                // collapsed={siderCollapsed}
+                // collapsedWidth={0}
                 >
                 <div className="contenido__sider__logo">{siderCollapsed?'P':'Parámetros'}</div>
 
-                <Menu>
+                <Menu
+                    mode="inline"
+                >
                     {Object.keys(siderStructure).map((el, index) => (
-                        <DisplaySubMenu param={siderStructure[el]} key={index}/>
+                        <Parameter
+                            key={String(index)}
+                            {...siderStructure[el]}
+                            // onChangeOption={onChangeOption}
+                        />
                     ))}
                 </Menu>
             </Sider>
@@ -129,63 +160,18 @@ export default function StatisticHome(props){
     );
 }
 
-function DisplaySubMenu(props) {
+
+function setDefaultIcons(siderStructure) {
+
+    siderStructure.param1.icon = UserOutlined;
+    siderStructure.param1.options.op1.icon = UserOutlined;
+    siderStructure.param1.options.op2.icon = TeamOutlined;
     
-    const {title, icon, options, all} = props.param;
-    // console.log(icon)
-    // console.log(all)
-    const DisplayIcon = () => {
-        console.log('Dios mátame')
-        if (all) return icon;
+    siderStructure.param2.icon = RocketTwoTone;
+    for(let op in siderStructure.param2.options) siderStructure.param2.options[op].icon = RocketTwoTone;
 
-        let numSelOptions = 0;
-        let lastIconOptionSel = null;
-        
-        for (let op in options) {
-            if (options[op].sel){
-                lastIconOptionSel = options[op].icon;
-                numSelOptions += 1;
-            }
-        }
-        console.log(lastIconOptionSel)
-        if(numSelOptions == 0 || numSelOptions > 1) return icon;
-        if(numSelOptions == 1) return lastIconOptionSel;
-    }
-    const Icon = DisplayIcon();
-
-    // return(
-    // <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-    //     <Menu.Item key="3">Tom</Menu.Item>
-    //     <Menu.Item key="4">Bill</Menu.Item>
-    //     <Menu.Item key="5">Alex</Menu.Item>
-    // </SubMenu>
-    // )
-
-    // return(
-    //     <SubMenu key="sub1" icon={<Icon />} title={title}>
-    //         <Menu.Item key="3">Tom</Menu.Item>
-    //         <Menu.Item key="4">Bill</Menu.Item>
-    //         <Menu.Item key="5">Alex</Menu.Item>
-    //     </SubMenu>
-    // )
-
-    return(
-        <SubMenu
-            // key={props.key}
-            title={title}
-            icon={<Icon/>}
-        >
-            {Object.keys(options).map((op, index) => (
-                <Menu.Item
-                    // key={index}
-                >
-                    {options[op].title}
-                </Menu.Item>
-                // <DisplayMenuItem title={options[op].title} key={index}/>
-            ))}
-            
-        </SubMenu>
-    )
+    siderStructure.param3.icon = EyeOutlined;
+    for(let op in siderStructure.param3.options) siderStructure.param3.options[op].icon = EyeOutlined;
 }
 
 // StatisticHome.defaultProps = {

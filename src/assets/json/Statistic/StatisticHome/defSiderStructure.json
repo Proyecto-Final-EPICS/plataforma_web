@@ -14,7 +14,8 @@
                 "sel": false
             }
         },
-        "all": false
+        "all": false,
+        "inclusive": false
     },
     "param2": {
         "title": "Param2",
@@ -29,8 +30,42 @@
                 "title": "Op2",
                 "icon": null,
                 "sel": false
+            },
+            "op3": {
+                "title": "Op3",
+                "icon": null,
+                "sel": false
             }
         },
-        "all": false
+        "all": false,
+        "inclusive": true
+    },
+    "param3": {
+        "title": "Param3",
+        "icon": null,
+        "options": {
+            "op1": {
+                "title": "Op1",
+                "icon": null,
+                "sel": false
+            },
+            "op2": {
+                "title": "Op2",
+                "icon": null,
+                "sel": false
+            },
+            "op3": {
+                "title": "Op3",
+                "icon": null,
+                "sel": false
+            },
+            "op4": {
+                "title": "Op4",
+                "icon": null,
+                "sel": false
+            }
+        },
+        "all": false,
+        "inclusive": true
     }
 }
