@@ -1,29 +1,51 @@
 @import '../../../scss/index.scss'; 
 
-.contenido{
+.sider {
+    min-height: 60vh;
+    // height: min-content;
+    margin-right: 20px;
+    border-radius: 15px;
+    background-color: $background-orange;
 
-    &__sider {
-        font-family: 'Secular one',sans-serif;
-        background-color: $background-orange;
-        min-height: 80vh;
+    &__logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
         
-        &__logo {
-            height: 32px;
-            margin: 16px;
-            background-color: white;
-            color: black;
-            text-align: center;
-            
+        background-color: $background-orange-ligth;
+        color: black;
+        height: 32px;
+        margin: 16px;
+        border-radius: 15px;
+        
+        div {
+            font-family: sans-serif;
         }
-    }
 
+    }
+}
+
+.content-chooser {
+    // margin-bottom: 0px;
+    // width: 300px;
+    // transform: skew(-5deg);
+    height: 40px;
+
+
+    &__radio {
+        
+    }
+}
+
+.contentido{
     &__header{
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         background: $background-purple-light4;
         font-family: 'Secular one',sans-serif;
         margin-bottom: 15px;
-        border-radius: 20px;
+        border-radius: 15px;
 
         &__col{
             //margin-top: 5px;
@@ -37,6 +59,6 @@
 
     &__content{
         //background: $background-purple-dark;
-        border-radius: 20px;
+        border-radius: 0px;
     }
 }

@@ -1,7 +1,7 @@
 //Liberias
 import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
-import {Layout, Button, Menu} from 'antd';
+import {Layout, Button, Menu, Radio} from 'antd';
 
 //Componentes
 import ListStudents from '../../../components/Statistic/Students/ListStudents';
@@ -13,7 +13,8 @@ import {
     UserOutlined, 
     TeamOutlined, 
     RocketTwoTone, 
-    EyeOutlined,
+    EyeOutlined, 
+    SettingOutlined, 
 } from '@ant-design/icons';
 
 //Recursos
@@ -39,7 +40,7 @@ export default function StatisticHome(props){
     
     const [elements, setElements] = useState([]); //Estudiantes o cursos
     const [reloadElements, setReloadElements] = useState(false);
-    const [siderCollapsed, setSiderCollapsed] = useState(true);
+    const [siderCollapsed, setSiderCollapsed] = useState(false);
     const [siderStructure, setSiderStructure] = useState({}); //Parámetros del sider
     const [vista, setVista] = useState('tabla');
 
@@ -69,30 +70,38 @@ export default function StatisticHome(props){
         setSiderStructure(temp);
     }
 
-    let openKeys = (() => {
-        return Array.from({length: Object.keys(siderStructure).length}, (_, i) => String(i));
-    })();
-    console.log(openKeys);
-
-    const selectedKeys = (() => {
-        const keys = [];
+    const onChangeOption = () => {
         
-        let numParam = 0;
-        for(let param in siderStructure) {
+    }
+
+    const onCollapse = () => {
+        setSiderCollapsed(!siderCollapsed);
+    }
+
+    // let openKeys = (() => {
+    //     return Array.from({length: Object.keys(siderStructure).length}, (_, i) => String(i));
+    // })();
+    // console.log(openKeys);
+
+    // const selectedKeys = (() => {
+    //     const keys = [];
+        
+    //     let numParam = 0;
+    //     for(let param in siderStructure) {
             
-            let numOp = 0;
-            for(let op in siderStructure[param].options) {
+    //         let numOp = 0;
+    //         for(let op in siderStructure[param].options) {
                 
-                if(siderStructure[param].options[op].sel){
-                    keys.push(String(numParam)+String(numOp));
-                }
-                numOp++;
-            }
-            numParam++;
-        }
-        return keys;
-    })();
-    console.log(selectedKeys)
+    //             if(siderStructure[param].options[op].sel){
+    //                 keys.push(String(numParam)+String(numOp));
+    //             }
+    //             numOp++;
+    //         }
+    //         numParam++;
+    //     }
+    //     return keys;
+    // })();
+    // console.log(selectedKeys)
 
     useEffect(() => {
         receiveParams();
@@ -109,57 +118,99 @@ export default function StatisticHome(props){
             </Modal>
             
             <Sider
-                className="contenido__sider"
+                
+                className="sider"
                 collapsible
-                defaultCollapsed={true}
-                onCollapse={() => {setSiderCollapsed(!siderCollapsed)}}
+                defaultCollapsed={false}
+                collapsed={siderCollapsed}
+                onCollapse={onCollapse}
                 // collapsed={siderCollapsed}
                 // collapsedWidth={0}
                 >
-                <div className="contenido__sider__logo">{siderCollapsed?'P':'Parámetros'}</div>
+                <div className="sider__logo">
+                    <div>
+                        {siderCollapsed?<SettingOutlined/>:'Parámetros'}
+                    </div>
+                </div>
 
                 <Menu
+                    // multiple={true}
                     mode="inline"
                 >
                     {Object.keys(siderStructure).map((el, index) => (
                         <Parameter
-                            key={String(index)}
+                            k={String(index)}
+                            // key={index}
                             {...siderStructure[el]}
-                            // onChangeOption={onChangeOption}
+                            onChangeOption={onChangeOption}
                         />
                     ))}
                 </Menu>
             </Sider>
             
-            <Layout className="contenido">
-                <Header className="contenido__header">
+            <Layout>
+                <div className="content-chooser">
+                    <RadioGroup className="content-chooser__radio"/>
+                </div>
+                    <Layout className="contentido">
+                        <Header className="contentido__header">
+                            
+                            <div className="contentido__header__col">
+                                <h1>Campo1</h1>
+                            </div>
 
-                    <div className="contenido__header__col">
-                        <h1>Nombre</h1>
-                    </div>
+                            <div className="contentido__header__col">
+                                <h1>Campo2</h1>
+                            </div>     
 
-                    <div className="contenido__header__col">
-                        <h1>Edad</h1>
-                    </div>     
+                            <div className="contentido__header__col">
+                                <h1>Campo3</h1>
+                            </div>  
 
-                    <div className="contenido__header__col">
-                        <h1>Usuario</h1>
-                    </div>  
+                            <div className="contentido__header__col">
+                                <h1>Campo4</h1>
+                            </div>
 
-                    <div className="contenido__header__col">
-                        <h1>Acción</h1>
-                    </div>
-                </Header>
+                            <div className="contentido__header__col">
+                                <h1>Campo5</h1>
+                            </div>
 
-                <Content className="contenido__content"> 
-                    <ListStudents students={[]}/>
-                </Content>
+                            <div className="contentido__header__col">
+                                <h1>Campo6</h1>
+                            </div>
+                        </Header>
+                        <Content className="contentido__content"> 
+                            <ListStudents students={[]}/>
+                        </Content>
+
+                    </Layout>
             </Layout>
             
         </Layout>
     );
 }
 
+function RadioGroup(props) {
+    const {value, setValue} = useState('Tabla');
+    
+    const options=[
+        {label: 'Tabla', value: 'Tabla',},
+        {label: 'Gráfica', value: 'Gráfica', disabled: true,},
+    ]
+    
+    const onChange = (e) => {
+        setValue(e.target.value);
+    }
+
+    return(
+        <Radio.Group
+            optionType="button"
+            options={options}
+            value={value}
+            onChange={onchange}
+        />
+    );
+}
 
 function setDefaultIcons(siderStructure) {
 

@@ -1,16 +1,20 @@
+//Librerías
 import {useState, useEffect} from 'react';
 import {Menu, Checkbox} from 'antd';
 
+//Estilos
+import './Parameter.scss';
+
 export default function Parameter(props) {
-    const {key, title, icon, options, all, inclusive} = props;
+    const {title, icon, options, all, inclusive, k, onChangeOption} = props;
+    const key = k;
     
     const [selectedOptions, setSelectedOptions] = useState(initSelectedOptions);
     
     function initSelectedOptions() {
         const selectedOptions = {};
         for(let op in options) selectedOptions[op] = options[op].sel;
-        // console.log(options);
-        // console.log(selectedOptions);
+        
         return selectedOptions;
     }
 
@@ -51,11 +55,12 @@ export default function Parameter(props) {
     // }, []);
 
     return(
-        <Menu.SubMenu
+        <Menu.SubMenu className="parameter"
             {...props}
             key={key}
             title={title}
             icon={<DisplayIcon/>}
+            
         >
             {Object.keys(options).map((op, index) => {
                 // console.log('************************');
@@ -67,22 +72,28 @@ export default function Parameter(props) {
                 // >
                 //     {options[op].title}
                 // </Menu.Item>
-                return <Option
-                    key={key+String(index)}
-                    // sel={selectedOptions[op]?selectedOptions[op].sel:null}
-                    sel={selectedOptions[op]}
-                    name={String(op)}
-                    title={options[op].title}
-                    onCheckedOption={onCheckedOption}
-                />
+                return(
+                <div>
+                    <Option className="parameter__option"
+                        k={key+String(index)}
+                        // sel={selectedOptions[op]?selectedOptions[op].sel:null}
+                        sel={selectedOptions[op]}
+                        name={String(op)}
+                        title={options[op].title}
+                        onCheckedOption={onCheckedOption}
+                    />
+                    <br/>
+                </div>
+                );
             })}
         </Menu.SubMenu>
     );
 }
 
 function Option(props) {
-    const {sel, title, name, onCheckedOption} = props;
-    console.log(sel);
+    const {sel, title, name, onCheckedOption, k} = props;
+    const key=k
+    // console.log(sel);
     // const [selected, setSelected] = useState(sel);
     
     const onChange = () => {
@@ -93,7 +104,7 @@ function Option(props) {
     return(
         <Checkbox
                 // {...props}
-                key={props.key}
+                key={key}
                 defaultChecked={sel}
                 checked={sel}
                 onChange={onChange}
