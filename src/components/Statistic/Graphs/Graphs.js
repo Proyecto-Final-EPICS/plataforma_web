@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
 import { Statistic, Card, Row, Col } from 'antd';
+// import {Bar} from 'chart.js';
+
 import {
     ArrowUpOutlined, 
     ArrowDownOutlined, 
@@ -23,7 +25,61 @@ export default function Graphs(props) {
     }, []);
 
     return(
-        <div className="container">
+        <>
+        <Row gutter={10}>
+            <Col span={8}>
+            <div className="col">
+                <Row gutter={[8, 8]}>
+                    <Col span={12}>
+                    <div className="col__stats">
+                    <Statistic
+                        title="Promedio Actual"
+                        value={currentAverage}
+                        // prefix={currentAverage<3.0?<FrownOutlined/>:currentAverage<4.0?
+                        //     <FrownOutlined/>:<SmileOutlined/>}
+                        prefix={<FileSearchOutlined/>}
+                        suffix="/ 5.0"
+                    />
+                    </div>
+                    </Col>
+                    <Col span={12} >
+                    <div className="col__stats">
+                    <Statistic
+                        title="Evolución del Promedio"
+                        value={progressAverage}
+                        precision={2}
+                        valueStyle={progressAverage>0?{color:'#3f8600'}:progressAverage==0?
+                        {color:'#fff'}:{color:'#cf1322'}}
+                        prefix={progressAverage>0?<ArrowUpOutlined/>:progressAverage==0?
+                        <MinusOutlined/>:<ArrowDownOutlined/>}
+                        suffix="%"
+                    />
+                    </div>
+                    </Col>
+                    <Col span={24}>
+                    <div className="col__stats">
+                    <Statistic
+                        title="Tiempo Promedio"
+                        value={averageTime}
+                        prefix={<ClockCircleOutlined/>}
+                        suffix="horas por día"
+                    />
+                    </div>
+                    </Col>
+                </Row>
+            </div>
+            </Col>
+            <Col span={16} >
+            <div className="col">
+                {/* <Bar
+                    data={{labels:['Element1', 'Element2', 'Element3']}}
+                >
+
+                </Bar> */}
+            </div>
+            </Col>
+        </Row>
+        {/* <div className="container">
             <div className="container__stat-prom">
                 
                 <Row gutter={5}>
@@ -65,6 +121,7 @@ export default function Graphs(props) {
             <div className="container__graphs">
                 c
             </div>
-        </div>
+        </div> */}
+        </>
     );
 }
