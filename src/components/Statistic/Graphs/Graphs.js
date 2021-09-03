@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
-import { Statistic, Card, Row, Col } from 'antd';
-import {Line} from 'react-chartjs-2';
+import { Statistic, Card, Row, Col, Button } from 'antd';
+import {Line, Bar} from 'react-chartjs-2';
 
 import {
     ArrowUpOutlined, 
@@ -11,12 +11,18 @@ import {
     // SmileOutlined, 
     MinusOutlined, 
     ClockCircleOutlined, 
+    EditOutlined, 
 } from '@ant-design/icons';
 
 export default function Graphs(props) {
     const [currentAverage, setCurrentAverage] = useState(0);
     const [progressAverage, setProgressAverage] = useState(0);
     const [averageTime, setAverageTime] = useState(0);
+    const [graphType, setGraphType] = useState('line');
+
+    const displayGraphOptions = () => {
+        setGraphType(graphType=='line'?'bar':'line');
+    }
 
     const data = {
         labels: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
@@ -36,9 +42,28 @@ export default function Graphs(props) {
                 backgroundColor: ['rgba(131, 255, 110)'],
                 pointBackgroundColor: ['rgba(131, 255, 110)'],
                 pointBorderColor: ['rgba(131, 255, 110)'],
-            }
+            },
         ],
     }
+
+    const options = {
+        title: {
+            display: true,
+            text: 'Average Grades'
+        },
+        scales: {
+            yAxes: [
+                {
+                    tricks: {
+                        min: 0,
+                        max: 5,
+                        stepSize: 0.5,
+                    }
+                },
+            ],
+        },
+    }
+    
     useEffect(() => {
         setCurrentAverage(4.3);
         setProgressAverage(11.8193);
@@ -92,13 +117,27 @@ export default function Graphs(props) {
             </Col>
             <Col span={16} >
             <div className="section graphs">
+                {graphType=='line'?
                 <Line className="graphs__line"
                     data={data}
-                    // height={200}
-                    // width={200}
-                    // options={{maintainAspectRatio:false}}
+                    options={options}
+                    // width={1000}
+                    // height={600}
                 />
-
+                :
+                <Bar className="graphs__line"
+                    data={data}
+                    options={options}
+                    // width={1000}
+                    // height={600}
+                />}
+                <Button 
+                    className="graphs__options" 
+                    icon={<EditOutlined/>} 
+                    shape="circle" 
+                    size="large"
+                    onClick={displayGraphOptions}
+                />
             </div>
             </Col>
         </Row>

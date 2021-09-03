@@ -1,7 +1,7 @@
 //Liberias
 import React, {useState, useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
-import {Layout, Button, Tabs, Collapse} from 'antd';
+// import {useLocation} from 'react-router-dom';
+import {Layout, Tabs, Collapse} from 'antd';
 
 //Íconos
 import {
