@@ -1,12 +1,7 @@
 //Liberias
 import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
-import {Layout, Button, Menu, Radio} from 'antd';
-
-//Componentes
-import ListStudents from '../../../components/Statistic/Students/ListStudents';
-import Modal from '../../../components/Modal';
-import Parameter from '../../../components/Statistic/Sider/Parameter';
+import {Layout, Button, Tabs, Collapse} from 'antd';
 
 //Íconos
 import {
@@ -16,6 +11,12 @@ import {
     EyeOutlined, 
     SettingOutlined, 
 } from '@ant-design/icons';
+
+//Componentes
+import Modal from '../../../components/Modal';
+import Parameter from '../../../components/Statistic/Sider/Parameter';
+import Registers from '../../../components/Statistic/Registers';
+import Graphs from '../../../components/Statistic/Graphs';
 
 //Recursos
 import defSiderStructure from '../../../assets/json/Statistic/StatisticHome/defSiderStructure.json';
@@ -30,7 +31,7 @@ import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 //...
 const {Sider, Content, Header} = Layout;
-// const {SubMenu} = Menu;
+// const {Panel} = Collapse;
 
 StatisticHome.defaultProps = {
     siderParams: defSiderParams,
@@ -78,31 +79,6 @@ export default function StatisticHome(props){
         setSiderCollapsed(!siderCollapsed);
     }
 
-    // let openKeys = (() => {
-    //     return Array.from({length: Object.keys(siderStructure).length}, (_, i) => String(i));
-    // })();
-    // console.log(openKeys);
-
-    // const selectedKeys = (() => {
-    //     const keys = [];
-        
-    //     let numParam = 0;
-    //     for(let param in siderStructure) {
-            
-    //         let numOp = 0;
-    //         for(let op in siderStructure[param].options) {
-                
-    //             if(siderStructure[param].options[op].sel){
-    //                 keys.push(String(numParam)+String(numOp));
-    //             }
-    //             numOp++;
-    //         }
-    //         numParam++;
-    //     }
-    //     return keys;
-    // })();
-    // console.log(selectedKeys)
-
     useEffect(() => {
         receiveParams();
     }, []);
@@ -133,82 +109,37 @@ export default function StatisticHome(props){
                     </div>
                 </div>
 
-                <Menu
-                    // multiple={true}
-                    mode="inline"
+                <Collapse
+                    expandIconPosition='right'
                 >
                     {Object.keys(siderStructure).map((el, index) => (
                         <Parameter
                             k={String(index)}
                             // key={index}
                             {...siderStructure[el]}
+                            siderCollapsed={siderCollapsed}
                             onChangeOption={onChangeOption}
                         />
                     ))}
-                </Menu>
+                </Collapse>
             </Sider>
             
             <Layout>
-                <div className="content-chooser">
-                    <RadioGroup className="content-chooser__radio"/>
-                </div>
-                    <Layout className="contentido">
-                        <Header className="contentido__header">
-                            
-                            <div className="contentido__header__col">
-                                <h1>Campo1</h1>
-                            </div>
-
-                            <div className="contentido__header__col">
-                                <h1>Campo2</h1>
-                            </div>     
-
-                            <div className="contentido__header__col">
-                                <h1>Campo3</h1>
-                            </div>  
-
-                            <div className="contentido__header__col">
-                                <h1>Campo4</h1>
-                            </div>
-
-                            <div className="contentido__header__col">
-                                <h1>Campo5</h1>
-                            </div>
-
-                            <div className="contentido__header__col">
-                                <h1>Campo6</h1>
-                            </div>
-                        </Header>
-                        <Content className="contentido__content"> 
-                            <ListStudents students={[]}/>
-                        </Content>
-
-                    </Layout>
+            <Tabs type="card">
+                <Tabs.TabPane tab="Registros" key="0">
+                    <Registers/>
+                </Tabs.TabPane>
+                <Tabs.TabPane tab="Gráficas" key="1">
+                    <Graphs/>
+                </Tabs.TabPane>
+            </Tabs>
+            {/* <div className="content-chooser">
+                <RadioGroup className="content-chooser__radio"/>
+            </div> */}
+                    
             </Layout>
             
         </Layout>
-    );
-}
-
-function RadioGroup(props) {
-    const {value, setValue} = useState('Tabla');
-    
-    const options=[
-        {label: 'Tabla', value: 'Tabla',},
-        {label: 'Gráfica', value: 'Gráfica', disabled: true,},
-    ]
-    
-    const onChange = (e) => {
-        setValue(e.target.value);
-    }
-
-    return(
-        <Radio.Group
-            optionType="button"
-            options={options}
-            value={value}
-            onChange={onchange}
-        />
     );
 }
 
@@ -224,35 +155,3 @@ function setDefaultIcons(siderStructure) {
     siderStructure.param3.icon = EyeOutlined;
     for(let op in siderStructure.param3.options) siderStructure.param3.options[op].icon = EyeOutlined;
 }
-
-// StatisticHome.defaultProps = {
-//     siderStructure: {
-//         sobre: 'Estudiantes',
-//         apps: {
-//             list: [
-//                 {
-//                     name: 'App 1', sel: true,
-//                 },
-//                 {
-//                     name: 'App 2', sel: true,
-//                 }
-//             ],
-//             all: {name: 'Selec. todas', sel: true},
-//         },
-//         discapacidad: {
-//             list: [
-//                 {
-//                     name: 'Dis 1', sel: true,
-//                 },
-//                 {
-//                     name: 'Dis 2', sel: true,
-//                 }
-//             ],
-//             all: {name: 'Selec. todas', sel: true},
-//         },
-//         periodo: {
-//             fechaIni: new Date(2021, 0, 1),
-//             fechaFin: Date.now(),
-//         },
-//     }
-// }

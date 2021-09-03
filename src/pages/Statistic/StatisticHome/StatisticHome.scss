@@ -4,7 +4,7 @@
     min-height: 60vh;
     // height: min-content;
     margin-right: 20px;
-    border-radius: 15px;
+    border-radius: 5px;
     background-color: $background-orange;
 
     &__logo {
@@ -17,7 +17,7 @@
         color: black;
         height: 32px;
         margin: 16px;
-        border-radius: 15px;
+        border-radius: 10px;
         
         div {
             font-family: sans-serif;
@@ -26,19 +26,7 @@
     }
 }
 
-.content-chooser {
-    // margin-bottom: 0px;
-    // width: 300px;
-    // transform: skew(-5deg);
-    height: 40px;
-
-
-    &__radio {
-        
-    }
-}
-
-.contentido{
+.contenido {
     &__header{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -60,5 +48,34 @@
     &__content{
         //background: $background-purple-dark;
         border-radius: 0px;
+    }
+}
+
+.container {
+    // width: max-content;
+    // height: max-content;
+    // min-height: 300px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 10px;
+
+    &__stat-prom {
+        // height: 800px;
+        background-color: blue;
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+    }
+
+    &__stat-time {
+        background-color: green;
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+    }
+
+    &__graphs {
+        background-color: red;
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 2;
     }
 }

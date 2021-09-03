@@ -1,12 +1,12 @@
 //Librerías
 import {useState, useEffect} from 'react';
-import {Menu, Checkbox} from 'antd';
+import {Collapse, Checkbox} from 'antd';
 
 //Estilos
 import './Parameter.scss';
 
 export default function Parameter(props) {
-    const {title, icon, options, all, inclusive, k, onChangeOption} = props;
+    const {title, icon, options, all, inclusive, k, onChangeOption, siderCollapsed} = props;
     const key = k;
     
     const [selectedOptions, setSelectedOptions] = useState(initSelectedOptions);
@@ -55,12 +55,11 @@ export default function Parameter(props) {
     // }, []);
 
     return(
-        <Menu.SubMenu className="parameter"
+        <Collapse.Panel className="parameter"
             {...props}
             key={key}
-            title={title}
-            icon={<DisplayIcon/>}
-            
+            header={siderCollapsed?null:title}
+            extra={<DisplayIcon/>}
         >
             {Object.keys(options).map((op, index) => {
                 // console.log('************************');
@@ -73,7 +72,7 @@ export default function Parameter(props) {
                 //     {options[op].title}
                 // </Menu.Item>
                 return(
-                <div>
+                <>
                     <Option className="parameter__option"
                         k={key+String(index)}
                         // sel={selectedOptions[op]?selectedOptions[op].sel:null}
@@ -83,10 +82,10 @@ export default function Parameter(props) {
                         onCheckedOption={onCheckedOption}
                     />
                     <br/>
-                </div>
+                </>
                 );
             })}
-        </Menu.SubMenu>
+        </Collapse.Panel>
     );
 }
 
