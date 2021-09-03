@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import { Statistic, Card, Row, Col } from 'antd';
-// import {Bar} from 'chart.js';
+import {Line} from 'react-chartjs-2';
 
 import {
     ArrowUpOutlined, 
@@ -18,6 +18,27 @@ export default function Graphs(props) {
     const [progressAverage, setProgressAverage] = useState(0);
     const [averageTime, setAverageTime] = useState(0);
 
+    const data = {
+        labels: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        datasets:[
+            {
+                label: 'Estudiante1',
+                data: Array.from({length: 7}, () => Math.random()*5),
+                borderColor: ['rgba(255, 199, 43)'],
+                backgroundColor: ['rgba(255, 199, 43)'],
+                pointBackgroundColor: ['rgba(255, 199, 43)'],
+                pointBorderColor: ['rgba(255, 199, 43)'],
+            },
+            {
+                label: 'Estudiante2',
+                data: Array.from({length: 7}, () => Math.random()*5),
+                borderColor: ['rgba(131, 255, 110)'],
+                backgroundColor: ['rgba(131, 255, 110)'],
+                pointBackgroundColor: ['rgba(131, 255, 110)'],
+                pointBorderColor: ['rgba(131, 255, 110)'],
+            }
+        ],
+    }
     useEffect(() => {
         setCurrentAverage(4.3);
         setProgressAverage(11.8193);
@@ -28,10 +49,10 @@ export default function Graphs(props) {
         <>
         <Row gutter={10}>
             <Col span={8}>
-            <div className="col">
+            <div className="section stats">
                 <Row gutter={[8, 8]}>
                     <Col span={12}>
-                    <div className="col__stats">
+                    <div className="stats__item">
                     <Statistic
                         title="Promedio Actual"
                         value={currentAverage}
@@ -43,7 +64,7 @@ export default function Graphs(props) {
                     </div>
                     </Col>
                     <Col span={12} >
-                    <div className="col__stats">
+                    <div className="stats__item">
                     <Statistic
                         title="Evolución del Promedio"
                         value={progressAverage}
@@ -57,7 +78,7 @@ export default function Graphs(props) {
                     </div>
                     </Col>
                     <Col span={24}>
-                    <div className="col__stats">
+                    <div className="stats__item">
                     <Statistic
                         title="Tiempo Promedio"
                         value={averageTime}
@@ -70,58 +91,17 @@ export default function Graphs(props) {
             </div>
             </Col>
             <Col span={16} >
-            <div className="col">
-                {/* <Bar
-                    data={{labels:['Element1', 'Element2', 'Element3']}}
-                >
+            <div className="section graphs">
+                <Line className="graphs__line"
+                    data={data}
+                    // height={200}
+                    // width={200}
+                    // options={{maintainAspectRatio:false}}
+                />
 
-                </Bar> */}
             </div>
             </Col>
         </Row>
-        {/* <div className="container">
-            <div className="container__stat-prom">
-                
-                <Row gutter={5}>
-                    <Col span={12}>
-                    <Statistic
-                        title="Promedio Actual"
-                        value={currentAverage}
-                        // prefix={currentAverage<3.0?<FrownOutlined/>:currentAverage<4.0?
-                        //     <FrownOutlined/>:<SmileOutlined/>}
-                        prefix={<FileSearchOutlined/>}
-                        suffix="/ 5.0"
-                    />
-                    </Col>
-                    <Col span={12}>
-                    <Card>
-                    <Statistic
-                        title="Evolución del Promedio"
-                        value={progressAverage}
-                        precision={2}
-                        valueStyle={progressAverage>0?{color:'#3f8600'}:progressAverage==0?
-                        {color:'#fff'}:{color:'#cf1322'}}
-                        prefix={progressAverage>0?<ArrowUpOutlined/>:progressAverage==0?
-                        <MinusOutlined/>:<ArrowDownOutlined/>}
-                        suffix="%"
-                    />
-                    </Card>
-                    </Col>
-                </Row>
-            </div>
-            <div className="container__stat-time">
-                
-            <Statistic
-                title="Tiempo Promedio"
-                value={averageTime}
-                prefix={<ClockCircleOutlined/>}
-                suffix="horas por día"
-            />
-            </div>
-            <div className="container__graphs">
-                c
-            </div>
-        </div> */}
         </>
     );
 }
