@@ -1,16 +1,9 @@
 //Liberias
-import React, {useState, useEffect} from 'react';
-// import {useLocation} from 'react-router-dom';
+import {useState, useEffect} from 'react';
 import {Layout, Tabs, Collapse} from 'antd';
 
 //Íconos
-import {
-    UserOutlined, 
-    TeamOutlined, 
-    RocketTwoTone, 
-    EyeOutlined, 
-    SettingOutlined, 
-} from '@ant-design/icons';
+import {SettingOutlined} from '@ant-design/icons';
 
 //Componentes
 import Modal from '../../../components/Modal';
@@ -19,25 +12,22 @@ import Registers from '../../../components/Statistic/Registers';
 import Graphs from '../../../components/Statistic/Graphs';
 
 //Recursos
-import defSiderStructure from '../../../assets/json/Statistic/StatisticHome/defSiderStructure.json';
-import defSiderParams from '../../../assets/json/Statistic/StatisticHome/defSiderParams.json';
+import defSiderStructure, {TYPES} from '../assets/defSiderStructure';
+import defSiderParams from '../assets/defSiderParams.json';
 
 //API
 // import {getEstudiantesByColegio} from '../../../api/colegio';
 
 //Estilos
 import './StatisticHome.scss';
-import ColumnGroup from 'antd/lib/table/ColumnGroup';
+// import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 //...
-const {Sider, Content, Header} = Layout;
-// const {Panel} = Collapse;
-
-StatisticHome.defaultProps = {
-    siderParams: defSiderParams,
-}
+const {Sider} = Layout;
 
 export default function StatisticHome(props){
+
+    const siderParams = props.siderParams || defSiderParams;
     
     const [elements, setElements] = useState([]); //Estudiantes o cursos
     const [reloadElements, setReloadElements] = useState(false);
@@ -49,30 +39,41 @@ export default function StatisticHome(props){
     const [isVisibleModal, setIsVisibleModal] = useState(false);
     const [modalTitle, setModalTitle] = useState("");
     const [modalContent, setModalContent] = useState(null);
-    
-    const receiveParams = () => {
-        const temp = defSiderStructure;
 
-        setDefaultIcons(temp);
-
-        for (let p in defSiderParams) {
-            temp[p].all = defSiderParams[p].all;
-            
-            if(temp[p].all) {
-                for (let op in temp[p].options) {
-                    temp[p].options[op].sel = true;
-                }
-            } else {
-                for(let op of defSiderParams[p].options) {
-                    temp[p].options[op].sel = true;
-                }
-            }
-        }
-        setSiderStructure(temp);
-    }
-
-    const onChangeOption = () => {
+    const onParameterModified = ({param, option, sel, checkOperation}) => {
         
+        const temp = [...siderStructure];
+
+        if(temp[param].type == TYPES.CHECK_GROUP) {
+            
+            if(checkOperation !== undefined) {
+                for(let op in temp[param].options) {
+                    
+                    if(temp[param].options[op].sel != checkOperation)
+                        temp[param].options[op].sel = checkOperation;
+                
+                }
+            }else temp[param].options[option].sel = sel;
+
+            setSiderStructure(temp);
+
+        }else if(temp[param].type == TYPES.RADIO_GROUP) {
+            
+            for(let op in temp[param].options) {
+                
+                // if(temp[param].options[op].sel) temp[param].options[op].sel = false;
+                if(op != option) temp[param].options[op].sel = false;
+            }
+            temp[param].options[option] = true
+            
+            setSiderStructure(temp);
+
+        }else if(siderStructure[param].type == TYPES.PERIOD_PICKER) {
+            // setSiderStructure({
+            //     ...siderStructure,
+    
+            // });
+        }
     }
 
     const onCollapse = () => {
@@ -80,7 +81,7 @@ export default function StatisticHome(props){
     }
 
     useEffect(() => {
-        receiveParams();
+        receiveParams(siderParams, setSiderStructure);
     }, []);
 
     return(
@@ -94,7 +95,6 @@ export default function StatisticHome(props){
             </Modal>
             
             <Sider
-                
                 className="sider"
                 collapsible
                 defaultCollapsed={false}
@@ -111,16 +111,15 @@ export default function StatisticHome(props){
 
                 <Collapse
                     expandIconPosition='right'
-                >
-                    {Object.keys(siderStructure).map((el, index) => (
+                    >
+                    {Object.keys(siderStructure).map((param, index) => (
                         <Parameter
-                            k={String(index)}
-                            // key={index}
-                            {...siderStructure[el]}
+                            k={index}
+                            {...param}
                             siderCollapsed={siderCollapsed}
-                            onChangeOption={onChangeOption}
+                            onParameterModified={onParameterModified}
                         />
-                    ))}
+                        ))}
                 </Collapse>
             </Sider>
             
@@ -143,15 +142,31 @@ export default function StatisticHome(props){
     );
 }
 
-function setDefaultIcons(siderStructure) {
+const receiveParams = (siderParams, setSiderStructure) => {
+    const siderStructure = defSiderStructure;
 
-    siderStructure.param1.icon = UserOutlined;
-    siderStructure.param1.options.op1.icon = UserOutlined;
-    siderStructure.param1.options.op2.icon = TeamOutlined;
-    
-    siderStructure.param2.icon = RocketTwoTone;
-    for(let op in siderStructure.param2.options) siderStructure.param2.options[op].icon = RocketTwoTone;
+    for (let p in siderParams) {
+        
+        if(siderParams[p] === null) continue;
 
-    siderStructure.param3.icon = EyeOutlined;
-    for(let op in siderStructure.param3.options) siderStructure.param3.options[op].icon = EyeOutlined;
+        if(siderStructure[p].type == TYPES.CHECK_GROUP) {
+            if(siderParams[p] === true){
+                for(let op in siderStructure[p].options) {
+                    siderStructure[p].options[op].sel = true;
+                }
+            }else {
+                for(let op of siderParams[p]) {
+                    siderStructure[p].options[op].sel = true
+                }
+            }
+
+        }else if(siderStructure[p].type == TYPES.RADIO_GROUP) {
+            
+            siderStructure[p].options[siderParams[p]] = true;
+
+        }else if(siderStructure[p].type == TYPES.PERIOD_PICKER) {
+            // ...
+        }
+    }
+    setSiderStructure(siderStructure);
 }
