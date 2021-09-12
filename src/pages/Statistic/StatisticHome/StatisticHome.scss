@@ -23,6 +23,15 @@
         }
 
     }
+
+    &__collapse {
+        
+        &__parameter {
+            background-color: $background-orange-ligth;
+
+            
+        }
+    }
 }
 
 .contenido {
@@ -46,7 +55,7 @@
 
     &__content{
         //background: $background-purple-dark;
-        border-radius: 0px;
+        // border-radius: 0px;
     }
 }
 

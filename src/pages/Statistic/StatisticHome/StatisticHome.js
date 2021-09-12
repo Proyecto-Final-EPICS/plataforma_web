@@ -33,7 +33,7 @@ export default function StatisticHome(props){
     const [reloadElements, setReloadElements] = useState(false);
     const [siderCollapsed, setSiderCollapsed] = useState(false);
     const [siderStructure, setSiderStructure] = useState({}); //Parámetros del sider
-    const [vista, setVista] = useState('tabla');
+    const [activeParams, setActiveParams] = useState([]);
 
     //Constantes para el modal
     const [isVisibleModal, setIsVisibleModal] = useState(false);
@@ -43,9 +43,9 @@ export default function StatisticHome(props){
     const onParameterModified = ({param, option, sel, checkOperation}) => {
         
         const temp = [...siderStructure];
-
+        // console.log(param, option, sel, checkOperation);
         if(temp[param].type == TYPES.CHECK_GROUP) {
-            
+
             if(checkOperation !== undefined) {
                 for(let op in temp[param].options) {
                     
@@ -60,11 +60,12 @@ export default function StatisticHome(props){
         }else if(temp[param].type == TYPES.RADIO_GROUP) {
             
             for(let op in temp[param].options) {
-                
                 // if(temp[param].options[op].sel) temp[param].options[op].sel = false;
-                if(op != option) temp[param].options[op].sel = false;
+                if(op != option){
+                    temp[param].options[op].sel = false;
+                }
             }
-            temp[param].options[option] = true
+            temp[param].options[option].sel = true
             
             setSiderStructure(temp);
 
@@ -76,8 +77,14 @@ export default function StatisticHome(props){
         }
     }
 
-    const onCollapse = () => {
+    const onSiderCollapse = () => {
+        if(!siderCollapsed) setActiveParams([]);
         setSiderCollapsed(!siderCollapsed);
+    }
+
+    const onParamCollapse = (keys) => {
+        if(siderCollapsed) setSiderCollapsed(false);
+        setActiveParams(keys);
     }
 
     useEffect(() => {
@@ -99,7 +106,7 @@ export default function StatisticHome(props){
                 collapsible
                 defaultCollapsed={false}
                 collapsed={siderCollapsed}
-                onCollapse={onCollapse}
+                onCollapse={onSiderCollapse}
                 // collapsed={siderCollapsed}
                 // collapsedWidth={0}
                 >
@@ -110,16 +117,20 @@ export default function StatisticHome(props){
                 </div>
 
                 <Collapse
+                    className="sider__collapse"
                     expandIconPosition='right'
-                    >
-                    {Object.keys(siderStructure).map((param, index) => (
-                        <Parameter
-                            k={index}
-                            {...param}
-                            siderCollapsed={siderCollapsed}
-                            onParameterModified={onParameterModified}
-                        />
-                        ))}
+                    activeKey={activeParams}
+                    onChange={onParamCollapse}
+                >
+                {Object.keys(siderStructure).map((param, index) => (
+                    <Parameter
+                        key={index}
+                        k={index}
+                        {...siderStructure[param]}
+                        siderCollapsed={siderCollapsed}
+                        onParameterModified={onParameterModified}
+                    />
+                ))}
                 </Collapse>
             </Sider>
             
@@ -162,7 +173,7 @@ const receiveParams = (siderParams, setSiderStructure) => {
 
         }else if(siderStructure[p].type == TYPES.RADIO_GROUP) {
             
-            siderStructure[p].options[siderParams[p]] = true;
+            siderStructure[p].options[siderParams[p]].sel = true;
 
         }else if(siderStructure[p].type == TYPES.PERIOD_PICKER) {
             // ...
