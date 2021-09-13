@@ -43,7 +43,7 @@ export default function StatisticHome(props){
     const onParameterModified = ({param, option, sel, checkOperation}) => {
         
         const temp = [...siderStructure];
-        // console.log(param, option, sel, checkOperation);
+        
         if(temp[param].type == TYPES.CHECK_GROUP) {
 
             if(checkOperation !== undefined) {
