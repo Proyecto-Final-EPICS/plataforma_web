@@ -104,10 +104,9 @@ export default function StatisticHome(props){
             <Sider
                 className="sider"
                 collapsible
-                defaultCollapsed={false}
+                // defaultCollapsed={false}
                 collapsed={siderCollapsed}
                 onCollapse={onSiderCollapse}
-                // collapsed={siderCollapsed}
                 // collapsedWidth={0}
                 >
                 <div className="sider__logo">

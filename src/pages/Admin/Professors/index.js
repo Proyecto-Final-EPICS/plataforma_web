@@ -1,1 +1,1 @@
-export {default} from './adminProfessors'
+export {default} from './AdminProfessors'

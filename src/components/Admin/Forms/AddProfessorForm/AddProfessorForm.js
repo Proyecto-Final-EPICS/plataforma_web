@@ -1,19 +1,20 @@
 //Liberias
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Input, Button, Row, Col, notification } from 'antd';
 import { UserOutlined, FileOutlined, LockOutlined } from '@ant-design/icons';
 
 //Api
-import { addStudent } from '../../../../api/colegio'
+import { addProfessor } from '../../../../api/admin'
 
 //Estilos
-import './AddStudentForm.scss'
+import './AddProfessorForm.scss'
 
-export default function AddStudentForm(props) {
-    const { setIsVisibleModal, colegio, setReloadStudents } = props;
+export default function AddProfessorForm(props) {
+
+    const { colegio, setIsVisibleModal, setReloadProfessors } = props;
     const [form] = Form.useForm();
-    const infoStudent = {
-        studentName: { span: 16 },
+    const infoProfessor = {
+        professorName: { span: 16 },
         age: { span: 16 },
         username: { span: 16 },
         password: { span: 16 }
@@ -22,13 +23,14 @@ export default function AddStudentForm(props) {
     const onFinish = (values) => {
         const datos = {
             schoolName: colegio,
-            students: values
+            professors: values
         }
+
         console.log('Success:', datos);
-        addStudent(datos).then(response => {
+        addProfessor(datos).then(response => {
             notification.success({ message: response });
             setIsVisibleModal(false);
-            setReloadStudents(true);
+            setReloadProfessors(true);
             form.resetFields();
         }).catch(err => {
             notification.error({ message: err });
@@ -45,7 +47,7 @@ export default function AddStudentForm(props) {
         <div className="add-user-form">
             <Form className="form-add"
                 form={form}
-                {...infoStudent}
+                {...infoProfessor}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 initialValues={{}}>
@@ -53,11 +55,11 @@ export default function AddStudentForm(props) {
                 <Row gutter={24}>
                     <Col span={12}>
                         <Form.Item
-                            name="studentName"
+                            name="professorName"
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Por favor introduce el nombre del estudiante!',
+                                    message: 'Por favor introduce el nombre del profesor!',
                                 },
                             ]}>
                             <Input
@@ -120,7 +122,7 @@ export default function AddStudentForm(props) {
                 </Row>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="btn-submit">
-                        Agregar estudiante
+                        Agregar profesor
                 </Button>
                 </Form.Item>
             </Form>

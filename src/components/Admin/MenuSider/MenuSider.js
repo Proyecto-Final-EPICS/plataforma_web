@@ -16,22 +16,22 @@ function MenuSider(props){
         <Sider className="admin-sider" collapsed={menuCollapsed}>
             <Menu mode="inline" defaultSelectedKeys={[location.pathname]} className="admin-sider__menu">
 
-                <Menu.Item key="/admin-home/schools" className="admin-sider__item">
-                    <Link to={"/admin-home/schools"}>
+                <Menu.Item key="/admin/courses" className="admin-sider__item">
+                    <Link to={"/admin/courses"}>
                         <HomeOutlined />
-                        <span className="nav-text">Colegios</span>
+                        <span className="nav-text">Cursos</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/admin-home/professors" className="admin-sider__item">
-                    <Link to={"/admin-home/professors"}>
+                <Menu.Item key="/admin/professors" className="admin-sider__item">
+                    <Link to={"/admin/professors"}>
                         <UserOutlined />
                         <span className="nav-text">Profesores</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/admin-home/games" className="admin-sider__item">
-                    <Link to={"/admin-home/games"}>
+                <Menu.Item key="/admin/games" className="admin-sider__item">
+                    <Link to={"/admin/games"}>
                         <DesktopOutlined />
                         <span className="nav-text">Videojuegos</span>
                     </Link>

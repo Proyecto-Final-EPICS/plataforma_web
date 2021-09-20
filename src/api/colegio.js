@@ -1,7 +1,5 @@
 import {basePath} from './config';
 
-
-
 //Endpoint para traer todos los colegios
 export function getColegiosApi(){
     const url = `${basePath}/getSchoolsDetails`;
@@ -212,4 +210,3 @@ export function addStudent(info){
         return err.message;
     })
 }
-

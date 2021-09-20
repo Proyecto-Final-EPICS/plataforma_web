@@ -11,8 +11,7 @@ import ListColegios from '../../../components/Admin/ListColegios';
 import { getColegiosApi } from '../../../api/admin';
 
 //Estilos
-import './Colegios.scss';
-
+import './Courses.scss';
 
 export default function AdminSchool() {
     const { Content, Header } = Layout;
@@ -54,8 +53,4 @@ export default function AdminSchool() {
             </div>
         </Layout>
     );
-}
-
-function a() {
-
 }

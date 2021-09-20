@@ -10,7 +10,7 @@ import Error404 from '../pages/Error';
 //Pages Admin
 import AdminHome from '../pages/Admin/AdminHome';
 import AdminGames from '../pages/Admin/Games';
-import AdminSchool from '../pages/Admin/Schools';
+import AdminCourses from '../pages/Admin/Courses';
 import AdminProfessors from '../pages/Admin/Professors';
 
 //Pages Professor
@@ -97,32 +97,27 @@ const routes = [//Es el sistema de rutas, el array contiene todas las rutas
     },
     {
         path: "/admin",
-        component: Login,
-        exact: true
-    },
-    {
-        path: "/admin-home",
         component: LayoutAdmin,
         exact: false,
         routes:[
             {
-                path: "/admin-home",
+                path: "/admin",
                 component: AdminHome,
                 exact: true
             },
             {
-                path: "/admin-home/games",
+                path: "/admin/courses",
+                component: AdminCourses,
+                exact: true
+            },
+            {
+                path: "/admin/games",
                 component: AdminGames,
                 exact: true
             },
             {
-                path: "/admin-home/professors",
+                path: "/admin/professors",
                 component: AdminProfessors,
-                exact: true
-            },
-            {
-                path: "/admin-home/schools",
-                component: AdminSchool,
                 exact: true
             },
             {
@@ -134,7 +129,7 @@ const routes = [//Es el sistema de rutas, el array contiene todas las rutas
         path: "/statistics",
         component: LayoutStatistic,
         exact: false,
-        routes:[
+        routes: [
             {
                 path: "/statistics",
                 component: StatisticHome,

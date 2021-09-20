@@ -27,13 +27,14 @@ export default function Colegio(){
     const [modalTitle,setModalTitle] = useState("");
     const [modalContent,setModalContent] = useState(null);
 
-    useEffect(()=>{
-        let isMounted = true;
+    useEffect(() => {
+        console.log(colegio);
+        // let isMounted = true;
         getEstudiantesByColegio(colegio).then(response =>{
             setStudents(response);
             setReloadStudents(false)
         })
-        return () =>{isMounted = false};
+        // return () =>{isMounted = false};
     },[reloadStudents])
 
     const addStudent = () =>{

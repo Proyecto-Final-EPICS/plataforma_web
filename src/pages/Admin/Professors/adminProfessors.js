@@ -1,9 +1,11 @@
 //Liberias
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout, Button } from 'antd';
 
 //Componentes
-import ListProfessors from '../../../components/Admin/Professor/ListProfessors';
+import ListProfessors from '../../../components/Admin/ListProfessor';
+import AddProfessorForm from '../../../components/Admin/Forms/AddProfessorForm';
+import Modal from '../../../components/Modal';
 
 //API
 import { getProfessorsApi } from '../../../api/admin';
@@ -12,17 +14,48 @@ import { getProfessorsApi } from '../../../api/admin';
 import './AdminProfessor.scss';
 
 export default function AdminProfessors() {
+
     const { Content, Header } = Layout;
-    const [professors, setProfesor] = useState([]);
+    
+    const colegio = 'NombreColegio'; //xddd
+    const [professors, setProfessors] = useState([]);
+    const [reloadProfessors, setReloadProfessors] = useState(false);
+
+    const [isVisibleModal, setIsVisibleModal] = useState(false);
+    const [modalTitle, setModalTitle] = useState('');
+    const [modalContent, setModalContent] = useState(null);
+    
+    const addProfessor = () =>{
+        setIsVisibleModal(true);
+        setModalTitle(`Agregar profesor`);
+        setModalContent(
+            <AddProfessorForm
+                colegio = {colegio}
+                setIsVisibleModal = {setIsVisibleModal}
+                setReloadProfessors = {setReloadProfessors}
+            />
+        )
+    }
+    
     useEffect(() => {
         getProfessorsApi().then(response => {
-            setProfesor(response);
+            setProfessors(response);
+            setReloadProfessors(false);
         })
-    }, [])
+    }, [reloadProfessors]);
+    
     return (
         <Layout>
+            <Modal
+                title={modalTitle}
+                isVisible={isVisibleModal}
+                setIsVisible={setIsVisibleModal}
+            >
+                {modalContent}
+            </Modal>
+
             <div className="admin-colegio-contenido">
-                <Button type="primary" className="professor__button">
+                <Button type="primary" className="professor__button" onClick={addProfessor}>
                     Registrar
                 </Button>
                 <Content>
