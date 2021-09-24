@@ -1,5 +1,5 @@
 //Liberias
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { Form, Input, Button, Row, Col, notification } from 'antd';
 import { UserOutlined, FileOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -11,23 +11,21 @@ import './AddProfessorForm.scss'
 
 export default function AddProfessorForm(props) {
 
-    const { colegio, setIsVisibleModal, setReloadProfessors } = props;
+    const {setIsVisibleModal, setReloadProfessors} = props;
     const [form] = Form.useForm();
-    const infoProfessor = {
-        professorName: { span: 16 },
-        age: { span: 16 },
-        username: { span: 16 },
-        password: { span: 16 }
-    }
+    
+    // const infoProfessor = {
+    //     professorName: { span: 16 },
+    //     age: { span: 16 },
+    //     username: { span: 16 },
+    //     password: { span: 16 }
+    // }
 
     const onFinish = (values) => {
-        const datos = {
-            schoolName: colegio,
-            professors: values
-        }
 
-        console.log('Success:', datos);
-        addProfessor(datos).then(response => {
+        console.log('Success:', values);
+        
+        addProfessor(values).then(response => {
             notification.success({ message: response });
             setIsVisibleModal(false);
             setReloadProfessors(true);
@@ -47,10 +45,11 @@ export default function AddProfessorForm(props) {
         <div className="add-user-form">
             <Form className="form-add"
                 form={form}
-                {...infoProfessor}
+                // {...infoProfessor}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
-                initialValues={{}}>
+                initialValues={{}}
+            >
 
                 <Row gutter={24}>
                     <Col span={12}>

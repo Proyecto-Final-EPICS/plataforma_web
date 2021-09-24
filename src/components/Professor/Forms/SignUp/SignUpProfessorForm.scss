@@ -1,0 +1,26 @@
+@import '../../../../scss/index.scss';
+
+.form {
+
+    &__name {
+        margin-bottom: 0;
+    }
+
+    &__gender {
+
+        #custom-gender-input{
+            width: 200px;
+        }
+    }
+
+    &__submit {
+        text-align: center;
+        margin-top: 20px;
+
+        button {
+            background-color: $background-orange;
+            color: white;
+        }
+        
+    }
+}

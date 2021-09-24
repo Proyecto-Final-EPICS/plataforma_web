@@ -13,12 +13,12 @@
     .ant-input::placeholder{
         color:$font-input;
     }
-  
 
     &__input{
         margin-top: 10px;
         border-radius: 18px;
         box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+        
         .ant-input-prefix{
             margin: 4px 7px 2px 1px;
             svg{
@@ -27,20 +27,16 @@
             }
         }
 
-        
-
         input{
             font-size: 0em + 22px / $defaultFontSize;
             font-family:'Secular one',sans-serif;
             
-
             &:focus{
                 border-color: $primary-color;
                 box-shadow: none;
             }
             
         }
-
         
     }
 
@@ -55,12 +51,10 @@
         border-radius: 18px;
         box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
         border: none;
-
         
         &:hover{
             background:$background-light;
             color: $background-orange;
-            
         }
 
         // &:focus,

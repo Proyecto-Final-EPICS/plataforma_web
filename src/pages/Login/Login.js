@@ -1,7 +1,8 @@
 //Liberías
 import React from 'react';
-import { Layout,Row,Col} from '../../../node_modules/antd';
-import { Redirect } from 'react-router-dom';
+import { Layout } from '../../../node_modules/antd';
+import { Redirect, Link } from 'react-router-dom';
+import {Button} from 'antd';
 
 //Componentes
 import LoginForm from '../../components/General/LoginForm';
@@ -29,17 +30,17 @@ export default function Login(){
                   <img src={Logo} alt="Logo joystick"/>
               </h1>
 
-              <div className="sign-in__content-form">
-                  <Row>
-                    <Col span={24}>
-                     <h1 className="sign-in__content-form-titulo">LOGIN</h1>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col span={24}>
-                      <LoginForm/>
-                    </Col>
-                  </Row>
+              <div className="sign-in__content__form">
+                <h1>LOGIN</h1>
+                <LoginForm/>
+
+                {/* <div > */}
+                <Link to={'/sign-up'} className="sign-in__content__form__sign-up">
+                <Button type="link">
+                    ¿No estás registrado?
+                </Button>
+                </Link>
+                {/* </div> */}
               </div>
           </Content>
       </Layout>

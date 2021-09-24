@@ -1,0 +1,48 @@
+@import '../../scss/index.scss';
+
+$content-height: 700px;
+
+.sign-up {
+    padding: 20px;
+    background-color: $background-purple-light3;
+
+    &__content {
+        border-radius: 50%;
+        
+        &__panel {
+            background-color: $background-orange;
+            padding: 40px 20px;
+            height: $content-height;
+
+            &__content {
+                margin-top: 60px;
+                text-align: center;
+                
+                img {
+                    width: 200px;
+                }
+
+                h1 {
+                    margin-top: 20px;
+                    font-size: 24px;
+                }
+            }
+
+            &__footer {
+                text-align: center;
+            }
+        }
+
+        &__form {
+            // background-color: $background-purple-light;
+            background-color: white;
+            padding: 40px;
+            height: $content-height;
+
+            h1 {
+                text-align: center;
+            }
+
+        }
+    }
+}

@@ -11,6 +11,10 @@ import {signinAPI} from'../../../api/users'
 //Utils
 import {ACCESS_TOKEN} from '../../../utils/constants'
 
+//Componentes
+import Modal from '../../Modal';
+
+
 //Estilos
 import './LoginForm.scss';
 
@@ -25,21 +29,11 @@ export default function LoginForm(){
             ...inputs,
             [e.target.name]: e.target.value
         });
-        // console.log(inputs)
     }
-    
-    // const login = async () => {
-    //     const result = await signinAPI(inputs);
-    //     console.log(result);
-    //     if(result.ok){
-    //         window.location.href="/home";
-    //     }else {
-    //         notification["error"]({message:"Contraseña o usuario incorrecto"});
-    //     }
-    // }
 
     const login = async e => {
         const result = await signinAPI(inputs)
+        
         if (result.token ==="none") {
             notification["error"]({
                 message:"Contraseña o usuario incorrecto"
@@ -57,9 +51,8 @@ export default function LoginForm(){
         }
     }
 
-    return(
+    return (
         <Form className="login-form" onChange={changeForm} onFieldsChange={login}>
-            
             <Form.Item>
                 <Input
                     prefix={<UserOutlined/>}
@@ -85,7 +78,6 @@ export default function LoginForm(){
                     Ingresar
                 </Button>
             </Form.Item>
-
         </Form>
     );
 }

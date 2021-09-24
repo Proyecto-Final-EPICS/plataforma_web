@@ -98,16 +98,7 @@ export function addStudent(info){
     })
 }
 
-export function addProfessor(info){
-    const data = {
-        schoolName: info.schoolName,
-        professors: {
-            professorName: info.professors.professorName,
-            age: info.professors.age,
-            username: info.professors.username,
-            password: info.professors.password
-        }
-    }
+export function addProfessor(data){
 
     const url = `${basePath}/professor`;
     const params = {

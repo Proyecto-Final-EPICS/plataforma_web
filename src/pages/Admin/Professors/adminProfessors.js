@@ -1,10 +1,12 @@
 //Liberias
 import { useState, useEffect } from 'react';
-import { Layout, Button } from 'antd';
+import { Layout, Button, Table } from 'antd';
 
 //Componentes
-import ListProfessors from '../../../components/Admin/ListProfessor';
+// import ListProfessors from '../../../components/Admin/ListProfessor';
+import TableProfessor from '../../../components/Admin/TableProfessor';
 import AddProfessorForm from '../../../components/Admin/Forms/AddProfessorForm';
+import ProfessorProfile from '../../../components/Admin/ProfessorProfile';
 import Modal from '../../../components/Modal';
 
 //API
@@ -17,26 +19,40 @@ export default function AdminProfessors() {
 
     const { Content, Header } = Layout;
     
-    const colegio = 'NombreColegio'; //xddd
+    const selectedProfessor = null;
     const [professors, setProfessors] = useState([]);
     const [reloadProfessors, setReloadProfessors] = useState(false);
 
-    const [isVisibleModal, setIsVisibleModal] = useState(false);
-    const [modalTitle, setModalTitle] = useState('');
-    const [modalContent, setModalContent] = useState(null);
-    
-    const addProfessor = () =>{
-        setIsVisibleModal(true);
-        setModalTitle(`Agregar profesor`);
-        setModalContent(
+    const [isVisibleModalAddProfessor, setIsVisibleModalAddProfessor] = useState(false);
+    const [modalAddProfessorTitle, setModalAddProfessorTitle] = useState('Agregar profesor');
+    const [modalAddProfessorContent, setModalAddProfessorContent] = useState(null);
+
+    const [isVisibleModalProfessor, setIsVisibleModalProfessor] = useState(false);
+    const [modalProfessorContent, setModalProfessorContent] = useState(null);
+
+    const addProfessor = () => {
+        setIsVisibleModalAddProfessor(true);
+        setModalAddProfessorContent(
             <AddProfessorForm
-                colegio = {colegio}
-                setIsVisibleModal = {setIsVisibleModal}
+                setIsVisibleModal = {setIsVisibleModalAddProfessor}
                 setReloadProfessors = {setReloadProfessors}
             />
         )
     }
     
+    const seeProfessor = (username) => {
+        console.log(username);
+        return;
+        setIsVisibleModalProfessor(true);
+        setModalProfessorContent(
+            <ProfessorProfile
+                setIsVisibleModal={setIsVisibleModalProfessor}
+                
+            >
+            </ProfessorProfile>
+        );
+    }
+
     useEffect(() => {
         getProfessorsApi().then(response => {
             setProfessors(response);
@@ -47,11 +63,17 @@ export default function AdminProfessors() {
     return (
         <Layout>
             <Modal
-                title={modalTitle}
-                isVisible={isVisibleModal}
-                setIsVisible={setIsVisibleModal}
+                title={modalAddProfessorTitle}
+                isVisible={isVisibleModalAddProfessor}
+                setIsVisible={setIsVisibleModalAddProfessor}
             >
-                {modalContent}
+                {modalAddProfessorContent}
+            </Modal>
+            <Modal
+                isVisible={isVisibleModalProfessor}
+                setIsVisible={setIsVisibleModalProfessor}
+            >
+                {modalProfessorContent}
             </Modal>
 
             <div className="admin-colegio-contenido">
@@ -59,16 +81,10 @@ export default function AdminProfessors() {
                     Registrar
                 </Button>
                 <Content>
-                    <Header className="admin-professor-contenido__header">
-                        <div className="admin-professor-contenido__header__col">
-                            <h1>Nombre</h1>
-                        </div>
-
-                        <div className="admin-professor-contenido__header__col">
-                            <h1>Editar</h1>
-                        </div>
-                    </Header>
-                    <ListProfessors profesores={professors} />
+                    <TableProfessor
+                        professors={professors} 
+                        seeProfessor={seeProfessor} 
+                    />
                 </Content>
             </div>
         </Layout>

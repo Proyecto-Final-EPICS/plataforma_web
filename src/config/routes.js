@@ -5,6 +5,7 @@ import LayoutStatistic from '../pages/Statistic';
 
 //Pages for everybody
 import Login from '../pages/Login';
+import SignUp from '../pages/Signup';
 import Error404 from '../pages/Error';
 
 //Pages Admin
@@ -31,6 +32,11 @@ const routes = [//Es el sistema de rutas, el array contiene todas las rutas
     {
         path: "/",
         component: Login,
+        exact: true
+    },
+    {
+        path: "/sign-up",
+        component: SignUp,
         exact: true
     },
     {
