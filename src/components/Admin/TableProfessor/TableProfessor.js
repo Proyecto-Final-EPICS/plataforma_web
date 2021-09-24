@@ -2,7 +2,7 @@ import {Table, Button} from 'antd';
 
 export default function TableProfessor (props) {
     const {professors, seeProfessor} = props;
-    
+    console.log(professors);
     const data = professors.map((professor, index) => {
             
         const {username, firstname, lastname, email} = professor;
@@ -24,12 +24,12 @@ export default function TableProfessor (props) {
         },
         {
             "title": "Apellidos",
-            "dataIndex": "lastName",
+            "dataIndex": "lastname",
             "key": "lastname"
         },
         {
             "title": "Nombres",
-            "dataIndex": "firstName",
+            "dataIndex": "firstname",
             "key": "firstname"
         },
         {
@@ -40,7 +40,7 @@ export default function TableProfessor (props) {
         {
             "title": "Acción",
             "key": "action",
-            render: (text, record) => (
+            render: (_, record) => (
                 <Button type="primary" onClick={() => seeProfessor(record.username)}>
                     Ver más
                 </Button>

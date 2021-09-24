@@ -4,7 +4,7 @@ import { Form, Input, Button, Row, Col, notification } from 'antd';
 import { UserOutlined, FileOutlined, LockOutlined } from '@ant-design/icons';
 
 //Api
-import { addProfessor } from '../../../../api/admin'
+import { addProfessor } from '../../../../api/users'
 
 //Estilos
 import './AddProfessorForm.scss'
@@ -14,13 +14,6 @@ export default function AddProfessorForm(props) {
     const {setIsVisibleModal, setReloadProfessors} = props;
     const [form] = Form.useForm();
     
-    // const infoProfessor = {
-    //     professorName: { span: 16 },
-    //     age: { span: 16 },
-    //     username: { span: 16 },
-    //     password: { span: 16 }
-    // }
-
     const onFinish = (values) => {
 
         console.log('Success:', values);

@@ -4,7 +4,10 @@ import {Form, Input, Button, DatePicker, Radio, Space, Row, Col, Divider, Select
 import {UserOutlined, LockOutlined, MailOutlined, PhoneOutlined} from '@ant-design/icons';
 
 //Api
-// ...
+import {addProfessor, signinAPI} from '../../../../api/users'; 
+
+//Utils
+import {ACCESS_TOKEN} from '../../../../utils/constants';
 
 //Estilos
 import './SignUpProfessorForm.scss';
@@ -15,7 +18,7 @@ const {Option} = Select;
 export default function SignUpProfessorForm(props) {
     
     // const {setIsVisibleModal} = props;
-    const [genderValue, setGenderValue] = useState('male');
+    const [genderValue, setGenderValue] = useState(null);
     const [form] = Form.useForm();
     
     const phoneCountryCode = (
@@ -26,14 +29,51 @@ export default function SignUpProfessorForm(props) {
     </Form.Item>
     );
 
-    const onChangeGender = e => {
+    const onChangeGenderRadio = e => {
+        // console.log(e.target.value);
+        setGenderValue(e.target.value==='other'?'':e.target.value);
+    }
+
+    const onChangeGenderInput = e => {
+        // console.log(e.target.value);
         setGenderValue(e.target.value);
+    }
+
+    const signup = values => {
+        return addProfessor(values).then(response => {
+            notification.success({ message: response });
+            // form.resetFields();
+            return response;
+        }).catch(err => {
+            notification.error({ message: err });
+        });
+    }
+
+    const login = async values => {
+        if(!values.username || !values.password) return;
+        const result = await signinAPI(values);
+        const {token} = result;
+
+        if (token === "none") {
+            console.log("Login't");
+
+        }else{
+            localStorage.setItem(ACCESS_TOKEN, token);
+            window.location.href= "/home";
+        }
     }
 
     const onFinish = values => {
         console.log(values);
-        console.log(genderValue);
-        form.resetFields();
+        // const {birthdate, confirmpassword, email, firstname, indetityDoc, lastname, 
+        //     password, phone, phoneCountryCode, username} = values;
+        const {username, password, firstname, lastname, email} = values;
+        values = {username, password, firstname, lastname, email};
+        
+        signup(values).then(() => {
+            login({username, password});
+        });
+        // form.resetFields();
     };
 
     const onFinishFailed = error => {
@@ -137,13 +177,17 @@ export default function SignUpProfessorForm(props) {
             {/* <Space direction="horizontal"> */}
                 <Radio.Group
                     value={genderValue}
-                    onChange={onChangeGender}
+                    onChange={onChangeGenderRadio}
                 >
                     <Radio.Button value="male">Masculino</Radio.Button>
                     <Radio.Button value="female">Femenino</Radio.Button>
-                    {genderValue==='male' || genderValue==='female'?
+                    {genderValue===null || genderValue==='male' || genderValue==='female'?
                     <Radio.Button value="other">Otro</Radio.Button>:
-                    <Input id="custom-gender-input" placeholder="Género personalizado"/>}
+                    <Input
+                        id="custom-gender-input" 
+                        placeholder="Género personalizado" 
+                        onChange={onChangeGenderInput}
+                    />}
                 </Radio.Group>
                 
             {/* </Space> */}
@@ -179,178 +223,3 @@ export default function SignUpProfessorForm(props) {
         </Form>
     );
 }
-
-/*
-        <Form className=""
-            form={form}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            initialValues={{}}
-        >
-            <Divider orientation="left" plain>Información de usuario</Divider>
-            
-            <Row gutter={24}>
-                <Col span={12}>
-                <Form.Item
-                    name="username"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Introduzca su nombre de usuario'
-                        }
-                    ]}
-                >
-                    <Input placeholder="Usuario"/>
-                </Form.Item>
-                </Col>
-
-                <Col span={12}>
-                <Form.Item
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Introduzca una contraseña'
-                        }
-                    ]}
-                >
-                    <Input type="password" placeholder="Contraseña"/>
-                </Form.Item>
-                </Col>
-            </Row>
-
-            <Divider orientation="left" plain>Información personal</Divider>
-            
-            <Row gutter={24}>
-                <Col span={12}>
-                <Form.Item
-                    name="firstname"
-                >
-                    <Input placeholder="Nombres"/>
-                </Form.Item>
-                </Col>
-
-                <Col span={12}>
-                <Form.Item
-                    name="lastname"
-                >
-                    <Input placeholder="Apellidos"/>
-                </Form.Item>
-                </Col>
-            </Row>
-
-            <Row gutter={16}>
-                <Col span={8}>
-                <Form.Item
-                    name="birthdate"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Introduzca su fecha de nacimiento'
-                        }
-                    ]}
-                >
-                    <DatePicker placeholder="Fecha de nacimiento"/>
-                </Form.Item>
-                </Col>
-
-                <Col span={8}>
-                <Form.Item name="gender">
-                    <Input placeholder="Género"/>
-                </Form.Item>
-                </Col>
-
-                <Col span={8}>
-                <Form.Item
-                    name="identitydoc"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Se requiere su documento de identidad'
-                        }
-                    ]}
-                >
-                    <Input placeholder="Documento de Identidad"/>
-                </Form.Item>
-                </Col>
-            </Row>
-
-            <Divider orientation="left" plain>Contacto</Divider>
-            
-            <Row gutter={24}>
-                
-                <Col span={12}>
-                <Form.Item
-                    name="phone"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Digite un teléfono'
-                        }
-                    ]}
-                >
-                    <Input type="tel" placeholder="Teléfono"/>
-                </Form.Item>
-                </Col>
-
-                <Col span={12}>
-                <Form.Item
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Introduzca el email'
-                        }
-                    ]}
-                >
-                    <Input type="email" placeholder="Email"/>
-                </Form.Item>
-                </Col>
-            </Row>
-
-            <Form.Item>
-                <Button type="primary" htmlType="submit">Registrarse</Button>
-            </Form.Item>
-        </Form>
-*/
-
-/*
-<Form.Item
-                name="gender"
-                label="Género"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Campo requerido'
-                    }
-                ]}
-            >
-            <Space direction="horizontal">
-                <Radio.Group>
-                    <Radio.Button value="male">Masculino</Radio.Button>
-                    <Radio.Button value="female">Femenino</Radio.Button>
-                    <Radio.Button value="other">Otro</Radio.Button>
-                </Radio.Group>
-                
-                <Form.Item
-                    noStyle
-                    shouldUpdate={shouldGenderUpdate}
-                    >
-                    {(formInfo) => isGenderOther(formInfo)?
-                    <Form.Item
-                    name="customgender"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Campo requerido"
-                        }
-                    ]}
-                    >
-                        <Input/>
-                    </Form.Item>
-                    :null}
-                </Form.Item>
-
-            </Space>
-            </Form.Item>
-*/
