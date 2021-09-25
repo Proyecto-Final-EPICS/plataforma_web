@@ -1,5 +1,5 @@
 //Liberias
-import React from 'react';
+import React, {useState} from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {HomeOutlined, UserOutlined, DesktopOutlined} from '@ant-design/icons';
@@ -8,13 +8,21 @@ import {HomeOutlined, UserOutlined, DesktopOutlined} from '@ant-design/icons';
 //Estilos
 import './MenuSider.scss';
 
-function MenuSider(props){
-    const {menuCollapsed, location} = props;
-    const {Sider} = Layout;
+//...
+const {Sider} = Layout;
 
+function MenuSider(props){
+    const {menuCollapsed, selectedKey, setSelectedKey} = props;
+    
     return(
         <Sider className="admin-sider" collapsed={menuCollapsed}>
-            <Menu mode="inline" defaultSelectedKeys={[location.pathname]} className="admin-sider__menu">
+            <Menu 
+                mode="inline" 
+                // defaultSelectedKeys={[location.pathname]} 
+                selectedKeys={selectedKey}
+                onSelect={e => setSelectedKey(e.key)}
+                className="admin-sider__menu"
+            >
 
                 <Menu.Item key="/admin/courses" className="admin-sider__item">
                     <Link to={"/admin/courses"}>

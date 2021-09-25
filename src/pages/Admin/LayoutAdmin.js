@@ -18,9 +18,10 @@ import useAuth from '../../hooks/useAuth';
 import "./LayoutAdmin.scss";
 
 export default function LayoutAdmin(props) {
-    const { routes } = props;
+    const { routes, location } = props;
     const { Header, Content, Footer } = Layout;
     const [menuCollapsed, setMenuCollapsed] = useState(false); //Para desplegar el menu
+    const [menuSelectedKey, setMenuSelectedKey] = useState([location.pathname]);
     
     const {user, isLoading} = useAuth();
 
@@ -36,10 +37,15 @@ export default function LayoutAdmin(props) {
     return (
         <Layout>
             <Content>
-                <MenuSider menuCollapsed={menuCollapsed} className="menu-sider"/>
+                <MenuSider 
+                    menuCollapsed={menuCollapsed} 
+                    setSelectedKey={setMenuSelectedKey}
+                    selectedKey={menuSelectedKey}
+                    className="menu-sider"
+                />
                 <Layout className="layout-admin" style={{ marginLeft: menuCollapsed ? "80px" : "200px" }}>                    
                     <Content className="layout-admin__content">
-                        <LoadRouters routes={routes} />
+                        <LoadRouters routes={routes} setMenuSelectedKey={setMenuSelectedKey}/>
                     </Content>
                     <Footer style={{ textAlign: 'center' }} className="layout-basic__footer">
                         EPICS IEEE
@@ -56,7 +62,7 @@ export default function LayoutAdmin(props) {
 }
 
 function LoadRouters(props) {
-    const { routes } = props;
+    const { routes, setMenuSelectedKey } = props;
 
     return (
         <Switch>
@@ -65,7 +71,15 @@ function LoadRouters(props) {
                     key={index}
                     path={route.path}
                     exact={route.exact}
-                    component={route.component}
+                    render={
+                        props=>(
+                            <route.component 
+                                {...props}
+                                setMenuSelectedKey={setMenuSelectedKey}
+                            />
+                        )
+                    }/*Se usa render porque va a renderizar otras rutas*/ 
+                    // component={route.component}
                 />
             ))}
         </Switch>

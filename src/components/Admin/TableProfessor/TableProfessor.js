@@ -2,19 +2,13 @@ import {Table, Button} from 'antd';
 
 export default function TableProfessor (props) {
     const {professors, seeProfessor} = props;
-    console.log(professors);
-    const data = professors.map((professor, index) => {
-            
-        const {username, firstname, lastname, email} = professor;
-
-        return {
+    // console.log(professors);
+    const data = professors.map((professor, index) => (
+        {
+            ...professor,
             key: index,
-            username,
-            firstname,
-            lastname,
-            email,
-        };
-    })
+        }
+    ));
     
     const columns = [
         {

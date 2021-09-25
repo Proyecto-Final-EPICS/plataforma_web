@@ -1,0 +1,28 @@
+@import '../../../scss/index.scss';
+
+.profile {
+    height: 560px;
+    padding: 0 20px;
+
+    &__header {
+        text-align: center;
+        
+        img {
+            padding: 4px;
+            width: 200px;
+            border-radius: 50%;
+            border: dashed 1px #aaa;
+            border-style: double;
+        }
+    }
+
+    h2, h3 {
+        display: inline-block;
+    }
+
+    h3 {
+        font-style: italic;
+    }
+
+    
+}
