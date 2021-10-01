@@ -6,7 +6,7 @@ import {Layout, Tabs, Collapse} from 'antd';
 import {SettingOutlined} from '@ant-design/icons';
 
 //Componentes
-import Modal from '../../../components/Modal';
+import Modal from '../../../components/General/Modal';
 import Parameter from '../../../components/Statistic/Sider/Parameter';
 import Registers from '../../../components/Statistic/Registers';
 import Graphs from '../../../components/Statistic/Graphs';

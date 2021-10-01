@@ -1,13 +1,13 @@
 //Liberias
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
 //Componentes
-// import ListProfessors from '../../../components/Admin/ListProfessor';
+import LayoutAdminContext from '../../../components/Admin/LayoutAdminContext';
 import TableProfessor from '../../../components/Admin/TableProfessor';
 import ProfessorProfile from '../../../components/Admin/ProfessorProfile';
-import Modal from '../../../components/Modal';
+import Modal from '../../../components/General/Modal';
 
 //API
 import { getProfessorsApi } from '../../../api/admin';
@@ -15,8 +15,9 @@ import { getProfessorsApi } from '../../../api/admin';
 //Estilos
 import './AdminProfessor.scss';
 
-export default function AdminProfessors(props) {
-    const {setMenuSelectedKey} = props;
+export default function AdminProfessors() {
+    // const {setMenuSelectedKey} = props;
+    const {setMenuSelectedKey, setProfessorFilter} = useContext(LayoutAdminContext);
 
     const [professors, setProfessors] = useState([]);
     const [reloadProfessors, setReloadProfessors] = useState(false);
@@ -24,7 +25,7 @@ export default function AdminProfessors(props) {
     const [isVisibleModalProfessor, setIsVisibleModalProfessor] = useState(false);
     const [modalProfessorContent, setModalProfessorContent] = useState(null);
     
-    const seeProfessor = (username) => {
+    const seeProfessor = username => {
         setIsVisibleModalProfessor(true);
         getProfessorsApi().then(response => {
             const prof = response.find(el => el.username==username);
@@ -37,6 +38,12 @@ export default function AdminProfessors(props) {
                 email: prof.email,
                 description: prof.description
             };
+            
+            const onClickCourses = () => {
+                setMenuSelectedKey("/admin/courses");
+                setProfessorFilter([`${prof.firstname} ${prof.lastname}`]);
+            }
+
             setModalProfessorContent(
                 <>
                 <ProfessorProfile {...data}/>
@@ -44,7 +51,7 @@ export default function AdminProfessors(props) {
                     <Button 
                         type="primary" 
                         className="modal-professor__courses"
-                        onClick={() => setMenuSelectedKey("/admin/courses")}
+                        onClick={onClickCourses}
                     >
                         Cursos
                     </Button>

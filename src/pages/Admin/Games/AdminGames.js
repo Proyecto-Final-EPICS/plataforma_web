@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Layout, Button } from 'antd';
 
 //Componentes
-import TableGame from '../../../components/Admin/TableGame';
+import GridGame from '../../../components/Admin/GridGame';
+
 
 //API
 import { getVideogamesApi } from '../../../api/admin';
@@ -16,23 +17,47 @@ export default function AdminGames() {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
-        getVideogamesApi().then(response => {
-            setGames(response);
-        });
+        // getVideogamesApi().then(response => {
+        //     setGames(response);
+        // });
+        initGames(setGames);
     }, []);
     
-    return (
+    return(
         <Layout>
-            <div className="admin-juego-contenido">
-                <Button type="primary" className="juego__button">
-                    Registrar
-                </Button>
-                <Content>
-                    <TableGame
-                        games={games}
-                    />
-                </Content>
-            </div>
+            <Header style={{backgroundColor: 'white'}}>
+                {/* <GameFilters/> */}
+            </Header>
+            <Content>
+                <GridGame games={games}/>
+            </Content>
         </Layout>
     );
+}
+
+function initGames(setGames) {
+    setGames([
+        {
+            id: "1",
+            shortname: "App1",
+            image: "https://streamerranks.com/wp-content/uploads/2021/03/clipart-videogames.png",
+            level: "A2",
+            developers: ["Juan Torres",  "Diego Cabal", ],
+        },
+        {
+            id: "2",
+            shortname: "App2",
+            image: "https://streamerranks.com/wp-content/uploads/2021/03/clipart-videogames.png",
+            level: "A1",
+            developers: ["Sara Escobar", ],
+        },
+        {
+            id: "3",
+            shortname: "App3",
+            image: "https://streamerranks.com/wp-content/uploads/2021/03/clipart-videogames.png",
+            level: "C2",
+            developers: ["Spella"],
+        },
+
+    ]);
 }

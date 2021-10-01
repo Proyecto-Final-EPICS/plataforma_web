@@ -5,7 +5,7 @@ import {Link,useParams} from 'react-router-dom';
 
 
 //Componentes
-import Modal from '../../../components/Modal';
+import Modal from '../../../components/General/Modal';
 import SelectLevel from '../../../components/Professor/SelectLevel';
 import Recomendacion from '../../../components/Professor/Recomendacion';
 

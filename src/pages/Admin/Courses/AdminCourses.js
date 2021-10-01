@@ -1,5 +1,6 @@
 //Liberias
 import React, { useState, useEffect } from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { Layout, Button } from 'antd';
 
 //Componentes
@@ -11,10 +12,12 @@ import TableCourse from '../../../components/Admin/TableCourse';
 //Estilos
 import './AdminCourses.scss';
 
-export default function AdminSchool() {
-    const { Content, Header } = Layout;
+//...
+const { Content } = Layout;
 
+export default function AdminCourses(props) {
     const [courses, setCourses] = useState([]);
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
     useEffect(() => {
         setDefCourses(setCourses);
@@ -31,11 +34,15 @@ export default function AdminSchool() {
                     </Button>
                     <TableCourse 
                         courses={courses}
-
+                        selectedRowKeys={selectedRowKeys}
+                        setSelectedRowKeys={setSelectedRowKeys}
                     />
                 </Content>
+
                 <Button 
+                    disabled={!selectedRowKeys.length}
                     type="primary" 
+                    // onClick={}
                 >
                     Ver Seleccionados
                 </Button>

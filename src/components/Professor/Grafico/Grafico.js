@@ -5,7 +5,7 @@ import { Select, Button } from "antd";
 import { BarChartOutlined } from '@ant-design/icons';
 
 //Componentes
-import Modal from '../../Modal';
+import Modal from '../../General/Modal';
 
 //Estilo
 import './Grafico.scss';

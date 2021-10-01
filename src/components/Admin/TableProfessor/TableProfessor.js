@@ -3,12 +3,10 @@ import {Table, Button} from 'antd';
 export default function TableProfessor (props) {
     const {professors, seeProfessor} = props;
     // console.log(professors);
-    const data = professors.map((professor, index) => (
-        {
-            ...professor,
-            key: index,
-        }
-    ));
+    const data = professors.map((professor, index) => ({
+        ...professor,
+        key: index,
+    }));
     
     const columns = [
         {

@@ -1,0 +1,28 @@
+@import '../../../scss/index.scss';
+
+// .content {
+//     // display: flex;
+//     // flex-direction: row;
+//     // justify-content: center;
+// }
+
+.grid-game {
+    display: flex;
+    justify-content: center;
+
+    &__list {
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(3, 300px);
+        list-style-type: none;
+        
+        &__game {
+            
+            img {
+                width: 100px;
+                object-fit: cover;
+            }
+        }
+
+    }
+}

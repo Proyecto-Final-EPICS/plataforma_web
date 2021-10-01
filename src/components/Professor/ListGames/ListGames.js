@@ -4,7 +4,7 @@ import {List,Button,Card} from 'antd';
 import {Link,useParams} from 'react-router-dom';
 
 //Componentes
-import Modal from '../../../components/Modal';
+import Modal from '../../../components/General/Modal';
 import GameDetailsList from '../../../components/Professor/GameDetailsList';
 import GameRanking from '../../../components/Professor/GameRanking';
 

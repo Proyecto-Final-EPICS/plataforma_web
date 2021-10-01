@@ -6,7 +6,7 @@ import {Layout,Button} from 'antd';
 //Componentes
 import ListStudents from '../../../components/Professor/Estudiantes/ListStudents';
 import AddStudentForm from '../../../components/Professor/Forms/AddStudentForm';
-import Modal from '../../../components/Modal';
+import Modal from '../../../components/General/Modal';
 
 
 //API
