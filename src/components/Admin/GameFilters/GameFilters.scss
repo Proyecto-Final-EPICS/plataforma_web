@@ -1,0 +1,21 @@
+@import '../../../scss/index.scss';
+
+.nav-bar {
+    background-color: $background-purple-middle;
+    padding: 0px 20px;
+    display: flex;
+    // justify-content: space-around;
+
+    &__drop-down {
+        margin: 0 40px;
+        // padding: 0 20px;
+        height: 10%;
+        // background-color: $background-purple-dark;
+        font-size: 16px;
+        color: white;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

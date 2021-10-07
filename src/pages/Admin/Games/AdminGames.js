@@ -4,7 +4,7 @@ import { Layout, Button } from 'antd';
 
 //Componentes
 import GridGame from '../../../components/Admin/GridGame';
-
+import GameFilters from '../../../components/Admin/GameFilters';
 
 //API
 import { getVideogamesApi } from '../../../api/admin';
@@ -25,8 +25,8 @@ export default function AdminGames() {
     
     return(
         <Layout>
-            <Header style={{backgroundColor: 'white'}}>
-                {/* <GameFilters/> */}
+            <Header style={{padding:0}}>
+                <GameFilters/>
             </Header>
             <Content>
                 <GridGame games={games}/>
@@ -57,6 +57,20 @@ function initGames(setGames) {
             image: "https://streamerranks.com/wp-content/uploads/2021/03/clipart-videogames.png",
             level: "C2",
             developers: ["Spella"],
+        },
+        {
+            id: "4",
+            shortname: "App4",
+            image: "https://streamerranks.com/wp-content/uploads/2021/03/clipart-videogames.png",
+            level: "C2",
+            developers: ["Karen Molinares"],
+        },
+        {
+            id: "5",
+            shortname: "App5",
+            image: "https://streamerranks.com/wp-content/uploads/2021/03/clipart-videogames.png",
+            level: "B1",
+            developers: ["Manuel Arias", "Óscar Serrano"],
         },
 
     ]);

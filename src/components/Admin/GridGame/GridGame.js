@@ -8,7 +8,7 @@ const {Header, Content} = Layout;
 
 export default function GridGame (props) {
     const {games} = props;
-    console.log(games);
+    // console.log(games);
     
     return(
         <div className="grid-game">
@@ -28,7 +28,6 @@ export default function GridGame (props) {
                             <h2>{developers.join(', ')}</h2>
                             <h2>{level}</h2>
                         {/* </div> */}
-
                     </li>
                 );
             })}

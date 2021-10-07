@@ -1,30 +1,50 @@
 //Librerías
 import {Input, Button, Space} from 'antd';
+import { Link } from 'react-router-dom';
+import qs from 'query-string';
 import { SearchOutlined } from '@ant-design/icons';
 // import Highlighter from 'react-highlight-words';
 
 //Custom filter
-export function getColumnSearchProps(dataIndex){
+export function getColumnSearchProps(dataIndex, query){
+    let searchBtn;
 
-    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    const handleSearch = confirm => {
         confirm();
-        // setSearchText(selectedKeys[0]);
-        // setSearchedColumn(dataIndex);
     };
     
     const handleReset = clearFilters => {
         clearFilters();
-        // setSearchText('');
-        // setSearchedColumn('');
     };
+
+    // const handleSearchLink = (location, selectedKeys) => {
+    //     if(selectedKeys[0]) {
+    //         console.log('a');
+    //         query = {
+    //             ...query,
+    //             professors: selectedKeys[0],
+    //         }
+    //         console.log(query);
+    //     }else {
+    //         console.log('b');
+    //         const temp = query;
+    //         query = {};
+    //         for(let key in temp) if(key !== 'professors') query[key] = temp[key];
+            
+    //         // console.log(location);
+    //         return {
+    //             ...location,
+    //             pathname: '/admin/courses',
+    //             search: qs.stringify(query),
+    //         }
+    //     }
+    // }
 
     return {
         filterDropdown: columnProps => (
             <FilterDropdown 
                 dataIndex={dataIndex} 
                 {...columnProps} 
-                // setSearchText={setSearchText}
-                // setSearchedColumn={setSearchedColumn}
                 handleSearch={handleSearch}
                 handleReset={handleReset}
             />
@@ -35,7 +55,7 @@ export function getColumnSearchProps(dataIndex){
         ),
 
         onFilter: (value, record) => {
-            if(record[dataIndex]) {
+            if(value) {
                 value = value.trim().toLowerCase();
 
                 switch(typeof record[dataIndex]) {
@@ -47,7 +67,7 @@ export function getColumnSearchProps(dataIndex){
                         ));
                 }
                 return false;
-            }else return '';
+            }else return true;
         },
 
         // onFilterDropdownVisibleChange: () => {},
@@ -68,54 +88,58 @@ export function getColumnSearchProps(dataIndex){
     function FilterDropdown(props) {
         const {dataIndex, setSelectedKeys, selectedKeys, 
             confirm, clearFilters, handleSearch, handleReset} = props;
-    
-        return (
+        
+        const placeholder =
+            dataIndex=='code'?'por código':
+            dataIndex=='name'?'por nombre':
+            dataIndex=='professors'?'profesor':'';
+        
+            return (
             <div style={{ padding: 8 }}>
                 <Input
-                    // ref={node => {
-                    //     searchInput = node;
-                    // }}
-                    placeholder={`Search ${dataIndex}`}
+                    placeholder={`Buscar ${placeholder}`}
                     value={selectedKeys[0]}
                     onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    // onPressEnter={() => handleSearch(selectedKeys, confirm)}
+                    onPressEnter={() => searchBtn.click()}
                     style={{ marginBottom: 8, display: 'block' }}
                 />
+
                 <Space>
+                    {/* <Link to={(location) => handleSearchLink(location, selectedKeys)}> */}
+                    <Link to={{
+                        pathname: '/admin/courses',
+                        search: qs.stringify({
+                            ...query,
+                            [dataIndex]: selectedKeys[0],
+                        }),
+                    }}>
                     <Button
                         type="primary"
-                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        onClick={() => handleSearch(confirm)}
                         icon={<SearchOutlined />}
                         size="small"
                         style={{ width: 90 }}
+                        ref={node => searchBtn = node}
                     >
-                        Search
+                        Buscar
                     </Button>
+                    </Link>
+
+                    {/* <Link to={(location) => handleSearchLink(location, selectedKeys)}> */}
+                    <Link to={{
+                        pathname: '/admin/courses',
+                        search: qs.stringify({
+                            ...query,
+                            [dataIndex]: undefined,
+                        }),
+                    }}>
                     <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
-                        Reset
+                        Limpiar
                     </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
-                            confirm({ closeDropdown: false });
-                            // setSearchText(selectedKeys[0]);
-                            // setSearchedColumn(dataIndex);
-                        }}
-                    >
-                        Filter
-                    </Button>
+                    </Link>
                 </Space>
             </div>
         );
     }
 };
-
-//Selection and operation
-export function rowSelection(selectedRowKeys, setSelectedRowKeys) {
-
-    return {
-        selectedRowKeys,
-        onChange: selectedRowKeys => setSelectedRowKeys(selectedRowKeys)
-    }
-}

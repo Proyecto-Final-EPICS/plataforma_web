@@ -38,8 +38,8 @@ export default function LayoutAdmin(props) {
 
     return (
         <LayoutAdminContext.Provider value={{
-            professorFilter,
-            setProfessorFilter,
+            // professorFilter,
+            // setProfessorFilter,
             setMenuSelectedKey,
         }}>
         

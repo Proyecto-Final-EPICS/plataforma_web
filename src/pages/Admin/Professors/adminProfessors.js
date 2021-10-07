@@ -17,7 +17,7 @@ import './AdminProfessor.scss';
 
 export default function AdminProfessors() {
     // const {setMenuSelectedKey} = props;
-    const {setMenuSelectedKey, setProfessorFilter} = useContext(LayoutAdminContext);
+    const {setMenuSelectedKey} = useContext(LayoutAdminContext);
 
     const [professors, setProfessors] = useState([]);
     const [reloadProfessors, setReloadProfessors] = useState(false);
@@ -40,14 +40,14 @@ export default function AdminProfessors() {
             };
             
             const onClickCourses = () => {
-                setMenuSelectedKey("/admin/courses");
-                setProfessorFilter([`${prof.firstname} ${prof.lastname}`]);
+                setMenuSelectedKey('/admin/courses');
+                // setProfessorFilter([`${prof.firstname} ${prof.lastname}`]);
             }
 
             setModalProfessorContent(
                 <>
                 <ProfessorProfile {...data}/>
-                <Link to="/admin/courses">
+                <Link to={`/admin/courses?professors=${prof.firstname} ${prof.lastname}`}>
                     <Button 
                         type="primary" 
                         className="modal-professor__courses"
