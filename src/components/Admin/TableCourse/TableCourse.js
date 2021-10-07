@@ -28,7 +28,7 @@ export default function TableCourse(props) {
           dataIndex: 'professors',
           key: 'professors',
           ...getColumnSearchProps('professors', query),
-          defaultFilteredValue: [query.professors],
+          defaultFilteredValue: query.professors? [query.professors] : [],
           render: (_, record) => record.professors.map((prof, index) => (
               <div key={index}>{`${prof.firstname} ${prof.lastname}`}</div>
           )),

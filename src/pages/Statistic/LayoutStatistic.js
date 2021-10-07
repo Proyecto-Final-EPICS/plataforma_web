@@ -22,8 +22,8 @@ export default function LayoutStatistic(props){
     if (!user && !isLoading) {//No hay usuario logeado
         return(
             <>
-                <Route path="/" component={Login}/>
-                <Redirect to="/"/>
+            <Route path="/" component={Login}/>
+            <Redirect to="/"/>
             </>
         )
     }

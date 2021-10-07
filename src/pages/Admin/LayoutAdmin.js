@@ -23,8 +23,6 @@ export default function LayoutAdmin(props) {
     const [menuCollapsed, setMenuCollapsed] = useState(false); //Para desplegar el menu
     const [menuSelectedKey, setMenuSelectedKey] = useState([location.pathname]);
 
-    const [professorFilter, setProfessorFilter] = useState([]);
-
     const {user, isLoading} = useAuth();
 
     if (!user && !isLoading) {//No hay usuario logeado
@@ -38,8 +36,6 @@ export default function LayoutAdmin(props) {
 
     return (
         <LayoutAdminContext.Provider value={{
-            // professorFilter,
-            // setProfessorFilter,
             setMenuSelectedKey,
         }}>
         
