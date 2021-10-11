@@ -1,4 +1,4 @@
-import {Layout, Row} from 'antd';
+import {Layout} from 'antd';
 import {Route, Switch, Redirect} from 'react-router-dom';
 
 //Componentes
@@ -14,8 +14,10 @@ import useAuth from '../../hooks/useAuth';
 //Estilos
 import './LayoutStatistic.scss';
 
+//...
+const {Header, Sider, Content, Footer} = Layout;
+
 export default function LayoutStatistic(props){
-    const {Header, Content, Footer} = Layout;
     const {routes} = props;
     const {user, isLoading} = useAuth();
 
@@ -35,9 +37,9 @@ export default function LayoutStatistic(props){
                     <MenuTop/>
                 </Header>
                 <Content className="layout-statistic__c">
-                    <Row className="layout-statistic__breadcrumbs"> 
+                    {/* <Row className="layout-statistic__breadcrumbs"> 
                         <Breadcrumbs/>
-                    </Row>
+                    </Row> */}
                     <div className="layout-statistic__content">
                         <LoadRoutes routes={routes}/>
                     </div>
