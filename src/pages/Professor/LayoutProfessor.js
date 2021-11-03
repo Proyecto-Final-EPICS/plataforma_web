@@ -4,7 +4,7 @@ import { Layout, Row} from 'antd';
 import {Route,Switch,Redirect} from 'react-router-dom';
 
 //Componentes
-import MenuTop from '../../components/Professor/MenuTop';
+import MenuTop from '../../components/General/MenuTop';
 import Breadcrumbs from '../../components/Professor/Breadcrumbs';
 
 //Paginas
@@ -36,10 +36,10 @@ export default function LayoutProfessor(props){
             <Layout>
                 <Layout className="layout-professor">
                     <Header className="layout-professor__header">
-                        <MenuTop/>
+                        <MenuTop callback={() => window.location.href = '/home'}/>
                     </Header>
                     <Content className="layout-professor__c">
-                        <Row className="layout-professor__breadcrumbs"> 
+                        <Row> 
                             <Breadcrumbs/>
                         </Row>
                         <div className="layout-professor__content">

@@ -1,84 +1,131 @@
 @import '../../../scss/index.scss'; 
 
-.sider {
-    height: 800px;
-    margin-right: 20px;
-    // border-radius: 5px;
-    background-color: $background-orange;
+.layout-home {
 
-    &__logo {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        
-        background-color: $background-orange-ligth;
-        color: black;
-        height: 32px;
-        margin: 16px;
-        border-radius: 10px;
-        
-        div {
-            font-family: sans-serif;
+    &__sider {
+        position: absolute;
+        height: 100%;
+        // margin-right: 20px;
+        background-color: $background-orange-light2;
+
+        .menu {
+            margin-top: 20px;
+            background-color: $background-orange-light2;
+
+            &__sub {
+                // padding: 10px;
+                background-color: $background-orange;
+                .param {
+                    background-color: $background-orange-light;
+                    padding: 8px 0 8px 16px;
+                }
+            }
         }
 
-    }
-
-    &__collapse {
-        
-        &__parameter {
-            background-color: $background-orange-ligth;
-
-            
-        }
-    }
-}
-
-.contenido {
-    &__header{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        background: $background-purple-light4;
-        font-family: 'Secular one',sans-serif;
-        margin-bottom: 15px;
-        border-radius: 15px;
-
-        &__col{
-            //margin-top: 5px;
-            font-size: 18px;
+        .submit {
+            margin-top: 20px;
             text-align: center;
-            h1{
-                color: $font-grey;
+            button {
+                border-radius: 18px;
+                border: $background-purple-dark;
+                color: white;
+                background: $background-purple;
+
             }
         }
     }
 
-    &__content{
-        //background: $background-purple-dark;
-        // border-radius: 0px;
-    }
-}
-
-.section {
-    height: 400px;
-}
-
-.stats {
-
-    &__item {
+    &__layout {
+        margin-left: 200px;
         padding: 10px;
-        height: 200px;
-        background: #e0e0e0;
+        &__content {
+
+        }
     }
+
 }
 
-.graphs {
-    background: #e0e0e0;
-
-    &__options {
-        right: 20px;
-        bottom: 20px;
-        position: absolute;
-        z-index: 10;
-    }
+.ant-layout-sider-trigger {
+    background: $background-purple;
 }
+
+
+// .sider {
+    
+
+//     &__logo {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         text-align: center;
+        
+//         background-color: $background-orange-ligth;
+//         color: black;
+//         height: 32px;
+//         margin: 16px;
+//         border-radius: 10px;
+        
+//         div {
+//             font-family: sans-serif;
+//         }
+
+//     }
+
+//     &__collapse {
+        
+//         &__parameter {
+//             background-color: $background-orange-ligth;
+
+            
+//         }
+//     }
+// }
+
+// .contenido {
+//     &__header{
+//         display: grid;
+//         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+//         background: $background-purple-light4;
+//         font-family: 'Secular one',sans-serif;
+//         margin-bottom: 15px;
+//         border-radius: 15px;
+
+//         &__col{
+//             //margin-top: 5px;
+//             font-size: 18px;
+//             text-align: center;
+//             h1{
+//                 color: $font-grey;
+//             }
+//         }
+//     }
+
+//     &__content{
+//         //background: $background-purple-dark;
+//         // border-radius: 0px;
+//     }
+// }
+
+// .section {
+//     height: 400px;
+// }
+
+// .stats {
+
+//     &__item {
+//         padding: 10px;
+//         height: 200px;
+//         background: #e0e0e0;
+//     }
+// }
+
+// .graphs {
+//     background: #e0e0e0;
+
+//     &__options {
+//         right: 20px;
+//         bottom: 20px;
+//         position: absolute;
+//         z-index: 10;
+//     }
+// }

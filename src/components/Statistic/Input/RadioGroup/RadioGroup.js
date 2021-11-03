@@ -11,10 +11,18 @@ export default function RadioGroup(props) {
     }
 
     return(
-        <Radio.Group onChange={onSelect} value={value}>
+        <Radio.Group 
+            className="radio-group"
+            onChange={onSelect} 
+            value={value}
+        >
         <Space direction="vertical">
             {options.map((op, index) => (
-                <Radio value={op} key={index}>
+                <Radio 
+                    className="radio-group__item" 
+                    value={op} 
+                    key={index}
+                >
                     {op}
                 </Radio>
             ))}

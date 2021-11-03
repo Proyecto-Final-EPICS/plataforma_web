@@ -16,13 +16,14 @@ import './AdminCourses.scss';
 //...
 const { Content } = Layout;
 
-export default function AdminCourses(props) {
+export default function AdminCourses() {
     const [courses, setCourses] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
     const redirectStatistics = () => {
-        const query = {};
-        selectedRowKeys.forEach(el => query[courses[el].code] = true)
+        const query = {cur: []};
+        selectedRowKeys.forEach(el => query.cur.push(courses[el].code));
+        // console.log(query);
         return {
             pathname: '/statistics',
             search: qs.stringify(query),
@@ -50,37 +51,13 @@ export default function AdminCourses(props) {
                 </Content>
                 
                 <Link
-                    // onClick = {() => {console.log(a); a = "b"}}
                     to = {redirectStatistics}
-                    // to={{
-                    //     pathname: '/statistics',
-                    //     search: qs.stringify({
-                    //         ...selectedRowKeys.map(el => {
-                    //             // console.log(el);
-                    //             const xd = {
-                    //                 [courses[el].code]: true
-                    //             }
-                    //             // console.log(xd);
-                    //             return xd
-                    //         })
-                    //     })
-                    // }} 
                     target="_blank" 
                     referrerPolicy="no-referrer"
                 >
                 <Button 
                     disabled={!selectedRowKeys.length}
                     type="primary" 
-                    // onClick={() => {console.log({
-                    //     ...selectedRowKeys.map(el => {
-                    //         // console.log(el);
-                    //         const xd = {
-                    //             [courses[el].code]: true
-                    //         }
-                    //         // console.log(xd);
-                    //         return xd
-                    //     })
-                    // })}}
                 >
                     Ver Seleccionados
                 </Button>

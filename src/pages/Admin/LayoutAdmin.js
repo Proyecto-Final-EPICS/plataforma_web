@@ -5,7 +5,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import LayoutAdminContext from '../../components/Admin/LayoutAdminContext';
 
 //Componentes
-import MenuTop from '../../components/Admin/MenuTop';
+import MenuTop from '../../components/General/MenuTop';
 import MenuSider from '../../components/Admin/MenuSider';
 
 //Paginas
@@ -41,6 +41,10 @@ export default function LayoutAdmin(props) {
         
         <Layout>
             <Content>
+                <Header className="layout-admin__header">
+                    {/* <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} /> */}
+                    <MenuTop callback={() => setMenuCollapsed(!menuCollapsed)}/>
+                </Header>
                 <MenuSider 
                     menuCollapsed={menuCollapsed} 
                     setSelectedKey={setMenuSelectedKey}
@@ -55,9 +59,6 @@ export default function LayoutAdmin(props) {
                         EPICS IEEE
                     </Footer>
                 </Layout>
-                <Header className="layout-admin__header">
-                    <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} />
-                </Header>
             </Content>
         </Layout>
         </LayoutAdminContext.Provider>

@@ -37,9 +37,6 @@ export default function LayoutStatistic(props){
                     <MenuTop/>
                 </Header>
                 <Content className="layout-statistic__c">
-                    {/* <Row className="layout-statistic__breadcrumbs"> 
-                        <Breadcrumbs/>
-                    </Row> */}
                     <div className="layout-statistic__content">
                         <LoadRoutes routes={routes}/>
                     </div>

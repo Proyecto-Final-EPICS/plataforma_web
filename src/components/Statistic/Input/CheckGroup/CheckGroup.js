@@ -26,26 +26,33 @@ export default function CheckGroup(props) {
         onCheckOne(checked);
     }, []);
 
-    return(
-        <>
-        <Checkbox.Group
-            value={optionsChecked}
-            onChange={onCheckOne}
-        >
-        <Space direction="vertical"
-        // style={{zIndex: '100', position: 'absolute', height: '600px'}}
-        >
-            {options.map((op, index) => (
-                <Checkbox value={op} key={index}>
-                    {op}
-                </Checkbox>
-            ))}
+    return (
+        <Space direction="vertical">
+            <Checkbox.Group 
+                className="check-group" 
+                value={optionsChecked}
+                onChange={onCheckOne}
+            >
+                <Space direction="vertical">
+                {options.map((op, index) => (
+                    <Checkbox 
+                        className="check-group__item"
+                        value={op} 
+                        key={index} 
+                    >
+                        {op}
+                    </Checkbox>
+                ))}
+                </Space>
+            </Checkbox.Group>
+            
+            <Checkbox 
+                className="check-all" 
+                onChange={e => onCheckAll(e.target.checked)} 
+                checked={checkedAll}
+            >
+                Todos
+            </Checkbox>
         </Space>
-        </Checkbox.Group>
-        <br/><br/>
-        <Checkbox onChange={e => onCheckAll(e.target.checked)} checked={checkedAll}>
-            All
-        </Checkbox>
-        </>
     )
 }

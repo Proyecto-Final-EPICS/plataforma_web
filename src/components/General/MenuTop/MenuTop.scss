@@ -1,17 +1,15 @@
 @import '../../../scss/index.scss';
 
 .menu-top{
-    width: 100%;
     display: flex;
-    background-color: $background-purple;
     
-    a {
+    a{
         color: white;
     }
 
-    button {
+    button{
         color: $font-light;
-        // padding-top: 25px;
+        padding-top: 25px;
 
         &:hover{
             color: $primary-color;
@@ -29,6 +27,7 @@
             display: inline;
             width: 50px;
             margin-left: 30px;
+            cursor: pointer;
         }
     }
 
@@ -37,7 +36,7 @@
         display:flex;
         align-items: center;
         justify-content: center;
-        // position: absolute;
+        position: absolute;
         color: white;
         font-family: 'Secular one',sans-serif;
         width: 10em;

@@ -12,24 +12,13 @@
         display: flex;
         padding: 0;
         height: 65px;
-        background-color: $background-purple-middle;
+        background-color: $background-purple;
     }
 
     &__content{
         min-height: calc(100vh - 200px);
         padding: 20px 25px 25px 25px;
     }
-
-    &__breadcrumbs{
-        background: $background-purple-light2;
-        text-align: left;
-        padding: 80px 1px 4px 25px;
-        color: white !important;
-        font-family: 'Secular one', sans-serif;
-        font-size: 1.2em;
-    }
-
-
 
     &__footer{
         padding: 32px;

@@ -210,3 +210,25 @@ export function addStudent(info){
         return err.message;
     })
 }
+
+export function addCourse(data){
+    const url = `${basePath}/course`;
+    const params = {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }
+
+    return fetch(url,params)
+    .then(response => {
+        return response.json()
+    })
+    .then(result => {
+        return result;
+    })
+    .catch(err => {
+        return err.message;
+    })
+}

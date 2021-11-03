@@ -6,7 +6,6 @@ import {PoweroffOutlined,DownOutlined,UserOutlined} from '@ant-design/icons';
 
 //Api
 import {logout} from '../../../api/auth';
-import {getAccessTokenApi} from '../../../api/auth'; 
 
 //Hooks
 import useAuth from '../../../hooks/useAuth';
@@ -17,14 +16,15 @@ import './MenuTop.scss';
 //Assets
 import logo from '../../../assets/img/palanca-de-mando.png';
 
-export default function MenuTop(){
+export default function MenuTop(props){
+    const {callback} = props;
     const {user} = useAuth().user;
 
     const logoutUser = () => {
         logout();
         window.location.reload();
     }
-    
+
     const menu = (
         <Menu>
             <Menu.Item>
@@ -38,23 +38,21 @@ export default function MenuTop(){
 
     return(
         <div className="menu-top">
-            <Link to="/home">
-                <img
-                    className="menu-top__left-logo"
-                    src={logo}
-                    alt="logo joystick"
-                />
-            </Link>
-         
+            <div>
+            <img onClick = {callback}
+                className="menu-top__left-logo"
+                src={logo}
+                alt="logo joystick"
+            />
+            </div>
             <div className="menu-top__right">
-               
                 <div className="menu-top__right__image">
                   <UserOutlined />
                 </div>
                
                <Dropdown overlay={menu}>
                     <a target="_blank" className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                        <span className="menu-top__right__user">{user}</span> <DownOutlined />
+                        <span className="menu-top__right__user">{user}</span>  <DownOutlined />
                     </a>
                </Dropdown>
             </div>

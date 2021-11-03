@@ -1,10 +1,20 @@
 //Liberias
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import {Layout, Tabs, Button} from 'antd';
+import qs from 'query-string';
+
+// Íconos
+import {
+    UserOutlined,
+    TeamOutlined, 
+    EyeOutlined, 
+    RocketOutlined,
+} from '@ant-design/icons';
 
 //Componentes
 import MenuSider from '../../../components/Statistic/Sider/MenuSider';
-import Registers from '../../../components/Statistic/Registers';
+import TableStatistics from '../../../components/Statistic/TableStatistics';
 import Graphs from '../../../components/Statistic/Graphs';
 
 // Contexto
@@ -17,36 +27,152 @@ import './StatisticHome.scss';
 //...
 const {Sider, Content} = Layout;
 
-export default function StatisticHome(props){
+export default function StatisticHome(){
     const [siderCollapsed, setSiderCollapsed] = useState(false);
+    const query = qs.parse(useLocation().search);
+    const parameters = [
+        {
+            name: 'elem',
+            type: 'radio',
+            title: 'Elemento',
+            options: [{name: 'est', value: 'Estudiantes'}, {name: 'cur', value: 'Cursos'}],
+            icon: UserOutlined,
+        },
+        {
+            name: 'app',
+            type: 'check',
+            title: 'Aplicaciones',
+            options: [{name: 'app1', value: 'App1'}, {name: 'app2', value: 'App2'}],
+            icon: RocketOutlined,
+        },
+        {
+            name: 'dis',
+            type: 'check',
+            title: 'Discapacidad visual',
+            options: [{name: 'op1', value: 'Op1'}, {name: 'op2', value: 'Op2'}],
+            icon: EyeOutlined,
+        },
+    ];
+    const [paramSearch, setParamSearch] = useState(defParamSearch);
+
+    const getDefParams = () => {
+        const def = {};
+
+        parameters.forEach(param => {
+            switch(param.type) {
+                case 'check':
+                    def[param.name] = param.options.filter(op => paramSearch[param.name].includes(op.name))
+                        .map(op => op.value);
+                    break;
+                case 'radio':
+                    def[param.name] = param.options.find(op => paramSearch[param.name] === op.name).value;
+                    break;
+            }
+        });
+        return def;
+    }
+
+    const updateParam = (name, config) => {
+        const param = parameters.find(param => param.name === name);
+        switch(param.type) {
+            case 'radio':
+                const op = param.options.find(op => op.value === config);
+                setParamSearch({
+                    ...paramSearch, 
+                    [param.name]: op.name,
+                });
+                break;
+            case 'check':
+                const ops = param.options.filter((op, i) => op.value === config[i]);
+                setParamSearch({
+                    ...paramSearch, 
+                    [param.name]: ops.map(op => op.name),
+                });
+                break;
+        }
+    }
+
+    const search = () => {
+        // for(let p in paramSearch) if(paramSearch[p]) query[p] = paramSearch[p];
+        return {
+            pathname: '/statistics',
+            search: qs.stringify({
+                ...query,
+                ...paramSearch,
+            })
+        }
+    }
+
+    function defParamSearch() {
+        const def = {};
+        
+        parameters.forEach(param => {
+            switch(param.type) {
+                case 'check':
+                    def[param.name] = 
+                        (query[param.name] &&
+                            (typeof query[param.name] === 'object' 
+                                && query[param.name].filter(q => param.options.some(o => o.name === q))
+                            )
+                            || (typeof query[param.name] === 'string' && 
+                                [param.options.find(o => o.name === query[param.name]).name])
+                            )
+                        || [param.options[0].name];
+                    break;
+                case 'radio':
+                    def[param.name] = 
+                        (query[param.name] && typeof query[param.name] === 'string' 
+                            && param.options.find(o => o.name === query[param.name]).name)
+                        || param.options[0].name;
+                    break;
+            }
+        });
+        return def;
+    }
 
     const onSiderCollapse = () => {
         setSiderCollapsed(!siderCollapsed);
     }
 
+    useEffect(() => {
+        const fullQuery = qs.stringify({
+            ...query,
+            ...paramSearch,
+        })
+        if(qs.stringify(query) !== fullQuery) window.location.search = fullQuery;
+    }, [])
+
     return (
         <StatisticHomeContext.Provider value={{
             
         }}>
-        <Layout>
-            <Sider 
+        <Layout className="layout-home">
+            <Sider className="layout-home__sider"
                 collapsible
                 collapsed={siderCollapsed}
                 onCollapse={onSiderCollapse}
             >
-                <MenuSider 
-                    
+                <MenuSider
+                    parameters={parameters} 
+                    defParams={getDefParams()}
+                    updateParam={updateParam} 
                 />
-                <div style={{textAlign: 'center', marginTop: '10px'}}>
-                    {!siderCollapsed?<Button>Aplicar cambios</Button>:null}
+                <div className="submit">
+                    {!siderCollapsed?
+                        <Link to={search}>
+                            <Button type="primary">Aplicar cambios</Button>
+                        </Link>
+                        :null
+                    }
                 </div>
             </Sider>
-            <Layout>
-                <Content>
+            <Layout className="layout-home__layout">
+                <Content className="layout-home__layout__content">
                     <Tabs type="card">
                         <Tabs.TabPane tab="Registros" key="0">
-                            <Registers/>
+                            <TableStatistics/>
                         </Tabs.TabPane>
+
                         <Tabs.TabPane tab="Gráficas" key="1">
                             <Graphs/>
                         </Tabs.TabPane>
