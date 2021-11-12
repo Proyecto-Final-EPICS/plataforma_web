@@ -17,7 +17,14 @@
                 background-color: $background-orange;
                 .param {
                     background-color: $background-orange-light;
-                    padding: 8px 0 8px 16px;
+                    .padding-left {
+                        padding: 8px 0 8px 16px;
+
+                    }
+                    .padding {
+                        padding: 8px;
+
+                    }
                 }
             }
         }
@@ -36,96 +43,17 @@
     }
 
     &__layout {
-        margin-left: 200px;
+        
         padding: 10px;
         &__content {
 
         }
     }
 
+
+
 }
 
 .ant-layout-sider-trigger {
     background: $background-purple;
 }
-
-
-// .sider {
-    
-
-//     &__logo {
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         text-align: center;
-        
-//         background-color: $background-orange-ligth;
-//         color: black;
-//         height: 32px;
-//         margin: 16px;
-//         border-radius: 10px;
-        
-//         div {
-//             font-family: sans-serif;
-//         }
-
-//     }
-
-//     &__collapse {
-        
-//         &__parameter {
-//             background-color: $background-orange-ligth;
-
-            
-//         }
-//     }
-// }
-
-// .contenido {
-//     &__header{
-//         display: grid;
-//         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-//         background: $background-purple-light4;
-//         font-family: 'Secular one',sans-serif;
-//         margin-bottom: 15px;
-//         border-radius: 15px;
-
-//         &__col{
-//             //margin-top: 5px;
-//             font-size: 18px;
-//             text-align: center;
-//             h1{
-//                 color: $font-grey;
-//             }
-//         }
-//     }
-
-//     &__content{
-//         //background: $background-purple-dark;
-//         // border-radius: 0px;
-//     }
-// }
-
-// .section {
-//     height: 400px;
-// }
-
-// .stats {
-
-//     &__item {
-//         padding: 10px;
-//         height: 200px;
-//         background: #e0e0e0;
-//     }
-// }
-
-// .graphs {
-//     background: #e0e0e0;
-
-//     &__options {
-//         right: 20px;
-//         bottom: 20px;
-//         position: absolute;
-//         z-index: 10;
-//     }
-// }

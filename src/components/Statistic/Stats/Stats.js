@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
-import { Statistic, Card, Row, Col, Button } from 'antd';
+
+import LineChart from '../LineChart';
 import {Line, Bar} from 'react-chartjs-2';
+import { Statistic, Card, Row, Col, Button } from 'antd';
 
 import {
     ArrowUpOutlined, 
@@ -14,10 +16,10 @@ import {
     EditOutlined, 
 } from '@ant-design/icons';
 
-export default function Graphs(props) {
-    const [currentAverage, setCurrentAverage] = useState(0);
-    const [progressAverage, setProgressAverage] = useState(0);
-    const [averageTime, setAverageTime] = useState(0);
+export default function Stats(props) {
+    const [currentAverage, setCurrentAverage] = useState(4.3);
+    const [progressAverage, setProgressAverage] = useState(11.8193);
+    const [averageTime, setAverageTime] = useState(2.9);
     const [graphType, setGraphType] = useState('line');
 
     const displayGraphOptions = () => {
@@ -32,16 +34,16 @@ export default function Graphs(props) {
                 data: Array.from({length: 7}, () => Math.random()*5),
                 borderColor: ['rgba(255, 199, 43)'],
                 backgroundColor: ['rgba(255, 199, 43)'],
-                pointBackgroundColor: ['rgba(255, 199, 43)'],
-                pointBorderColor: ['rgba(255, 199, 43)'],
+                // pointBackgroundColor: ['rgba(255, 199, 43)'],
+                // pointBorderColor: ['rgba(255, 199, 43)'],
             },
             {
                 label: 'Estudiante2',
                 data: Array.from({length: 7}, () => Math.random()*5),
                 borderColor: ['rgba(131, 255, 110)'],
                 backgroundColor: ['rgba(131, 255, 110)'],
-                pointBackgroundColor: ['rgba(131, 255, 110)'],
-                pointBorderColor: ['rgba(131, 255, 110)'],
+                // pointBackgroundColor: ['rgba(131, 255, 110)'],
+                // pointBorderColor: ['rgba(131, 255, 110)'],
             },
         ],
     }
@@ -64,12 +66,6 @@ export default function Graphs(props) {
         },
     }
     
-    useEffect(() => {
-        setCurrentAverage(4.3);
-        setProgressAverage(11.8193);
-        setAverageTime(2.9);
-    }, []);
-
     return(
         <>
         <Row gutter={10}>
@@ -117,6 +113,9 @@ export default function Graphs(props) {
             </Col>
             <Col span={16} >
             <div className="section graphs">
+                {/* <LineChart
+                    data={data}
+                /> */}
                 {graphType=='line'?
                 <Line className="graphs__line"
                     data={data}

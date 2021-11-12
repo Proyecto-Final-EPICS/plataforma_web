@@ -69,7 +69,7 @@ export default function TableStudents(props) {
             width: 80,
         },
         {
-            title: 'Tiempo promedio (horas)',
+            title: 'Tiempo promedio por sesión (horas)',
             dataIndex: 'avTime',
             key: 'avTime',
             width: 80,
@@ -100,7 +100,6 @@ export default function TableStudents(props) {
     ];
 
     const formatData = () => {
-        if(!query.app) return [];
 
         // const oneApp = query.app.length == 1
         const oneApp = typeof query.app == 'string'
@@ -109,19 +108,20 @@ export default function TableStudents(props) {
             title: 'Máximo nivel',
             dataIndex: 'highestLevel',
             key: 'highestLevel',
-            width: 80, 
+            width: 80,
         })
-        // students.filter(student => student.sessions.some(s => query.app.includes(s.app.code)));
         
         return students.map((student, index) => {
+            // console.log(student);
             let totTime = 0;
             let accuracy = 0;
             let lastCon = null, lastConMilis = 0;
             
             // Se filtran aquellas sesiones cuya app se encuentra en la consulta
             student.sessions.forEach(s => {
+                // if(s.app.code)
                 accuracy += s.accuracy;
-                totTime += s.duration;
+                totTime += s.totTime;
                 const date = new Date(s.date);
                 const dateMilis = date.getTime();
                 if(dateMilis > lastConMilis) {
@@ -136,8 +136,8 @@ export default function TableStudents(props) {
     
             const row = {
                 name, id, age, gender, course, totTime,
-                avTime: totTime/student.sessions.length,
-                accuracy: accuracy/student.sessions.length,
+                avTime: totTime / student.sessions.length,
+                accuracy: accuracy / student.sessions.length,
                 lastCon: lastCon.toDateString(),
                 key: index,
             };
@@ -145,6 +145,13 @@ export default function TableStudents(props) {
             return row;
         });
     }
+
+    // useEffect(() => {
+    //     console.log('effect');
+    //     if(props.reload) {
+    //         props.setReload(false);
+    //     }
+    // }, [props.reload])
 
     return (
         <Table

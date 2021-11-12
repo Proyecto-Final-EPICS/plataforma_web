@@ -4,18 +4,21 @@ import { useLocation, Link } from 'react-router-dom';
 import {Layout, Tabs, Button} from 'antd';
 import qs from 'query-string';
 
+// Funciones
+import formatData from './formatData';
+
 // Íconos
 import {
     UserOutlined,
-    TeamOutlined, 
     EyeOutlined, 
-    RocketOutlined,
+    RocketOutlined, 
+    CalendarOutlined, 
 } from '@ant-design/icons';
 
 //Componentes
 import MenuSider from '../../../components/Statistic/Sider/MenuSider';
 import TableStatistics from '../../../components/Statistic/TableStatistics';
-import Graphs from '../../../components/Statistic/Graphs';
+import Stats from '../../../components/Statistic/Stats';
 
 // Contexto
 import StatisticHomeContext from '../../../components/Statistic/StatisticHomeContext';
@@ -28,8 +31,11 @@ import './StatisticHome.scss';
 const {Sider, Content} = Layout;
 
 export default function StatisticHome(){
+    const [reloadData, setReloadData] = useState(true);
     const [siderCollapsed, setSiderCollapsed] = useState(false);
+    const [data, setData] = useState([[], []]);
     const query = qs.parse(useLocation().search);
+
     const parameters = [
         {
             name: 'elem',
@@ -52,7 +58,18 @@ export default function StatisticHome(){
             options: [{name: 'op1', value: 'Op1'}, {name: 'op2', value: 'Op2'}],
             icon: EyeOutlined,
         },
+        {
+            name: 'period',
+            type: 'period',
+            title: 'Período',
+            options: [
+                {name: 'from', value: new Date(Date.now() - 30 * 24 * 3600 * 1000).toLocaleDateString().replaceAll('/', '-')},
+                {name: 'to', value: new Date(Date.now()).toLocaleDateString().replaceAll('/', '-')}
+            ],
+            icon: CalendarOutlined,
+        },
     ];
+
     const [paramSearch, setParamSearch] = useState(defParamSearch);
 
     const getDefParams = () => {
@@ -67,12 +84,18 @@ export default function StatisticHome(){
                 case 'radio':
                     def[param.name] = param.options.find(op => paramSearch[param.name] === op.name).value;
                     break;
+                case 'period':
+                    param.options.forEach(op => {
+                        def[op.name] = paramSearch[op.name];
+                    });
+                    break;
             }
         });
         return def;
     }
 
     const updateParam = (name, config) => {
+        
         const param = parameters.find(param => param.name === name);
         switch(param.type) {
             case 'radio':
@@ -83,17 +106,22 @@ export default function StatisticHome(){
                 });
                 break;
             case 'check':
-                const ops = param.options.filter((op, i) => op.value === config[i]);
+                const ops = param.options.filter(op => config.includes(op.value));
                 setParamSearch({
                     ...paramSearch, 
                     [param.name]: ops.map(op => op.name),
                 });
                 break;
+            case 'period':
+                setParamSearch({
+                    ...paramSearch,
+                    ...config,
+                })
+                break;
         }
     }
 
-    const search = () => {
-        // for(let p in paramSearch) if(paramSearch[p]) query[p] = paramSearch[p];
+    const applyChanges = () => {
         return {
             pathname: '/statistics',
             search: qs.stringify({
@@ -125,6 +153,12 @@ export default function StatisticHome(){
                             && param.options.find(o => o.name === query[param.name]).name)
                         || param.options[0].name;
                     break;
+                case 'period':
+                    param.options.forEach(op => {
+                        def[op.name] = query[op.name] || op.value;
+                        // console.log(def[op.name]);
+                    });
+                    break;
             }
         });
         return def;
@@ -142,15 +176,24 @@ export default function StatisticHome(){
         if(qs.stringify(query) !== fullQuery) window.location.search = fullQuery;
     }, [])
 
+    useEffect(() => {
+        if(reloadData) {
+            setData(formatData(query));
+            setReloadData(false);
+        }
+    }, [reloadData]);
+
     return (
         <StatisticHomeContext.Provider value={{
             
         }}>
         <Layout className="layout-home">
-            <Sider className="layout-home__sider"
+            <Sider
+                className="layout-home__sider"
                 collapsible
                 collapsed={siderCollapsed}
                 onCollapse={onSiderCollapse}
+                width={240}
             >
                 <MenuSider
                     parameters={parameters} 
@@ -159,22 +202,32 @@ export default function StatisticHome(){
                 />
                 <div className="submit">
                     {!siderCollapsed?
-                        <Link to={search}>
-                            <Button type="primary">Aplicar cambios</Button>
+                        <Link to={applyChanges}>
+                            <Button 
+                                type="primary" 
+                                onClick={() => setReloadData(true)}
+                            >
+                                Aplicar cambios
+                            </Button>
                         </Link>
                         :null
                     }
                 </div>
             </Sider>
-            <Layout className="layout-home__layout">
+            <Layout 
+                className="layout-home__layout"
+                style={{
+                    "marginLeft": siderCollapsed? "80px" : "240px"
+                }}
+            >
                 <Content className="layout-home__layout__content">
                     <Tabs type="card">
                         <Tabs.TabPane tab="Registros" key="0">
-                            <TableStatistics/>
+                            <TableStatistics data={data} query={query}/>
                         </Tabs.TabPane>
 
                         <Tabs.TabPane tab="Gráficas" key="1">
-                            <Graphs/>
+                            <Stats data={data} query={query}/>
                         </Tabs.TabPane>
                     </Tabs> 
                 </Content>
@@ -182,5 +235,4 @@ export default function StatisticHome(){
         </Layout>
         </StatisticHomeContext.Provider>
     );
-
 }
