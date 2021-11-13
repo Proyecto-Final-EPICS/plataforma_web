@@ -15,11 +15,13 @@ export default function defElems(query) {
         });
     })
     students = students.filter(s => s.sessions.length);
-    
+
     students.forEach(student => {
         // Curso al que pertenece el estudiante
         const course = courses.find(c => c.code === student.course);
         if(!course.performance) course.performance = [];
+
+        // student.sessions.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
         
         student.sessions.forEach(s => {
             // App usada en la sesión
@@ -66,24 +68,38 @@ function defStudents() {
             course: 'C01',
             sessions: [
                 {
-                    app: 'app2',
-                    date: '2021-11-11',
+                    app: 'app1',
+                    date: '2021-11-7',
                     totTime: 36000, //milis
-                    accuracy: 0.87,
+                    accuracy: 0.5,
+                    highestLevel: 4,
+                },
+                {
+                    app: 'app1',
+                    date: '2021-11-7',
+                    totTime: 36000, //milis
+                    accuracy: 0.2,
                     highestLevel: 4,
                 },
                 {
                     app: 'app1',
                     date: '2021-11-8',
                     totTime: 36000, //milis
-                    accuracy: 0.87,
+                    accuracy: 0.9,
                     highestLevel: 4,
                 },
                 {
                     app: 'app1',
                     date: '2021-11-9',
                     totTime: 36000, //milis
-                    accuracy: 0.87,
+                    accuracy: 0.72,
+                    highestLevel: 4,
+                },
+                {
+                    app: 'app2',
+                    date: '2021-11-11',
+                    totTime: 36000, //milis
+                    accuracy: 0.37,
                     highestLevel: 4,
                 },
             ]
@@ -131,9 +147,16 @@ function defStudents() {
             sessions: [
                 {
                     app: 'app1',
-                    date: '2021-10-18',
+                    date: '2021-11-10',
                     totTime: 0, //milis
-                    accuracy: 0,
+                    accuracy: 0.1,
+                    highestLevel: 0,
+                },
+                {
+                    app: 'app1',
+                    date: '2021-11-12',
+                    totTime: 0, //milis
+                    accuracy: 1,
                     highestLevel: 0,
                 },
             ]

@@ -63,7 +63,7 @@ export default function StatisticHome(){
             type: 'period',
             title: 'Período',
             options: [
-                {name: 'from', value: new Date(Date.now() - 30 * 24 * 3600 * 1000).toLocaleDateString().replaceAll('/', '-')},
+                {name: 'from', value: new Date(Date.now() - 4 * 24 * 3600 * 1000).toLocaleDateString().replaceAll('/', '-')},
                 {name: 'to', value: new Date(Date.now()).toLocaleDateString().replaceAll('/', '-')}
             ],
             icon: CalendarOutlined,

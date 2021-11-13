@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 
-import LineChart from '../LineChart';
-import {Line, Bar} from 'react-chartjs-2';
+import LineChartCourses from '../LineChartCourses';
+import LineChartStudents from '../LineChartStudents';
 import { Statistic, Card, Row, Col, Button } from 'antd';
 
 import {
@@ -16,56 +16,53 @@ import {
     EditOutlined, 
 } from '@ant-design/icons';
 
+const MAX_LABELS = 20;
+
 export default function Stats(props) {
+    const {data, query} = props;
     const [currentAverage, setCurrentAverage] = useState(4.3);
     const [progressAverage, setProgressAverage] = useState(11.8193);
     const [averageTime, setAverageTime] = useState(2.9);
-    const [graphType, setGraphType] = useState('line');
-
-    const displayGraphOptions = () => {
-        setGraphType(graphType=='line'?'bar':'line');
-    }
-
-    const data = {
-        labels: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-        datasets:[
-            {
-                label: 'Estudiante1',
-                data: Array.from({length: 7}, () => Math.random()*5),
-                borderColor: ['rgba(255, 199, 43)'],
-                backgroundColor: ['rgba(255, 199, 43)'],
-                // pointBackgroundColor: ['rgba(255, 199, 43)'],
-                // pointBorderColor: ['rgba(255, 199, 43)'],
-            },
-            {
-                label: 'Estudiante2',
-                data: Array.from({length: 7}, () => Math.random()*5),
-                borderColor: ['rgba(131, 255, 110)'],
-                backgroundColor: ['rgba(131, 255, 110)'],
-                // pointBackgroundColor: ['rgba(131, 255, 110)'],
-                // pointBorderColor: ['rgba(131, 255, 110)'],
-            },
-        ],
-    }
-
-    const options = {
-        title: {
-            display: true,
-            text: 'Average Grades'
-        },
-        scales: {
-            yAxes: [
-                {
-                    tricks: {
-                        min: 0,
-                        max: 5,
-                        stepSize: 0.5,
-                    }
-                },
-            ],
-        },
-    }
     
+    const getLabels = () => {
+        const from = new Date(query.from.split('-').reverse()),
+            to = new Date(query.to.split('-').reverse());
+        const labels = [];
+        const now = from;
+        
+        let group;
+        const days = (to.getTime() - from.getTime()) / 1000 / 3600 / 24 + 1;
+        // console.log(days);
+        if(days <= MAX_LABELS) {
+            for(let i = 0; i < days; i++) {
+                labels.push(now.toLocaleDateString());
+                // labels.push(now.toLocaleDateString().split('/').reverse().join('/'));
+                now.setDate(now.getDate() + 1);
+            }
+            group = "days";
+        }else {
+            const weeks = Math.ceil((to.getTime() - from.getTime()) / 1000 / 3600 / 24 / 7);
+            if(weeks <= MAX_LABELS) {
+                for(let i = 0; i < weeks; i++) {
+                    labels.push(now.toLocaleDateString());
+                    now.setDate(now.getDate() + 7);
+                }
+                labels.push(to.toLocaleDateString())
+                group = "weeks";
+            } else {
+                const months = Math.floor((to.getTime() - from.getTime()) / 1000 / 3600 / 24 / 30);
+                for(let i = 0; i < months; i++) {
+                    labels.push(now.toLocaleDateString());
+                    now.setMonth(now.getMonth() + 1);
+                }
+                labels.push(to.toLocaleDateString())
+                group = "months";
+            }
+        }
+
+        return [labels, group];
+    }
+
     return(
         <>
         <Row gutter={10}>
@@ -113,30 +110,17 @@ export default function Stats(props) {
             </Col>
             <Col span={16} >
             <div className="section graphs">
-                {/* <LineChart
-                    data={data}
-                /> */}
-                {graphType=='line'?
-                <Line className="graphs__line"
-                    data={data}
-                    options={options}
-                    // width={1000}
-                    // height={600}
-                />
+                {query.elem === 'cur' ?
+                    <LineChartCourses
+                        courses={data[0]}
+                        getLabels={getLabels}
+                    />
                 :
-                <Bar className="graphs__line"
-                    data={data}
-                    options={options}
-                    // width={1000}
-                    // height={600}
-                />}
-                <Button 
-                    className="graphs__options" 
-                    icon={<EditOutlined/>} 
-                    shape="circle" 
-                    size="large"
-                    onClick={displayGraphOptions}
-                />
+                    <LineChartStudents
+                        students={data[1]}
+                        getLabels={getLabels}
+                    />
+                }
             </div>
             </Col>
         </Row>
