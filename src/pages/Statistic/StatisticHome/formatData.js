@@ -19,41 +19,41 @@ export default function defElems(query) {
     students.forEach(student => {
         // Curso al que pertenece el estudiante
         const course = courses.find(c => c.code === student.course);
-        if(!course.performance) course.performance = [];
+        if(!course.sessions) course.sessions = [];
 
         // student.sessions.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        
         student.sessions.forEach(s => {
-            // App usada en la sesión
-            let app = course.performance.find(app => app.code === s.app);
-            if(!app) {
-                app = {
-                    code: s.app,
-                    totTime: 0,
-                    accuracy: 0,
-                    highestLevel: NaN,
-                    numSessions: 0,
-                };
-                course.performance.push(app);
-            }
-            app.totTime += s.totTime;
-            app.accuracy += s.accuracy;
-            if(isNaN(app.highestLevel) || s.highestLevel > app.highestLevel) app.highestLevel = s.highestLevel;
-            app.numSessions += 1;
-        });
+            course.sessions.push(s);
+        })
+        // console.log(courses);
+    //     student.sessions.forEach(s => {
+    //         // App usada en la sesión
+    //         let app = course.performance.find(app => app.code === s.app);
+    //         if(!app) {
+    //             app = {
+    //                 code: s.app,
+    //                 totTime: 0,
+    //                 accuracy: 0,
+    //                 highestLevel: NaN,
+    //                 numSessions: 0,
+    //             };
+    //             course.performance.push(app);
+    //         }
+    //         app.totTime += s.totTime;
+    //         app.accuracy += s.accuracy;
+    //         if(isNaN(app.highestLevel) || s.highestLevel > app.highestLevel) app.highestLevel = s.highestLevel;
+    //         app.numSessions += 1;
+    //     });
     });
-
-    courses.forEach(course => {
-        course.performance && course.performance.forEach(app => {
-            app.avTime = app.totTime / app.numSessions;
-            app.accuracy /= app.numSessions;
-        });
-    });
+    // console.log(courses);
+    // courses.forEach(course => {
+    //     course.performance && course.performance.forEach(app => {
+    //         app.avTime = app.totTime / app.numSessions;
+    //         app.accuracy /= app.numSessions;
+    //     });
+    // });
     
-    return [
-        courses.filter(course => course.performance && course.performance.some(app => query.app.includes(app.code))),
-        students
-    ];
+    return [courses.filter(c => c.sessions), students];
 }
 
 function defStudents() {

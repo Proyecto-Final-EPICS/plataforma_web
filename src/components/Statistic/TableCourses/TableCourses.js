@@ -86,32 +86,34 @@ export default function TableCourses(props) {
             key: 'highestLevel',
             width: 80, 
         })
-        // console.log(courses);
 
         return courses.map((course, index) => {
-            const {name, code, level, performance} = course;
-            let totTime = 0, numSessions = 0, accuracy = 0;
+            const {name, code, level, sessions} = course;
+            let totTime = 0, accuracy = 0, highestLevel = NaN;
 
-            performance.forEach(app => {
-                totTime += app.totTime;
-                numSessions += app.numSessions;
-                accuracy += app.accuracy;
+            sessions.forEach(s => {
+                totTime += s.totTime;
+                accuracy += s.accuracy;
+                if(isNaN(highestLevel) || s.highestLevel >= highestLevel) highestLevel = s.highestLevel;
             });
 
             const row = {
                 name, code, level,
-                accuracy,
+                accuracy: accuracy / sessions.length,
                 totTime: totTime / 36000,
-                avTime: totTime / numSessions / 36000,
+                avTime: totTime / sessions.length / 36000,
                 key: index,
             }
 
-            if(oneApp) row.highestLevel = course.performance[0].highestLevel;
+            if(oneApp) row.highestLevel = highestLevel;
             return row;
         });
 
     }
-    
+    // console.log(courses);
+    // console.log(formatData());
+
+    // return <></>
     return (
         <Table
             columns={columns} 
