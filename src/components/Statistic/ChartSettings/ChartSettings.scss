@@ -1,0 +1,15 @@
+@import '../../../scss/index.scss';
+
+.stats-settings {
+    h1 {
+        font-size: 20px;
+    }
+}
+
+.stats-form {
+
+    &__submit {
+        margin-top: 20px;
+        text-align: center;
+    }
+}

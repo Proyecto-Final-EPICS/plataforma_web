@@ -4,6 +4,7 @@ import { getColumnSearchProps } from '../../../libraries/Components/table';
 
 export default function TableStudents(props) {
     const {query, students} = props;
+    // console.log(students);
 
     const genFilters = (prop) => {
         const filters = [];
@@ -100,19 +101,8 @@ export default function TableStudents(props) {
     ];
 
     const formatData = () => {
-
-        // const oneApp = query.app.length == 1
-        const oneApp = typeof query.app == 'string'
-
-        oneApp && columns.splice(columns.length - 1, 0, {
-            title: 'Máximo nivel',
-            dataIndex: 'highestLevel',
-            key: 'highestLevel',
-            width: 80,
-        })
         
         return students.map((student, index) => {
-            // console.log(student);
             let totTime = 0;
             let accuracy = 0;
             let lastCon = null, lastConMilis = 0;
@@ -129,29 +119,22 @@ export default function TableStudents(props) {
                     lastCon = date;
                 }
             });
-            totTime /= 36000;
-    
-            const {firstname, lastname, age, identityDoc: id, gender, course} = student;
+            // totTime /= 3600 * 1000
+
+            const {firstname, lastname, age, numDoc: id, gender, course} = student;
             const name = firstname + ' ' + lastname;
     
             const row = {
-                name, id, age, gender, course, totTime,
-                avTime: totTime / student.sessions.length,
-                accuracy: accuracy / student.sessions.length,
+                name, id, age, gender, course, 
+                totTime: totTime.toFixed(1),
+                avTime: (totTime / student.sessions.length).toFixed(1),
+                accuracy: (accuracy / student.sessions.length).toFixed(2),
                 lastCon: lastCon.toDateString(),
                 key: index,
             };
-            if(oneApp) row.highestLevel = student.sessions[0].highestLevel;
             return row;
         });
     }
-
-    // useEffect(() => {
-    //     console.log('effect');
-    //     if(props.reload) {
-    //         props.setReload(false);
-    //     }
-    // }, [props.reload])
 
     return (
         <Table

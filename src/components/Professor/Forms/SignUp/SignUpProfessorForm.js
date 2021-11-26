@@ -22,11 +22,11 @@ export default function SignUpProfessorForm(props) {
     const [form] = Form.useForm();
     
     const phoneCountryCode = (
-    <Form.Item name="phonecountrycode" noStyle>
-        <Select defaultValue="57">
-            <Option value="57">+57</Option>
-        </Select>
-    </Form.Item>
+        <Form.Item name="phonecountrycode" noStyle>
+            <Select defaultValue="57">
+                <Option value="57">+57</Option>
+            </Select>
+        </Form.Item>
     );
 
     const onChangeGenderRadio = e => {
@@ -59,7 +59,7 @@ export default function SignUpProfessorForm(props) {
 
         }else{
             localStorage.setItem(ACCESS_TOKEN, token);
-            window.location.href= "/home";
+            window.location.href= "/admin";
         }
     }
 
@@ -83,6 +83,7 @@ export default function SignUpProfessorForm(props) {
 
     return (
         <Form
+            className="signup-prof-form"
             form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -121,13 +122,13 @@ export default function SignUpProfessorForm(props) {
             </Row>
 
             <Form.Item
-                className="form__name"
+                className="signup-prof-form__name"
                 name="name"
                 label="Nombre"
                 required
             >
-            <Row gutter={8} className="form__name__row">
-                <Col span={12} className="form__name__col">
+            <Row gutter={8} className="signup-prof-form__name__row">
+                <Col span={12} className="signup-prof-form__name__col">
                 <Form.Item
                     name="firstname"
                 >
@@ -136,7 +137,7 @@ export default function SignUpProfessorForm(props) {
                 </Form.Item>
                 </Col>
                 
-                <Col span={12} className="form__name__col">
+                <Col span={12} className="signup-prof-form__name__col">
                 <Form.Item
                     name="lastname"
                 >
@@ -172,7 +173,7 @@ export default function SignUpProfessorForm(props) {
                 name="gender"
                 label="Género"
                 required
-                className="form__gender"
+                className="signup-prof-form__gender"
             >
             {/* <Space direction="horizontal"> */}
                 <Radio.Group
@@ -215,7 +216,7 @@ export default function SignUpProfessorForm(props) {
                 </Form.Item>
             </Col>
             </Row>
-            <div className="form__submit">
+            <div className="signup-prof-form__submit">
             <Form.Item>
                 <Button htmlType="submit">Registrarse</Button>
             </Form.Item>

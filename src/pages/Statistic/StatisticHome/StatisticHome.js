@@ -6,6 +6,8 @@ import qs from 'query-string';
 
 // Funciones
 import formatData from './formatData';
+import { getSessionGameApi } from '../../../api/sessions';
+// import formatSessions from './formatSessions';
 
 // Íconos
 import {
@@ -45,10 +47,11 @@ export default function StatisticHome(){
             icon: UserOutlined,
         },
         {
-            name: 'app',
+            name: 'game',
             type: 'check',
-            title: 'Aplicaciones',
-            options: [{name: 'app1', value: 'App1'}, {name: 'app2', value: 'App2'}],
+            title: 'Juegos',
+            options: [{name: 'secube', value: 'Secube'}, {name: 'verb-to-be', value: 'Verb To Be'},
+                {name: 'restaurant', value: 'Restaurant'}, {name: 'phrases', value: 'Phrases'}],
             icon: RocketOutlined,
         },
         {
@@ -63,7 +66,7 @@ export default function StatisticHome(){
             type: 'period',
             title: 'Período',
             options: [
-                {name: 'from', value: new Date(Date.now() - 4 * 24 * 3600 * 1000).toLocaleDateString().replaceAll('/', '-')},
+                {name: 'from', value: new Date(Date.now() - 60 * 24 * 3600 * 1000).toLocaleDateString().replaceAll('/', '-')},
                 {name: 'to', value: new Date(Date.now()).toLocaleDateString().replaceAll('/', '-')}
             ],
             icon: CalendarOutlined,
@@ -178,7 +181,8 @@ export default function StatisticHome(){
 
     useEffect(() => {
         if(reloadData) {
-            setData(formatData(query));
+            if(!query.cur || !query.game) setData([[], []]);
+            else getSessionGameApi().then(response => setData(formatData(response, query)))
             setReloadData(false);
         }
     }, [reloadData]);
@@ -205,7 +209,13 @@ export default function StatisticHome(){
                         <Link to={applyChanges}>
                             <Button 
                                 type="primary" 
+                                // onClick={() => {
+                                //     getSessionGameApi().then(response => {
+                                //         console.log(response);
+                                //     })
+                                // }}
                                 onClick={() => setReloadData(true)}
+                                // onClick={() => formatSessions()}
                             >
                                 Aplicar cambios
                             </Button>

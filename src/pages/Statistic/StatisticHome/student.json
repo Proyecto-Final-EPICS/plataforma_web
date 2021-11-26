@@ -1,0 +1,38 @@
+[
+    {
+        "firstname": "Miralem",
+        "lastname": "Pjanic",
+        "numDoc": "001",
+        "age": 19,
+        "gender": "Masculino",
+        "email": "mpjanic@vip-epics.com",
+        "course": "C01"
+    },
+    {
+        "firstname": "Johana",
+        "lastname": "White",
+        "numDoc": "003",
+        "age": 22,
+        "gender": "Femenino",
+        "email": "jwhite@vip-epics.com",
+        "course": "C02"
+    },
+    {
+        "firstname": "Diana",
+        "lastname": "Ramírez",
+        "numDoc": "004",
+        "age": 17,
+        "gender": "Femenino",
+        "email": "jwhite@vip-epics.com",
+        "course": "C03"
+    },
+    {
+        "firstname": "Francisco",
+        "lastname": "Trincao",
+        "numDoc": "002",
+        "age": 22,
+        "gender": "Masculino",
+        "email": "ftrincao@vip-epics.com",
+        "course": "C02"
+    }
+]

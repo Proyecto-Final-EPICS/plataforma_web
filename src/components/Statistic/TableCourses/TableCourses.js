@@ -77,16 +77,6 @@ export default function TableCourses(props) {
     ];
 
     const formatData = () => {
-        // const oneApp = query.app.length == 1
-        const oneApp = typeof query.app == 'string'
-
-        oneApp && columns.splice(columns.length - 1, 0, {
-            title: 'Máximo nivel',
-            dataIndex: 'highestLevel',
-            key: 'highestLevel',
-            width: 80, 
-        })
-
         return courses.map((course, index) => {
             const {name, code, level, sessions} = course;
             let totTime = 0, accuracy = 0, highestLevel = NaN;
@@ -105,15 +95,11 @@ export default function TableCourses(props) {
                 key: index,
             }
 
-            if(oneApp) row.highestLevel = highestLevel;
             return row;
         });
 
     }
-    // console.log(courses);
-    // console.log(formatData());
 
-    // return <></>
     return (
         <Table
             columns={columns} 

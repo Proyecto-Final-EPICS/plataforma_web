@@ -24,6 +24,11 @@ export default function AuthProvider(props){
 }
 
 function checkUserLogin(setUser){
+    // setUser({
+    //     user: 'xd',
+    //     isLoading: false,
+    // })
+    // return;
     const accessToken = getAccessTokenApi();
 
     if(!accessToken){

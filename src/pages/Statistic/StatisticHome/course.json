@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Curso 01",
+        "code": "C01",
+        "level": "B1",
+        "period": "2021",
+        "professors": [
+            {
+                "firstname": "Juan",
+                "lastname": "Pérez Arboleda",
+                "username": "jpereza"
+            },
+            {
+                "firstname": "Alma Patricia",
+                "lastname": "Madero Benítez",
+                "username": "amben"
+            }
+        ]
+    },
+    {
+        "name": "Curso 02",
+        "code": "C02",
+        "level": "C2",
+        "period": "2021",
+        "professors": [
+            {
+                "firstname": "Juan",
+                "lastname": "Pérez Arboleda",
+                "username": "jpereza"
+            }
+        ]
+    },
+    {
+        "name": "Curso 03",
+        "code": "C03",
+        "level": "A2",
+        "period": "2021",
+        "professors": [
+            {
+                "firstname": "Alma Patricia",
+                "lastname": "Madero Benítez",
+                "username": "amben"
+            }
+        ]
+    }
+]

@@ -1,203 +1,58 @@
-export default function defElems(query) {
-    if(!query.cur || !query.app) return [[], []];
+import courseApi from './course.json';
+import studentApi from './student.json';
 
-    const courses = defCourses().filter(c => query.cur.includes(c.code));
-    let students = defStudents().filter(student => query.cur.includes(student.course));
-
+export default function defElems(sessions, query) {
+    // Límites de fecha
     const from = new Date(query.from.split('-').reverse()).getTime(), 
         to = new Date(query.to.split('-').reverse()).getTime();
-
-    students.forEach(student => {
-        student.sessions = student.sessions.filter(s => {
-            const time = new Date(s.date).getTime();
-            return query.app.includes(s.app) 
-                && time >= from && time <= to;
-        });
-    })
-    students = students.filter(s => s.sessions.length);
-
-    students.forEach(student => {
-        // Curso al que pertenece el estudiante
-        const course = courses.find(c => c.code === student.course);
-        if(!course.sessions) course.sessions = [];
-
-        // student.sessions.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        student.sessions.forEach(s => {
-            course.sessions.push(s);
-        })
-        // console.log(courses);
-    //     student.sessions.forEach(s => {
-    //         // App usada en la sesión
-    //         let app = course.performance.find(app => app.code === s.app);
-    //         if(!app) {
-    //             app = {
-    //                 code: s.app,
-    //                 totTime: 0,
-    //                 accuracy: 0,
-    //                 highestLevel: NaN,
-    //                 numSessions: 0,
-    //             };
-    //             course.performance.push(app);
-    //         }
-    //         app.totTime += s.totTime;
-    //         app.accuracy += s.accuracy;
-    //         if(isNaN(app.highestLevel) || s.highestLevel > app.highestLevel) app.highestLevel = s.highestLevel;
-    //         app.numSessions += 1;
-    //     });
-    });
-    // console.log(courses);
-    // courses.forEach(course => {
-    //     course.performance && course.performance.forEach(app => {
-    //         app.avTime = app.totTime / app.numSessions;
-    //         app.accuracy /= app.numSessions;
-    //     });
-    // });
     
-    return [courses.filter(c => c.sessions), students];
-}
+    // Filtrado de sesiones por fecha
+    sessions = sessions.filter(s => {
+        const date = new Date(s.endTime).getTime();
+        return date >= from && date <= to //&& s.games.some(g => query.app.includes(g.name));
+    });
 
-function defStudents() {
-    return [
-        {
-            firstname: 'Miralem',
-            lastname: 'Pjanic',
-            identityDoc: '001',
-            age: 19,
-            gender: "Masculino",
-            // email: 'mpjanic@vip-epics.com',
-            course: 'C01',
-            sessions: [
-                {
-                    app: 'app1',
-                    date: '2021-11-7',
-                    totTime: 36000, //milis
-                    accuracy: 0.5,
-                    highestLevel: 4,
-                },
-                {
-                    app: 'app1',
-                    date: '2021-11-7',
-                    totTime: 36000, //milis
-                    accuracy: 0.2,
-                    highestLevel: 4,
-                },
-                {
-                    app: 'app1',
-                    date: '2021-11-8',
-                    totTime: 36000, //milis
-                    accuracy: 0.9,
-                    highestLevel: 4,
-                },
-                {
-                    app: 'app1',
-                    date: '2021-11-9',
-                    totTime: 36000, //milis
-                    accuracy: 0.72,
-                    highestLevel: 4,
-                },
-                {
-                    app: 'app2',
-                    date: '2021-11-11',
-                    totTime: 36000, //milis
-                    accuracy: 0.37,
-                    highestLevel: 4,
-                },
-            ]
-        },
-        {
-            firstname: 'Johana',
-            lastname: 'White',
-            identityDoc: '003',
-            age: 22,
-            gender: "Femenino",
-            // email: 'jwhite@vip-epics.com',
-            course: 'C02',
-            sessions: [
-                {
-                    app: 'app1',
-                    date: '2021-10-29',
-                    totTime: 36000, //milis
-                    accuracy: 0.99,
-                    highestLevel: 4,
-                },
-                {
-                    app: 'app2',
-                    date: '2021-10-30',
-                    totTime: 36000, //milis
-                    accuracy: 0.9,
-                    highestLevel: 4,
-                },
-                {
-                    app: 'app2',
-                    date: '2021-11-2',
-                    totTime: 36000, //milis
-                    accuracy: 0.87,
-                    highestLevel: 4,
-                },
-            ]
-        },
-        {
-            firstname: 'Diana',
-            lastname: 'Ramírez',
-            identityDoc: '004',
-            age: 17,
-            gender: "Femenino",
-            // email: 'jwhite@vip-epics.com',
-            course: 'C03',
-            sessions: [
-                {
-                    app: 'app1',
-                    date: '2021-11-10',
-                    totTime: 0, //milis
-                    accuracy: 0.1,
-                    highestLevel: 0,
-                },
-                {
-                    app: 'app1',
-                    date: '2021-11-12',
-                    totTime: 0, //milis
-                    accuracy: 1,
-                    highestLevel: 0,
-                },
-            ]
-        },
-        {
-            firstname: 'Francisco',
-            lastname: 'Trincao',
-            identityDoc: '002',
-            age: 22,
-            gender: "Masculino",
-            // email: 'ftrincao@vip-epics.com',
-            course: 'C02',
-            sessions: [
-                {
-                    app: 'app2',
-                    date: '2021-10-26',
-                    totTime: 72000, //milis
-                    accuracy: 0.87,
-                    highestLevel: 4,
-                },
-            ]
-        },
-    ];
-}
+    // Filtrado de los juegos de las sesiones
+    sessions.forEach(s => {
+        s.games = s.games.filter(g => query.game.includes(g.code));
+    });
 
-function defCourses() {
-    return [
-        {
-            name: 'Curso 01',
-            code: "C01",
-            level: 'B1',
-        },
-        {
-            name: 'Curso 02',
-            code: "C02",
-            level: 'C2',
-        },
-        {
-            name: 'Curso 03',
-            code: "C03",
-            level: 'A2',
-        },
-    ];
+    const courses = courseApi
+        .map(course => {
+            const {name, code, level} = course;
+            return {name, code, level, sessions: []};
+        })
+        .filter(c => query.cur.includes(c.code));
+    
+    
+    let students = [];
+    sessions.forEach(session => {
+        let student = students.find(s => s.numDoc === session.student.numDoc);
+        if(!student) {
+            student = {...session.student};
+            student.sessions = [];
+            students.push(student);
+        }
+        const studentFull = studentApi.find(s => s.numDoc === student.numDoc);
+        student.gender = studentFull.gender;
+        student.age = studentFull.age;
+
+        const date = session.endTime;
+        const totTime = (new Date(session.endTime).getTime() - new Date(session.startTime).getTime()) / 3600 / 1000;
+        let accuracy = 0;
+        let cont = 0;
+        
+        session.games.forEach(game => {
+            game.levels.forEach(level => {
+                cont++;
+                accuracy += level.accuracy;
+            });
+        });
+        accuracy = cont ? accuracy / cont : 0;
+
+        student.sessions.push({date, totTime, accuracy});
+        courses.find(c => c.code === student.course).sessions.push({date, totTime, accuracy});
+    });
+
+    return [courses.filter(c => c.sessions.length), students];
 }

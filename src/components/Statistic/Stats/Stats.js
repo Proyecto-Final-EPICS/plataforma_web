@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react';
 
-import LineChartCourses from '../LineChartCourses';
-import LineChartStudents from '../LineChartStudents';
+import LineChart from '../Charts/LineChart';
+import BarChart from '../Charts/BarChart';
+import ChartSettings from '../ChartSettings';
+import Modal from '../../General/Modal';
 import { Statistic, Card, Row, Col, Button } from 'antd';
 
 import {
@@ -16,61 +18,70 @@ import {
     EditOutlined, 
 } from '@ant-design/icons';
 
-const MAX_LABELS = 20;
-
 export default function Stats(props) {
+    const variables = [
+        {
+            name: 'accuracy',
+            title: 'Precisión',
+            min: 0,
+            max: 1,
+        },
+        {
+            name: 'totTime',
+            title: 'Tiempo Empleado (horas)',
+            min: 0,
+            max: NaN,
+        },
+    ];
+    // const variables = {
+    //     accuracy: {
+    //         title: 'Precisión',
+    //         y: {min: 0, max: 1},
+    //     },
+    //     totTime: {
+    //         title: 'Precisión',
+    //         y: {min: 0, max: 1},
+    //     }
+    // }
+
     const {data, query} = props;
+    const [chartType, setChartType] = useState('line');
+    const [variable, setVariable] = useState(variables[0]);
+    const [modalContent, setModalContent] = useState(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [btnOptionsVisible, setBtnOptionsVisible] = useState(false); 
+
     const [currentAverage, setCurrentAverage] = useState(4.3);
     const [progressAverage, setProgressAverage] = useState(11.8193);
     const [averageTime, setAverageTime] = useState(2.9);
-    
-    const getLabels = () => {
-        const from = new Date(query.from.split('-').reverse()),
-            to = new Date(query.to.split('-').reverse());
-        const labels = [];
-        const now = from;
-        
-        let group;
-        const days = (to.getTime() - from.getTime()) / 1000 / 3600 / 24 + 1;
-        // console.log(days);
-        if(days <= MAX_LABELS) {
-            for(let i = 0; i < days; i++) {
-                labels.push(now.toLocaleDateString());
-                // labels.push(now.toLocaleDateString().split('/').reverse().join('/'));
-                now.setDate(now.getDate() + 1);
-            }
-            group = "days";
-        }else {
-            const weeks = Math.ceil((to.getTime() - from.getTime()) / 1000 / 3600 / 24 / 7);
-            if(weeks <= MAX_LABELS) {
-                for(let i = 0; i < weeks; i++) {
-                    labels.push(now.toLocaleDateString());
-                    now.setDate(now.getDate() + 7);
-                }
-                labels.push(to.toLocaleDateString())
-                group = "weeks";
-            } else {
-                const months = Math.floor((to.getTime() - from.getTime()) / 1000 / 3600 / 24 / 30);
-                for(let i = 0; i < months; i++) {
-                    labels.push(now.toLocaleDateString());
-                    now.setMonth(now.getMonth() + 1);
-                }
-                labels.push(to.toLocaleDateString())
-                group = "months";
-            }
-        }
 
-        return [labels, group];
+    const openSettings = () => {
+        setModalContent(
+            <ChartSettings
+                type={chartType}
+                setType={setChartType}
+                variable={variable}
+                setVariable={name => setVariable(variables.find(v => v.name === name))}
+                setIsModalVisible={setIsModalVisible}
+            />
+        )
+        setIsModalVisible(true);
     }
-
+    
     return(
         <>
-        <Row gutter={10}>
+        <Modal
+            isVisible={isModalVisible}
+            setIsVisible={setIsModalVisible}
+        >
+            {modalContent}
+        </Modal>
+        <Row className="stats" gutter={10}>
             <Col span={8}>
-            <div className="section stats">
+            <div>
                 <Row gutter={[8, 8]}>
                     <Col span={12}>
-                    <div className="stats__item">
+                    <div>
                     <Statistic
                         title="Promedio Actual"
                         value={currentAverage}
@@ -82,7 +93,7 @@ export default function Stats(props) {
                     </div>
                     </Col>
                     <Col span={12} >
-                    <div className="stats__item">
+                    <div>
                     <Statistic
                         title="Evolución del Promedio"
                         value={progressAverage}
@@ -96,7 +107,7 @@ export default function Stats(props) {
                     </div>
                     </Col>
                     <Col span={24}>
-                    <div className="stats__item">
+                    <div>
                     <Statistic
                         title="Tiempo Promedio"
                         value={averageTime}
@@ -109,18 +120,32 @@ export default function Stats(props) {
             </div>
             </Col>
             <Col span={16} >
-            <div className="section graphs">
-                {query.elem === 'cur' ?
-                    <LineChartCourses
-                        courses={data[0]}
-                        getLabels={getLabels}
-                    />
-                :
-                    <LineChartStudents
-                        students={data[1]}
-                        getLabels={getLabels}
-                    />
+            <div className="stats__chart"
+                onMouseOver={() => !btnOptionsVisible && setBtnOptionsVisible(true)}
+                onMouseLeave={() => btnOptionsVisible && setBtnOptionsVisible(false)}
+            >
+                {chartType === 'line'?
+                <LineChart
+                    query={query}
+                    data={data}
+                    variable={variable}
+                />
+                :chartType === 'bar'?
+                <BarChart
+                    query={query}
+                    data={data}
+                    variable={variable}
+                />
+                :null
                 }
+                <Button 
+                    className="stats__chart__btn"
+                    icon={<EditOutlined/>} 
+                    shape="circle" 
+                    size="large"
+                    onClick={openSettings}
+                    style={{visibility: btnOptionsVisible ? 'visible' : 'hidden'}}
+                />
             </div>
             </Col>
         </Row>
