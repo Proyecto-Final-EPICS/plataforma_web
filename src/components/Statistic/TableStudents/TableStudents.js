@@ -4,7 +4,7 @@ import { getColumnSearchProps } from '../../../libraries/Components/table';
 
 export default function TableStudents(props) {
     const {query, students} = props;
-    // console.log(students);
+    console.log(students);
 
     const genFilters = (prop) => {
         const filters = [];

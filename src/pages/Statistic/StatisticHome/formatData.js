@@ -30,9 +30,13 @@ export default function defElems(sessions, query) {
         let student = students.find(s => s.numDoc === session.student.numDoc);
         if(!student) {
             student = {...session.student};
+
+            if(!courses.some(c => c.code === student.course)) return;
+
             student.sessions = [];
             students.push(student);
         }
+
         const studentFull = studentApi.find(s => s.numDoc === student.numDoc);
         student.gender = studentFull.gender;
         student.age = studentFull.age;
@@ -51,7 +55,8 @@ export default function defElems(sessions, query) {
         accuracy = cont ? accuracy / cont : 0;
 
         student.sessions.push({date, totTime, accuracy});
-        courses.find(c => c.code === student.course).sessions.push({date, totTime, accuracy});
+        const course = courses.find(c => c.code === student.course);
+        if(course) course.sessions.push({date, totTime, accuracy});
     });
 
     return [courses.filter(c => c.sessions.length), students];
