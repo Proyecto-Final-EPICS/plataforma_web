@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {Row, Table, Button} from 'antd';
-import { getColumnSearchProps } from '../../../libraries/Components/table';
+import { tableCustomFilters } from '../../../libraries/tableCustomFilters';
 
 export default function TableCourses(props) {
     const {query, courses} = props;
@@ -26,7 +26,7 @@ export default function TableCourses(props) {
             key: 'name',
             fixed: 'left',
             width: 60,
-            // ...getColumnSearchProps('name', query),
+            // ...tableCustomFilters('name', query),
         },
         {
             title: 'Código',
@@ -34,7 +34,7 @@ export default function TableCourses(props) {
             key: 'code',
             fixed: 'left',
             width: 60,
-            // ...getColumnSearchProps('id', query),
+            // ...tableCustomFilters('id', query),
         },
         {
             title: 'Nivel',

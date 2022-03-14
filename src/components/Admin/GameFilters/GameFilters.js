@@ -1,42 +1,33 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Checkbox, Dropdown, Menu, Space} from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 import './GameFilters.scss';
 
+// import CheckGroup from './../../../components/General/Input/CheckGroup';
+
 export default function GameFilters(props) {
 
-    const [categoryVisible, setCategoryVisible] = useState(false);
-    const [category, setCategory] = useState(initCategory);
+    const [categoriesVisible, setCategoriesVisible] = useState(false);
+    const [categories, setCategories] = useState([]);
     const [levelVisible, setLevelVisible] = useState(false);
     const [filterVisible, setFilterVisible] = useState(false);
-    const [filterText, setFilterText] = useState('Más usados');
+    const [filterText, setFilterText] = useState([]);
+
+    useEffect(() => {
+        setCategories(initCategories());
+        setFilterText(initFilterText());
+    }, []);
+
+    const getFilterTextSel = () => filterText.find(f => f.sel).title;
 
     const dropDownMenus = {
-        category: {
+        categories: {
             text: 'Categorías',
             icon: <DownOutlined/>,
-            visible: categoryVisible,
-            onVisibleChange: flag => setCategoryVisible(flag),
-            menu: (
-                <Menu>
-                    {category.map((el, index) => (
-                        <Menu.Item>
-                        <Checkbox
-                            key={index} 
-                            checked={el.checked}
-                            // onChange={setCategory([[...category], {}])}
-                        >
-                            {el.title}
-                        </Checkbox>
-                        </Menu.Item>
-                    ))}
-                    <br/>
-                    <Menu.Item>
-                    <Checkbox>Todos</Checkbox>
-                    </Menu.Item>
-                </Menu>
-            ),
+            visible: categoriesVisible,
+            onVisibleChange: flag => setCategoriesVisible(flag),
+            menu: <Categories categories={categories} setCategories={setCategories}/>,
         },
         level: {
             text: 'Nivel',
@@ -117,7 +108,41 @@ export default function GameFilters(props) {
     );
 }
 
-function initCategory() {
+function Categories(props) {
+    const {categories, setCategories} = props;
+
+    const onCheckAll = () => {
+        setCategories(categories.map(c => {
+
+
+            // return {
+            //     namec.title
+            // }
+        }));
+    }
+
+    return (
+        <Menu>
+            {categories.map((el, index) => (
+                <Menu.Item>
+                <Checkbox
+                    key={index} 
+                    checked={el.checked}
+                    // onChange={setCategories([[...categories], {}])}
+                >
+                    {el.title}
+                </Checkbox>
+                </Menu.Item>
+            ))}
+            <br/>
+            <Menu.Item>
+            <Checkbox onChange={e => onCheckAll(e.target.checked)}>Todos</Checkbox>
+            </Menu.Item>
+        </Menu>
+    );
+}
+
+function initCategories() {
     return [
         {
             title: "Speaking",
@@ -136,4 +161,8 @@ function initCategory() {
             checked: false,
         },
     ]
+}
+
+function initFilterText() {
+    return ['Más usados', 'Más recientes', 'Más antiguos'];
 }

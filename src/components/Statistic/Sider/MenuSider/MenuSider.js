@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {Menu} from 'antd';
 
-import CheckGroup from '../../Input/CheckGroup';
-import RadioGroup from '../../Input/RadioGroup';
-import PeriodPicker from '../../Input/PeriodPicker';
+import CheckGroup from '../../../General/Input/CheckGroup';
+import RadioGroup from '../../../General/Input/RadioGroup';
+import PeriodPicker from '../../../General/Input/PeriodPicker';
 
 const {SubMenu} = Menu;
 

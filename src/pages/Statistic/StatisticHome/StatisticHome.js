@@ -5,9 +5,13 @@ import {Layout, Tabs, Button} from 'antd';
 import qs from 'query-string';
 
 // Funciones
-import formatData from './formatData';
+import statisticFilterElems from './../../../libraries/statisticFilterElems';
 import { getSessionGameApi } from '../../../api/sessions';
-// import formatSessions from './formatSessions';
+
+// Mock Data
+import courseApi from '../../../mock_data/course.json';
+import studentApi from '../../../mock_data/student.json';
+import sessionGame from '../../../mock_data/sessionGame.json'
 
 // Íconos
 import {
@@ -33,6 +37,7 @@ import './StatisticHome.scss';
 const {Sider, Content} = Layout;
 
 export default function StatisticHome(){
+    
     const [reloadData, setReloadData] = useState(true);
     const [siderCollapsed, setSiderCollapsed] = useState(false);
     const [data, setData] = useState([[], []]);
@@ -182,7 +187,10 @@ export default function StatisticHome(){
     useEffect(() => {
         if(reloadData) {
             if(!query.cur || !query.game) setData([[], []]);
-            else getSessionGameApi().then(response => setData(formatData(response, query)))
+            // else getSessionGameApi().then(response => (
+            //     setData(statisticFilterElems(response, query, courseApi, studentApi))
+            // ))
+            else setData(statisticFilterElems(sessionGame, query, courseApi, studentApi));
             setReloadData(false);
         }
     }, [reloadData]);

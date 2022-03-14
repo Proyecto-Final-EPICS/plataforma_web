@@ -1,1 +1,1 @@
-export {default} from './TableCourse';
+export {default} from './TableCourses';

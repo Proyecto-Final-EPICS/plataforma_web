@@ -1,7 +1,4 @@
-import courseApi from './course.json';
-import studentApi from './student.json';
-
-export default function defElems(sessions, query) {
+export default function statisticFilterElems(sessions, query, courseApi, studentApi) {
     // Límites de fecha
     const from = new Date(query.from.split('-').reverse()).getTime(), 
         to = new Date(query.to.split('-').reverse()).getTime();

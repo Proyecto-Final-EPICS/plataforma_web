@@ -20,10 +20,11 @@ export default function LoginForm(){
         if(!values.username || !values.password) return;
     
         const result = await signinAPI(values);
+        console.log(result);
         
         const {token} = result;
 
-        if (token ==="none") {
+        if (token === "none") {
             notification["error"]({
                 message:"Contraseña o usuario incorrecto"
             });

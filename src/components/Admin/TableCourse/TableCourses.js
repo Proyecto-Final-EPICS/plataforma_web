@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
 import { Table } from 'antd';
 
-import { getColumnSearchProps } from '../../../libraries/Components/table';
+import { tableCustomFilters } from '../../../libraries/tableCustomFilters';
 
 export default function TableCourse(props) {
     const {courses, selectedRowKeys, setSelectedRowKeys, location} = props;
@@ -15,19 +15,19 @@ export default function TableCourse(props) {
           title: 'Código',
           dataIndex: 'code',
           key: 'code',
-          ...getColumnSearchProps('code', query),
+          ...tableCustomFilters('code', query),
       },
       {
           title: 'Nombre',
           dataIndex: 'name',
           key: 'name',
-          ...getColumnSearchProps('name', query),
+          ...tableCustomFilters('name', query),
       },
       {
           title: 'Profesores',
           dataIndex: 'professors',
           key: 'professors',
-          ...getColumnSearchProps('professors', query),
+          ...tableCustomFilters('professors', query),
           defaultFilteredValue: query.professors? [query.professors] : [],
           render: (_, record) => record.professors.map((prof, index) => (
               <div key={index}>{`${prof.firstname} ${prof.lastname}`}</div>

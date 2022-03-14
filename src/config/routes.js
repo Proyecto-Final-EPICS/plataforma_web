@@ -53,7 +53,6 @@ const routes = [//Es el sistema de rutas, el array contiene todas las rutas
                 path: "/home/colegios",
                 component: Colegios,
                 exact: true
-                                   
             },
             {
                 path: "/home/colegios/:colegio",
@@ -140,6 +139,21 @@ const routes = [//Es el sistema de rutas, el array contiene todas las rutas
                 path: "/statistics",
                 component: StatisticHome,
                 exact: true
+            },
+            {
+                component: Error404
+            }
+        ]
+    },
+    {
+        path: '/professor',
+        component: LayoutProfessor,
+        exact: false,
+        routes: [
+            {
+                path: '/professor',
+                component: ProfessorHome,
+                exact: true,
             },
             {
                 component: Error404

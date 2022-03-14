@@ -8,7 +8,6 @@ const {Header, Content} = Layout;
 
 export default function GridGame (props) {
     const {games} = props;
-    // console.log(games);
     
     return(
         <div className="grid-game">

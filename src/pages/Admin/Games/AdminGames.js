@@ -9,7 +9,7 @@ import GameFilters from '../../../components/Admin/GameFilters';
 //API
 import { getVideogamesApi } from '../../../api/admin';
 
-//stilo
+//Estilo
 import './AdminGames.scss'
 
 export default function AdminGames() {
@@ -24,11 +24,11 @@ export default function AdminGames() {
     }, []);
     
     return(
-        <Layout>
-            <Header style={{padding:0}}>
+        <Layout className='admin-games'>
+            <Header className='admin-games__header'>
                 <GameFilters/>
             </Header>
-            <Content>
+            <Content className='admin-games__content'>
                 <GridGame games={games}/>
             </Content>
         </Layout>

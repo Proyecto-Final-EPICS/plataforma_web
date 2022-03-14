@@ -6,7 +6,7 @@ import { SearchOutlined } from '@ant-design/icons';
 // import Highlighter from 'react-highlight-words';
 
 //Custom filter
-export function getColumnSearchProps(dataIndex, query){
+export function tableCustomFilters(dataIndex, query){
     let searchBtn;
 
     const handleSearch = confirm => {

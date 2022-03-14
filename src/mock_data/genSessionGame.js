@@ -44,7 +44,7 @@ const GAMES = [
     },
 ]
 
-export default function formatSessions() {
+export default function genSessionGame() {
     
     const res = [];
     for(let j = 0; j < 100; j++) {
@@ -81,4 +81,3 @@ export default function formatSessions() {
 
     console.log(JSON.stringify(res));
 }
-

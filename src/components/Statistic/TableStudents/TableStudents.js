@@ -1,10 +1,9 @@
 import {useState, useEffect} from 'react';
 import {Row, Table, Button} from 'antd';
-import { getColumnSearchProps } from '../../../libraries/Components/table';
+import { tableCustomFilters } from '../../../libraries/tableCustomFilters';
 
 export default function TableStudents(props) {
     const {query, students} = props;
-    console.log(students);
 
     const genFilters = (prop) => {
         const filters = [];
@@ -26,7 +25,7 @@ export default function TableStudents(props) {
             key: 'name',
             fixed: 'left',
             width: 60,
-            // ...getColumnSearchProps('name', query),
+            // ...tableCustomFilters('name', query),
         },
         {
             title: 'Identificación',
@@ -34,7 +33,7 @@ export default function TableStudents(props) {
             key: 'id',
             fixed: 'left',
             width: 40,
-            // ...getColumnSearchProps('id', query),
+            // ...tableCustomFilters('id', query),
         },
         {
             title: 'Edad',
