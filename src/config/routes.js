@@ -9,7 +9,8 @@ import SignUp from '../pages/Signup';
 import Error404 from '../pages/Error';
 
 //Pages Admin
-import AdminHome from '../pages/Admin/AdminHome';
+import AdminHome from '../pages/Admin/Home';
+import AdminApps from '../pages/Admin/Apps';
 import AdminGames from '../pages/Admin/Games';
 import AdminCourses from '../pages/Admin/Courses';
 import AdminProfessors from '../pages/Admin/Professors';
@@ -116,7 +117,12 @@ const routes = [//Es el sistema de rutas, el array contiene todas las rutas
                 exact: true
             },
             {
-                path: "/admin/games",
+                path: "/admin/apps",
+                component: AdminApps,
+                exact: true
+            },
+            {
+                path: "/admin/apps/details",
                 component: AdminGames,
                 exact: true
             },

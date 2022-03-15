@@ -23,7 +23,7 @@ export default function AdminCourses() {
     const redirectStatistics = () => {
         const query = {cur: []};
         selectedRowKeys.forEach(el => query.cur.push(courses[el].code));
-        // console.log(query);
+        
         return {
             pathname: '/statistics',
             search: qs.stringify(query),

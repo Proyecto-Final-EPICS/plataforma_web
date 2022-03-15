@@ -1,0 +1,93 @@
+[
+    {
+        "code": "app1",
+        "name": "App1",
+        "developers": [
+            {
+				"student": "Estudiante Alumno",
+				"school": "Colegio Educativo Académico"
+			},
+			{
+				"student": "Pupilo Aprendiz",
+				"school": "Colegio Educativo Académico"
+			}
+        ],
+        "games": [
+            {
+                "code": "secube",
+                "name": "Secube"
+            },
+            {
+                "code": "verb-to-be",
+                "name": "Verb to Be"
+            },
+            {
+                "code": "restaurant",
+                "name": "Restaurant"
+            },
+            {
+                "code": "phrases",
+                "name": "Phrases"
+            }
+        ],
+        "launchDate": "",
+        "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+    },
+    {
+        "code": "app2",
+        "name": "App2",
+        "developers": [
+            {
+				"student": "Estudiante Alumno",
+				"school": "Colegio Educativo Académico"
+			}
+        ],
+        "games": [
+            {
+                "code": "future-tense",
+                "name": "Future Tense"
+            }
+        ],
+        "launchDate": "",
+        "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+    },
+    {
+        "code": "app3",
+        "name": "App3",
+        "developers": [
+            {
+				"student": "Estudiante Alumno",
+				"school": "Colegio Educativo Académico"
+			}
+        ],
+        "games": [],
+        "launchDate": "",
+        "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+    },
+    {
+        "code": "app4",
+        "name": "App4",
+        "developers": [
+            {
+				"student": "Estudiante Alumno",
+				"school": "Colegio Educativo Académico"
+			}
+        ],
+        "games": [],
+        "launchDate": "",
+        "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+    },
+    {
+        "code": "app5",
+        "name": "App5",
+        "developers": [
+            {
+				"student": "Pupilo Aprendiz",
+				"school": "Colegio Educativo Académico"
+			}
+        ],
+        "games": [],
+        "launchDate": "",
+        "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+    }
+]

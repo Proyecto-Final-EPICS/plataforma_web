@@ -1,0 +1,105 @@
+[
+    {
+        "code": "secube",
+        "name": "Secube",
+		"levelReq": "A1",
+        "topic": "Tópico",
+		"shortDescription": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía.",
+		"description": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía. Se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que fermente la masa y sea más esponjosa y tierna.",
+		"parameters": [],
+        "developers": [
+			{
+				"student": "Pupilo Aprendiz",
+				"school": "Colegio Educativo Académico"
+			}
+		],
+		"launchDate": "",
+		"logo": "https://cdn.pixabay.com/photo/2016/12/23/07/00/game-1926906_960_720.png",
+		"appCode": "app1",
+		"appName": "App1"
+    },
+	{
+        "code": "verb-to-be",
+        "name": "Verb to Be",
+		"levelReq": "A1",
+        "topic": "Tópico",
+		"shortDescription": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía.",
+		"description": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía. Se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que fermente la masa y sea más esponjosa y tierna.",
+		"parameters": [],
+        "developers": [
+			{
+				"student": "Estudiante Alumno",
+				"school": "Colegio Educativo Académico"
+			},
+			{
+				"student": "Pupilo Aprendiz",
+				"school": "Colegio Educativo Académico"
+			}
+		],
+		"launchDate": "",
+		"logo": "https://cdn.pixabay.com/photo/2016/12/23/07/00/game-1926906_960_720.png",
+		"appCode": "app1",
+		"appName": "App1"
+    },
+	{
+        "code": "restaurant",
+        "name": "Restaurant",
+		"levelReq": "A1",
+        "topic": "Tópico",
+		"shortDescription": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía.",
+		"description": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía. Se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que fermente la masa y sea más esponjosa y tierna.",
+		"parameters": [],
+        "developers": [
+			{
+				"student": "Estudiante Alumno",
+				"school": "Colegio Educativo Académico"
+			},
+			{
+				"student": "Pupilo Aprendiz",
+				"school": "Colegio Educativo Académico"
+			}
+		],
+		"launchDate": "",
+		"logo": "https://cdn.pixabay.com/photo/2016/12/23/07/00/game-1926906_960_720.png",
+		"appCode": "app1",
+		"appName": "App1"
+    },
+	{
+        "code": "phrases",
+        "name": "Phrases",
+		"levelReq": "A1",
+        "topic": "Tópico",
+		"shortDescription": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía.",
+		"description": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía. Se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que fermente la masa y sea más esponjosa y tierna.",
+		"parameters": [],
+        "developers": [
+			{
+				"student": "Estudiante Alumno",
+				"school": "Colegio Educativo Académico"
+			}
+		],
+		"launchDate": "",
+		"logo": "https://cdn.pixabay.com/photo/2016/12/23/07/00/game-1926906_960_720.png",
+		"appCode": "app1",
+		"appName": "App1"
+    },
+	{
+        "code": "future-tense",
+        "name": "Future Tense",
+		"levelReq": "A1",
+        "topic": "Tópico",
+		"shortDescription": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía.",
+		"description": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía. Se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que fermente la masa y sea más esponjosa y tierna.",
+		"parameters": [],
+        "developers": [
+			{
+				"student": "Estudiante Alumno Pupilo Aprendiz",
+				"school": "Colegio Educativo Académico"
+			}
+		],
+		"launchDate": "",
+		"logo": "https://cdn.pixabay.com/photo/2016/12/23/07/00/game-1926906_960_720.png",
+		"appCode": "app2",
+		"appName": "App2"
+    }
+]

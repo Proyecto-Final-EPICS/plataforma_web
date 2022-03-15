@@ -10,9 +10,8 @@ import './AdminHome.scss'
 
 export default function AdminHome(){
 
-    const [variable,funcion] = useState([]);  
+    const [variable, funcion] = useState([]);  
 
-    
     return(
         <div className="Home">
             <h1>Bienvenido a la interfaz del administrador</h1>

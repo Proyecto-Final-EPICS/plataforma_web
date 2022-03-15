@@ -38,10 +38,10 @@ function MenuSider(props){
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/admin/games" className="admin-sider__item">
-                    <Link to={"/admin/games"}>
+                <Menu.Item key="/admin/apps" className="admin-sider__item">
+                    <Link to={"/admin/apps"}>
                         <DesktopOutlined />
-                        <span className="nav-text">Videojuegos</span>
+                        <span className="nav-text">Aplicaciones</span>
                     </Link>
                 </Menu.Item>
 

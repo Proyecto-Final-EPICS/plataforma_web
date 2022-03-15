@@ -9,9 +9,9 @@ import statisticFilterElems from './../../../libraries/statisticFilterElems';
 import { getSessionGameApi } from '../../../api/sessions';
 
 // Mock Data
-import courseApi from '../../../mock_data/course.json';
-import studentApi from '../../../mock_data/student.json';
-import sessionGame from '../../../mock_data/sessionGame.json'
+import courseApi from '../../../mock_data/collections/course.json';
+import studentApi from '../../../mock_data/collections/student.json';
+import sessionGame from '../../../mock_data/collections/sessionGame.json'
 
 // Íconos
 import {

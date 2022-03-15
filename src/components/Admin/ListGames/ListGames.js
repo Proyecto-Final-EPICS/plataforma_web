@@ -1,45 +1,41 @@
 //Liberias
-import React from 'react';
+import {Link} from 'react-router-dom';
+
+// Componentes
 import {List,Button,Card} from 'antd';
 import {CaretUpOutlined} from '@ant-design/icons';
-import {Link} from 'react-router-dom';
+
+// Estilos
 import './ListGames.scss'
 
 export default function ListGames(props){
     const {games} = props;
+
     return(
-        <div className="list-videojuegos">
-            <Videogames games={games}/>
+        <div className="list-games">
+            <List
+                grid={{gutter: 16, column: 1}}
+                className= "games"
+                itemLayout= "horizontal"
+                dataSource={games}
+                renderItem={
+                    game => <Game game={game}/>
+                }
+            />
         </div>
     );
 }
 
-function Videogames(props){
-    const {games} = props;
-    return(
-        
-        <List
-            grid={{gutter: 16, column: 1}}
-            className= "videojuegos"
-            itemLayout= "horizontal"
-            dataSource={games}
-            renderItem={game => <Videogame
-                game = {game}
-            />}
-        />
-    );
-}
-
-function Videogame(props){
+function Game(props){
     const {game} = props;
-    // console.log(colegio);
+    
     return(
         <Card className="card-admin">
             <List.Item
                 actions={[
                     <div className="card-admin__content">
                         <h1 className="card-admin__content__title">
-                            {game.gameName}
+                            {game.name}
                         </h1>
 
                         <Link to ={`/home/colegios/${game.gameName}`}>
@@ -49,13 +45,9 @@ function Videogame(props){
                             </Button> 
                         </Link>
                     </div>
-                    
                 ]}
-                
-               
             >
             </List.Item>
         </Card>
-        
     );
 }
