@@ -30,9 +30,7 @@ export default function AdminGames() {
                 <GamesFilters/>
             </Header>
             <Content className='admin-games__content'>
-                <ListGames games={games.map(g => (
-                    {name: g.name}
-                ))}/>
+                <ListGames games={games}/>
             </Content>
         </Layout>
     );

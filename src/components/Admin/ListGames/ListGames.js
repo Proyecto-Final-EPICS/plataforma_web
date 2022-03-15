@@ -1,53 +1,62 @@
-//Liberias
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import qs from 'query-string';
 
-// Componentes
-import {List,Button,Card} from 'antd';
-import {CaretUpOutlined} from '@ant-design/icons';
+import { List, Avatar, Space } from 'antd';
+import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 
-// Estilos
-import './ListGames.scss'
-
-export default function ListGames(props){
+export default function ListGames(props) {
     const {games} = props;
+    const query = qs.parse(window.location.search)
 
-    return(
-        <div className="list-games">
-            <List
-                grid={{gutter: 16, column: 1}}
-                className= "games"
-                itemLayout= "horizontal"
-                dataSource={games}
-                renderItem={
-                    game => <Game game={game}/>
-                }
-            />
-        </div>
-    );
-}
+    const queryGame = code => {
+        return {
+            pathname: '/admin/apps/details',
+            search: qs.stringify({
+                ...query,
+                game: code,
+            })
+        }
+    }
 
-function Game(props){
-    const {game} = props;
-    
-    return(
-        <Card className="card-admin">
+    const renderGame = game => {
+        const {code, name, shortDescription, developers, levelReq} = game;
+        const devs = developers.map(d => d.student);
+
+        return (
             <List.Item
+                key={code}
                 actions={[
-                    <div className="card-admin__content">
-                        <h1 className="card-admin__content__title">
-                            {game.name}
-                        </h1>
-
-                        <Link to ={`/home/colegios/${game.gameName}`}>
-                            <Button type="primary" className="card-admin__button"> 
-                                Entrar
-                                <CaretUpOutlined />
-                            </Button> 
-                        </Link>
-                    </div>
+                    <div>{`Level: ${levelReq}`}</div>,
                 ]}
+                extra={
+                    <Link to={() => queryGame(code)}>
+                    <img
+                        width={100}
+                        alt={`Logo de ${name}`}
+                        src="https://cdn.pixabay.com/photo/2016/12/23/07/00/game-1926906_960_720.png"
+                    />
+                    </Link>
+                }
             >
+                <List.Item.Meta
+                    title={<Link to={() => queryGame(code)}>{name}</Link>}
+                    description={`Por: ${devs.join(', ')}`}
+                />
+                {shortDescription}
             </List.Item>
-        </Card>
+        )
+    }
+
+    return (
+        <List
+            itemLayout="vertical"
+            size="large"
+            // pagination={{
+            //     pageSize: 3,
+            // }}
+            dataSource={games}
+            renderItem={renderGame}
+            bordered
+        />
     );
 }
