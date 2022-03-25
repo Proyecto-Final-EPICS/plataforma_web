@@ -1,5 +1,5 @@
 //Configuraciones
-import {ACCESS_TOKEN, USER_TYPE_TOKEN} from '../utils/constants';
+import {ACCESS_TOKEN} from '../utils/constants';
 
 //Liberias
 import jwtDecode from 'jwt-decode';
@@ -25,10 +25,3 @@ function willExpireToken(token){
 export function logout(){
     localStorage.removeItem(ACCESS_TOKEN);
 }
-
-// export function getUserTypeToken() {
-//     const userTypeToken = localStorage.getItem(USER_TYPE_TOKEN);
-
-//     if(!userTypeToken || userTypeToken === 'null') return null;
-//     else return 
-// }
