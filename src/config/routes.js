@@ -29,153 +29,167 @@ import Graficos from '../pages/Professor/Graficos';
 //Pages Statistic
 import StatisticHome from '../pages/Statistic/StatisticHome'
 
-const routes = [//Es el sistema de rutas, el array contiene todas las rutas
-    {
-        path: "/",
-        component: Login,
-        exact: true
-    },
-    {
-        path: "/sign-up",
-        component: SignUp,
-        exact: true
-    },
-    {
-        path: "/home",
-        component: LayoutProfessor,
-        exact: false,
-        routes:[
-            {
-                path: "/home",
-                component: ProfessorHome,
-                exact: true
-            },
-            {
-                path: "/home/colegios",
-                component: Colegios,
-                exact: true
-            },
-            {
-                path: "/home/colegios/:colegio",
-                component: Students_Games,
-                exact: true
-            },
-            {
-                path: "/home/colegios/:colegio/estudiantes",
-                component: Colegio,
-                exact: true
-            },
-            {
-                path: "/home/colegios/:colegio/juegos",
-                component: Colegio_Games,
-                exact: true
-            },
-            {
-                path: "/home/colegios/:colegio/juegos/:juego",
-                component: Colegio_Games,
-                exact: true
-            },
-            {
-                path:"/home/colegios/:colegio/estudiantes/:estudiante-:username",
-                component: GamesStudent,
-                exact: true
-            },
-            {
-                path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game",
-                component: Menu_Cards,
-                exact: true
-            },
-            // {
-            //     path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game/sesiones",
-            //     component: Estudiante,
-            //     exact: true
-            // },
-            {
-                path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game/nivel-:nivel",//Revisara acá
-                component: Estudiante,
-                exact: true
-            },
-            {
-                component: Error404
-            }
-           
-        ]
-    },
-    {
-        path: "/admin",
-        component: LayoutAdmin,
-        exact: false,
-        routes:[
-            {
-                path: "/admin",
-                component: AdminHome,
-                exact: true
-            },
-            {
-                path: "/admin/courses",
-                component: AdminCourses,
-                exact: true
-            },
-            {
-                path: "/admin/apps",
-                component: AdminApps,
-                exact: true
-            },
-            {
-                path: "/admin/apps/details",
-                component: AdminGames,
-                exact: true
-            },
-            {
-                path: "/admin/professors",
-                component: AdminProfessors,
-                exact: true
-            },
-            {
-                component: Error404
-            }
-        ]
-    },
-    {
-        path: "/statistics",
-        component: LayoutStatistic,
-        exact: false,
-        routes: [
-            {
-                path: "/statistics",
-                component: StatisticHome,
-                exact: true
-            },
-            {
-                component: Error404
-            }
-        ]
-    },
-    {
-        path: '/professor',
-        component: LayoutProfessor,
-        exact: false,
-        routes: [
-            {
-                path: '/professor',
-                component: ProfessorHome,
-                exact: true,
-            },
-            {
-                component: Error404
-            }
-        ]
-    },
-    {
-        component: Error404
-    }
-];
+const routes = {//Es el sistema de rutas, el array contiene todas las rutas
+    noUser: [
+        {
+            path: "/",
+            component: Login,
+            exact: true
+        },
+        {
+            path: "/login",
+            component: Login,
+            exact: true
+        },
+        {
+            path: "/sign-up",
+            component: SignUp,
+            exact: true
+        },
+        {
+            component: Error404
+        }
+    ],
+    admin: [
+        {
+            path: "/home",
+            component: LayoutAdmin,
+            exact: false,
+            routes:[
+                {
+                    path: "/home",
+                    component: AdminHome,
+                    exact: true
+                },
+                {
+                    path: "/home/courses",
+                    component: AdminCourses,
+                    exact: true
+                },
+                {
+                    path: "/home/apps",
+                    component: AdminApps,
+                    exact: true
+                },
+                {
+                    path: "/home/apps/details",
+                    component: AdminGames,
+                    exact: true
+                },
+                {
+                    path: "/home/professors",
+                    component: AdminProfessors,
+                    exact: true
+                },
+                {
+                    component: Error404
+                }
+            ]
+        },
+        {
+            path: "/statistics",
+            component: LayoutStatistic,
+            exact: false,
+            routes: [
+                {
+                    path: "/statistics",
+                    component: StatisticHome,
+                    exact: true
+                },
+                {
+                    component: Error404
+                }
+            ]
+        },
+        {
+            component: Error404
+        }
+    ],
+    professor: [
+        {
+            path: "/home",
+            component: LayoutProfessor,
+            exact: false,
+            routes:[
+                {
+                    path: "/home",
+                    component: ProfessorHome,
+                    exact: true
+                },
+                {
+                    path: "/home/colegios",
+                    component: Colegios,
+                    exact: true
+                },
+                {
+                    path: "/home/colegios/:colegio",
+                    component: Students_Games,
+                    exact: true
+                },
+                {
+                    path: "/home/colegios/:colegio/estudiantes",
+                    component: Colegio,
+                    exact: true
+                },
+                {
+                    path: "/home/colegios/:colegio/juegos",
+                    component: Colegio_Games,
+                    exact: true
+                },
+                {
+                    path: "/home/colegios/:colegio/juegos/:juego",
+                    component: Colegio_Games,
+                    exact: true
+                },
+                {
+                    path:"/home/colegios/:colegio/estudiantes/:estudiante-:username",
+                    component: GamesStudent,
+                    exact: true
+                },
+                {
+                    path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game",
+                    component: Menu_Cards,
+                    exact: true
+                },
+                // {
+                //     path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game/sesiones",
+                //     component: Estudiante,
+                //     exact: true
+                // },
+                {
+                    path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game/nivel-:nivel",//Revisara acá
+                    component: Estudiante,
+                    exact: true
+                },
+                {
+                    component: Error404
+                }
+               
+            ]
+        },
+        {
+            path: "/statistics",
+            component: LayoutStatistic,
+            exact: false,
+            routes: [
+                {
+                    path: "/statistics",
+                    component: StatisticHome,
+                    exact: true
+                },
+                {
+                    component: Error404
+                }
+            ]
+        },
+        {
+            component: Error404
+        }
+    ],
+};
 
 /*En resumen, primero se carga el componente que tiene el Layout, es exact false porque tiene
     subrutas, luego estando en esa ruta que tiene el componente LayoutBasic, tengo otras dos
     rutas, esas si deben ser exact true porque es necesario que se mantenga el componente LayoutBasic
     puesto que aun estamos dentro de la ruta admin*/
 export default routes;
-
-
-

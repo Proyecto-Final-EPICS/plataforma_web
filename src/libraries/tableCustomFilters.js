@@ -108,7 +108,7 @@ export function tableCustomFilters(dataIndex, query){
                 <Space>
                     {/* <Link to={(location) => handleSearchLink(location, selectedKeys)}> */}
                     <Link to={{
-                        pathname: '/admin/courses',
+                        pathname: '/home/courses',
                         search: qs.stringify({
                             ...query,
                             [dataIndex]: selectedKeys[0],
@@ -128,7 +128,7 @@ export function tableCustomFilters(dataIndex, query){
 
                     {/* <Link to={(location) => handleSearchLink(location, selectedKeys)}> */}
                     <Link to={{
-                        pathname: '/admin/courses',
+                        pathname: '/home/courses',
                         search: qs.stringify({
                             ...query,
                             [dataIndex]: undefined,

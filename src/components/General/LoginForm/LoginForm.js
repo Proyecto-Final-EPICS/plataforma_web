@@ -1,5 +1,3 @@
-//Liberías
-// import React, {useState} from 'react';
 import {Form, Input, Button, notification} from 'antd';
 
 //Iconos
@@ -9,7 +7,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {signinAPI} from'../../../api/users'
 
 //Utils
-import {ACCESS_TOKEN} from '../../../utils/constants'
+import {ACCESS_TOKEN, USER_TYPE} from '../../../utils/constants'
 
 //Estilos
 import './LoginForm.scss';
@@ -20,10 +18,8 @@ export default function LoginForm(){
         if(!values.username || !values.password) return;
     
         const result = await signinAPI(values);
-        console.log(result);
-        
         const {token} = result;
-
+        
         if (token === "none") {
             notification["error"]({
                 message:"Contraseña o usuario incorrecto"
@@ -31,12 +27,12 @@ export default function LoginForm(){
         }else{
             //Access token almacenado en el local storage
             localStorage.setItem(ACCESS_TOKEN, token);
-    
+            
             notification["success"]({
                 message: "Login correcto"
             });
-    
-            window.location.href= "/admin";
+
+            window.location.href = "/home";
         }
     }
 

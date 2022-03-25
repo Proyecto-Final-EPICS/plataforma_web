@@ -59,7 +59,7 @@ export default function SignUpProfessorForm(props) {
 
         }else{
             localStorage.setItem(ACCESS_TOKEN, token);
-            window.location.href= "/admin";
+            window.location.href= "/home";
         }
     }
 

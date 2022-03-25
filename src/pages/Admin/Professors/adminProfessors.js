@@ -40,14 +40,14 @@ export default function AdminProfessors() {
             };
             
             const onClickCourses = () => {
-                setMenuSelectedKey('/admin/courses');
+                setMenuSelectedKey('/home/courses');
                 // setProfessorFilter([`${prof.firstname} ${prof.lastname}`]);
             }
 
             setModalProfessorContent(
                 <>
                 <ProfessorProfile {...data}/>
-                <Link to={`/admin/courses?professors=${prof.firstname} ${prof.lastname}`}>
+                <Link to={`/home/courses?professors=${prof.firstname} ${prof.lastname}`}>
                     <Button 
                         type="primary" 
                         className="modal-professor__courses"
@@ -56,11 +56,11 @@ export default function AdminProfessors() {
                         Cursos
                     </Button>
                 </Link>
-                <Link to="/admin/games">
+                <Link to="/home/games">
                     <Button 
                         type="primary" 
                         className="modal-professor__games"
-                        onClick={() => setMenuSelectedKey("/admin/games")}
+                        onClick={() => setMenuSelectedKey("/home/games")}
                     >
                         Juegos
                     </Button>

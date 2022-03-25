@@ -64,7 +64,7 @@ export default function GamesFilters() {
     return (
         <div className="nav-bar">
         <Space direction="horizontal">
-            <Link to='/admin/apps'>
+            <Link to='/home/apps'>
             <Button 
                 className='nav-bar__back'
                 icon={<LeftOutlined/>}

@@ -16,7 +16,7 @@ export default function MenuTop(props){
     const {menuCollapsed, setMenuCollapsed} = props;
 
     const logoutUser =  () => {
-        window.location.href="/admin";
+        window.location.href="/home";
     }
 
     const menu = (

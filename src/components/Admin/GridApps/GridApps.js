@@ -17,10 +17,10 @@ export default function GridApps (props) {
                 return (
                     <li key={index} className="grid-apps__list__game">
                         {/* <div> */}
-                        <Link to={`/admin/apps/details?app=${code}`}>
+                        <Link to={`/home/apps/details?app=${code}`}>
                             <img src={logo} alt={`Logo de ${name}`}></img>
                         </Link>
-                        <Link to={`/admin/apps/details?app=${code}`}>
+                        <Link to={`/home/apps/details?app=${code}`}>
                             <h1>{name}</h1>
                         </Link>
                         <h2>{`Por: ${developers.map(d => d.student).join(', ')}`}</h2>

@@ -10,7 +10,7 @@ export default function ListGames(props) {
 
     const queryGame = code => {
         return {
-            pathname: '/admin/apps/details',
+            pathname: '/home/apps/details',
             search: qs.stringify({
                 ...query,
                 game: code,
