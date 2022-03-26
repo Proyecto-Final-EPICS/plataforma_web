@@ -1,0 +1,36 @@
+@import '../../../scss/index.scss';
+
+.grid-courses {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+    column-gap: 10px;
+    list-style-type: none;
+    
+    &__el {
+        background-color: #ddd;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        min-height: 100px;
+
+        &:hover {
+            cursor: pointer;
+            border-color: #bbb;
+        }
+
+        h1 {
+            font-size: 14px;
+        }
+        span {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        h2{
+            font-size: 12px;
+        }
+    }
+
+}
