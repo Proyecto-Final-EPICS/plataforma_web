@@ -10,10 +10,10 @@ export const AuthContext = createContext();
 export default function AuthProvider(props){
     const { children } = props; //Children hace referencia a cualquier pagina
     const [user, setUser] = useState({
-        // user: null,//No logeado
-        // isLoading: true //Está cargando
-        user: 'Prueba',
-        isLoading: false
+        userId: NaN,
+        username: '',
+        userType: null,
+        isLoading: false,
     });
     
     useEffect(()=>{
@@ -24,19 +24,34 @@ export default function AuthProvider(props){
 }
 
 function checkUserLogin(setUser){
+    console.log('checking...');
     const accessToken = getAccessTokenApi();
-
+    
     if(!accessToken){
         console.log("Token caducado o no existe");//aca debería ir el accesstoken
         logout();
         setUser({
-            user: null,
-            isLoading: false
+            userId: NaN,
+            username: '',
+            userType: null,
+            isLoading: false,
         });
     }else{
-        setUser({
+        console.log('valid', {
+            userId: 0,
+            username: jwtDecode(accessToken).sub.user,
+            userType: 'professor',
             isLoading: false,
-            user: jwtDecode(accessToken).sub //Acá se saca el usuario del token
+        });
+        // setUser({
+        //     ...jwtDecode(accessToken).sub,
+        //     isLoading: false,
+        // })
+        setUser({
+            userId: 0,
+            username: jwtDecode(accessToken).sub.user,
+            userType: 'professor',
+            isLoading: false,
         });
     }
 }

@@ -19,20 +19,22 @@ import './LayoutProfessor.scss';
 export default function LayoutProfessor(props){
     const {Header,Content,Footer} = Layout;
     const { routes } = props;
-    const {user, isLoading} = useAuth();
-
-    if (!user && !isLoading){//No hay usuario logeado
+    const {username, isLoading} = useAuth();
+    
+    console.log('LayProf');
+    if (!username && !isLoading){
         return(
             <>
-            <Route path="/" component={Login}/>
-            <Redirect to="/"/>
+            {/* <Route path="/login" component={Login}/> */}
+            <Redirect to="/login"/>
             </>
         )
     }
 
-    if(user && !isLoading){//Usuario logeado
-      
-        return(
+    if(username && !isLoading){//Usuario logeado
+        console.log('LayProf logged in');
+        if(window.location.pathname == "/") return <Redirect to="/home"/>;
+        return (
             <Layout>
                 <Layout className="layout-professor">
                     <Header className="layout-professor__header">

@@ -19,18 +19,18 @@ const {Header, Sider, Content, Footer} = Layout;
 
 export default function LayoutStatistic(props){
     const {routes} = props;
-    const {user, isLoading} = useAuth();
+    const {username, isLoading} = useAuth();
 
-    if (!user && !isLoading) {//No hay usuario logeado
+    if (!username && !isLoading) {//No hay usuario logeado
         return(
             <>
-            <Route path="/" component={Login}/>
-            <Redirect to="/"/>
+            <Route path="/login" component={Login}/>
+            <Redirect to="/login"/>
             </>
         )
     }
 
-    if(user && !isLoading){//Usuario logeado
+    if(username && !isLoading){//Usuario logeado
         return(
             <Layout className="layout-statistic">
                 <Header className="layout-statistic__header">

@@ -23,13 +23,13 @@ export default function LayoutAdmin(props) {
     const [menuCollapsed, setMenuCollapsed] = useState(false); //Para desplegar el menu
     const [menuSelectedKey, setMenuSelectedKey] = useState([location.pathname]);
 
-    const {user, isLoading} = useAuth();
+    const {username, isLoading} = useAuth();
 
-    if (!user && !isLoading) {//No hay usuario logeado
+    if (!username && !isLoading) {//No hay usuario logeado
         return(
             <>
-            <Route path="/" component={Login}/>
-            <Redirect to="/"/>
+            <Route path="/login" component={Login}/>
+            <Redirect to="/login"/>
             </>
         )
     }

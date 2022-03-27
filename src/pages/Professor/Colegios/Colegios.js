@@ -20,12 +20,12 @@ import './Colegios.scss';
 export default function Colegios(){
     const [colegios,setColegios] = useState([]);
     const {Content,Header} = Layout;
-    const {user} = useAuth().user;
+    const {username} = useAuth();
 
     
     useEffect(() => {
         let isMounted = true;
-        getColegiosByProfessorApi(user)
+        getColegiosByProfessorApi()
         .then(response => {
             if(response == "Failed to fetch"){
                notification["warning"]({

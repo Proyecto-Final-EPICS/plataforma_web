@@ -1,4 +1,5 @@
 //Layouts
+import LayoutNoUser from '../pages/NoUser'
 import LayoutAdmin from '../pages/Admin';
 import LayoutProfessor from '../pages/Professor';
 import LayoutStatistic from '../pages/Statistic';
@@ -32,15 +33,20 @@ import StatisticHome from '../pages/Statistic/StatisticHome'
 const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     noUser: [
         {
-            path: "/",
+            path: ["/", "/login"],
             component: Login,
             exact: true
         },
-        {
-            path: "/login",
-            component: Login,
-            exact: true
-        },
+        // {
+        //     path: "/",
+        //     component: LayoutNoUser,
+        //     exact: true
+        // },
+        // {
+        //     path: "/login",
+        //     component: Login,
+        //     exact: true
+        // },
         {
             path: "/sign-up",
             component: SignUp,
@@ -52,7 +58,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     ],
     admin: [
         {
-            path: "/home",
+            path: ["/", "/home"],
             component: LayoutAdmin,
             exact: false,
             routes:[
@@ -107,7 +113,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     ],
     professor: [
         {
-            path: "/home",
+            path: ["/", "home"],
             component: LayoutProfessor,
             exact: false,
             routes:[

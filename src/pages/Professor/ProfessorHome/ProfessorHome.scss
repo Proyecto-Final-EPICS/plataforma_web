@@ -2,8 +2,13 @@
 
 .professor-home {
     &__content {
-        &__el {
-            // width: 40%;
+        &__sec {
+
+            &__content {
+                border-radius: 10px;
+                border: 1px #ddd solid;
+                // padding: 0;
+            }
 
             &__title {
                 font-size: 18px;

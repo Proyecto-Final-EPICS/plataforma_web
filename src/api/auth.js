@@ -7,17 +7,20 @@ import jwtDecode from 'jwt-decode';
 export function getAccessTokenApi(){
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
-    if(!accessToken || accessToken === "null"){
-        return null;//No hay access token
-    }else{
-        return willExpireToken(accessToken) ? null : accessToken; //Retorna null si venció, sino retorna el token
-    } 
+    if(!accessToken ) return null;
+    else{
+        let decToken;
+        try {
+            decToken = jwtDecode(accessToken);
+        }catch(e) {return null}
+
+        return willExpireToken(decToken.exp) ? null : accessToken; //Retorna null si venció, sino retorna el token
+    }
 }
 
-function willExpireToken(token){
+// export function get 
+function willExpireToken(exp){
     const seconds = 60;
-    const {exp} = jwtDecode(token);
-    // const now = (Date.now() + seconds) / 1000;
     const now = Date.now() / 1000 + seconds;
     return now > exp;
 }

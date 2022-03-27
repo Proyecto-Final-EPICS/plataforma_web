@@ -18,7 +18,7 @@ import logo from '../../../assets/img/palanca-de-mando.png';
 
 export default function MenuTop(props){
     const {callback} = props;
-    const {user} = useAuth().user;
+    const {username} = useAuth();
 
     const logoutUser = () => {
         logout();
@@ -52,7 +52,7 @@ export default function MenuTop(props){
                
                <Dropdown overlay={menu}>
                     <a target="_blank" className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                        <span className="menu-top__right__user">{user}</span>  <DownOutlined />
+                        <span className="menu-top__right__user">{username}</span>  <DownOutlined />
                     </a>
                </Dropdown>
             </div>

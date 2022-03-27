@@ -6,7 +6,6 @@ import {PoweroffOutlined,DownOutlined,UserOutlined} from '@ant-design/icons';
 
 //Api
 import {logout} from '../../../api/auth';
-import {getAccessTokenApi} from '../../../api/auth'; 
 
 //Hooks
 import useAuth from '../../../hooks/useAuth';
@@ -18,7 +17,7 @@ import './MenuTop.scss';
 import logo from '../../../assets/img/palanca-de-mando.png';
 
 export default function MenuTop(){
-    const {user} = useAuth().user;
+    const {username} = useAuth();
 
     const logoutUser = () => {
         logout();
@@ -55,7 +54,7 @@ export default function MenuTop(){
                
                <Dropdown overlay={menu}>
                     <a target="_blank" className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                        <span className="menu-top__right__user">{user}</span>  <DownOutlined />
+                        <span className="menu-top__right__user">{username}</span>  <DownOutlined />
                     </a>
                </Dropdown>
             </div>
