@@ -14,12 +14,27 @@
     }
 
     &__item{
-        background: $background-orange;
+        
+        &:hover {
+            background-color: $background-orange-light;
+        }
+
+        &:hover > a {
+            color: black;
+        }
+    }
+
+    .ant-menu-item-selected {
+        background-color: $background-orange !important;
+        
+        a {
+            color: black;
+        }
     }
 
     &__col {
         text-align: center;
-        padding-top: 10px;
+        padding-top: 20px;
         font-weight: 500;
 
         &:hover {
