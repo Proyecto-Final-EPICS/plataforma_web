@@ -17,40 +17,40 @@ export default function AuthProvider(props){
     });
     
     useEffect(()=>{
-        checkUserLogin(setUser);
+        checkUserLogin(user, setUser);
     },[]);
     return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
     //Se está pasando el usuario a toda la web con value={user}
 }
 
-function checkUserLogin(setUser){
+function checkUserLogin(user, setUser){
     console.log('checking...');
     const accessToken = getAccessTokenApi();
     
     if(!accessToken){
-        console.log("Token caducado o no existe");//aca debería ir el accesstoken
+        console.log("Token caducado o inexistente");//aca debería ir el accesstoken
         logout();
         setUser({
             userId: NaN,
             username: '',
-            userType: null,
+            userType: 'noUser',
             isLoading: false,
         });
     }else{
-        console.log('valid', {
-            userId: 0,
-            username: jwtDecode(accessToken).sub.user,
-            userType: 'professor',
-            isLoading: false,
-        });
         // setUser({
         //     ...jwtDecode(accessToken).sub,
         //     isLoading: false,
         // })
+        let userType = localStorage.getItem('userType');
+        
+        if(!userType || userType=='null') {
+            userType = prompt('User type:');
+            localStorage.setItem('userType', userType);
+        }
         setUser({
             userId: 0,
             username: jwtDecode(accessToken).sub.user,
-            userType: 'professor',
+            userType, //professor admin noUser
             isLoading: false,
         });
     }

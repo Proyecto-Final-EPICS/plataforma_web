@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
 //Componentes
-import LayoutAdminContext from '../../../components/Admin/LayoutAdminContext';
+import AdminContext from '../../../components/Admin/AdminContext';
 import TableProfessor from '../../../components/Admin/TableProfessor';
 import ProfessorProfile from '../../../components/Admin/ProfessorProfile';
 import Modal from '../../../components/General/Modal';
@@ -17,7 +17,7 @@ import './AdminProfessor.scss';
 
 export default function AdminProfessors() {
     // const {setMenuSelectedKey} = props;
-    const {setMenuSelectedKey} = useContext(LayoutAdminContext);
+    const {setMenuSelectedKey} = useContext(AdminContext);
 
     const [professors, setProfessors] = useState([]);
     const [reloadProfessors, setReloadProfessors] = useState(false);

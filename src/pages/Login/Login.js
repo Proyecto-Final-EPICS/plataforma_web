@@ -8,7 +8,6 @@ import {Button} from 'antd';
 import LoginForm from '../../components/General/LoginForm';
 
 import useAuth from '../../hooks/useAuth';
-import LayoutProfessor from '../Professor/LayoutProfessor';
 
 //Estilos
 import './Login.scss';

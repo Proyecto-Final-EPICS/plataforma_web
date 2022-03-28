@@ -2,7 +2,6 @@
 
 .layout-professor{
     transition: margin-left 0.2s;
-    box-sizing: border-box;
 
     &__header{
         position: fixed;
@@ -13,11 +12,19 @@
         padding: 0;
         height: 65px;
         background-color: $background-purple;
+        z-index: 100;
     }
 
     &__content{
-        min-height: calc(100vh - 200px);
-        padding: 20px 25px 25px 25px;
+
+        &__layout {
+            margin-left: 200px;
+            
+            &__content {
+                min-height: calc(100vh - 200px);
+                padding: 20px 25px 25px 25px;
+            }
+        }
     }
 
     &__footer{

@@ -7,7 +7,11 @@
         "password": "pass",
         "firstname": "User",
         "lastname": "Epics",
-        "email": "user@vip-evics.com"
+        "email": "user@vip-evics.com",
+    	"phone": {
+        	"countryCode": "57",
+        	"number": "302 19842204"
+    	}
     },
     {
         "_id": {
@@ -17,7 +21,11 @@
         "password": "pass",
         "firstname": "Juan",
         "lastname": "Arboleda",
-        "email": "juan@vip-epics.com"
+        "email": "juan@vip-epics.com",
+    	"phone": {
+        	"countryCode": "57",
+        	"number": "302 19842204"
+    	}
     },
     {
         "_id": {
@@ -27,7 +35,11 @@
         "password": "pass",
         "firstname": "User",
         "lastname": "2",
-        "email": "user2@epics-vip.com"
+        "email": "user2@epics-vip.com",
+	    "phone": {
+        	"countryCode": "57",
+        	"number": "302 19842204"
+    	}
     },
     {
         "_id": {
@@ -37,7 +49,11 @@
         "password": "pass",
         "firstname": "Juan",
         "lastname": "Pérez",
-        "email": "juan@vip-epics.com"
+        "email": "juan@vip-epics.com",
+    	"phone": {
+        	"countryCode": "57",
+        	"number": "302 19842204"
+    	}
     },
     {
         "_id": {
@@ -46,7 +62,11 @@
         "username": "test",
         "password": "pass",
         "firstname": "Juan",
-        "email": "test@vip-epics.com"
+        "email": "test@vip-epics.com",
+    	"phone": {
+        	"countryCode": "57",
+        	"number": "302 19842204"
+    	}
     },
     {
         "_id": {
@@ -55,7 +75,12 @@
         "username": "p",
         "password": "pass",
         "firstname": "Perencejo",
-        "lastname": "Ramos Rodríguez"
+        "lastname": "Ramos Rodríguez",
+        "email": "prr@epics-ieee.com",
+        "phone": {
+        	"countryCode": "57",
+        	"number": "302 19842204"
+    	}
     },
     {
         "_id": {
@@ -78,7 +103,11 @@
         "password": "pass",
         "firstname": "Daniel",
         "lastname": "Gamez",
-        "email": "userx@vip-epics.com"
+        "email": "userx@vip-epics.com",
+    	"phone": {
+        	"countryCode": "57",
+        	"number": "302 19842204"
+    	}
     },
     {
         "_id": {
@@ -88,6 +117,10 @@
         "password": "pass",
         "firstname": "Alma",
         "lastname": "",
-        "email": "alma@vip-epics.com"
+        "email": "alma@vip-epics.com",
+    	"phone": {
+        	"countryCode": "57",
+        	"number": "302 19842204"
+    	}
     }
 ]

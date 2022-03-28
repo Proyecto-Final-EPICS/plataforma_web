@@ -1,6 +1,6 @@
 //Liberias
 import { useState, useEffect } from 'react';
-import { Row, Col, List } from 'antd';
+import { Row, Col } from 'antd';
 
 //Componentes
 import GridCourses from './../../../components/Professor/GridCourses';
@@ -14,6 +14,7 @@ import appsApi from '../../../mock_data/collections/app.json'
 import './ProfessorHome.scss';
 
 export default function ProfessorHome(){
+
     const [courses, setCourses] = useState([]);
     const [apps, setApps] = useState([]);
 
