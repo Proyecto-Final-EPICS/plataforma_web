@@ -10,20 +10,19 @@ export default function ListApps(props) {
 
     return (
         <List
-            itemLayout="horizontal"
-            dataSource={apps}
-            height={height}
-            renderItem={app => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={<Avatar src={app.logo} />}
-                    title={<Link>{app.name}</Link>}
-                    description={`Por: ${app.developers.map(d => d.student).join(', ')}`}
-                  />
-                </List.Item>
-              )}
-        >
-        
-        </List>
+          className='professor-apps'
+          itemLayout="horizontal"
+          dataSource={apps}
+          height={height}
+          renderItem={(app, i) => (
+              <List.Item className='professor-apps__el' key={i}>
+                <List.Item.Meta
+                  avatar={<Avatar src={app.logo} />}
+                  title={<Link>{app.name}</Link>}
+                  description={`Por: ${app.developers.map(d => d.student).join(', ')}`}
+                />
+              </List.Item>
+            )}
+        />
     );
 }

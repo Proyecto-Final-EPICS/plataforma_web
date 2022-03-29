@@ -26,18 +26,14 @@ export default function AdminProfessors() {
     const [modalProfessorContent, setModalProfessorContent] = useState(null);
     
     const seeProfessor = username => {
+        
         setIsVisibleModalProfessor(true);
+        
         getProfessorsApi().then(response => {
-            const prof = response.find(el => el.username==username);
-            const data = {
-                firstname: prof.firstname,
-                lastname: prof.lastname,
-                photo: prof.photo,
-                degree: prof.degrees,
-                phone: prof.phone,
-                email: prof.email,
-                description: prof.description
-            };
+            const {firstname, lastname, photo, phone, curriculum, email} 
+                = response.find(el => el.username==username);
+
+            const data = {firstname, lastname, photo, phone, curriculum, email};
             
             const onClickCourses = () => {
                 setMenuSelectedKey('/home/courses');
@@ -45,27 +41,29 @@ export default function AdminProfessors() {
             }
 
             setModalProfessorContent(
-                <>
-                <ProfessorProfile {...data}/>
-                <Link to={`/home/courses?professors=${prof.firstname} ${prof.lastname}`}>
-                    <Button 
-                        type="primary" 
-                        className="modal-professor__courses"
-                        onClick={onClickCourses}
-                    >
-                        Cursos
-                    </Button>
-                </Link>
-                <Link to="/home/games">
-                    <Button 
-                        type="primary" 
-                        className="modal-professor__games"
-                        onClick={() => setMenuSelectedKey("/home/games")}
-                    >
-                        Juegos
-                    </Button>
-                </Link>
-                </>
+                <div className='admin-professor-modal'>
+                    <ProfessorProfile {...data}/>
+                    <div className='admin-professor-modal__options'>
+                        <Link to={`/home/courses?professors=${firstname} ${lastname}`}>
+                            <Button 
+                                type="primary" 
+                                className="modal-professor__courses"
+                                onClick={onClickCourses}
+                            >
+                                Cursos
+                            </Button>
+                        </Link>
+                        <Link to="/home/games">
+                            <Button 
+                                type="primary" 
+                                className="modal-professor__games"
+                                onClick={() => setMenuSelectedKey("/home/games")}
+                            >
+                                Juegos
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
             );
         })
     }
@@ -81,7 +79,7 @@ export default function AdminProfessors() {
     }, [reloadProfessors]);
     
     return (
-        <div>
+        <div className="admin-professors">
             <Modal
                 // style={{ height: 'calc(100vh - 200px)' }}
                 // bodyStyle={{ overflowY: 'scroll' }}
@@ -91,7 +89,7 @@ export default function AdminProfessors() {
                 {modalProfessorContent}
             </Modal>
 
-            <div className="admin-colegio-contenido">
+            <div className="admin-professors__content">
             <TableProfessor
                 professors={professors} 
                 seeProfessor={seeProfessor} 

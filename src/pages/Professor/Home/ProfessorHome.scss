@@ -1,6 +1,7 @@
 @import '../../../scss/index.scss';
 
 .professor-home {
+
     &__content {
         &__sec {
 
@@ -12,12 +13,13 @@
             &__title {
                 font-size: 18px;
                 text-align: center;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
             }
-            .grid-courses {
+
+            .professor-courses {
                 
                 &__el {
-                    background-color: $background-orange;
+                    background-color: $background-orange-light;
                     box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
                     border: none;
                     transition: background .2s;

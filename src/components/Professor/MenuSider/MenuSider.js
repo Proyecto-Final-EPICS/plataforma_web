@@ -41,7 +41,7 @@ function MenuSider(props){
 
                 <Menu.Item key="/home" className="professor-sider__item">
                     <Link to={"/home"}>
-                        <BankOutlined />
+                        <HomeOutlined />
                         <span className="nav-text">Home</span>
                     </Link>
                 </Menu.Item>
@@ -53,8 +53,8 @@ function MenuSider(props){
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/activities" className="professor-sider__item">
-                    <Link to={"/home/activities"}>
+                <Menu.Item key="/home/calendar" className="professor-sider__item">
+                    <Link to={"/home/calendar"}>
                         <CalendarOutlined />
                         <span className="nav-text">Calendario</span>
                     </Link>
@@ -64,6 +64,13 @@ function MenuSider(props){
                     <Link to={"/home/grades"}>
                         <FileSearchOutlined />
                         <span className="nav-text">Calificaciones</span>
+                    </Link>
+                </Menu.Item>
+
+                <Menu.Item key="/home/institution" className="professor-sider__item">
+                    <Link to={"/home/institution"}>
+                        <BankOutlined />
+                        <span className="nav-text">Institución</span>
                     </Link>
                 </Menu.Item>
 

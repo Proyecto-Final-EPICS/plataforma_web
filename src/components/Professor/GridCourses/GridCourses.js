@@ -7,15 +7,13 @@ export default function GridCourses(props) {
     const {courses} = props;
 
     return (
-        <ul className="grid-courses">
-            {courses.map(c => (
-                <li className="grid-courses__el">
+        <ul className="professor-courses">
+            {courses.map((c, i) => (
+                <li className="professor-courses__el" key={i}>
                     <Link>
-                        <h1>{c.name}</h1>
+                        <h1>{`${String(i+1).length==1?'0':''}${String(i+1)}. ${c.name}`}</h1>
                         <span>
-                            <h2>{c.code}</h2>
-                            <h2>{c.level}</h2>
-                            <h2>{c.period}</h2>
+                            <h2>{`${c.code} - ${c.level} - ${c.period}`}</h2>
                         </span>
                     </Link>
                 </li>

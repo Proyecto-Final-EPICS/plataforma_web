@@ -25,7 +25,7 @@ export default function ProfessorHome(){
 
     return (
         <div className="professor-home">
-            <Row className="professor-home__content" gutter={64}>
+            <Row className="professor-home__content" gutter={32}>
                 <Col span={14}>
                 <div className="professor-home__content__sec professor-home__courses">
                     <h1 className="professor-home__content__sec__title">Cursos</h1>

@@ -17,7 +17,11 @@ import AdminCourses from '../pages/Admin/Courses';
 import AdminProfessors from '../pages/Admin/Professors';
 
 //Pages Professor
-import ProfessorHome from '../pages/Professor/ProfessorHome';
+import ProfessorHome from '../pages/Professor/Home';
+import ProfessorProfile from '../pages/Professor/Profile';
+import ProfessorCalendar from '../pages/Professor/Calendar';
+import ProfessorGrades from '../pages/Professor/Grades';
+import ProfessorInstitution from '../pages/Professor/Institution';
 import Colegios from '../pages/Professor/Colegios';
 import Colegio from '../pages/Professor/Colegio';
 import Colegio_Games from '../pages/Professor/Colegio_Games';
@@ -37,16 +41,6 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             component: Login,
             exact: true
         },
-        // {
-        //     path: "/",
-        //     component: LayoutNoUser,
-        //     exact: true
-        // },
-        // {
-        //     path: "/login",
-        //     component: Login,
-        //     exact: true
-        // },
         {
             path: "/sign-up",
             component: SignUp,
@@ -120,6 +114,26 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                 {
                     path: "/home",
                     component: ProfessorHome,
+                    exact: true
+                },
+                {
+                    path: "/home/profile",
+                    component: ProfessorProfile,
+                    exact: true
+                },
+                {
+                    path: "/home/calendar",
+                    component: ProfessorCalendar,
+                    exact: true
+                },
+                {
+                    path: "/home/grades",
+                    component: ProfessorGrades,
+                    exact: true
+                },
+                {
+                    path: "/home/institution",
+                    component: ProfessorInstitution,
                     exact: true
                 },
                 {

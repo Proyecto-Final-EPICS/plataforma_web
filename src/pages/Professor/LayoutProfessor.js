@@ -33,6 +33,9 @@ export default function LayoutProfessor(props){
         //     window.location.pathname = '/login';
         //     window.location.reload();
         // }
+        console.log(username);
+        console.log(data);
+        
         const {firstname, lastname, phone, email} = data;
         setUserInfo({firstname, lastname, phone, email});
     }, [])

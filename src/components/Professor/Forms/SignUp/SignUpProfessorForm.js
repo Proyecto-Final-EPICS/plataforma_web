@@ -18,31 +18,26 @@ const {Option} = Select;
 export default function SignUpProfessorForm(props) {
     
     // const {setIsVisibleModal} = props;
+    const [phoneCountryCode, setPhoneCountryCode] = useState('57');
     const [genderValue, setGenderValue] = useState(null);
     const [form] = Form.useForm();
     
-    const phoneCountryCode = (
-        <Form.Item name="phonecountrycode" noStyle>
-            <Select defaultValue="57">
-                <Option value="57">+57</Option>
-            </Select>
-        </Form.Item>
-    );
-
     const onChangeGenderRadio = e => {
-        // console.log(e.target.value);
         setGenderValue(e.target.value==='other'?'':e.target.value);
     }
 
     const onChangeGenderInput = e => {
-        // console.log(e.target.value);
         setGenderValue(e.target.value);
+    }
+
+    const onChangePhoneAddonBefore = val => {
+        setPhoneCountryCode(val);
     }
 
     const signup = values => {
         return addProfessor(values).then(response => {
             notification.success({ message: response });
-            // form.resetFields();
+            form.resetFields();
             return response;
         }).catch(err => {
             notification.error({ message: err });
@@ -65,15 +60,17 @@ export default function SignUpProfessorForm(props) {
 
     const onFinish = values => {
         console.log(values);
-        // const {birthdate, confirmpassword, email, firstname, indetityDoc, lastname, 
-        //     password, phone, phoneCountryCode, username} = values;
-        const {username, password, firstname, lastname, email} = values;
-        values = {username, password, firstname, lastname, email};
-        
+        const {username, password, firstname, lastname, gender, identityDoc, birthDate, email, 
+            phone: number, phoneCountryCode: countryCode} = values;
+
+        values = {
+            username, password, firstname, lastname, gender, identityDoc, birthDate, email,
+            phone: {number, countryCode}
+        }
+
         signup(values).then(() => {
             login({username, password});
         });
-        // form.resetFields();
     };
 
     const onFinishFailed = error => {
@@ -81,19 +78,34 @@ export default function SignUpProfessorForm(props) {
         // form.resetFields();
     };
 
+    const phoneAddonBefore = (
+        <Form.Item name="phoneCountryCode" noStyle>
+            <Select value={phoneCountryCode} onChange={onChangePhoneAddonBefore}>
+                <Option value="57">+57</Option>
+                <Option value="1">+1</Option>
+            </Select>
+        </Form.Item>
+    );
+
     return (
         <Form
             className="signup-prof-form"
             form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            initialValues={{}}
+            initialValues={{phoneCountryCode}}
             layout="vertical"
         >
             <Form.Item
                 name="username"
                 label="Usuario"
                 required
+                rules={[
+                    {
+                        required: true,
+                        message: 'Campo requerido',
+                    }
+                ]}
             >
                 {/* <Input placeholder="Usuario"/> */}
                 <Input prefix={<UserOutlined/>}/>
@@ -104,6 +116,12 @@ export default function SignUpProfessorForm(props) {
                         name="password"
                         label="Contraseña"
                         required
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Campo requerido',
+                            }
+                        ]}
                     >
                         {/* <Input type="password" placeholder="Contraseña"/> */}
                         <Input type="password" prefix={<LockOutlined/>}/>
@@ -111,9 +129,25 @@ export default function SignUpProfessorForm(props) {
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="confirmpassword"
+                        name="confirmPassword"
                         label="Confirmar contraseña"
                         required
+                        dependencies={['password']}
+                        hasFeedback
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Campo requerido',
+                            },
+                            ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                    if (!value || getFieldValue('password') === value)
+                                        return Promise.resolve();
+                                    
+                                    return Promise.reject(new Error('Las contraseñas coinciden'));
+                                },
+                            })
+                        ]}
                     >
                         {/* <Input type="password" placeholder="Contraseña"/> */}
                         <Input type="password" prefix={<LockOutlined/>}/>
@@ -131,6 +165,12 @@ export default function SignUpProfessorForm(props) {
                 <Col span={12} className="signup-prof-form__name__col">
                 <Form.Item
                     name="firstname"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Campo requerido',
+                        }
+                    ]}
                 >
                     {/* <Input placeholder="Nombres"/> */}
                     <Input placeholder="Nombres"/>
@@ -140,6 +180,12 @@ export default function SignUpProfessorForm(props) {
                 <Col span={12} className="signup-prof-form__name__col">
                 <Form.Item
                     name="lastname"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Campo requerido',
+                        }
+                    ]}
                 >
                     {/* <Input placeholder="Apellidos"/> */}
                     <Input placeholder="Apellidos"/>
@@ -151,7 +197,7 @@ export default function SignUpProfessorForm(props) {
             <Row gutter={8}>
             <Col span={12}>
                 <Form.Item
-                    name="identitydoc"
+                    name="identityDoc"
                     label="Cédula"
                 >
                     {/* <Input placeholder="Documento de Identidad"/> */}
@@ -160,9 +206,15 @@ export default function SignUpProfessorForm(props) {
             </Col>
             <Col span={12}>
                 <Form.Item
-                    name="birthdate"
+                    name="birthDate"
                     label="Fecha de nacimiento"
                     required
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Campo requerido',
+                        }
+                    ]}
                 >
                     <DatePicker placeholder="Seleccionar"/>
                 </Form.Item>
@@ -170,10 +222,16 @@ export default function SignUpProfessorForm(props) {
             </Row>
 
             <Form.Item
+                className="signup-prof-form__gender"
                 name="gender"
                 label="Género"
                 required
-                className="signup-prof-form__gender"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Campo requerido',
+                    }
+                ]}
             >
             {/* <Space direction="horizontal"> */}
                 <Radio.Group
@@ -200,6 +258,12 @@ export default function SignUpProfessorForm(props) {
                     name="email"
                     label="Email"
                     required
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Campo requerido',
+                        }
+                    ]}
                 >
                     {/* <Input type="email" placeholder="Email"/> */}
                     <Input type="email" prefix={<MailOutlined/>}/>
@@ -210,9 +274,15 @@ export default function SignUpProfessorForm(props) {
                     name="phone"
                     label="Teléfono"
                     required
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Campo requerido',
+                        }
+                    ]}
                 >
                     {/* <Input type="tel" placeholder="Teléfono"/> */}
-                    <Input addonBefore={phoneCountryCode} prefix={<PhoneOutlined/>}/>
+                    <Input addonBefore={phoneAddonBefore} prefix={<PhoneOutlined/>}/>
                 </Form.Item>
             </Col>
             </Row>
