@@ -1,5 +1,5 @@
 //Liberias
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Row, Col } from 'antd';
 
 //Componentes
@@ -10,16 +10,18 @@ import ListApps from './../../../components/Professor/ListApps';
 import coursesApi from '../../../mock_data/collections/course.json'
 import appsApi from '../../../mock_data/collections/app.json'
 
+import ProfessorContext from '../../../components/Professor/ProfessorContext';
+
 //Estilos
 import './ProfessorHome.scss';
 
 export default function ProfessorHome(){
-
-    const [courses, setCourses] = useState([]);
+    const {username} = useContext(ProfessorContext).userInfo;
     const [apps, setApps] = useState([]);
 
+    const filterCourses = () => coursesApi.filter(c => c.professors.some(p => p.username == username));
+
     useEffect(() => {
-        setCourses(coursesApi);
         setApps(appsApi);
     }, []);
 
@@ -30,7 +32,7 @@ export default function ProfessorHome(){
                 <div className="professor-home__content__sec professor-home__courses">
                     <h1 className="professor-home__content__sec__title">Cursos</h1>
                     <div className="professor-home__content__sec__content">
-                        <GridCourses courses={courses}/>
+                        <GridCourses courses={filterCourses()}/>
                     </div>
                 </div>
                 </Col>

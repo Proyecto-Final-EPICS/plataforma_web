@@ -37,7 +37,7 @@ export default function LayoutProfessor(props){
         console.log(data);
         
         const {firstname, lastname, phone, email} = data;
-        setUserInfo({firstname, lastname, phone, email});
+        setUserInfo({username, firstname, lastname, phone, email});
     }, [])
 
     if (!username && !isLoading) return <Redirect to="/login"/>;

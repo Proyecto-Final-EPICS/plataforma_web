@@ -1,0 +1,49 @@
+[
+    {
+        "id": 0,
+        "value": 1,
+        "date": "",
+        "feedback": "",
+        "activity": {
+            "id": 0,
+            "title": "",
+            "description": "",
+            "dueDate": "",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            },
+            "student": {
+                "id": 0,
+                "firstname": "0",
+                "lastname": "0"
+            },
+            "professor": {
+                "username": "0",
+                "firstname": "0",
+                "lastname": "0"
+            },
+            "app": {
+                "": ""
+            }
+        }
+    },
+    {
+        "id": 1,
+        "value": 0.9,
+        "date": "",
+        "feedback": "",
+        "activity": {
+            "id": 0,
+            "title": "",
+            "description": "",
+            "dueDate": "",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
+        }
+    }
+]

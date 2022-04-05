@@ -1,0 +1,17 @@
+@import '../../../scss/index.scss';
+
+.professor-activities {
+    padding: 0;
+    overflow-y: scroll;
+    max-height: 300px;
+
+    &__el {
+        padding: 20px 30px;
+        border-radius: 5px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #e4e4e4;
+        }
+    }
+}
