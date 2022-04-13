@@ -13,7 +13,7 @@ import Modal from '../../../components/General/Modal';
 import { getProfessorsApi } from '../../../api/admin';
 
 //Estilos
-import './AdminProfessor.scss';
+import './AdminProfessors.scss';
 
 export default function AdminProfessors() {
     // const {setMenuSelectedKey} = props;
