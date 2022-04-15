@@ -34,7 +34,7 @@ export function tableCustomFilters(dataIndex, query){
     //         // console.log(location);
     //         return {
     //             ...location,
-    //             pathname: '/admin/courses',
+    //             pathname: '/director/courses',
     //             search: qs.stringify(query),
     //         }
     //     }

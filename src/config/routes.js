@@ -1,6 +1,6 @@
 //Layouts
 import LayoutNoUser from '../pages/NoUser'
-import LayoutAdmin from '../pages/Admin';
+import LayoutDirector from '../pages/Director';
 import LayoutProfessor from '../pages/Professor';
 import LayoutStatistic from '../pages/Statistic';
 
@@ -9,12 +9,12 @@ import Login from '../pages/Login';
 import SignUp from '../pages/Signup';
 import Error404 from '../pages/Error';
 
-//Pages Admin
-import AdminHome from '../pages/Admin/Home';
-import AdminApps from '../pages/Admin/Apps';
-import AdminGames from '../pages/Admin/Games';
-import AdminCourses from '../pages/Admin/Courses';
-import AdminProfessors from '../pages/Admin/Professors';
+//Pages Director
+import DirectorHome from '../pages/Director/Home';
+import DirectorApps from '../pages/Director/Apps';
+import DirectorGames from '../pages/Director/Games';
+import DirectorCourses from '../pages/Director/Courses';
+import DirectorProfessors from '../pages/Director/Professors';
 
 //Pages Professor
 import ProfessorHome from '../pages/Professor/Home';
@@ -50,35 +50,35 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             component: Error404
         }
     ],
-    admin: [
+    director: [
         {
             path: ["/", "/home"],
-            component: LayoutAdmin,
+            component: LayoutDirector,
             exact: false,
             routes:[
                 {
                     path: "/home",
-                    component: AdminHome,
+                    component: DirectorHome,
                     exact: true
                 },
                 {
                     path: "/home/courses",
-                    component: AdminCourses,
+                    component: DirectorCourses,
                     exact: true
                 },
                 {
                     path: "/home/apps",
-                    component: AdminApps,
+                    component: DirectorApps,
                     exact: true
                 },
                 {
                     path: "/home/apps/details",
-                    component: AdminGames,
+                    component: DirectorGames,
                     exact: true
                 },
                 {
                     path: "/home/professors",
-                    component: AdminProfessors,
+                    component: DirectorProfessors,
                     exact: true
                 },
                 {
@@ -208,8 +208,4 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     ],
 };
 
-/*En resumen, primero se carga el componente que tiene el Layout, es exact false porque tiene
-    subrutas, luego estando en esa ruta que tiene el componente LayoutBasic, tengo otras dos
-    rutas, esas si deben ser exact true porque es necesario que se mantenga el componente LayoutBasic
-    puesto que aun estamos dentro de la ruta admin*/
 export default routes;

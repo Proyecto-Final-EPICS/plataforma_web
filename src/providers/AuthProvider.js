@@ -50,7 +50,7 @@ function checkUserLogin(user, setUser){
         setUser({
             userId: 0,
             username: jwtDecode(accessToken).sub.user,
-            userType, //professor admin noUser
+            userType, //admin director professor noUser
             isLoading: false,
         });
     }
