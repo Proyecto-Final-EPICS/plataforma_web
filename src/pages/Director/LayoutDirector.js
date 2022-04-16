@@ -1,5 +1,5 @@
 //Liberías
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Layout } from 'antd';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import DirectorContext from '../../components/Director/DirectorContext';
@@ -15,11 +15,12 @@ import useAuth from '../../hooks/useAuth';
 import "./LayoutDirector.scss";
 
 export default function LayoutDirector(props) {
-    const { routes, location } = props;
-    const { Header, Content, Footer } = Layout;
+    const { routes } = props;
     const [menuCollapsed, setMenuCollapsed] = useState(false);
-    const [menuSelectedKey, setMenuSelectedKey] = useState([location.pathname]);
-
+    const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);
+    
+    const { Header, Content, Footer } = Layout;
+    
     const {username, isLoading} = useAuth();
 
     if(!username && !isLoading) return <Redirect to="/login"/>;
@@ -74,5 +75,4 @@ function LoadRouters(props) {
             ))}
         </Switch>
     );
-
 }

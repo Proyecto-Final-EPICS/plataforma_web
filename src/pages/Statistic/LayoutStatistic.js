@@ -15,12 +15,13 @@ import useAuth from '../../hooks/useAuth';
 import './LayoutStatistic.scss';
 
 //...
-const {Header, Sider, Content, Footer} = Layout;
 
 export default function LayoutStatistic(props){
     const {routes} = props;
     const {username, isLoading} = useAuth();
-
+    
+    const {Header, Sider, Content, Footer} = Layout;
+    
     if (!username && !isLoading) {//No hay usuario logeado
         return(
             <>

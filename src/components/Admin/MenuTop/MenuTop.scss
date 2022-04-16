@@ -1,0 +1,48 @@
+@import '../../../scss/index.scss';
+
+.admin-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    // padding-top: 40px;
+    height: 140px;
+    text-align: left;
+    width: 100%;
+    background-color: $background-purple-light2;
+    
+    &__section {
+        width: 100%;
+    }
+
+    &__options {
+        display: flex;
+
+        div {
+            width: 50%;
+
+            button {
+                margin-right: 1px;
+                // background-color: transparent;
+                border: none;
+            }
+        }
+
+        &__search {
+            text-align: right;
+
+            &__input {
+                border-radius: 20px;
+                width: 200px;
+            }
+        }
+        
+    }
+
+    h1 {
+        margin: 0;
+        line-height: 20px;
+        font-size: 20px;
+        color: white;
+        
+    }
+}

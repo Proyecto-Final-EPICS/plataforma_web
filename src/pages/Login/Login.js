@@ -35,25 +35,18 @@ export default function Login(){
                         <LoginForm/>
     
                         {/* <div > */}
-                        <Link to={'/sign-up'} className="sign-in__content__form__sign-up">
+                        {/* <Link to={'/sign-up'} className="sign-in__content__form__sign-up">
                         <Button type="link">
                             ¿No estás registrado?
                         </Button>
-                        </Link>
+                        </Link> */}
                         {/* </div> */}
                     </div>
                 </Content>
             </Layout>
         );
-
     }
 
     return null;
-    // if(getAccessTokenApi()) {
-    //     console.log('logged in');
-    //     return <Redirect to="/home" />;}
-    // else if(window.location.pathname == '/'){
-    //     console.log('not logged in');
-    //     return <Redirect to="/login" />;}
 }
 

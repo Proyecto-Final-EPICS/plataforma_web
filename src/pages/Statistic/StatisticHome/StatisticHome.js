@@ -34,7 +34,6 @@ import './StatisticHome.scss';
 // import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 //...
-const {Sider, Content} = Layout;
 
 export default function StatisticHome(){
     
@@ -42,6 +41,8 @@ export default function StatisticHome(){
     const [siderCollapsed, setSiderCollapsed] = useState(false);
     const [data, setData] = useState([[], []]);
     const query = qs.parse(useLocation().search);
+    
+    const {Sider, Content} = Layout;
 
     const parameters = [
         {

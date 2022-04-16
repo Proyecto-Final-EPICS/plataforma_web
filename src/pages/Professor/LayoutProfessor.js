@@ -10,7 +10,7 @@ import MenuSider from '../../components/Professor/MenuSider/MenuSider';
 
 import ProfessorContext from '../../components/Professor/ProfessorContext'
 
-import professorApi from '../../mock_data/collections/professor.json';
+import userApi from '../../mock_data/collections/user.json';
 
 //Hooks
 import useAuth from '../../hooks/useAuth';
@@ -20,15 +20,15 @@ import './LayoutProfessor.scss';
 
 export default function LayoutProfessor(props){
     const {Header, Content, Footer} = Layout;
-    const { routes, location } = props;
+    const { routes } = props;
     const {username, isLoading} = useAuth();
 
-    const [menuSelectedKey, setMenuSelectedKey] = useState([location.pathname]);
-    const [userInfo, setUserInfo] = useState({});
+    const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);
     const [menuCollapsed, setMenuCollapsed] = useState(false);
+    const [userInfo, setUserInfo] = useState({});
     
     useEffect(() => {
-        const data = professorApi.find(p => p.username == username);
+        const data = userApi.find(p => p.username == username);
         // if(!data) {
         //     window.location.pathname = '/login';
         //     window.location.reload();
@@ -38,7 +38,7 @@ export default function LayoutProfessor(props){
         
         const {firstname, lastname, phone, email} = data;
         setUserInfo({username, firstname, lastname, phone, email});
-    }, [])
+    }, []);
 
     if (!username && !isLoading) return <Redirect to="/login"/>;
 
@@ -55,8 +55,8 @@ export default function LayoutProfessor(props){
                 <Content className="layout-professor__content">
                     <Layout>
                         <MenuSider
-                            setSelectedKey={setMenuSelectedKey}
                             selectedKey={menuSelectedKey}
+                            setSelectedKey={setMenuSelectedKey}
                             collapsed={menuCollapsed}
                             setCollapsed={setMenuCollapsed}
                         />

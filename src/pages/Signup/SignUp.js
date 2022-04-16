@@ -2,7 +2,8 @@
 import {Row, Col, Layout} from 'antd';
 
 //Componentes
-import SignUpProfessorForm from '../../components/Professor/Forms/SignUp/SignUpProfessorForm';
+// import SignUpProfessorForm from '../../components/Professor/Forms/SignUp/SignUpProfessorForm';
+import RegisterDirectorForm from '../../components/Admin/Forms/RegisterDirectorForm';
 
 //Estilos
 import './SignUp.scss';
@@ -11,9 +12,9 @@ import './SignUp.scss';
 import Logo from '../../assets/img/palanca-de-mando.png';
 
 //...
-const {Content, Footer} = Layout;
 
 export default function SignUp(props) {
+	const {Content, Footer} = Layout;
 	
 	return (
 		<Layout className="sign-up">
@@ -33,7 +34,7 @@ export default function SignUp(props) {
 			<Col span={14}>
 				<div className="sign-up__content__form">
 					<h1>Registro</h1>
-					<SignUpProfessorForm/>
+					<RegisterDirectorForm/>
 				</div>
 			</Col>
 

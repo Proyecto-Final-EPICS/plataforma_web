@@ -1,5 +1,5 @@
 //Liberias
-import {useState, useEffect, useContext} from 'react';
+import {useContext} from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
@@ -27,7 +27,7 @@ function MenuSider(props){
             <div
                 key="/home/epics"
                 onClick={() => setCollapsed(!collapsed)}
-                className="professor-sider__col"
+                className="professor-sider__logo"
             >
                 {collapsed ? "EI" : "EPICS IEEE"}
             </div>
@@ -38,47 +38,38 @@ function MenuSider(props){
                 onSelect={e => setSelectedKey(e.key)}
                 className="professor-sider__menu"
             >
-
-                <Menu.Item key="/home" className="professor-sider__item">
+                <Menu.Item key="/home" className="professor-sider__item" icon={<HomeOutlined/>}>
                     <Link to={"/home"}>
-                        <HomeOutlined />
-                        <span className="nav-text">Home</span>
+                    <span className="nav-text">Inicio</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/profile" className="professor-sider__item">
+                <Menu.Item key="/home/profile" className="professor-sider__item" icon={<UserOutlined/>}>
                     <Link to={"/home/profile"}>
-                        <UserOutlined />
-                        <span className="nav-text">{parseName()}</span>
+                    <span className="nav-text">{parseName()}</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/calendar" className="professor-sider__item">
+                <Menu.Item key="/home/calendar" className="professor-sider__item" icon={<CalendarOutlined/>}>
                     <Link to={"/home/calendar"}>
-                        <CalendarOutlined />
-                        <span className="nav-text">Calendario</span>
+                    <span className="nav-text">Calendario</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/grades" className="professor-sider__item">
+                <Menu.Item key="/home/grades" className="professor-sider__item" icon={<FileSearchOutlined />}>
                     <Link to={"/home/grades"}>
-                        <FileSearchOutlined />
-                        <span className="nav-text">Calificaciones</span>
+                    <span className="nav-text">Calificaciones</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/institution" className="professor-sider__item">
+                <Menu.Item key="/home/institution" className="professor-sider__item" icon={<BankOutlined/>}>
                     <Link to={"/home/institution"}>
-                        <BankOutlined />
-                        <span className="nav-text">Institución</span>
+                    <span className="nav-text">Institución</span>
                     </Link>
                 </Menu.Item>
-
             </Menu>
-            
         </Sider>
     );
 }
-
 
 export default withRouter(MenuSider);

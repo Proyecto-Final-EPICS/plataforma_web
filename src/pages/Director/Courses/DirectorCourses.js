@@ -14,12 +14,13 @@ import TableCourse from '../../../components/Director/TableCourse';
 import './DirectorCourses.scss';
 
 //...
-const { Content } = Layout;
 
 export default function DirectorCourses() {
     const [courses, setCourses] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-
+    
+    const { Content } = Layout;
+    
     const redirectStatistics = () => {
         const query = {cur: []};
         selectedRowKeys.forEach(el => query.cur.push(courses[el].code));

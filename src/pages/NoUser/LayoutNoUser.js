@@ -5,7 +5,7 @@ import Login from "../Login";
 import './LayoutNoUser.scss';
 
 export default function LayoutNoUser(){
-    console.log('sptmdr');
+    
     return (
         <>
             <Route path="/login" component={Login}/>

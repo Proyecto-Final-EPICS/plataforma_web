@@ -1,14 +1,18 @@
 [
     {
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        },
         "name": "Curso 01",
         "code": "C01",
         "level": "B1",
         "period": "2021",
         "professors": [
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user1"
+                "username": "prof1"
             }
         ],
         "apps": [
@@ -25,25 +29,29 @@
         ]
     },
     {
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        },
         "name": "Curso 02",
         "code": "C02",
         "level": "C2",
         "period": "2021",
         "professors": [
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user1"
+                "username": "prof1"
             },
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user2"
+                "username": "prof2"
             },
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user3"
+                "username": "prof3"
             }
         ],
         "apps": [
@@ -70,20 +78,24 @@
         ]
     },
     {
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        },
         "name": "Curso 03",
         "code": "C03",
         "level": "A2",
         "period": "2021",
         "professors": [
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user2"
+                "username": "prof2"
             },
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user3"
+                "username": "prof3"
             }
         ],
         "apps": [
@@ -95,20 +107,24 @@
         ]
     },
     {
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        },
         "name": "Curso 04",
         "code": "C04",
         "level": "A2",
         "period": "2021",
         "professors": [
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user1"
+                "username": "prof1"
             },
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user2"
+                "username": "prof2"
             }
         ],
         "apps": [
@@ -125,20 +141,24 @@
         ]
     },
     {
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        },
         "name": "Curso 05",
         "code": "C05",
         "level": "A1",
         "period": "2021",
         "professors": [
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user1"
+                "username": "prof1"
             },
             {
-                "firstname": "User",
+                "firstname": "Professor",
                 "lastname": "Epics",
-                "username": "user3"
+                "username": "prof3"
             }
         ],
         "apps": [

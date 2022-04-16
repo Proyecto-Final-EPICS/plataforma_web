@@ -4,10 +4,10 @@ import {Layout} from 'antd';
 
 import './GridApps.scss';
 
-const {Header, Content} = Layout;
 
 export default function GridApps (props) {
     const {apps} = props;
+    const {Header, Content} = Layout;
     
     return(
         <div className="grid-apps">

@@ -8,31 +8,27 @@
     overflow: auto;
     background: $background-orange-light2;
 
-    &__menu{
+    &__menu {
         margin-top: 20px;
         background-color: $background-orange-light2;
     }
 
-    &__item{
+    &__item {
         
-        &:hover {
-            background-color: $background-orange-light;
+        span {
+            color: black !important;
         }
 
-        &:hover > a {
-            color: black;
+        &:hover {
+            background-color: $background-orange-light;
         }
     }
 
     .ant-menu-item-selected {
         background-color: $background-orange !important;
-        
-        a {
-            color: black;
-        }
     }
 
-    &__col {
+    &__logo {
         text-align: center;
         padding-top: 20px;
         font-weight: 500;

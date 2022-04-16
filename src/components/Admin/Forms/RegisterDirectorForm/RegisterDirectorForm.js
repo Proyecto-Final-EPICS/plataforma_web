@@ -1,6 +1,6 @@
 //Liberias
 import { useState } from 'react';
-import {Form, Input, Button, DatePicker, Radio, Space, Row, Col, Divider, Select, notification} from 'antd';
+import {Form, Input, Button, DatePicker, Radio, Row, Col, Select, notification} from 'antd';
 import {UserOutlined, LockOutlined, MailOutlined, PhoneOutlined} from '@ant-design/icons';
 
 //Api
@@ -10,12 +10,12 @@ import {addProfessor, signinAPI} from '../../../../api/users';
 import {ACCESS_TOKEN} from '../../../../utils/constants';
 
 //Estilos
-import './SignUpProfessorForm.scss';
+import './RegisterDirectorForm.scss';
 
 //...
 const {Option} = Select;
 
-export default function SignUpProfessorForm(props) {
+export default function RegisterDirectorForm(props) {
     
     // const {setIsVisibleModal} = props;
     const [phoneCountryCode, setPhoneCountryCode] = useState('57');

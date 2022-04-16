@@ -4,6 +4,46 @@
       "name": "Colegio 01",
       "code": "C01"
     },
+    "role": "director",
+    "birthDate": "2022-03-13T04:21:03.767Z",
+    "email": "dir1@epics.com",
+    "firstname": "Director",
+    "gender": "female",
+    "identityDoc": "123",
+    "lastname": "Epics",
+    "password": "pass",
+    "phone": {
+      "countryCode": "57",
+      "number": "123"
+    },
+    "photo": "https://randomuser.me/api/portraits/women/0.jpg",
+    "username": "dir1"
+  },
+  {
+    "school": {
+      "name": "Colegio 01",
+      "code": "C01"
+    },
+    "role": "director",
+    "birthDate": "2022-03-13T04:21:03.767Z",
+    "email": "dir2@epics.com",
+    "firstname": "Director",
+    "gender": "male",
+    "identityDoc": "123",
+    "lastname": "Epics",
+    "password": "pass",
+    "phone": {
+      "countryCode": "57",
+      "number": "123"
+    },
+    "photo": "https://randomuser.me/api/portraits/men/0.jpg",
+    "username": "dir2"
+  },
+  {
+    "school": {
+      "name": "Colegio 01",
+      "code": "C01"
+    },
     "role": "professor",
     "birthDate": "2022-03-13T04:21:03.767Z",
     "email": "prof1@epics.com",
