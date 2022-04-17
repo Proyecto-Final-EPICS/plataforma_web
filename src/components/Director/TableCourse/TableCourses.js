@@ -1,10 +1,9 @@
 //Librerías
-import {useState, useContext} from 'react';
 import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
 import { Table } from 'antd';
 
-import { tableCustomFilters } from '../../../libraries/tableCustomFilters';
+import { tableCustomFilters } from '../../../libraries/General/tableCustomFilters';
 
 export default function TableCourse(props) {
     const {courses, selectedRowKeys, setSelectedRowKeys, location} = props;

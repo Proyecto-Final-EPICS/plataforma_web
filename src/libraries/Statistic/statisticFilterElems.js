@@ -21,10 +21,9 @@ export default function statisticFilterElems(sessions, query, courseApi, student
         })
         .filter(c => query.cur.includes(c.code));
     
-    
     let students = [];
     sessions.forEach(session => {
-        let student = students.find(s => s.numDoc === session.student.numDoc);
+        let student = students.find(s => s.identityDoc === session.student.identityDoc);
         if(!student) {
             student = {...session.student};
 
@@ -34,9 +33,9 @@ export default function statisticFilterElems(sessions, query, courseApi, student
             students.push(student);
         }
 
-        const studentFull = studentApi.find(s => s.numDoc === student.numDoc);
+        const studentFull = studentApi.find(s => s.identityDoc === student.identityDoc);
         student.gender = studentFull.gender;
-        student.age = studentFull.age;
+        student.birthDate = studentFull.birthDate;
 
         const date = session.endTime;
         const totTime = (new Date(session.endTime).getTime() - new Date(session.startTime).getTime()) / 3600 / 1000;

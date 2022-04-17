@@ -11,10 +11,10 @@ import SignUp from '../pages/Signup';
 import Error404 from '../pages/Error';
 
 //Pages Admin
-// import AdminHome from '../pages/Admin/Home';
+import AdminHome from '../pages/Admin/Home';
 import AdminSchools from '../pages/Admin/Schools';
 import AdminSchool from '../pages/Admin/School';
-import AdminDirector from '../pages/Admin/Director';
+import AdminDirectors from '../pages/Admin/Directors';
 import AdminProfessors from '../pages/Admin/Professors';
 import AdminCourses from '../pages/Admin/Courses';
 import AdminStudents from '../pages/Admin/Students';
@@ -51,21 +51,26 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             component: Login,
             exact: true
         },
-        {
-            path: "/sign-up",
-            component: SignUp,
-            exact: true
-        },
+        // {
+        //     path: "/sign-up",
+        //     component: SignUp,
+        //     exact: true
+        // },
         {
             component: Error404
         }
     ],
     admin: [
         {
-            path: ["/", "/schools"],
+            path: ["/", "/home"],
             component: LayoutAdmin,
             exact: false,
             routes: [
+                {
+                    path: "/home",
+                    component: AdminHome,
+                    exact: true
+                },
                 {
                     path: "/schools",
                     component: AdminSchools,
@@ -77,22 +82,22 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                     exact: true
                 },
                 {
-                    path: "/schools/:school/director",
-                    component: AdminDirector,
+                    path: "/schools/:school/directors",
+                    component: AdminDirectors,
                     exact: true
                 },
                 {
-                    path: "/home/:school/professors",
+                    path: "/schools/:school/professors",
                     component: AdminProfessors,
                     exact: true
                 },
                 {
-                    path: "/home/:school/courses",
+                    path: "/schools/:school/courses",
                     component: AdminCourses,
                     exact: true
                 },
                 {
-                    path: "/home/:school/students",
+                    path: "/schools/:school/students",
                     component: AdminStudents,
                     exact: true
                 },

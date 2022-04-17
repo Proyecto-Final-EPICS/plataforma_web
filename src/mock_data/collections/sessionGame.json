@@ -4,10 +4,18 @@
             "$oid": "61a080bdcfb0fb0703092ace"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-06-11T22:09:07.961Z",
         "endTime": "2021-06-11T22:56:10.944Z",
@@ -86,10 +94,18 @@
             "$oid": "61a080bdcfb0fb0703092aec"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-02-01T02:23:54.164Z",
         "endTime": "2021-02-01T03:11:56.001Z",
@@ -176,10 +192,18 @@
             "$oid": "61a080bdcfb0fb0703092b07"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-11-08T21:05:12.197Z",
         "endTime": "2021-11-08T21:26:05.229Z",
@@ -190,10 +214,18 @@
             "$oid": "61a080bdcfb0fb0703092ae1"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-04-21T15:15:12.958Z",
         "endTime": "2021-04-21T15:36:13.112Z",
@@ -218,10 +250,18 @@
             "$oid": "61a080bdcfb0fb0703092afa"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-01-14T11:37:51.782Z",
         "endTime": "2021-01-14T12:41:52.890Z",
@@ -309,10 +349,18 @@
             "$oid": "61a080bdcfb0fb0703092ae6"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-11-21T15:10:01.659Z",
         "endTime": "2021-11-21T16:34:39.627Z",
@@ -323,10 +371,18 @@
             "$oid": "61a080bdcfb0fb0703092aed"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-02-25T11:08:09.093Z",
         "endTime": "2021-02-25T13:02:41.283Z",
@@ -475,10 +531,18 @@
             "$oid": "61a080bdcfb0fb0703092aef"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-10-14T11:05:31.226Z",
         "endTime": "2021-10-14T11:32:09.319Z",
@@ -558,10 +622,18 @@
             "$oid": "61a080bdcfb0fb0703092b0c"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-07-29T00:35:12.695Z",
         "endTime": "2021-07-29T02:14:09.236Z",
@@ -627,10 +699,18 @@
             "$oid": "61a080bdcfb0fb0703092abb"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-09-28T02:57:15.395Z",
         "endTime": "2021-09-28T04:11:23.592Z",
@@ -704,10 +784,18 @@
             "$oid": "61a080bdcfb0fb0703092abd"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-05-20T04:36:26.569Z",
         "endTime": "2021-05-20T04:56:21.888Z",
@@ -836,10 +924,18 @@
             "$oid": "61a080bdcfb0fb0703092ac3"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-11-05T14:15:46.566Z",
         "endTime": "2021-11-05T15:33:09.981Z",
@@ -1002,10 +1098,18 @@
             "$oid": "61a080bdcfb0fb0703092abe"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-09-28T10:52:14.601Z",
         "endTime": "2021-09-28T11:58:49.054Z",
@@ -1155,10 +1259,18 @@
             "$oid": "61a080bdcfb0fb0703092abc"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-01-19T15:09:47.169Z",
         "endTime": "2021-01-19T16:32:40.025Z",
@@ -1362,10 +1474,18 @@
             "$oid": "61a080bdcfb0fb0703092ac1"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-11-16T15:56:49.772Z",
         "endTime": "2021-11-16T16:01:10.147Z",
@@ -1522,10 +1642,18 @@
             "$oid": "61a080bdcfb0fb0703092ac8"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-02-10T04:29:07.270Z",
         "endTime": "2021-02-10T06:27:01.965Z",
@@ -1757,10 +1885,18 @@
             "$oid": "61a080bdcfb0fb0703092ad0"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-05-21T19:45:37.351Z",
         "endTime": "2021-05-21T20:39:53.739Z",
@@ -1875,10 +2011,18 @@
             "$oid": "61a080bdcfb0fb0703092afc"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-08-16T00:58:26.786Z",
         "endTime": "2021-08-16T02:26:53.137Z",
@@ -1889,10 +2033,18 @@
             "$oid": "61a080bdcfb0fb0703092b00"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-08-13T01:59:00.579Z",
         "endTime": "2021-08-13T03:37:02.292Z",
@@ -1980,10 +2132,18 @@
             "$oid": "61a080bdcfb0fb0703092b15"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-06-03T20:03:14.680Z",
         "endTime": "2021-06-03T20:15:01.467Z",
@@ -2097,10 +2257,18 @@
             "$oid": "61a080bdcfb0fb0703092ad2"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-08-29T06:17:01.206Z",
         "endTime": "2021-08-29T07:29:44.434Z",
@@ -2242,10 +2410,18 @@
             "$oid": "61a080bdcfb0fb0703092ad1"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-01-06T20:36:24.892Z",
         "endTime": "2021-01-06T20:49:44.882Z",
@@ -2332,10 +2508,18 @@
             "$oid": "61a080bdcfb0fb0703092ad4"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-01-27T12:22:04.645Z",
         "endTime": "2021-01-27T13:39:20.612Z",
@@ -2388,10 +2572,18 @@
             "$oid": "61a080bdcfb0fb0703092ae8"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-04-07T03:58:22.875Z",
         "endTime": "2021-04-07T04:24:20.026Z",
@@ -2484,10 +2676,18 @@
             "$oid": "61a080bdcfb0fb0703092b04"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2020-12-28T13:06:01.085Z",
         "endTime": "2020-12-28T14:54:48.055Z",
@@ -2616,10 +2816,18 @@
             "$oid": "61a080bdcfb0fb0703092b09"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-09-16T19:49:28.477Z",
         "endTime": "2021-09-16T21:40:54.959Z",
@@ -2761,10 +2969,18 @@
             "$oid": "61a080bdcfb0fb0703092b19"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-08-12T20:28:57.688Z",
         "endTime": "2021-08-12T20:45:29.631Z",
@@ -2907,10 +3123,18 @@
             "$oid": "61a080bdcfb0fb0703092ac0"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-06-16T14:43:39.056Z",
         "endTime": "2021-06-16T14:48:08.206Z",
@@ -3039,10 +3263,18 @@
             "$oid": "61a080bdcfb0fb0703092ac2"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-04-30T09:39:10.504Z",
         "endTime": "2021-04-30T09:44:41.764Z",
@@ -3116,10 +3348,18 @@
             "$oid": "61a080bdcfb0fb0703092aee"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-06-16T14:59:59.799Z",
         "endTime": "2021-06-16T16:15:03.009Z",
@@ -3309,10 +3549,18 @@
             "$oid": "61a080bdcfb0fb0703092af8"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-08-19T03:35:35.774Z",
         "endTime": "2021-08-19T04:48:56.393Z",
@@ -3392,10 +3640,18 @@
             "$oid": "61a080bdcfb0fb0703092b02"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-01-16T00:38:00.413Z",
         "endTime": "2021-01-16T01:52:03.264Z",
@@ -3406,10 +3662,18 @@
             "$oid": "61a080bdcfb0fb0703092ac6"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-08-29T20:41:52.310Z",
         "endTime": "2021-08-29T21:08:03.775Z",
@@ -3544,10 +3808,18 @@
             "$oid": "61a080bdcfb0fb0703092acb"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-10-27T11:54:17.009Z",
         "endTime": "2021-10-27T13:15:26.663Z",
@@ -3621,10 +3893,18 @@
             "$oid": "61a080bdcfb0fb0703092acc"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-11-02T15:20:42.843Z",
         "endTime": "2021-11-02T15:44:33.161Z",
@@ -3773,10 +4053,18 @@
             "$oid": "61a080bdcfb0fb0703092acf"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-03-28T16:56:02.285Z",
         "endTime": "2021-03-28T17:37:50.591Z",
@@ -3898,10 +4186,18 @@
             "$oid": "61a080bdcfb0fb0703092ae0"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-02-01T14:59:22.144Z",
         "endTime": "2021-02-01T16:06:45.774Z",
@@ -3974,10 +4270,18 @@
             "$oid": "61a080bdcfb0fb0703092b01"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-07-21T10:51:49.174Z",
         "endTime": "2021-07-21T11:49:34.019Z",
@@ -4134,10 +4438,18 @@
             "$oid": "61a080bdcfb0fb0703092b1a"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-09-06T14:53:35.830Z",
         "endTime": "2021-09-06T16:37:44.673Z",
@@ -4321,10 +4633,18 @@
             "$oid": "61a080bdcfb0fb0703092ac7"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-06-20T12:15:48.628Z",
         "endTime": "2021-06-20T13:49:49.023Z",
@@ -4363,10 +4683,18 @@
             "$oid": "61a080bdcfb0fb0703092adb"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-07-13T04:10:19.869Z",
         "endTime": "2021-07-13T06:04:45.718Z",
@@ -4377,10 +4705,18 @@
             "$oid": "61a080bdcfb0fb0703092adf"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-09-30T17:24:53.230Z",
         "endTime": "2021-09-30T18:15:02.734Z",
@@ -4419,10 +4755,18 @@
             "$oid": "61a080bdcfb0fb0703092ae9"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-03-16T21:40:41.122Z",
         "endTime": "2021-03-16T23:26:56.155Z",
@@ -4461,10 +4805,18 @@
             "$oid": "61a080bdcfb0fb0703092af9"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-09-25T10:57:43.655Z",
         "endTime": "2021-09-25T12:31:46.761Z",
@@ -4557,10 +4909,18 @@
             "$oid": "61a080bdcfb0fb0703092afe"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-03-23T17:47:45.534Z",
         "endTime": "2021-03-23T18:23:39.781Z",
@@ -4703,10 +5063,18 @@
             "$oid": "61a080bdcfb0fb0703092b08"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-10-08T01:20:33.071Z",
         "endTime": "2021-10-08T01:52:35.726Z",
@@ -4717,10 +5085,18 @@
             "$oid": "61a080bdcfb0fb0703092b14"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-05-02T03:36:34.914Z",
         "endTime": "2021-05-02T04:18:33.412Z",
@@ -4772,10 +5148,18 @@
             "$oid": "61a080bdcfb0fb0703092b18"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2020-12-24T23:28:33.827Z",
         "endTime": "2020-12-25T01:14:03.475Z",
@@ -4945,10 +5329,18 @@
             "$oid": "61a080bdcfb0fb0703092ab8"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2020-11-28T13:18:23.548Z",
         "endTime": "2020-11-28T14:40:54.016Z",
@@ -5014,10 +5406,18 @@
             "$oid": "61a080bdcfb0fb0703092acd"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2020-12-04T12:34:07.957Z",
         "endTime": "2020-12-04T13:14:20.803Z",
@@ -5256,10 +5656,18 @@
             "$oid": "61a080bdcfb0fb0703092ae4"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-02-05T01:27:29.643Z",
         "endTime": "2021-02-05T02:22:00.221Z",
@@ -5373,10 +5781,18 @@
             "$oid": "61a080bdcfb0fb0703092af0"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-09-14T09:35:53.478Z",
         "endTime": "2021-09-14T10:14:19.429Z",
@@ -5443,10 +5859,18 @@
             "$oid": "61a080bdcfb0fb0703092af2"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-05-09T23:39:54.868Z",
         "endTime": "2021-05-10T01:38:18.944Z",
@@ -5588,10 +6012,18 @@
             "$oid": "61a080bdcfb0fb0703092af5"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-11-26T03:38:08.070Z",
         "endTime": "2021-11-26T04:01:55.723Z",
@@ -5678,10 +6110,18 @@
             "$oid": "61a080bdcfb0fb0703092af7"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-02-18T05:01:06.656Z",
         "endTime": "2021-02-18T05:15:53.825Z",
@@ -5885,10 +6325,18 @@
             "$oid": "61a080bdcfb0fb0703092b06"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-11-11T04:57:04.236Z",
         "endTime": "2021-11-11T06:45:54.961Z",
@@ -6058,10 +6506,18 @@
             "$oid": "61a080bdcfb0fb0703092ade"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-02-15T06:44:33.231Z",
         "endTime": "2021-02-15T08:07:35.111Z",
@@ -6142,10 +6598,18 @@
             "$oid": "61a080bdcfb0fb0703092af4"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-05-26T05:20:47.584Z",
         "endTime": "2021-05-26T06:32:05.925Z",
@@ -6225,10 +6689,18 @@
             "$oid": "61a080bdcfb0fb0703092b10"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-01-23T20:39:10.335Z",
         "endTime": "2021-01-23T22:35:39.063Z",
@@ -6260,10 +6732,18 @@
             "$oid": "61a080bdcfb0fb0703092ab7"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-02-14T12:11:35.078Z",
         "endTime": "2021-02-14T13:28:10.060Z",
@@ -6330,10 +6810,18 @@
             "$oid": "61a080bdcfb0fb0703092ac5"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-07-10T14:22:43.483Z",
         "endTime": "2021-07-10T15:27:54.702Z",
@@ -6344,10 +6832,18 @@
             "$oid": "61a080bdcfb0fb0703092adc"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-10-23T04:37:57.803Z",
         "endTime": "2021-10-23T06:31:30.737Z",
@@ -6482,10 +6978,18 @@
             "$oid": "61a080bdcfb0fb0703092aea"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-09-24T11:28:08.374Z",
         "endTime": "2021-09-24T12:00:26.287Z",
@@ -6517,10 +7021,18 @@
             "$oid": "61a080bdcfb0fb0703092afb"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-05-02T01:06:49.001Z",
         "endTime": "2021-05-02T02:52:26.936Z",
@@ -6558,10 +7070,18 @@
             "$oid": "61a080bdcfb0fb0703092afd"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-11-17T04:58:32.330Z",
         "endTime": "2021-11-17T05:00:13.601Z",
@@ -6682,10 +7202,18 @@
             "$oid": "61a080bdcfb0fb0703092b17"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-03-15T00:28:45.687Z",
         "endTime": "2021-03-15T01:44:42.612Z",
@@ -6876,10 +7404,18 @@
             "$oid": "61a080bdcfb0fb0703092ad5"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-06-18T18:16:26.820Z",
         "endTime": "2021-06-18T19:25:34.636Z",
@@ -6973,10 +7509,18 @@
             "$oid": "61a080bdcfb0fb0703092aca"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-10-13T03:01:16.737Z",
         "endTime": "2021-10-13T04:00:30.558Z",
@@ -7105,10 +7649,18 @@
             "$oid": "61a080bdcfb0fb0703092ad6"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-01-06T08:52:53.909Z",
         "endTime": "2021-01-06T10:10:55.486Z",
@@ -7153,10 +7705,18 @@
             "$oid": "61a080bdcfb0fb0703092add"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-02-23T16:58:35.238Z",
         "endTime": "2021-02-23T18:16:23.191Z",
@@ -7285,10 +7845,18 @@
             "$oid": "61a080bdcfb0fb0703092ae2"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-06-15T00:03:11.825Z",
         "endTime": "2021-06-15T01:03:09.908Z",
@@ -7430,10 +7998,18 @@
             "$oid": "61a080bdcfb0fb0703092ae5"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-10-01T16:10:29.318Z",
         "endTime": "2021-10-01T17:56:01.089Z",
@@ -7548,10 +8124,18 @@
             "$oid": "61a080bdcfb0fb0703092ae7"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-02-22T02:05:44.711Z",
         "endTime": "2021-02-22T03:41:30.633Z",
@@ -7583,10 +8167,18 @@
             "$oid": "61a080bdcfb0fb0703092b03"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-04-27T06:28:57.727Z",
         "endTime": "2021-04-27T07:25:44.164Z",
@@ -7652,10 +8244,18 @@
             "$oid": "61a080bdcfb0fb0703092b0b"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-08-26T22:41:01.892Z",
         "endTime": "2021-08-26T22:41:41.476Z",
@@ -7832,10 +8432,18 @@
             "$oid": "61a080bdcfb0fb0703092b0e"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-10-07T08:22:47.595Z",
         "endTime": "2021-10-07T09:49:09.000Z",
@@ -7902,10 +8510,18 @@
             "$oid": "61a080bdcfb0fb0703092b0f"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-06-10T06:07:01.547Z",
         "endTime": "2021-06-10T06:47:55.831Z",
@@ -8033,10 +8649,18 @@
             "$oid": "61a080bdcfb0fb0703092b11"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-01-08T17:24:40.756Z",
         "endTime": "2021-01-08T19:18:53.531Z",
@@ -8117,10 +8741,18 @@
             "$oid": "61a080bdcfb0fb0703092b16"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-05-18T02:01:29.193Z",
         "endTime": "2021-05-18T02:08:47.235Z",
@@ -8131,10 +8763,18 @@
             "$oid": "61a080bdcfb0fb0703092ab9"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-07-12T17:51:45.916Z",
         "endTime": "2021-07-12T18:12:56.419Z",
@@ -8242,10 +8882,18 @@
             "$oid": "61a080bdcfb0fb0703092ae3"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2020-12-09T02:09:44.482Z",
         "endTime": "2020-12-09T02:30:48.697Z",
@@ -8284,10 +8932,18 @@
             "$oid": "61a080bdcfb0fb0703092b13"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-04-16T20:42:07.516Z",
         "endTime": "2021-04-16T21:11:08.244Z",
@@ -8312,10 +8968,18 @@
             "$oid": "61a080bdcfb0fb0703092aba"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-11-04T00:18:19.453Z",
         "endTime": "2021-11-04T01:42:59.740Z",
@@ -8402,10 +9066,18 @@
             "$oid": "61a080bdcfb0fb0703092abf"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-03-19T18:50:57.231Z",
         "endTime": "2021-03-19T19:59:53.799Z",
@@ -8437,10 +9109,18 @@
             "$oid": "61a080bdcfb0fb0703092ac4"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-03-13T12:11:08.169Z",
         "endTime": "2021-03-13T14:10:42.817Z",
@@ -8561,10 +9241,18 @@
             "$oid": "61a080bdcfb0fb0703092ac9"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-06-27T09:54:51.579Z",
         "endTime": "2021-06-27T10:32:34.920Z",
@@ -8589,10 +9277,18 @@
             "$oid": "61a080bdcfb0fb0703092ad3"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-05-17T10:37:29.570Z",
         "endTime": "2021-05-17T12:23:48.621Z",
@@ -8617,10 +9313,18 @@
             "$oid": "61a080bdcfb0fb0703092ad8"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-11-07T08:25:57.525Z",
         "endTime": "2021-11-07T09:28:06.086Z",
@@ -8706,10 +9410,18 @@
             "$oid": "61a080bdcfb0fb0703092ad9"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-05-13T19:08:48.983Z",
         "endTime": "2021-05-13T20:28:03.581Z",
@@ -8734,10 +9446,18 @@
             "$oid": "61a080bdcfb0fb0703092af6"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-04-15T04:51:44.720Z",
         "endTime": "2021-04-15T05:33:10.295Z",
@@ -8866,10 +9586,18 @@
             "$oid": "61a080bdcfb0fb0703092aff"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-08-22T10:02:41.637Z",
         "endTime": "2021-08-22T10:51:51.242Z",
@@ -8956,10 +9684,18 @@
             "$oid": "61a080bdcfb0fb0703092b12"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-07-22T12:03:19.646Z",
         "endTime": "2021-07-22T13:06:21.074Z",
@@ -9157,10 +9893,18 @@
             "$oid": "61a080bdcfb0fb0703092ada"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2021-08-21T07:08:40.790Z",
         "endTime": "2021-08-21T08:45:20.062Z",
@@ -9275,10 +10019,18 @@
             "$oid": "61a080bdcfb0fb0703092aeb"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-07-16T23:07:59.437Z",
         "endTime": "2021-07-17T00:14:43.209Z",
@@ -9365,10 +10117,18 @@
             "$oid": "61a080bdcfb0fb0703092af3"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-10-11T09:02:14.759Z",
         "endTime": "2021-10-11T09:22:07.184Z",
@@ -9510,10 +10270,18 @@
             "$oid": "61a080bdcfb0fb0703092b0a"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Johana",
             "lastname": "White",
-            "numDoc": "003",
-            "course": "C02"
+            "identityDoc": "003",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-02-13T14:44:35.031Z",
         "endTime": "2021-02-13T14:48:00.806Z",
@@ -9594,10 +10362,18 @@
             "$oid": "61a080bdcfb0fb0703092ad7"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2020-12-15T10:49:03.503Z",
         "endTime": "2020-12-15T11:45:35.972Z",
@@ -9773,10 +10549,18 @@
             "$oid": "61a080bdcfb0fb0703092af1"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Diana",
             "lastname": "Ramírez",
-            "numDoc": "004",
-            "course": "C03"
+            "identityDoc": "004",
+            "course": {
+                "code": "C03",
+                "name": "Curso 02",
+                "level": "A2"
+            }
         },
         "startTime": "2020-12-01T21:50:34.482Z",
         "endTime": "2020-12-01T22:42:14.491Z",
@@ -9884,10 +10668,18 @@
             "$oid": "61a080bdcfb0fb0703092b05"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Francisco",
             "lastname": "Trincao",
-            "numDoc": "002",
-            "course": "C02"
+            "identityDoc": "002",
+            "course": {
+                "code": "C02",
+                "name": "Curso 02",
+                "level": "C2"
+            }
         },
         "startTime": "2021-08-27T05:24:41.201Z",
         "endTime": "2021-08-27T07:22:34.944Z",
@@ -10008,10 +10800,18 @@
             "$oid": "61a080bdcfb0fb0703092b0d"
         },
         "student": {
+            "school": {
+                "name": "Colegio 01",
+                "code": "C01"
+            },
             "firstname": "Miralem",
             "lastname": "Pjanic",
-            "numDoc": "001",
-            "course": "C01"
+            "identityDoc": "001",
+            "course": {
+                "code": "C01",
+                "name": "Curso 01",
+                "level": "B1"
+            }
         },
         "startTime": "2021-09-16T11:10:31.369Z",
         "endTime": "2021-09-16T11:39:39.322Z",

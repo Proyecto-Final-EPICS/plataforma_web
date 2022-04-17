@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Layout } from 'antd';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch, matchPath } from 'react-router-dom';
 
 import {
     HomeOutlined, UserOutlined, TeamOutlined, BookOutlined, BankOutlined, SmileOutlined
@@ -15,48 +15,73 @@ import MenuTop from '../../components/Admin/MenuTop';
 import "./LayoutAdmin.scss";
 
 export default function LayoutAdmin(props) {
-    const {routes} = props;
+    console.log('layoooout');
+    const { routes } = props;
     
-    const { Content, Footer } = Layout;
+    const { Sider, Header, Content, Footer } = Layout;
 
     const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);
     const [menuCollapsed, setMenuCollapsed] = useState(false);
     const [rowSel, setRowSel] = useState(-1);
     const [search, setSearch] = useState('');
+    const [school, setSchool] = useState('');
+    const [menuItems, setMenuItems] = useState([]);
 
-    const {username, isLoading} = useAuth();
+    const { username, isLoading } = useAuth();
 
-    const menuItems = getMenuItems();
-    const optionsAvailable = () => {
-        for(let i of menuItems)
-            if(i.to === menuSelectedKey && i.to !== '/home') return true;
-        return false;
+    const collectionSelected = () => {
+        const selItem = menuItems.find(i => i.to === menuSelectedKey);
+        return selItem && selItem.isCollection;
     }
-    // console.log(optionsAvailable());
+
+    const getSchool = () => {
+        const matchSchool = matchPath(window.location.pathname, { path: '/schools/:school' });
+        return matchSchool && matchSchool.params.school;
+    }
+
+    (() => {
+        const s2 = getSchool();
+        if(school !== s2) setSchool(s2);
+        // if(rowSel !== -1) setRowSel(-1);
+    })();
+    
+    const updateMenuItems = () => setMenuItems(getMenuItems(school));
+
+    useEffect(updateMenuItems, []);
+    useEffect(updateMenuItems, [school])
 
     if(!username && !isLoading) return <Redirect to="/login"/>;
 
     if(username && !isLoading) {
         if(window.location.pathname == "/") return <Redirect to="/home"/>;
         return (
-            <Layout>
-                <MenuSider
-                    selectedKey={menuSelectedKey}
-                    setSelectedKey={setMenuSelectedKey}
-                    collapsed={menuCollapsed}
-                    setCollapsed={setMenuCollapsed}
-                    items={menuItems}
-                />
-                <Content>
-                    <Layout
-                        className='layout-admin'
-                        // style={{ marginLeft: menuCollapsed ? "80px" : "200px" }}
+            <AdminContext.Provider value={{
+                setRowSel, school
+            }}>
+            <Layout className='layout-admin'>
+                <Sider className='layout-admin__sider' collapsed={menuCollapsed}>
+                    <div
+                        // key="/home/epics"
+                        onClick={() => setMenuCollapsed(!menuCollapsed)}
+                        className="layout-admin__sider__logo"
                     >
-                        <MenuTop
-                            rowSel={rowSel}
-                            setRowSel={setRowSel}
-                            optionsAvailable={optionsAvailable()}
-                        />
+                        <h1>{menuCollapsed ? "EI" : "EPICS IEEE"}</h1>
+                    </div>
+                    <MenuSider
+                        selectedKey={menuSelectedKey}
+                        setSelectedKey={setMenuSelectedKey}
+                        items={menuItems}
+                    />
+                </Sider> 
+                <Content>
+                    <Layout>
+                        <Header className='layout-admin__header'>
+                            <MenuTop
+                                rowSel={rowSel}
+                                setRowSel={setRowSel}
+                                collectionSelected={collectionSelected()}
+                            />
+                        </Header>
                         <Content className="layout-admin__content">
                             <LoadRouters routes={routes}/>
                         </Content>
@@ -67,6 +92,7 @@ export default function LayoutAdmin(props) {
 
                 </Content>
             </Layout>
+            </AdminContext.Provider>
         )
     }
 
@@ -90,37 +116,53 @@ function LoadRouters(props) {
     );
 }
 
-function getMenuItems() {
-    return [
+function getMenuItems(school) {
+    // console.log('school: ',school);
+    if(!school) return [
         {
             text: 'Inicio',
             icon: HomeOutlined,
             to: '/home',
+            isCollection: false,
         },
+        {
+            text: 'Colegios',
+            icon: BankOutlined,
+            to: '/schools',
+            isCollection: true,
+        },
+    ]
+
+    return [
         {
             text: 'Colegio',
             icon: BankOutlined,
-            to: '/home/school',
+            to: `/schools/${school}`,
+            isCollection: false,
         },
         {
-            text: 'Director',
+            text: 'Directores',
             icon: UserOutlined,
-            to: '/home/director',
+            to: `/schools/${school}/directors`,
+            isCollection: true,
         },
         {
             text: 'Profesores',
             icon: TeamOutlined,
-            to: '/home/professors',
+            to: `/schools/${school}/professors`,
+            isCollection: true,
         },
         {
             text: 'Cursos',
             icon: BookOutlined,
-            to: '/home/courses',
+            to: `/schools/${school}/courses`,
+            isCollection: true,
         },
         {
             text: 'Estudiantes',
             icon: SmileOutlined,
-            to: '/home/students',
+            to: `/schools/${school}/students`,
+            isCollection: true,
         },
     ]
 }

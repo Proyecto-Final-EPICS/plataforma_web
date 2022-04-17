@@ -27,7 +27,9 @@ function App(){
 function SwitchRoute(props) {
   const {routes} = props;
   // const {userType, setUserType} = useEffect('noUser');
-  console.log(useAuth().userType);
+
+  // console.log(useAuth().userType);
+  
   // useEffect(() => {
   //   // setUserType()
   // }, []);

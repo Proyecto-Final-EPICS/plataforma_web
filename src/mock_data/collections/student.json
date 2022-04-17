@@ -5,11 +5,19 @@
         },
         "firstname": "Francisco",
         "lastname": "Trincao",
-        "numDoc": "002",
-        "age": 22,
+        "identityDoc": "002",
+        "birthDate": "2022-03-13T04:21:03.767Z",
         "gender": "Masculino",
         "email": "ftrincao@vip-epics.com",
-        "course": "C02"
+        "course": {
+            "code": "C02",
+            "name": "Curso 02",
+            "level": "C2"
+        },
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        }
     },
     {
         "_id": {
@@ -17,11 +25,19 @@
         },
         "firstname": "Miralem",
         "lastname": "Pjanic",
-        "numDoc": "001",
-        "age": 19,
+        "identityDoc": "001",
+        "birthDate": "2022-03-13T04:21:03.767Z",
         "gender": "Masculino",
         "email": "mpjanic@vip-epics.com",
-        "course": "C01"
+        "course": {
+            "code": "C01",
+            "name": "Curso 01",
+            "level": "B1"
+        },
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        }
     },
     {
         "_id": {
@@ -29,11 +45,19 @@
         },
         "firstname": "Johana",
         "lastname": "White",
-        "numDoc": "003",
-        "age": 22,
+        "identityDoc": "003",
+        "birthDate": "2022-03-13T04:21:03.767Z",
         "gender": "Femenino",
         "email": "jwhite@vip-epics.com",
-        "course": "C02"
+        "course": {
+            "code": "C02",
+            "name": "Curso 02",
+            "level": "C2"
+        },
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        }
     },
     {
         "_id": {
@@ -41,10 +65,18 @@
         },
         "firstname": "Diana",
         "lastname": "Ramírez",
-        "numDoc": "004",
-        "age": 17,
+        "identityDoc": "004",
+        "birthDate": "2022-03-13T04:21:03.767Z",
         "gender": "Femenino",
         "email": "jwhite@vip-epics.com",
-        "course": "C03"
+        "course": {
+            "code": "C03",
+            "name": "Curso 02",
+            "level": "A2"
+        },
+        "school": {
+            "name": "Colegio 01",
+            "code": "C01"
+        }
     }
 ]

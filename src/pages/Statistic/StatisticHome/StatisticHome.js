@@ -5,8 +5,8 @@ import {Layout, Tabs, Button} from 'antd';
 import qs from 'query-string';
 
 // Funciones
-import statisticFilterElems from './../../../libraries/statisticFilterElems';
-import { getSessionGameApi } from '../../../api/sessions';
+import statisticFilterElems from '../../../libraries/Statistic/statisticFilterElems';
+// import { getSessionGameApi } from '../../../api/sessions';
 
 // Mock Data
 import courseApi from '../../../mock_data/collections/course.json';

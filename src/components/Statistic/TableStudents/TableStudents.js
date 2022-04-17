@@ -1,9 +1,7 @@
-import {useState, useEffect} from 'react';
-import {Row, Table, Button} from 'antd';
-import { tableCustomFilters } from '../../../libraries/tableCustomFilters';
+import { Table, Button } from 'antd';
 
 export default function TableStudents(props) {
-    const {query, students} = props;
+    const { students } = props;
 
     const genFilters = (prop) => {
         const filters = [];
@@ -37,12 +35,12 @@ export default function TableStudents(props) {
         },
         {
             title: 'Edad',
-            dataIndex: 'age',
-            key: 'age',
+            dataIndex: 'birthDate',
+            key: 'birthDate',
             fixed: 'left',
             width: 40,
             // defaultSortOrder: 'descend',
-            sorter: (a, b) => a.age - b.age,
+            sorter: (a, b) => a.birthDate - b.birthDate,
         },
         {
             title: 'Género',
@@ -120,11 +118,11 @@ export default function TableStudents(props) {
             });
             // totTime /= 3600 * 1000
 
-            const {firstname, lastname, age, numDoc: id, gender, course} = student;
+            const {firstname, lastname, birthDate, identityDoc: id, gender, course} = student;
             const name = firstname + ' ' + lastname;
     
             const row = {
-                name, id, age, gender, course, 
+                name, id, birthDate, gender, course, 
                 totTime: totTime.toFixed(1),
                 avTime: (totTime / student.sessions.length).toFixed(1),
                 accuracy: (accuracy / student.sessions.length).toFixed(2),

@@ -1,23 +1,20 @@
-import {useState, useEffect} from 'react';
-import {Row, Table, Button} from 'antd';
-import { tableCustomFilters } from '../../../libraries/tableCustomFilters';
+import { Table, Button } from 'antd';
 
 export default function TableCourses(props) {
-    const {query, courses} = props;
+    const { courses } = props;
 
-    // console.log(query);
-    const genFilters = (prop) => {
-        const filters = [];
-        courses.forEach(course => {
-            if(!filters.some(f => f.value === course[prop])) {
-                filters.push({
-                    text: course[prop],
-                    value: course[prop],
-                });
-            }
-        });
-        return filters;
-    }
+    // const genFilters = (prop) => {
+    //     const filters = [];
+    //     courses.forEach(course => {
+    //         if(!filters.some(f => f.value === course[prop])) {
+    //             filters.push({
+    //                 text: course[prop],
+    //                 value: course[prop],
+    //             });
+    //         }
+    //     });
+    //     return filters;
+    // }
 
     const columns = [
         {

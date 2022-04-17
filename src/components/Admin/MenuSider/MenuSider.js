@@ -1,78 +1,62 @@
+import { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { Menu } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
+
+import AdminContext from '../AdminContext';
+
+import { logout } from '../../../api/auth';
 
 import './MenuSider.scss';
 
 function MenuSider(props) {
-	const {Sider} = Layout;
-	const {selectedKey, setSelectedKey, collapsed, setCollapsed, items} = props;
+	const { selectedKey, setSelectedKey, items } = props;
+    const { setRowSel } = useContext(AdminContext);
+
+    const onLinkClick = to => to !== window.location.pathname && setRowSel(-1);
+
+    const onLogout = e => {
+        logout();
+        window.location.reload();
+    }
+
+    const onSelectItem = e => e.key !== 'logout' && setSelectedKey(e.key);
 
 	return (
-		<Sider className='admin-sider' collapsed={collapsed}>
-			<div
-                key="/home/epics"
-                onClick={() => setCollapsed(!collapsed)}
-                className="admin-sider__logo"
-            >
-                <h1>{collapsed ? "EI" : "EPICS IEEE"}</h1>
-            </div>
-			<Menu
-				mode="inline" 
-				selectedKeys={selectedKey}
-				onSelect={e => setSelectedKey(e.key)}
-				className="admin-sider__menu"
-			>
-                {items.map(i => (
-                    // <Menu.Item key={i.to} className='admin-sider__item'>
-                    //     <Link to={i.to}>
-                    //     <span className="nav-text">{i.title}</span>
-                    //     </Link>
-                    // </Menu.Item>
-                    <Menu.Item icon={<i.icon/>} key={i.to} className="admin-sider__item">
-                    <Link to={i.to}>
-                        {/* {<i.icon/>} */}
-                        {/* <HomeOutlined /> */}
+        <Menu
+            mode="inline" 
+            selectedKeys={selectedKey}
+            onSelect={onSelectItem}
+            className="admin-sider-menu"
+        >
+            {items.map(i => (
+                <Menu.Item 
+                    className="admin-sider-menu__item"
+                    key={i.to}
+                    icon={<i.icon/>}
+                >
+                    {/* <Link to={() => linkTo(i.to)}> */}
+                    <Link to={i.to} onClick={() => onLinkClick(i.to)}>
                         <span className="nav-text">{i.text}</span>
                     </Link>
                 </Menu.Item>
-                ))}
-                {/* <Menu.Item key="/home" className="admin-sider__item">
-                    <Link to={"/home"}>
-                        <HomeOutlined />
-                        <span className="nav-text">Inicio</span>
-                    </Link>
-                </Menu.Item>
-                
-                <Menu.Item key="/home/director" className="admin-sider__item">
-                    <Link to={"/home/director"}>
-                        <UserOutlined />
-                        <span className="nav-text">Home</span>
-                    </Link>
-                </Menu.Item>
-
-                <Menu.Item key="/home" className="admin-sider__item">
-                    <Link to={"/home"}>
-                        <HomeOutlined />
-                        <span className="nav-text">Home</span>
-                    </Link>
-                </Menu.Item>
-
-                <Menu.Item key="/home" className="admin-sider__item">
-                    <Link to={"/home"}>
-                        <HomeOutlined />
-                        <span className="nav-text">Home</span>
-                    </Link>
-                </Menu.Item>
-
-                <Menu.Item key="/home" className="admin-sider__item">
-                    <Link to={"/home"}>
-                        <HomeOutlined />
-                        <span className="nav-text">Home</span>
-                    </Link>
-                </Menu.Item> */}
-
-			</Menu>
-		</Sider>
+            ))}
+            {/* <div
+                className="admin-sider-menu__logout"
+                key="logout"
+            >
+                <span></span>
+                <span className='nav-text'><LogoutOutlined/> Logout</span>
+            </div> */}
+            <Menu.Item
+                className="admin-sider-menu__logout"
+                key={"logout"}
+                icon={<LogoutOutlined/>}
+                onClick={onLogout}
+            >
+                <span className='nav-text'>Logout</span>
+            </Menu.Item>
+        </Menu>
 	);
 }
 

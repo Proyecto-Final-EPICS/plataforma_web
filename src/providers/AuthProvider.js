@@ -24,7 +24,7 @@ export default function AuthProvider(props){
 }
 
 function checkUserLogin(user, setUser){
-    console.log('checking...');
+    // console.log('checking...');
     const accessToken = getAccessTokenApi();
     
     if(!accessToken){
