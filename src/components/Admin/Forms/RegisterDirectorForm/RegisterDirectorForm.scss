@@ -13,15 +13,51 @@
         }
     }
 
-    &__submit {
-        text-align: center;
-        margin-top: 20px;
+    &__end {
+        // justify-content: center;
 
-        button {
-            border-color: $background-orange;
-            background-color: $background-orange;
-            color: white;
+        &__reset {
+            margin-top: 20px;
+    
+            button {
+                border: none;
+                background-color: #999;
+                color: white;
+                // pointer-events: none;
+
+                &:hover {
+                    background-color: #999;
+                    color: white;
+                    filter: brightness(110%);
+                }
+
+                &:focus {
+                    background-color: #999;
+                    color: white;
+                }
+            }
         }
-        
+
+        &__submit {
+            margin-top: 20px;
+    
+            button {
+                border: none;
+                background-color: $background-purple;
+                color: white;
+
+                &:hover {
+                    background-color: $background-purple;
+                    color: white;
+                    filter: brightness(110%);
+                }
+                
+                &:focus {
+                    background-color: $background-purple;
+                    color: white;
+                }
+            }
+            
+        }
     }
 }

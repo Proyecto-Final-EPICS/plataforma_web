@@ -13,7 +13,7 @@ function MenuSider(props) {
 	const { selectedKey, setSelectedKey, items } = props;
     const { setRowSel } = useContext(AdminContext);
 
-    const onLinkClick = to => to !== window.location.pathname && setRowSel(-1);
+    const onLinkClick = to => to !== window.location.pathname && setRowSel(null);
 
     const onLogout = e => {
         logout();
@@ -35,7 +35,6 @@ function MenuSider(props) {
                     key={i.to}
                     icon={<i.icon/>}
                 >
-                    {/* <Link to={() => linkTo(i.to)}> */}
                     <Link to={i.to} onClick={() => onLinkClick(i.to)}>
                         <span className="nav-text">{i.text}</span>
                     </Link>

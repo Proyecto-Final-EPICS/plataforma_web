@@ -1,14 +1,17 @@
+import { useContext }  from 'react';
+import { Button, Input } from 'antd';
 
-import { Button, Layout, Input } from 'antd';
-
-import './MenuTop.scss';
+import AdminContext from '../AdminContext';
 
 import { PlusCircleOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons'; 
 
-export default function MenuTop(props) {
-    const {rowSel, setRowSel, setSearch, collectionSelected} = props;
+import './MenuTop.scss';
 
-    const someRowSel = () => rowSel !== -1;
+export default function MenuTop(props) {
+    const {collectionSelected} = props;
+    const { rowSel, setSearch, setAddRow, setEditRow, setDeleteRow } = useContext(AdminContext);
+
+    const someRowSel = () => rowSel !== null;
 
     return (
         <div className='admin-top-menu'>
@@ -18,9 +21,21 @@ export default function MenuTop(props) {
             
             <div className='admin-top-menu__section admin-top-menu__options'>
                 <div className='admin-top-menu__options__reg'>
-                    <Button icon={<PlusCircleOutlined/>} disabled={!collectionSelected}/>
-                    <Button icon={<EditOutlined/>} disabled={!collectionSelected || !someRowSel()}/>
-                    <Button icon={<DeleteOutlined/>} disabled={!collectionSelected || !someRowSel()}/>
+                    <Button 
+                        icon={<PlusCircleOutlined/>}
+                        disabled={!collectionSelected}
+                        onClick={() => setAddRow(true)}
+                    />
+                    <Button 
+                        icon={<EditOutlined/>}
+                        disabled={!collectionSelected || !someRowSel()}
+                        onClick={() => setEditRow(true)}
+                    />
+                    <Button 
+                        icon={<DeleteOutlined/>}
+                        disabled={!collectionSelected || !someRowSel()}
+                        onClick={() => setDeleteRow(true)}
+                    />
                 </div>
                 <div className='admin-top-menu__options__search'>
                 <Input

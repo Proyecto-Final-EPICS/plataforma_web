@@ -6,28 +6,33 @@ import {
     HomeOutlined, UserOutlined, TeamOutlined, BookOutlined, BankOutlined, SmileOutlined
 } from '@ant-design/icons';
 
-import useAuth from '../../hooks/useAuth';
-import AdminContext from '../../components/Admin/AdminContext';
-
 import MenuSider from './../../components/Admin/MenuSider';
 import MenuTop from '../../components/Admin/MenuTop';
+import Modal from '../../components/General/Modal';
+
+import useAuth from '../../hooks/useAuth';
+import AdminContext from '../../components/Admin/AdminContext';
 
 import "./LayoutAdmin.scss";
 
 export default function LayoutAdmin(props) {
-    console.log('layoooout');
+    // console.log('layoooout');
     const { routes } = props;
-    
     const { Sider, Header, Content, Footer } = Layout;
+    const { username, isLoading } = useAuth();
 
     const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);
     const [menuCollapsed, setMenuCollapsed] = useState(false);
-    const [rowSel, setRowSel] = useState(-1);
+    const [rowSel, setRowSel] = useState(null);
     const [search, setSearch] = useState('');
     const [school, setSchool] = useState('');
     const [menuItems, setMenuItems] = useState([]);
-
-    const { username, isLoading } = useAuth();
+    const [addRow, setAddRow] = useState(false);
+    const [editRow, setEditRow] = useState(false);
+    const [deleteRow, setDeleteRow] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalContent, setModalContent] = useState(false);
+    const [modalTitle, setModalTitle] = useState('');
 
     const collectionSelected = () => {
         const selItem = menuItems.find(i => i.to === menuSelectedKey);
@@ -42,13 +47,16 @@ export default function LayoutAdmin(props) {
     (() => {
         const s2 = getSchool();
         if(school !== s2) setSchool(s2);
-        // if(rowSel !== -1) setRowSel(-1);
     })();
     
     const updateMenuItems = () => setMenuItems(getMenuItems(school));
 
-    useEffect(updateMenuItems, []);
     useEffect(updateMenuItems, [school])
+    useEffect(updateMenuItems, []);
+    // useEffect(() => {
+    //     const s2 = getSchool();
+    //     if(school !== s2) setSchool(s2);
+    // });
 
     if(!username && !isLoading) return <Redirect to="/login"/>;
 
@@ -56,7 +64,9 @@ export default function LayoutAdmin(props) {
         if(window.location.pathname == "/") return <Redirect to="/home"/>;
         return (
             <AdminContext.Provider value={{
-                setRowSel, school
+                rowSel, setRowSel, school, search, setSearch, deleteRow, setDeleteRow, 
+                editRow, setEditRow, addRow, setAddRow, modalVisible, setModalVisible, 
+                modalContent, setModalContent, modalTitle, setModalTitle, 
             }}>
             <Layout className='layout-admin'>
                 <Sider className='layout-admin__sider' collapsed={menuCollapsed}>
@@ -76,14 +86,19 @@ export default function LayoutAdmin(props) {
                 <Content>
                     <Layout>
                         <Header className='layout-admin__header'>
-                            <MenuTop
-                                rowSel={rowSel}
-                                setRowSel={setRowSel}
-                                collectionSelected={collectionSelected()}
-                            />
+                            <MenuTop collectionSelected={collectionSelected()}/>
                         </Header>
                         <Content className="layout-admin__content">
+
+                            <Modal
+                                isVisible={modalVisible}
+                                setIsVisible={setModalVisible}
+                                title={modalTitle}
+                            >
+                                {modalContent}
+                            </Modal>
                             <LoadRouters routes={routes}/>
+
                         </Content>
                         <Footer className="layout-admin__footer">
                             EPICS IEEE

@@ -5,7 +5,7 @@ import AdminContext from '../AdminContext';
 
 export default function TableCourses(props) {
     const { courses } = props;
-    const { setRowSel } = useContext(AdminContext);
+    const { rowSel, setRowSel } = useContext(AdminContext);
 
     const columns = [
         {
@@ -33,10 +33,8 @@ export default function TableCourses(props) {
 
     const rowSelection = {
         type: 'radio',
-        onChange: (selectedRowKeys, selectedRows) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-            setRowSel(selectedRowKeys);
-        },
+        onChange: (selectedRowKeys, selectedRows) => setRowSel(selectedRows[0]),
+        selectedRowKeys: rowSel ? [rowSel.key] : [],
     }
 
     return (

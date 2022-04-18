@@ -44,6 +44,26 @@
       "name": "Colegio 01",
       "code": "C01"
     },
+    "role": "director",
+    "birthDate": "2022-03-13T04:21:03.767Z",
+    "email": "dir3@epics.com",
+    "firstname": "Director",
+    "gender": "a",
+    "identityDoc": "123",
+    "lastname": "Epics",
+    "password": "pass",
+    "phone": {
+      "countryCode": "58",
+      "number": "123"
+    },
+    "photo": "https://randomuser.me/api/portraits/men/0.jpg",
+    "username": "dir3"
+  },
+  {
+    "school": {
+      "name": "Colegio 01",
+      "code": "C01"
+    },
     "role": "professor",
     "birthDate": "2022-03-13T04:21:03.767Z",
     "email": "prof1@epics.com",
