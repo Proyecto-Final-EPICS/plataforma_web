@@ -15,6 +15,7 @@ import useAuth from '../../hooks/useAuth';
 import "./LayoutDirector.scss";
 
 export default function LayoutDirector(props) {
+    console.log('lay director')
     const { routes } = props;
     const [menuCollapsed, setMenuCollapsed] = useState(false);
     const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);

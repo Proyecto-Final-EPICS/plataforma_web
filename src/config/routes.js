@@ -115,7 +115,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             path: ["/", "/home"],
             component: LayoutDirector,
             exact: false,
-            routes:[
+            routes:  [
                 {
                     path: "/home",
                     component: DirectorHome,
@@ -170,7 +170,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             path: ["/", "home"],
             component: LayoutProfessor,
             exact: false,
-            routes:[
+            routes: [
                 {
                     path: "/home",
                     component: ProfessorHome,

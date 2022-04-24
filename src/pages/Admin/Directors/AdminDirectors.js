@@ -10,7 +10,7 @@ import './AdminDirectors.scss';
 
 export default function AdminDirectors(props) {
     const [directors, setDirectors] = useState([]);
-    const {resetForm, setResetForm} = useState(false);
+    // const {resetForm, setResetForm} = useState(false);
     const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow, 
         modalVisible, setModalVisible, setModalContent, setModalTitle } 
         = useContext(AdminContext);
@@ -27,7 +27,7 @@ export default function AdminDirectors(props) {
             )
             setModalTitle('Registrar Director');
             setModalVisible(true);
-            setResetForm(true);
+            // setResetForm(true);
             setAddRow(false);
         }
     }, [addRow]);
@@ -48,7 +48,7 @@ export default function AdminDirectors(props) {
             );
             setModalTitle('Actualizar Director');
             setModalVisible(true);
-            setResetForm(true);
+            // setResetForm(true);
             setEditRow(false);
         }
     }, [editRow]);
