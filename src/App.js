@@ -1,5 +1,5 @@
 //Liberias
-import { useEffect } from 'react';
+import { useState } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import "antd/dist/antd.css";
 
@@ -14,11 +14,16 @@ import useAuth from './hooks/useAuth';
 import './App.scss';
 
 function App(){
+  const [authDone, setAuthDone] = useState(false);
+
   return (
     //Siempre se va a utilizar el AuthProvider, comprobar si el user esta logeado
-    <AuthProvider>
+    <AuthProvider setAuthDone={setAuthDone}>
       <Router>
-        <SwitchRoute routes={routes}/>
+        {authDone?
+          <SwitchRoute routes={routes}/>
+          :null
+        }
       </Router>
     </AuthProvider>
   );
@@ -26,19 +31,11 @@ function App(){
 
 function SwitchRoute(props) {
   const {routes} = props;
-  
-  // console.log(useAuth().userType || 'noUser');
-  // console.log(routes[useAuth().userType || 'noUser']);
-
-  // const {userType, setUserType} = useEffect('noUser');
-
-  // useEffect(() => {
-  //   // setUserType()
-  // }, []);
+  const userType = useAuth().userType || 'noUser';
 
   return (
     <Switch>
-      {routes[useAuth().userType || 'noUser'].map((route, index) => (
+      {routes[userType].map((route, index) => (
         <RouteWithSubRoutes key={index} {...route}/>
       ))}
     </Switch>

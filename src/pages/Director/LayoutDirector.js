@@ -15,7 +15,6 @@ import useAuth from '../../hooks/useAuth';
 import "./LayoutDirector.scss";
 
 export default function LayoutDirector(props) {
-    console.log('lay director')
     const { routes } = props;
     const [menuCollapsed, setMenuCollapsed] = useState(false);
     const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);
@@ -24,7 +23,6 @@ export default function LayoutDirector(props) {
     
     const {username, isLoading} = useAuth();
 
-    console.log(username, isLoading);
     if(!username && !isLoading) return <Redirect to="/login"/>;
 
     if(username && !isLoading) {

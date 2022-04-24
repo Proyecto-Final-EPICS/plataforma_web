@@ -34,14 +34,6 @@ import ProfessorProfile from '../pages/Professor/Profile';
 import ProfessorCalendar from '../pages/Professor/Calendar';
 import ProfessorGrades from '../pages/Professor/Grades';
 import ProfessorInstitution from '../pages/Professor/Institution';
-// import Colegios from '../pages/Professor/Colegios';
-// import Colegio from '../pages/Professor/Colegio';
-// import Colegio_Games from '../pages/Professor/Colegio_Games';
-// import Estudiante from '../pages/Professor/Estudiante';//Es la info del estudiante en el juego
-// import Students_Games from '../pages/Professor/Students_Games';
-// import GamesStudent from '../pages/Professor/GamesStudent';
-// import Menu_Cards from '../pages/Professor/Menu_Cards';
-// import Graficos from '../pages/Professor/Graficos';
 
 //Pages Statistic
 import StatisticHome from '../pages/Statistic/StatisticHome'
@@ -49,20 +41,25 @@ import StatisticHome from '../pages/Statistic/StatisticHome'
 const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     noUser: [
         {
+            path: '/',
+            component: () => <Redirect to="/login"/>,
+            exact: true
+        },
+        {
             path: "/login",
             component: Login,
             exact: true
         },
-        // {
-        //     path: "/sign-up",
-        //     component: SignUp,
-        //     exact: true
-        // },
         {
             component: Error404
         }
     ],
     admin: [
+        {
+            path: '/',
+            component: () => <Redirect to="/home"/>,
+            exact: true
+        },
         {
             path: "/home",
             component: LayoutAdmin,
@@ -114,8 +111,9 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     ],
     director: [
         {
-            path: '/home',
-            component: () => <Redirect to="/home"/>
+            path: '/',
+            component: () => <Redirect to="/home"/>,
+            exact: true
         },
         {
             path: "/home",
@@ -172,12 +170,11 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
         }
     ],
     professor: [
-        // {
-        //     path: '/',
-        //     component: () => {
-        //         return <Redirect to={'/home'}/>
-        //     },
-        // },
+        {
+            path: '/',
+            component: () => <Redirect to="/home"/>,
+            exact: true
+        },
         {
             path: "/home",
             component: LayoutProfessor,

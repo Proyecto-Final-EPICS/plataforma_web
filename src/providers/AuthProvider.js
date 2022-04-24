@@ -7,8 +7,8 @@ import { getAccessTokenApi, logout } from '../api/auth';
 
 export const AuthContext = createContext();
 
-export default function AuthProvider(props){
-    const { children } = props; //Children hace referencia a cualquier pagina
+export default function AuthProvider(props) {
+    const { setAuthDone, children } = props; //Children hace referencia a cualquier pagina
     const [user, setUser] = useState({
         userId: NaN,
         username: '',
@@ -18,7 +18,8 @@ export default function AuthProvider(props){
     
     useEffect(()=>{
         checkUserLogin(user, setUser);
-    },[]);
+        setAuthDone(true);
+    }, []);
     return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
     //Se está pasando el usuario a toda la web con value={user}
 }
@@ -43,7 +44,7 @@ function checkUserLogin(user, setUser){
         // })
         let userType = localStorage.getItem('userType');
         
-        if(!userType || userType=='null') {
+        if(!userType || userType==='null') {
             userType = prompt('User type:');
             localStorage.setItem('userType', userType);
         }
