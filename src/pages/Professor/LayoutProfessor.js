@@ -40,9 +40,9 @@ export default function LayoutProfessor(props){
         setUserInfo({username, firstname, lastname, phone, email});
     }, []);
 
-    if (!username && !isLoading) return <Redirect to="/login"/>;
+    if(!username && !isLoading) return <Redirect to="/login"/>;
 
-    if(username && !isLoading){
+    if(username && !isLoading) {
         if(window.location.pathname == "/") return <Redirect to="/home"/>;
         
         return (

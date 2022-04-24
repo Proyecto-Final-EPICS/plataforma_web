@@ -26,11 +26,12 @@ function App(){
 
 function SwitchRoute(props) {
   const {routes} = props;
-  console.log(routes[useAuth().userType || 'noUser']);
+  
+  // console.log(useAuth().userType || 'noUser');
+  // console.log(routes[useAuth().userType || 'noUser']);
+
   // const {userType, setUserType} = useEffect('noUser');
 
-  // console.log(useAuth().userType);
-  
   // useEffect(() => {
   //   // setUserType()
   // }, []);

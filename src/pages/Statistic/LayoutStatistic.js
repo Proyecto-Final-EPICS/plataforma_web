@@ -16,23 +16,16 @@ import './LayoutStatistic.scss';
 
 //...
 
-export default function LayoutStatistic(props){
-    const {routes} = props;
-    const {username, isLoading} = useAuth();
+export default function LayoutStatistic(props) {
+    const { routes } = props;
+    const { username, isLoading } = useAuth();
     
-    const {Header, Sider, Content, Footer} = Layout;
+    const { Header, Content, Footer } = Layout;
     
-    if (!username && !isLoading) {//No hay usuario logeado
-        return(
-            <>
-            <Route path="/login" component={Login}/>
-            <Redirect to="/login"/>
-            </>
-        )
-    }
+    if(!username && !isLoading) return <Redirect to="/login"/>;
 
-    if(username && !isLoading){//Usuario logeado
-        return(
+    if(username && !isLoading) {
+        return (
             <Layout className="layout-statistic">
                 <Header className="layout-statistic__header">
                     <MenuTop/>

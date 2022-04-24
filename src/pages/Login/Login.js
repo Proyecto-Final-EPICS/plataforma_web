@@ -17,12 +17,12 @@ import Logo from '../../assets/img/palanca-de-mando.png';
 
 export default function Login(){
     const { Content } = Layout;
-    const {username, isLoading} = useAuth();
+    const { username, isLoading } = useAuth();
 
     if (username && !isLoading) return <Redirect to="/home"/>;
     else if(!username && !isLoading) {
 
-        if(window.location.pathname=="/") return <Redirect to="/home"/>
+        if(window.location.pathname=="/") return <Redirect to="/login"/>
         return (
             <Layout className="sign-in">
                 <Content className = "sign-in__content">

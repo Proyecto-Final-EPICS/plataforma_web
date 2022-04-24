@@ -24,10 +24,13 @@ export default function LayoutDirector(props) {
     
     const {username, isLoading} = useAuth();
 
+    console.log(username, isLoading);
     if(!username && !isLoading) return <Redirect to="/login"/>;
 
     if(username && !isLoading) {
-        if(window.location.pathname == "/") return <Redirect to="/home"/>;
+        if(window.location.pathname == "/"){ 
+            
+            return <Redirect to="/home"/>;}
         return (
             <DirectorContext.Provider value={{
                 setMenuSelectedKey,

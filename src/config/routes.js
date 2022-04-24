@@ -1,3 +1,5 @@
+import { Redirect } from 'react-router-dom';
+
 //Layouts
 // import LayoutNoUser from '../pages/NoUser'
 import LayoutDirector from '../pages/Director';
@@ -47,7 +49,7 @@ import StatisticHome from '../pages/Statistic/StatisticHome'
 const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     noUser: [
         {
-            path: ["/", "/login"],
+            path: "/login",
             component: Login,
             exact: true
         },
@@ -62,7 +64,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     ],
     admin: [
         {
-            path: ["/", "/home"],
+            path: "/home",
             component: LayoutAdmin,
             exact: false,
             routes: [
@@ -112,10 +114,14 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
     ],
     director: [
         {
-            path: ["/", "/home"],
+            path: '/home',
+            component: () => <Redirect to="/home"/>
+        },
+        {
+            path: "/home",
             component: LayoutDirector,
             exact: false,
-            routes:  [
+            routes: [
                 {
                     path: "/home",
                     component: DirectorHome,
@@ -166,8 +172,14 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
         }
     ],
     professor: [
+        // {
+        //     path: '/',
+        //     component: () => {
+        //         return <Redirect to={'/home'}/>
+        //     },
+        // },
         {
-            path: ["/", "home"],
+            path: "/home",
             component: LayoutProfessor,
             exact: false,
             routes: [
@@ -196,55 +208,9 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                     component: ProfessorInstitution,
                     exact: true
                 },
-                // {
-                //     path: "/home/colegios",
-                //     component: Colegios,
-                //     exact: true
-                // },
-                // {
-                //     path: "/home/colegios/:colegio",
-                //     component: Students_Games,
-                //     exact: true
-                // },
-                // {
-                //     path: "/home/colegios/:colegio/estudiantes",
-                //     component: Colegio,
-                //     exact: true
-                // },
-                // {
-                //     path: "/home/colegios/:colegio/juegos",
-                //     component: Colegio_Games,
-                //     exact: true
-                // },
-                // {
-                //     path: "/home/colegios/:colegio/juegos/:juego",
-                //     component: Colegio_Games,
-                //     exact: true
-                // },
-                // {
-                //     path:"/home/colegios/:colegio/estudiantes/:estudiante-:username",
-                //     component: GamesStudent,
-                //     exact: true
-                // },
-                // {
-                //     path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game",
-                //     component: Menu_Cards,
-                //     exact: true
-                // },
-                // // {
-                // //     path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game/sesiones",
-                // //     component: Estudiante,
-                // //     exact: true
-                // // },
-                // {
-                //     path:"/home/colegios/:colegio/estudiantes/:estudiante-:username/:game/nivel-:nivel",//Revisara acá
-                //     component: Estudiante,
-                //     exact: true
-                // },
                 {
                     component: Error404
                 }
-               
             ]
         },
         {
