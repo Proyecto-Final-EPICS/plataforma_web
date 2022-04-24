@@ -1,20 +1,16 @@
-import {useState} from 'react';
 import {Menu} from 'antd';
 
 import CheckGroup from '../../../General/Input/CheckGroup';
 import RadioGroup from '../../../General/Input/RadioGroup';
 import PeriodPicker from '../../../General/Input/PeriodPicker';
 
-const {SubMenu} = Menu;
-
 export default function MenuSider(props) {
-    const {parameters, defParams, updateParam} = props;
-
-    const getPeriodDefParams = (param) => {
+    const {SubMenu} = Menu;
+    const {paramOptions, defParams, updateParam} = props;
+    // console.log(defParams);
+    const getPeriodDefParams = param => {
         const def = {};
-        param.options.forEach(op => {
-            def[op.name] = defParams[op.name];
-        });
+        param.options.forEach(op => def[op.name] = defParams[op.name]);
         return def;
     }
     
@@ -23,7 +19,7 @@ export default function MenuSider(props) {
             className="menu"
             mode="inline"
         >
-            {parameters.map((param, i) => (
+            {paramOptions.map((param, i) => (
                 <SubMenu 
                     className="menu__sub"
                     title={param.title} 

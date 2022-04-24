@@ -2,7 +2,7 @@ import { Table, Button } from 'antd';
 
 export default function TableStudents(props) {
     const { students } = props;
-
+    
     const genFilters = (prop) => {
         const filters = [];
         students.forEach(student => {
