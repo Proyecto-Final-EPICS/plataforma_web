@@ -1,15 +1,20 @@
+import { useContext } from 'react';
+
 import TableStudents from '../TableStudents';
 import TableCourses from '../TableCourses';
 
+import StatisticHomeContext from '../StatisticHomeContext';
+
 export default function TableStatistics(props) {
-    const {query, data} = props;
-    const [courses, students] = data;
+    const { data } = props;
+    const { query } = useContext(StatisticHomeContext);
+    // const [courses, students] = data;
     
     return(
         <>
         {query.elem === 'cur' ?
-        <TableCourses query={query} courses={courses}/> :
-        <TableStudents query={query} students={students}/>
+        <TableCourses courses={data}/> :
+        <TableStudents students={data}/>
         }
         </>
     );

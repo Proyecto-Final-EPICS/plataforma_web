@@ -10,35 +10,38 @@ export default function statisticFilterElems(sessions, query, courseApi, student
     });
 
     // Filtrado de los juegos de las sesiones
-    sessions.forEach(s => {
-        s.games = s.games.filter(g => query.game.includes(g.code));
-    });
+    sessions.forEach(s => s.games = s.games.filter(g => query.game.includes(g.code)));
 
+    // Filtrado de cursos
     const courses = courseApi
-        .map(course => {
-            const {name, code, level} = course;
+        .filter(c => query.cur.includes(c.code))
+        .map(c => {
+            const {name, code, level} = c;
             return {name, code, level, sessions: []};
-        })
-        .filter(c => query.cur.includes(c.code));
-    
+        });
+
     let students = [];
     sessions.forEach(session => {
+        // Buscamos si este estudiante ya fue añadido
         let student = students.find(s => s.identityDoc === session.student.identityDoc);
-        if(!student) {
+        if(!student) { //Si no, lo añadimos
             student = {...session.student};
 
-            if(!courses.some(c => c.code === student.course)) return;
+            // Si el estudiante no pertenece a ningún curso, se descarta
+            if(!courses.some(c => c.code === student.course.code)) return;
 
             student.sessions = [];
             students.push(student);
         }
 
+        // Se añade más data
         const studentFull = studentApi.find(s => s.identityDoc === student.identityDoc);
         student.gender = studentFull.gender;
         student.birthDate = studentFull.birthDate;
-
+        
         const date = session.endTime;
-        const totTime = (new Date(session.endTime).getTime() - new Date(session.startTime).getTime()) / 3600 / 1000;
+        const totTime = (new Date(session.endTime).getTime() - new Date(session.startTime).getTime()) 
+            / 1000 / 3600;
         let accuracy = 0;
         let cont = 0;
         
@@ -48,12 +51,15 @@ export default function statisticFilterElems(sessions, query, courseApi, student
                 accuracy += level.accuracy;
             });
         });
-        accuracy = cont ? accuracy / cont : 0;
+        // accuracy = cont ? accuracy / cont : 0;
+        accuracy = cont && accuracy / cont;
 
+        // Se almacenan los datos de la sesión en cada array
         student.sessions.push({date, totTime, accuracy});
-        const course = courses.find(c => c.code === student.course);
+        const course = courses.find(c => c.code === student.course.code);
         if(course) course.sessions.push({date, totTime, accuracy});
     });
 
+    // Se tienen en cuenta sólo cursos con sesiones
     return [courses.filter(c => c.sessions.length), students];
 }

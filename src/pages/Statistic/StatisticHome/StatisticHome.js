@@ -9,6 +9,7 @@ import qs from 'query-string';
 import statisticFilterElems from '../../../libraries/Statistic/statisticFilterElems';
 
 // Mock Data
+import gameApi from '../../../mock_data/collections/game.json';
 import courseApi from '../../../mock_data/collections/course.json';
 import studentApi from '../../../mock_data/collections/student.json';
 import sessionGame from '../../../mock_data/collections/sessionGame.json'
@@ -18,7 +19,8 @@ import {
     UserOutlined,
     EyeOutlined, 
     RocketOutlined, 
-    CalendarOutlined, 
+    CalendarOutlined,
+    BookOutlined, 
 } from '@ant-design/icons';
 
 //Componentes
@@ -42,8 +44,8 @@ export default function StatisticHome(){
     // Nueva búsqueda por parámetros
     const [paramSearch, setParamSearch] = useState({});
     
-    // const [reloadData, setReloadData] = useState(true);
-    const [data, setData] = useState([[], []]);
+    // const [updateQuery, setUpdateQuery] = useState(false);
+    const [data, setData] = useState([]);
     const [siderCollapsed, setSiderCollapsed] = useState(false);
     const [isValidQuery, setIsValidQuery] = useState(false);
 
@@ -73,7 +75,16 @@ export default function StatisticHome(){
         }
     }
 
-    const applyChanges = () => {
+    const checkData = () => {
+        if(query.cur) {
+            const [courses, students] = statisticFilterElems(sessionGame, query, courseApi, studentApi);
+            // console.log(courses);
+            // console.log(students);
+            setData(query.elem === 'cur' ? courses : students);
+        }
+    }
+
+    const queryUrl = () => {
         return {
             pathname: '/statistics',
             search: qs.stringify({
@@ -83,32 +94,39 @@ export default function StatisticHome(){
         }
     }
 
+    const applyChanges = () => setQuery(getValidQuery(paramOptions, {...query, ...paramSearch}));
+
     useEffect(() => {
         const validQuery = getValidQuery(paramOptions, query);
         const queryString = `?${qs.stringify(validQuery)}`;
         
-        // if(window.location.search !== queryString) window.location.search = queryString;
-        if(window.location.search !== queryString) {
-            const newurl = window.location.href + queryString;
-            // https://stackoverflow.com/questions/10970078/modifying-a-query-string-without-reloading-the-page
-            window.history.pushState({path:newurl},'',newurl);
-        }
+        if(window.location.search !== queryString) window.location.search = queryString;
+        // if(window.location.search !== queryString) {
+        //     const newurl = window.location.href + queryString;
+        //     // Para evitar reload https://stackoverflow.com/questions/10970078/modifying-a-query-string-without-reloading-the-page
+        //     window.history.pushState({path:newurl},'',newurl);
+        // }
+        console.log('setting query:');
+        console.log(validQuery);
 
         setQuery(validQuery);
         setIsValidQuery(true);
     }, []);
 
+    useEffect(() => {
+        checkData();
+    }, [query])
+
     // useEffect(() => {
-    //     if(reloadData) {
-    //         if(!query.cur || !query.game) setData([[], []]);
-    //         else setData(statisticFilterElems(sessionGame, query, courseApi, studentApi));
-    //         setReloadData(false);
+    //     if(updateQuery) {
+    //         setQuery(getValidQuery(paramOptions, {...query, ...paramSearch}));
+    //         setUpdateQuery(false);
     //     }
-    // }, [reloadData]);
+    // }, [updateQuery]);
 
     return (
         <StatisticHomeContext.Provider value={{
-            
+            query
         }}>
         <Layout className="layout-home">
             <Sider
@@ -127,11 +145,10 @@ export default function StatisticHome(){
                 }
                 <div className="submit">
                     {!siderCollapsed?
-                        <Link to={applyChanges}>
-                        {/* <Link> */}
+                        <Link to={queryUrl}>
                             <Button 
                                 type="primary" 
-                                onClick={() => console.log(query)}
+                                onClick={applyChanges}
                             >
                                 Aplicar cambios
                             </Button>
@@ -147,15 +164,15 @@ export default function StatisticHome(){
                 }}
             >
                 <Content className="layout-home__layout__content">
-                    {/* <Tabs type="card">
+                    <Tabs type="card">
                         <Tabs.TabPane tab="Registros" key="0">
-                            <TableStatistics data={data} query={query}/>
+                            <TableStatistics data={data}/>
                         </Tabs.TabPane>
 
-                        <Tabs.TabPane tab="Gráficas" key="1">
+                        {/* <Tabs.TabPane tab="Gráficas" key="1">
                             <Stats data={data} query={query}/>
-                        </Tabs.TabPane>
-                    </Tabs>  */}
+                        </Tabs.TabPane> */}
+                    </Tabs> 
                 </Content>
             </Layout>
         </Layout>
@@ -209,6 +226,15 @@ function getValidQuery(paramOptions, query) {
 function getParameters() {
     return [
         {
+            name: 'cur',
+            type: 'check',
+            title: 'Cursos',
+            options: courseApi.map(({ code, name }) => (
+                { name: code, value: name }
+            )),
+            icon: BookOutlined,
+        },
+        {
             name: 'elem',
             type: 'radio',
             title: 'Elemento',
@@ -219,8 +245,9 @@ function getParameters() {
             name: 'game',
             type: 'check',
             title: 'Juegos',
-            options: [{name: 'secube', value: 'Secube'}, {name: 'verb-to-be', value: 'Verb To Be'},
-                {name: 'restaurant', value: 'Restaurant'}, {name: 'phrases', value: 'Phrases'}],
+            options: gameApi.map(({ code, name }) => (
+                { name: code, value: name }
+            )),
             icon: RocketOutlined,
         },
         {
@@ -246,27 +273,3 @@ function getParameters() {
         },
     ];
 }
-
-
-
-// function getParamSearchValues(paramOptions, newQuery) {
-//     const def = {};
-
-//     paramOptions.forEach(param => {
-//         switch(param.type) {
-//             case 'check':
-//                 def[param.name] = param.options.filter(op => newQuery[param.name].includes(op.name))
-//                     .map(op => op.value);
-//                 break;
-//             case 'radio':
-//                 def[param.name] = param.options.find(op => newQuery[param.name] === op.name).value;
-//                 break;
-//             case 'period':
-//                 param.options.forEach(op => {
-//                     def[op.name] = newQuery[op.name];
-//                 });
-//                 break;
-//         }
-//     });
-//     return def;
-// }

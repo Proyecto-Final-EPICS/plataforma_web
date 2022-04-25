@@ -3,18 +3,18 @@ import { Table, Button } from 'antd';
 export default function TableCourses(props) {
     const { courses } = props;
 
-    // const genFilters = (prop) => {
-    //     const filters = [];
-    //     courses.forEach(course => {
-    //         if(!filters.some(f => f.value === course[prop])) {
-    //             filters.push({
-    //                 text: course[prop],
-    //                 value: course[prop],
-    //             });
-    //         }
-    //     });
-    //     return filters;
-    // }
+    const genFilters = prop => {
+        const filters = [];
+        courses.forEach(course => {
+            if(!filters.some(f => f.value === course[prop])) {
+                filters.push({
+                    text: course[prop],
+                    value: course[prop],
+                });
+            }
+        });
+        return filters;
+    }
 
     const columns = [
         {
@@ -40,7 +40,8 @@ export default function TableCourses(props) {
             fixed: 'left',
             width: 40,
             // defaultSortOrder: 'descend',
-            sorter: (a, b) => a.age - b.age,
+            filters: genFilters('level'),
+            onFilter: (value, record) => record.level.indexOf(value) === 0, 
         },
         {
             title: 'Tiempo total (horas)',
@@ -73,34 +74,30 @@ export default function TableCourses(props) {
         },
     ];
 
-    const formatData = () => {
-        return courses.map((course, index) => {
-            const {name, code, level, sessions} = course;
-            let totTime = 0, accuracy = 0, highestLevel = NaN;
+    const data = courses.map((course, index) => {
+        const {name, code, level, sessions} = course;
+        let totTime = 0, accuracy = 0, highestLevel = NaN;
 
-            sessions.forEach(s => {
-                totTime += s.totTime;
-                accuracy += s.accuracy;
-                if(isNaN(highestLevel) || s.highestLevel >= highestLevel) highestLevel = s.highestLevel;
-            });
-
-            const row = {
-                name, code, level,
-                accuracy: accuracy / sessions.length,
-                totTime: totTime / 36000,
-                avTime: totTime / sessions.length / 36000,
-                key: index,
-            }
-
-            return row;
+        sessions.forEach(s => {
+            totTime += s.totTime;
+            accuracy += s.accuracy;
+            if(isNaN(highestLevel) || s.highestLevel >= highestLevel) highestLevel = s.highestLevel;
         });
 
-    }
+        const row = {
+            name, code, level,
+            accuracy: accuracy / sessions.length,
+            totTime: totTime / 36000,
+            avTime: totTime / sessions.length / 36000,
+            key: index,
+        }
+        return row;
+    });
 
     return (
         <Table
             columns={columns} 
-            dataSource={formatData()} 
+            dataSource={data} 
             scroll={{ x: 1500, y: 300 }}
         />
     );

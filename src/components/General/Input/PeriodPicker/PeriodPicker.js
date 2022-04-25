@@ -14,10 +14,9 @@ export default function PeriodPicker(props) {
     }
 
     const onDatePicked = (date, dateString) => {
-        console.log(date);
         update('period', {
-            from: date && date[0]._d.toLocaleDateString().replaceAll('/', '-'),
-            to: date && date[1]._d.toLocaleDateString().replaceAll('/', '-'),
+            from: date ? date[0]._d.toLocaleDateString().replaceAll('/', '-') : undefined,
+            to: date ? date && date[1]._d.toLocaleDateString().replaceAll('/', '-') : undefined,
         });
     }
 
