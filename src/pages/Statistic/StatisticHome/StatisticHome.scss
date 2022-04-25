@@ -1,6 +1,6 @@
 @import '../../../scss/index.scss'; 
 
-.layout-home {
+.statistic-home {
 
     &__sider {
         position: absolute;
@@ -41,30 +41,21 @@
         }
     }
 
-    &__layout {
+    &__content {
+        padding: 20px 40px;
         
-        padding: 10px;
-
-        &__content {
-
-            .stats {
-
-                &__chart {
-
-                    &__btn {
-                        right: 40px;
-                        bottom: 34px;
-                        position: absolute;
-                        z-index: 10;
-                        // transition: visibility 0s linear 0s, opacity 300ms;
-                    }
+        .stats {
+            &__chart {
+                &__btn {
+                    right: 40px;
+                    bottom: 34px;
+                    position: absolute;
+                    z-index: 10;
+                    // transition: visibility 0s linear 0s, opacity 300ms;
                 }
             }
         }
     }
-
-
-
 }
 
 .ant-layout-sider-trigger {

@@ -128,9 +128,9 @@ export default function StatisticHome(){
         <StatisticHomeContext.Provider value={{
             query
         }}>
-        <Layout className="layout-home">
+        <Layout className="statistic-home">
             <Sider
-                className="layout-home__sider"
+                className="statistic-home__sider"
                 collapsible
                 collapsed={siderCollapsed}
                 onCollapse={() => setSiderCollapsed(!siderCollapsed)}
@@ -157,21 +157,21 @@ export default function StatisticHome(){
                     }
                 </div>
             </Sider>
-            <Layout 
-                className="layout-home__layout"
-                style={{
-                    "marginLeft": siderCollapsed? "80px" : "240px"
-                }}
-            >
-                <Content className="layout-home__layout__content">
+            <Layout>
+                <Content
+                    className="statistic-home__content"
+                    style={{
+                        "marginLeft": siderCollapsed? "80px" : "240px"
+                    }}
+                >
                     <Tabs type="card">
                         <Tabs.TabPane tab="Registros" key="0">
                             <TableStatistics data={data}/>
                         </Tabs.TabPane>
 
-                        {/* <Tabs.TabPane tab="Gráficas" key="1">
-                            <Stats data={data} query={query}/>
-                        </Tabs.TabPane> */}
+                        <Tabs.TabPane tab="Gráficas" key="1">
+                            <Stats data={data}/>
+                        </Tabs.TabPane>
                     </Tabs> 
                 </Content>
             </Layout>

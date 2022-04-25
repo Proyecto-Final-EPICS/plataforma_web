@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState } from 'react';
 
 import LineChart from '../Charts/LineChart';
 import BarChart from '../Charts/BarChart';
@@ -19,32 +19,9 @@ import {
 } from '@ant-design/icons';
 
 export default function Stats(props) {
-    const variables = [
-        {
-            name: 'accuracy',
-            title: 'Precisión',
-            min: 0,
-            max: 1,
-        },
-        {
-            name: 'totTime',
-            title: 'Tiempo Empleado (horas)',
-            min: 0,
-            max: NaN,
-        },
-    ];
-    // const variables = {
-    //     accuracy: {
-    //         title: 'Precisión',
-    //         y: {min: 0, max: 1},
-    //     },
-    //     totTime: {
-    //         title: 'Precisión',
-    //         y: {min: 0, max: 1},
-    //     }
-    // }
+    const variables = getVariables();
 
-    const {data, query} = props;
+    const { data } = props;
     const [chartType, setChartType] = useState('line');
     const [variable, setVariable] = useState(variables[0]);
     const [modalContent, setModalContent] = useState(null);
@@ -68,7 +45,7 @@ export default function Stats(props) {
         setIsModalVisible(true);
     }
     
-    return(
+    return (
         <>
         <Modal
             isVisible={isModalVisible}
@@ -121,18 +98,16 @@ export default function Stats(props) {
             </Col>
             <Col span={16} >
             <div className="stats__chart"
-                onMouseOver={() => !btnOptionsVisible && setBtnOptionsVisible(true)}
-                onMouseLeave={() => btnOptionsVisible && setBtnOptionsVisible(false)}
+                // onMouseOver={() => !btnOptionsVisible && setBtnOptionsVisible(true)}
+                // onMouseLeave={() => btnOptionsVisible && setBtnOptionsVisible(false)}
             >
                 {chartType === 'line'?
                 <LineChart
-                    query={query}
                     data={data}
                     variable={variable}
                 />
                 :chartType === 'bar'?
                 <BarChart
-                    query={query}
                     data={data}
                     variable={variable}
                 />
@@ -151,4 +126,31 @@ export default function Stats(props) {
         </Row>
         </>
     );
+}
+
+function getVariables() {
+    return [
+        {
+            name: 'accuracy',
+            title: 'Precisión',
+            min: 0,
+            max: 1,
+        },
+        {
+            name: 'totTime',
+            title: 'Tiempo Empleado (horas)',
+            min: 0,
+            max: NaN,
+        },
+    ];
+    // return {
+    //     accuracy: {
+    //         title: 'Precisión',
+    //         y: {min: 0, max: 1},
+    //     },
+    //     totTime: {
+    //         title: 'Precisión',
+    //         y: {min: 0, max: 1},
+    //     }
+    // }
 }
