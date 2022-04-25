@@ -1,6 +1,7 @@
 //Liberias
-import {useState, useEffect} from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import {Layout, Tabs, Button} from 'antd';
 import qs from 'query-string';
 
@@ -34,37 +35,33 @@ import './StatisticHome.scss';
 export default function StatisticHome(){
     const { Sider, Content } = Layout;
     const paramOptions = getParameters(); //Lista de parámetros válidos
-    const query = qs.parse(useLocation().search);
-    // const query = qs.parse(window.location.search);
-
-    const [reloadData, setReloadData] = useState(true);
-    const [siderCollapsed, setSiderCollapsed] = useState(false);
-    const [data, setData] = useState([[], []]);
-
-    const xd = getParamSearch();
-    // Búsqueda por parámetros (names) e.g. {elem: "est"})
-    const [paramSearch, setParamSearch] = useState(xd[0]);
     
-    // Búsqueda por parámetros (values) e.g. {elem: "Estudiantes"})
-    // const paramSearchValues = getParamSearchValues(paramOptions, paramSearch);
-    const paramSearchValues = xd[1];
+    // Query actual a validar
+    const [query, setQuery] = useState(qs.parse(window.location.search));
+    
+    // Nueva búsqueda por parámetros
+    const [paramSearch, setParamSearch] = useState({});
+    
+    // const [reloadData, setReloadData] = useState(true);
+    const [data, setData] = useState([[], []]);
+    const [siderCollapsed, setSiderCollapsed] = useState(false);
+    const [isValidQuery, setIsValidQuery] = useState(false);
 
     const updateParam = (name, config) => {
-        
         const param = paramOptions.find(param => param.name === name);
         switch(param.type) {
-            case 'radio':
-                const op = param.options.find(op => op.value === config);
-                setParamSearch({
-                    ...paramSearch, 
-                    [param.name]: op.name,
-                });
-                break;
             case 'check':
                 const ops = param.options.filter(op => config.includes(op.value));
                 setParamSearch({
                     ...paramSearch, 
                     [param.name]: ops.map(op => op.name),
+                });
+                break;
+            case 'radio':
+                const op = param.options.find(op => op.value === config);
+                setParamSearch({
+                    ...paramSearch, 
+                    [param.name]: op.name,
                 });
                 break;
             case 'period':
@@ -86,89 +83,28 @@ export default function StatisticHome(){
         }
     }
 
-    function getParamSearch() {
-        const paramSearch = {},
-            paramSearchValues = {};
-        
-        paramOptions.forEach(param => {
-            switch(param.type) {
-                case 'check':
-                    paramSearchValues[param.name] = [];
-
-                    if(query[param.name]) { //Confirmamos que exista una búsqueda en este parámetro
-                        //"search" => ["search"]
-                        if(typeof query[param.name] === 'string') query[param.name] = [query[param.name]];
-
-                        // Asignamos aquellos que se encuentren en la lista de válidos
-                        paramSearch[param.name] = query[param.name].
-                            filter(q => param.options.some(o => {
-                                if(o.name == q) paramSearchValues[param.name].push(o.value);
-                                return o.name == q;
-                            }));
-                        
-                        if(!paramSearch[param.name].length) {
-                            paramSearch[param.name] = [param.options[0].name];
-                            paramSearchValues[param.name] = [param.options[0].value];
-                        }
-                    }else {//Primera opción por defecto
-                        paramSearch[param.name] = [param.options[0].name];
-                        paramSearchValues[param.name] = [param.options[0].value];
-                    }
-                    break;
-                    
-                case 'radio':
-                    //Confirmamos que exista una búsqueda en este parámetro y que sea sólo una
-                    if(query[param.name] && typeof query[param.name] === 'string') {
-                        // Asignamos aquellos que se encuentren en la lista de válidos
-                        const option = param.options.find(o => o.name == query[param.name]);
-                        if(option) {
-                            paramSearch[param.name] = option.name;
-                            paramSearchValues[param.name] = option.value;
-                        }else {
-                            paramSearch[param.name] = param.options[0].name;
-                            paramSearchValues[param.name] = param.options[0].value;
-                        }
-                    }else {//Primera opción por defecto
-                        paramSearch[param.name] = param.options[0].name;
-                        paramSearchValues[param.name] = param.options[0].value;
-                    }
-                    break;
-
-                case 'period':
-                    param.options.forEach(op => {
-                        try {
-                            new Date(query[op.name]);
-                            paramSearchValues[op.name] = paramSearch[op.name] = query[op.name];
-                        }
-                        catch {
-                            paramSearchValues[op.name] = paramSearch[op.name] = op.value;
-                        }
-                    });
-            }
-        })
-
-        return [paramSearch, paramSearchValues];
-    }
-
     useEffect(() => {
+        const validQuery = getValidQuery(paramOptions, query);
+        const queryString = `?${qs.stringify(validQuery)}`;
         
+        // if(window.location.search !== queryString) window.location.search = queryString;
+        if(window.location.search !== queryString) {
+            const newurl = window.location.href + queryString;
+            // https://stackoverflow.com/questions/10970078/modifying-a-query-string-without-reloading-the-page
+            window.history.pushState({path:newurl},'',newurl);
+        }
+
+        setQuery(validQuery);
+        setIsValidQuery(true);
     }, []);
 
-    useEffect(() => {
-        const fullQuery = qs.stringify({
-            ...query,
-            ...paramSearch,
-        })
-        if(qs.stringify(query) !== fullQuery) window.location.search = fullQuery;
-    }, []);
-
-    useEffect(() => {
-        // if(reloadData) {
-        //     if(!query.cur || !query.game) setData([[], []]);
-        //     else setData(statisticFilterElems(sessionGame, query, courseApi, studentApi));
-        //     setReloadData(false);
-        // }
-    }, [reloadData]);
+    // useEffect(() => {
+    //     if(reloadData) {
+    //         if(!query.cur || !query.game) setData([[], []]);
+    //         else setData(statisticFilterElems(sessionGame, query, courseApi, studentApi));
+    //         setReloadData(false);
+    //     }
+    // }, [reloadData]);
 
     return (
         <StatisticHomeContext.Provider value={{
@@ -182,17 +118,20 @@ export default function StatisticHome(){
                 onCollapse={() => setSiderCollapsed(!siderCollapsed)}
                 width={240}
             >
+                {isValidQuery?
                 <MenuSider
                     paramOptions={paramOptions} 
-                    defParams={paramSearchValues}
+                    query={query}
                     updateParam={updateParam} 
-                />
+                />:null
+                }
                 <div className="submit">
                     {!siderCollapsed?
                         <Link to={applyChanges}>
+                        {/* <Link> */}
                             <Button 
                                 type="primary" 
-                                onClick={() => setReloadData(true)}
+                                onClick={() => console.log(query)}
                             >
                                 Aplicar cambios
                             </Button>
@@ -208,7 +147,7 @@ export default function StatisticHome(){
                 }}
             >
                 <Content className="layout-home__layout__content">
-                    <Tabs type="card">
+                    {/* <Tabs type="card">
                         <Tabs.TabPane tab="Registros" key="0">
                             <TableStatistics data={data} query={query}/>
                         </Tabs.TabPane>
@@ -216,12 +155,55 @@ export default function StatisticHome(){
                         <Tabs.TabPane tab="Gráficas" key="1">
                             <Stats data={data} query={query}/>
                         </Tabs.TabPane>
-                    </Tabs> 
+                    </Tabs>  */}
                 </Content>
             </Layout>
         </Layout>
         </StatisticHomeContext.Provider>
     );
+}
+
+function getValidQuery(paramOptions, query) {
+    const newQuery = {};
+    
+    paramOptions.forEach(param => {
+        switch(param.type) {
+            case 'check':
+                if(query[param.name]) { //Confirmamos que exista una búsqueda en este parámetro
+                    //"search" => ["search"]
+                    if(typeof query[param.name] === 'string') query[param.name] = [query[param.name]];
+
+                    // Asignamos aquellos que se encuentren en la lista de válidos
+                    newQuery[param.name] = query[param.name].
+                        filter(q => param.options.some(o => o.name === q));
+                    
+                    if(!newQuery[param.name].length) newQuery[param.name] = [param.options[0].name];
+
+                }else newQuery[param.name] = [param.options[0].name]; //Primera opción por defecto
+                break;
+                
+            case 'radio':
+                //Confirmamos que exista una búsqueda en este parámetro y que sea sólo una
+                if(query[param.name] && typeof query[param.name] === 'string') {
+                    // Asignamos aquellos que se encuentren en la lista de válidos
+                    const option = param.options.find(o => o.name == query[param.name]);
+                    
+                    if(option) newQuery[param.name] = option.name;
+                    else newQuery[param.name] = param.options[0].name;
+
+                }else newQuery[param.name] = param.options[0].name;//Primera opción por defecto
+                break;
+
+            case 'period':
+                param.options.forEach(op => {
+                    if(isNaN(Date.parse(query[op.name]))) newQuery[op.name] = op.value;
+                    else newQuery[op.name] = query[op.name];
+                });
+                break;
+        }
+    })
+
+    return newQuery;
 }
 
 function getParameters() {
@@ -265,24 +247,26 @@ function getParameters() {
     ];
 }
 
-function getParamSearchValues(paramOptions, paramSearch) {
-    const def = {};
 
-    paramOptions.forEach(param => {
-        switch(param.type) {
-            case 'check':
-                def[param.name] = param.options.filter(op => paramSearch[param.name].includes(op.name))
-                    .map(op => op.value);
-                break;
-            case 'radio':
-                def[param.name] = param.options.find(op => paramSearch[param.name] === op.name).value;
-                break;
-            case 'period':
-                param.options.forEach(op => {
-                    def[op.name] = paramSearch[op.name];
-                });
-                break;
-        }
-    });
-    return def;
-}
+
+// function getParamSearchValues(paramOptions, newQuery) {
+//     const def = {};
+
+//     paramOptions.forEach(param => {
+//         switch(param.type) {
+//             case 'check':
+//                 def[param.name] = param.options.filter(op => newQuery[param.name].includes(op.name))
+//                     .map(op => op.value);
+//                 break;
+//             case 'radio':
+//                 def[param.name] = param.options.find(op => newQuery[param.name] === op.name).value;
+//                 break;
+//             case 'period':
+//                 param.options.forEach(op => {
+//                     def[op.name] = newQuery[op.name];
+//                 });
+//                 break;
+//         }
+//     });
+//     return def;
+// }

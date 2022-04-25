@@ -6,14 +6,29 @@ import PeriodPicker from '../../../General/Input/PeriodPicker';
 
 export default function MenuSider(props) {
     const {SubMenu} = Menu;
-    const {paramOptions, defParams, updateParam} = props;
-    // console.log(defParams);
+    const {paramOptions, query, updateParam} = props;
+
     const getPeriodDefParams = param => {
         const def = {};
-        param.options.forEach(op => def[op.name] = defParams[op.name]);
+        param.options.forEach(op => def[op.name] = query[op.name]);
         return def;
     }
-    
+
+    const getSelOptions = param => {
+        switch(param.type) {
+            case 'check':
+                return query[param.name].map(q => {
+                    const option = param.options.find(o => o.name === q);
+                    return option && option.value;
+                });
+                break;
+            case 'radio':
+                const sel = param.options.find(o => o.name === query[param.name]);
+                return sel && sel.value;
+        }
+        return null;
+    }
+
 	return (
         <Menu 
             className="menu"
@@ -31,7 +46,7 @@ export default function MenuSider(props) {
                         <CheckGroup 
                             name={param.name}
                             options={param.options.map(op => op.value)}
-                            checked={defParams[param.name]}
+                            checked={getSelOptions(param)}
                             update={updateParam}
                         />
                         </div>
@@ -40,7 +55,7 @@ export default function MenuSider(props) {
                         <RadioGroup 
                             name={param.name}
                             options={param.options.map(op => op.value)}
-                            sel={defParams[param.name]}
+                            sel={getSelOptions(param)}
                             update={updateParam}
                         />
                         </div>
@@ -58,5 +73,5 @@ export default function MenuSider(props) {
                 </SubMenu>
             ))}
         </Menu>
-	);
+    );
 }
