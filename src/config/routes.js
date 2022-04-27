@@ -61,7 +61,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             exact: true
         },
         {
-            path: "/home",
+            path: "/",
             component: LayoutAdmin,
             exact: false,
             routes: [

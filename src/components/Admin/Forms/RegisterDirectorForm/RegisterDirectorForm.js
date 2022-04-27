@@ -15,14 +15,22 @@ import './RegisterDirectorForm.scss';
 
 export default function RegisterDirectorForm(props) {
     const { Option } = Select;
-    const { directors, setDirectors, modalVisible, setModalVisible, edit, initialValues } = props;
+    const { directors, setDirectors, setModalVisible, resetForm, setResetForm, edit } = props;
+    const [initialValues, setInitialValues] = useState({});
     const [phoneCountryCode, setPhoneCountryCode] = useState('57');
     const [gender, setGender] = useState(null);
     const [customGender, setCustomGender] = useState(null);
-    const [loadInitialValues, setLoadInitialValues] = useState(true);
     const [form] = Form.useForm();
-    
+
     const onChangePhoneAddonBefore = val => setPhoneCountryCode(val);
+    const phoneAddonBefore = (
+        <Form.Item name="phoneCountryCode" noStyle>
+            <Select value={phoneCountryCode} onChange={onChangePhoneAddonBefore}>
+                <Option value="57">+57</Option>
+                <Option value="58">+58</Option>
+            </Select>
+        </Form.Item>
+    );
 
     // const signup = values => {
     //     return addProfessor(values).then(response => {
@@ -49,13 +57,11 @@ export default function RegisterDirectorForm(props) {
     // }
 
     const onFinish = values => {
+        console.log(values);
         setModalVisible(false);
         
-        console.log(values);
-        // console.log(JSON.stringify(values));
         const {username, password, firstname, lastname, gender, identityDoc, birthDate, email, 
             phone: number, phoneCountryCode: countryCode} = values;
-
         values = {
             username, password, firstname, lastname, gender, identityDoc, birthDate, email,
             phone: {number, countryCode}
@@ -79,20 +85,17 @@ export default function RegisterDirectorForm(props) {
         console.log(err)
     };
 
-    const phoneAddonBefore = (
-        <Form.Item name="phoneCountryCode" noStyle>
-            <Select value={phoneCountryCode} onChange={onChangePhoneAddonBefore}>
-                <Option value="57">+57</Option>
-                <Option value="58">+58</Option>
-            </Select>
-        </Form.Item>
-    );
+    const resetFields = () => {
+        form.resetFields();
+        // setCustomGender(null);
+        // setGender(null);
+        // setPhoneCountryCode('57');
+    }
 
     const getInitialValues = () => {
         if(!edit) return {phoneCountryCode};
-
         const { birthDate, gender, email, firstname, lastname, identityDoc, username, 
-            phone: { number, countryCode } } = initialValues;
+            phone: { number, countryCode } } = props.initialValues;
         
         return {
             email, firstname, lastname, identityDoc, username, gender, 
@@ -100,12 +103,6 @@ export default function RegisterDirectorForm(props) {
             phoneCountryCode: countryCode || phoneCountryCode,
             birthDate: moment(birthDate),
         };
-    }
-
-    const resetFields = () => {
-        form.resetFields();
-        setCustomGender(null);
-        setGender(null);
     }
 
     // (() => {
@@ -120,43 +117,35 @@ export default function RegisterDirectorForm(props) {
     //     }
     // })();
     
-    useEffect(() => {
-        console.log('modalVisible: ', modalVisible);
-        
-        if(modalVisible) {
-            console.log('cancel...');
-            resetFields();
-            setModalVisible(false);
-        }
-    }, [modalVisible]);
-
     // useEffect(() => {
-    //     console.log('eff', modalVisible, edit);
-    //     if(modalVisible && edit) {
-    //         console.log('eff2');
-    //         const initialValues = getInitialValues();
-    //         const { gender } = initialValues;
-    //         setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
-    //         setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
-            
-    //         form.setFieldsValue(initialValues);
+    //     console.log('modalVisible: ', modalVisible);
+        
+    //     if(modalVisible) {
+    //         console.log('cancel...');
+    //         resetFields();
+    //         setModalVisible(false);
     //     }
     // }, [modalVisible]);
 
     // useEffect(() => {
-    //     console.log(modalVisible);
-    // }, [modalVisible])
+    //     console.log('resetForm: ', resetForm);
+    //     if(resetForm) {
+    //         resetFields();
+    //         setResetForm(false);
+    //     }
+    // }, [resetForm]);
 
     useEffect(() => {
-        if(edit) {
-            const initialValues = getInitialValues();
-            const { gender } = initialValues;
-            setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
-            setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
-            
-            form.setFieldsValue(initialValues);
-        }
-    });
+        console.log('useEffect');
+        resetFields();
+        const initialValues = getInitialValues();
+
+        const { gender } = initialValues;
+        setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
+        setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
+        
+        setInitialValues(initialValues);
+    }, []);
 
     return (
         <Form
@@ -164,7 +153,7 @@ export default function RegisterDirectorForm(props) {
             form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            // initialValues={initialValues}
+            initialValues={initialValues}
             layout="vertical"
         >
             <Form.Item

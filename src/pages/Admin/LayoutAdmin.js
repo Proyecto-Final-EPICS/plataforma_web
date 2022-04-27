@@ -44,15 +44,25 @@ export default function LayoutAdmin(props) {
         return matchSchool && matchSchool.params.school;
     }
 
+    const updateMenuItems = () => setMenuItems(getMenuItems(school));
+    const updateMenuSelectedKey = () => setMenuSelectedKey(window.location.pathname);
+
     (() => {
         const s2 = getSchool();
         if(school !== s2) setSchool(s2);
+        if(menuSelectedKey !== window.location.pathname) updateMenuSelectedKey();
     })();
-    
-    const updateMenuItems = () => setMenuItems(getMenuItems(school));
 
     useEffect(updateMenuItems, [school])
-    useEffect(updateMenuItems, []);
+    useEffect(() => {
+        if(!modalVisible) {
+            setModalContent(null);
+        }
+    }, [modalVisible]);
+
+    // useEffect(() => {
+    //     console.log('useEffect')
+    // }, [])
     // useEffect(() => {
     //     const s2 = getSchool();
     //     if(school !== s2) setSchool(s2);

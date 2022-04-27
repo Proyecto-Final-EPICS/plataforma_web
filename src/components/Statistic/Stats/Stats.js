@@ -98,8 +98,8 @@ export default function Stats(props) {
             </Col>
             <Col span={16} >
             <div className="stats__chart"
-                // onMouseOver={() => !btnOptionsVisible && setBtnOptionsVisible(true)}
-                // onMouseLeave={() => btnOptionsVisible && setBtnOptionsVisible(false)}
+                onMouseOver={() => !btnOptionsVisible && setBtnOptionsVisible(true)}
+                onMouseLeave={() => btnOptionsVisible && setBtnOptionsVisible(false)}
             >
                 {chartType === 'line'?
                 <LineChart

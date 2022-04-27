@@ -40,13 +40,6 @@ function MenuSider(props) {
                     </Link>
                 </Menu.Item>
             ))}
-            {/* <div
-                className="admin-sider-menu__logout"
-                key="logout"
-            >
-                <span></span>
-                <span className='nav-text'><LogoutOutlined/> Logout</span>
-            </div> */}
             <Menu.Item
                 className="admin-sider-menu__logout"
                 key={"logout"}

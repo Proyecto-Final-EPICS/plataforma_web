@@ -10,6 +10,7 @@ import './AdminDirectors.scss';
 
 export default function AdminDirectors(props) {
     const [directors, setDirectors] = useState([]);
+    const [resetForm, setResetForm] = useState(false);
     // const {resetForm, setResetForm} = useState(false);
     const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow, 
         modalVisible, setModalVisible, setModalContent, setModalTitle } 
@@ -21,8 +22,9 @@ export default function AdminDirectors(props) {
                 <RegisterDirectorForm
                     directors={directors} 
                     setDirectors={setDirectors} 
-                    modalVisible={modalVisible}
                     setModalVisible={setModalVisible}
+                    resetForm={resetForm}
+                    setResetForm={setResetForm}
                 />
             )
             setModalTitle('Registrar Director');
@@ -40,8 +42,9 @@ export default function AdminDirectors(props) {
                 <RegisterDirectorForm
                     directors={directors} 
                     setDirectors={setDirectors} 
-                    modalVisible={modalVisible}
                     setModalVisible={setModalVisible}
+                    resetForm={resetForm}
+                    setResetForm={setResetForm}
                     edit
                     initialValues={dir}
                 />
@@ -65,9 +68,11 @@ export default function AdminDirectors(props) {
         }
     }, [deleteRow]);
 
-    // useEffect(() => {
-    //     console.log('modalVisible: ', modalVisible);
-    // }, [modalVisible])
+    useEffect(() => {
+        console.log('modalVisible: ', modalVisible);
+        if(!modalVisible) {
+            setResetForm(true);}
+    }, [modalVisible])
 
     useEffect(() => (
         setDirectors(userApi.filter(u => u.school.code === school && u.role === 'director'))
