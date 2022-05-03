@@ -39,12 +39,11 @@ export default function TableStudents(props) {
         },
     ]
 
-    const data = students.map(({ firstname, lastname, identityDoc: id, course: { code }, gender, birthDate }, 
+    const data = students.map(({ firstname, lastname, identityDoc: id, course, gender, birthDate }, 
         key) => (
         {
-            key, firstname, lastname, id, gender,
+            key, firstname, lastname, id, gender, course,
             age: getAgeFromBirthDate(birthDate),
-            course: code,
         }
     ));
 

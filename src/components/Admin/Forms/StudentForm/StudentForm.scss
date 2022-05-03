@@ -1,0 +1,64 @@
+@import '../../../../scss/index.scss';
+
+.student-form {
+    
+    &__steps {
+        margin: 15px 0 30px 0;
+        
+        .ant-steps-item-icon {
+            border-color: $background-purple !important;
+            background: $background-purple !important;
+        }
+
+        .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+            color: white !important;
+        }
+
+        .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+            background-color: $background-purple;
+        }
+    }
+
+    &__name, &__repName {
+        margin-bottom: 0;
+    }
+
+    #docType-select {
+        width: 180px;
+    }
+
+    #custom-gender-input{
+        width: 200px;
+    }
+
+    &__options {
+        display: flex;
+        justify-content: space-between;
+        
+        button {
+            border: none;
+            background-color: #999;
+            color: white;
+
+            &:hover, &:focus {
+                background-color: #999;
+                color: white;
+            }
+
+            &:hover {
+                filter: brightness(110%);
+            }
+        }
+
+        &__end {
+            display: flex;
+            gap: 10px;
+    
+            button, button:hover, button:focus {
+                background-color: $background-purple;
+            }
+            
+        }
+    }
+
+}

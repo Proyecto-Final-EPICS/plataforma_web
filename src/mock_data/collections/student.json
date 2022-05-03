@@ -3,80 +3,96 @@
         "_id": {
             "$oid": "61a079f67fd94be08ac6bea6"
         },
+        "username": "student1",
+        "password": "pass",
         "firstname": "Francisco",
         "lastname": "Trincao",
         "identityDoc": "002",
         "birthDate": "2022-03-13T04:21:03.767Z",
         "gender": "Masculino",
         "email": "ftrincao@vip-epics.com",
-        "course": {
-            "code": "C02",
-            "name": "Curso 02",
-            "level": "C2"
-        },
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
+        "course": "C02",
+        "school": "C01",
+        "representative": {
+            "firstname": "Rep",
+            "lastname": "Lastname",
+            "identityDoc": "123",
+            "phone": {
+                "countryCode": "57",
+                "number": "123"
+            }
         }
     },
     {
         "_id": {
             "$oid": "61a079f67fd94be08ac6bea7"
         },
+        "username": "student2",
+        "password": "pass",
         "firstname": "Miralem",
         "lastname": "Pjanic",
         "identityDoc": "001",
         "birthDate": "2022-03-13T04:21:03.767Z",
         "gender": "Masculino",
         "email": "mpjanic@vip-epics.com",
-        "course": {
-            "code": "C01",
-            "name": "Curso 01",
-            "level": "B1"
-        },
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
+        "course": "C01",
+        "school": "C01",
+        "representative": {
+            "firstname": "Rep",
+            "lastname": "Lastname",
+            "identityDoc": "123",
+            "phone": {
+                "countryCode": "57",
+                "number": "123"
+            }
         }
     },
     {
         "_id": {
             "$oid": "61a079f67fd94be08ac6bea4"
         },
+        "username": "student3",
+        "password": "pass",
         "firstname": "Johana",
         "lastname": "White",
         "identityDoc": "003",
         "birthDate": "2022-03-13T04:21:03.767Z",
         "gender": "Femenino",
         "email": "jwhite@vip-epics.com",
-        "course": {
-            "code": "C02",
-            "name": "Curso 02",
-            "level": "C2"
-        },
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
+        "course": "C02",
+        "school": "C01",
+        "representative": {
+            "firstname": "Rep",
+            "lastname": "Lastname",
+            "identityDoc": "123",
+            "phone": {
+                "countryCode": "57",
+                "number": "123"
+            }
         }
     },
     {
         "_id": {
             "$oid": "61a079f67fd94be08ac6bea5"
         },
+        "username": "student4",
+        "password": "pass",
         "firstname": "Diana",
         "lastname": "Ramírez",
         "identityDoc": "004",
         "birthDate": "2022-03-13T04:21:03.767Z",
         "gender": "Femenino",
         "email": "jwhite@vip-epics.com",
-        "course": {
-            "code": "C03",
-            "name": "Curso 02",
-            "level": "A2"
-        },
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
+        "course": "C03",
+        "school": "C01",
+        "representative": {
+            "firstname": "Rep",
+            "lastname": "Lastname",
+            "identityDoc": "123",
+            "phone": {
+                "countryCode": "57",
+                "number": "123"
+            }
         }
     }
 ]

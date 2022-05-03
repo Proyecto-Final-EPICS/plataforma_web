@@ -44,26 +44,26 @@ function MenuSider(props){
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/profile" className="professor-sider__item" icon={<UserOutlined/>}>
-                    <Link to={"/home/profile"}>
+                <Menu.Item key="/profile" className="professor-sider__item" icon={<UserOutlined/>}>
+                    <Link to={"/profile"}>
                     <span className="nav-text">{parseName()}</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/calendar" className="professor-sider__item" icon={<CalendarOutlined/>}>
-                    <Link to={"/home/calendar"}>
+                <Menu.Item key="/calendar" className="professor-sider__item" icon={<CalendarOutlined/>}>
+                    <Link to={"/calendar"}>
                     <span className="nav-text">Calendario</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/grades" className="professor-sider__item" icon={<FileSearchOutlined />}>
-                    <Link to={"/home/grades"}>
+                <Menu.Item key="/grades" className="professor-sider__item" icon={<FileSearchOutlined />}>
+                    <Link to={"/grades"}>
                     <span className="nav-text">Calificaciones</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/institution" className="professor-sider__item" icon={<BankOutlined/>}>
-                    <Link to={"/home/institution"}>
+                <Menu.Item key="/institution" className="professor-sider__item" icon={<BankOutlined/>}>
+                    <Link to={"/institution"}>
                     <span className="nav-text">Institución</span>
                     </Link>
                 </Menu.Item>

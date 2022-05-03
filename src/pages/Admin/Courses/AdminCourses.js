@@ -39,7 +39,7 @@ export default function AdminCourses(props) {
     }, [deleteRow]);
 
     useEffect(() => (
-        setCourses(courseApi.filter(c => c.school.code === school))
+        setCourses(courseApi.filter(c => c.school === school))
     ), []);
 
     return (

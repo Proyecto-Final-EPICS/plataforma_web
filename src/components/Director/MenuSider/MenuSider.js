@@ -25,20 +25,20 @@ function MenuSider(props) {
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/courses" className="director-sider__item" icon={<BookOutlined/>}>
-                    <Link to={"/home/courses"}>
+                <Menu.Item key="/courses" className="director-sider__item" icon={<BookOutlined/>}>
+                    <Link to={"/courses"}>
                     <span className="nav-text">Cursos</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/professors" className="director-sider__item" icon={<TeamOutlined/>}>
-                    <Link to={"/home/professors"}>
+                <Menu.Item key="/professors" className="director-sider__item" icon={<TeamOutlined/>}>
+                    <Link to={"/professors"}>
                     <span className="nav-text">Profesores</span>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="/home/apps" className="director-sider__item" icon={<RocketOutlined />}>
-                    <Link to={"/home/apps"}>
+                <Menu.Item key="/apps" className="director-sider__item" icon={<RocketOutlined />}>
+                    <Link to={"/apps"}>
                     <span className="nav-text">Aplicaciones</span>
                     </Link>
                 </Menu.Item>

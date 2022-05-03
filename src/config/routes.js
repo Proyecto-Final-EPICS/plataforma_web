@@ -116,7 +116,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             exact: true
         },
         {
-            path: "/home",
+            path: "/",
             component: LayoutDirector,
             exact: false,
             routes: [
@@ -126,22 +126,22 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                     exact: true
                 },
                 {
-                    path: "/home/courses",
+                    path: "/courses",
                     component: DirectorCourses,
                     exact: true
                 },
                 {
-                    path: "/home/apps",
+                    path: "/apps",
                     component: DirectorApps,
                     exact: true
                 },
                 {
-                    path: "/home/apps/details",
+                    path: "/apps/details",
                     component: DirectorGames,
                     exact: true
                 },
                 {
-                    path: "/home/professors",
+                    path: "/professors",
                     component: DirectorProfessors,
                     exact: true
                 },
@@ -176,7 +176,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             exact: true
         },
         {
-            path: "/home",
+            path: "/",
             component: LayoutProfessor,
             exact: false,
             routes: [
@@ -186,22 +186,22 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                     exact: true
                 },
                 {
-                    path: "/home/profile",
+                    path: "/profile",
                     component: ProfessorProfile,
                     exact: true
                 },
                 {
-                    path: "/home/calendar",
+                    path: "/calendar",
                     component: ProfessorCalendar,
                     exact: true
                 },
                 {
-                    path: "/home/grades",
+                    path: "/grades",
                     component: ProfessorGrades,
                     exact: true
                 },
                 {
-                    path: "/home/institution",
+                    path: "/institution",
                     component: ProfessorInstitution,
                     exact: true
                 },

@@ -1,9 +1,6 @@
 [
     {
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
-        },
+        "school": "C01",
         "name": "Curso 01",
         "code": "C01",
         "level": "B1",
@@ -29,10 +26,7 @@
         ]
     },
     {
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
-        },
+        "school": "C01",
         "name": "Curso 02",
         "code": "C02",
         "level": "C2",
@@ -78,10 +72,7 @@
         ]
     },
     {
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
-        },
+        "school": "C01",
         "name": "Curso 03",
         "code": "C03",
         "level": "A2",
@@ -107,10 +98,7 @@
         ]
     },
     {
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
-        },
+        "school": "C01",
         "name": "Curso 04",
         "code": "C04",
         "level": "A2",
@@ -141,10 +129,7 @@
         ]
     },
     {
-        "school": {
-            "name": "Colegio 01",
-            "code": "C01"
-        },
+        "school": "C01",
         "name": "Curso 05",
         "code": "C05",
         "level": "A1",
