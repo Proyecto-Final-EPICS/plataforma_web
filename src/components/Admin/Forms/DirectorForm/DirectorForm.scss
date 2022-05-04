@@ -1,17 +1,14 @@
 @import '../../../../scss/index.scss';
 
-.student-form {
+.dir-form {
+    width: 500px;
 
-    .ant-tabs-content-holder {
-        width: 400px;
-    }
-
-    &__name, &__repName {
+    &__name {
         margin-bottom: 0;
     }
 
     &__options {
-        
+
         button {
             border: none;
             background-color: #999;

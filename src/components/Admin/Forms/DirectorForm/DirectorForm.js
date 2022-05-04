@@ -1,159 +1,74 @@
 //Liberias
 import { useState, useEffect } from 'react';
-import {Form, Input, Button, DatePicker, Radio, Row, Col, Select, notification} from 'antd';
-import {UserOutlined, LockOutlined, MailOutlined, PhoneOutlined} from '@ant-design/icons';
+import { Form, Input, Button, DatePicker, Radio, Row, Col, Select } from 'antd';
+import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import moment from 'moment';
 
-//Api
-// import {addProfessor, signinAPI} from '../../../../api/users'; 
-
-//Utils
-// import {ACCESS_TOKEN} from '../../../../utils/constants';
-
 //Estilos
-import './RegisterDirectorForm.scss';
+import './DirectorForm.scss';
 
-export default function RegisterDirectorForm(props) {
+export default function DirectorForm(props) {
     const { Option } = Select;
-    const { directors, setDirectors, setModalVisible, resetForm, setResetForm, edit } = props;
-    const [initialValues, setInitialValues] = useState({});
-    const [phoneCountryCode, setPhoneCountryCode] = useState('57');
+
+    const { directors, setDirectors, setModalVisible, school, edit, toEdit } = props;
     const [gender, setGender] = useState(null);
     const [customGender, setCustomGender] = useState(null);
     const [form] = Form.useForm();
 
-    const onChangePhoneAddonBefore = val => setPhoneCountryCode(val);
-    const phoneAddonBefore = (
+    const SelectPhoneCountryCode = (
         <Form.Item name="phoneCountryCode" noStyle>
-            <Select value={phoneCountryCode} onChange={onChangePhoneAddonBefore}>
+            <Select>
                 <Option value="57">+57</Option>
                 <Option value="58">+58</Option>
             </Select>
         </Form.Item>
     );
 
-    // const signup = values => {
-    //     return addProfessor(values).then(response => {
-    //         notification.success({ message: response });
-    //         form.resetFields();
-    //         return response;
-    //     }).catch(err => {
-    //         notification.error({ message: err });
-    //     });
-    // }
-
-    // const login = async values => {
-    //     if(!values.username || !values.password) return;
-    //     const result = await signinAPI(values);
-    //     const {token} = result;
-
-    //     if (token === "none") {
-    //         console.log("Login't");
-
-    //     }else{
-    //         localStorage.setItem(ACCESS_TOKEN, token);
-    //         window.location.href= "/home";
-    //     }
-    // }
-
+    const resetFields = () => form.resetFields();
+    const onFinishFailed = err => console.log(err);
+    
     const onFinish = values => {
         console.log(values);
-        setModalVisible(false);
         
-        const {username, password, firstname, lastname, gender, identityDoc, birthDate, email, 
-            phone: number, phoneCountryCode: countryCode} = values;
-        values = {
-            username, password, firstname, lastname, gender, identityDoc, birthDate, email,
+        const { username, password, firstname, lastname, gender, identityDoc, birthDate, email, 
+            phone: number, phoneCountryCode: countryCode } = values;
+        
+        const director = {
+            username, password, firstname, lastname, gender, identityDoc, birthDate, email, school,
             phone: {number, countryCode}
         }
-
-        // signup(values).then(() => {
-        //     login({username, password});
-        // });
         
         if(edit) {
-            directors[directors.findIndex(d => d.username === initialValues.username)] = values;
+            directors[directors.findIndex(d => d.username === toEdit.username)] = director;
             setDirectors([...directors]);
-        }else setDirectors([...directors, values]);
+        }else setDirectors([...directors, director]);
 
-        resetFields();
+        setModalVisible(false);
     };
-
-    const onFinishFailed = err => {
-        console.log(gender);
-        console.log(customGender);
-        console.log(err)
-    };
-
-    const resetFields = () => {
-        form.resetFields();
-        // setCustomGender(null);
-        // setGender(null);
-        // setPhoneCountryCode('57');
-    }
-
-    const getInitialValues = () => {
-        if(!edit) return {phoneCountryCode};
-        const { birthDate, gender, email, firstname, lastname, identityDoc, username, 
-            phone: { number, countryCode } } = props.initialValues;
-        
-        return {
-            email, firstname, lastname, identityDoc, username, gender, 
-            phone: number,
-            phoneCountryCode: countryCode || phoneCountryCode,
-            birthDate: moment(birthDate),
-        };
-    }
-
-    // (() => {
-    //     if(edit && loadInitialValues) {
-    //         const initialValues = getInitialValues();
-    //         const { gender } = initialValues;
-    //         setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
-    //         setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
-            
-    //         form.setFieldsValue(initialValues);
-    //         setLoadInitialValues(false);
-    //     }
-    // })();
-    
-    // useEffect(() => {
-    //     console.log('modalVisible: ', modalVisible);
-        
-    //     if(modalVisible) {
-    //         console.log('cancel...');
-    //         resetFields();
-    //         setModalVisible(false);
-    //     }
-    // }, [modalVisible]);
-
-    // useEffect(() => {
-    //     console.log('resetForm: ', resetForm);
-    //     if(resetForm) {
-    //         resetFields();
-    //         setResetForm(false);
-    //     }
-    // }, [resetForm]);
 
     useEffect(() => {
-        console.log('useEffect');
-        resetFields();
-        const initialValues = getInitialValues();
-
-        const { gender } = initialValues;
-        setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
-        setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
-        
-        setInitialValues(initialValues);
+        if(edit) {
+            const { username, firstname, lastname, gender, identityDoc, docType, birthDate, email, 
+                phone: { number: phone, countryCode: phoneCountryCode } } = toEdit;
+            // 
+            setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
+            setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
+            
+            form.setFieldsValue({
+                username, firstname, lastname, gender, identityDoc, docType, email, 
+                phone, phoneCountryCode,
+                birthDate: moment(birthDate)
+            });
+        }
     }, []);
 
     return (
         <Form
-            className="signup-prof-form"
+            className="dir-form"
             form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            initialValues={initialValues}
+            initialValues={{phoneCountryCode: '57'}}
             layout="vertical"
         >
             <Form.Item
@@ -213,13 +128,13 @@ export default function RegisterDirectorForm(props) {
             </Row>
 
             <Form.Item
-                className="signup-prof-form__name"
+                className="dir-form__name"
                 name="name"
                 label="Nombre"
                 required
             >
-            <Row gutter={8} className="signup-prof-form__name__row">
-                <Col span={12} className="signup-prof-form__name__col">
+            <Row gutter={8} className="dir-form__name__row">
+                <Col span={12} className="dir-form__name__col">
                 <Form.Item
                     name="firstname"
                     rules={[
@@ -233,7 +148,7 @@ export default function RegisterDirectorForm(props) {
                 </Form.Item>
                 </Col>
                 
-                <Col span={12} className="signup-prof-form__name__col">
+                <Col span={12} className="dir-form__name__col">
                 <Form.Item
                     name="lastname"
                     rules={[
@@ -255,8 +170,7 @@ export default function RegisterDirectorForm(props) {
                         name="identityDoc"
                         label="Cédula"
                     >
-                        {/* <Input placeholder="Documento de Identidad"/> */}
-                        <Input/>
+                        <Input />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
@@ -277,7 +191,7 @@ export default function RegisterDirectorForm(props) {
             </Row>
 
             <Form.Item
-                className="signup-prof-form__gender"
+                className="dir-form__gender"
                 name="gender"
                 label="Género"
                 required
@@ -343,27 +257,27 @@ export default function RegisterDirectorForm(props) {
                             }
                         ]}
                     >
-                        {/* <Input type="tel" placeholder="Teléfono"/> */}
-                        <Input addonBefore={phoneAddonBefore} prefix={<PhoneOutlined/>}/>
+                        <Input addonBefore={SelectPhoneCountryCode} prefix={<PhoneOutlined/>}/>
                     </Form.Item>
                 </Col>
             </Row>
+            
             <Row
-                className='signup-prof-form__end'
+                className='dir-form__options'
                 justify='center'
                 gutter={8}
             >
-                <Col className="signup-prof-form__end__reset">
+                <Col className="dir-form__options__reset">
                     <Form.Item>
                         <Button onClick={resetFields}>Limpiar campos</Button>
                     </Form.Item>
                 </Col>
-                <Col className="signup-prof-form__end__submit">
+
+                <Col className="dir-form__options__submit">
                     <Form.Item>
-                        <Button htmlType="submit">{edit?"Actualizar":"Registrarse"}</Button>
+                        <Button htmlType="submit">{edit?"Actualizar":"Finalizar"}</Button>
                     </Form.Item>
                 </Col>
-
             </Row>
         </Form>
     );

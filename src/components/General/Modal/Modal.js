@@ -8,11 +8,9 @@ export default function Modal(props) {
             title={title}
             centered
             visible={isVisible}
-            onCancel={()=> {
-                console.log('cancel');
-                setIsVisible(false);
-            }}
+            onCancel={()=> setIsVisible(false)}
             footer={false}
+            destroyOnClose
         >
             {children}
         </ModalAntd>

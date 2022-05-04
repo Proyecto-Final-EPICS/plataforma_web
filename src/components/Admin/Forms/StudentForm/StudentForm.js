@@ -13,8 +13,7 @@ export default function StudentForm(props) {
     const { TabPane } = Tabs;
     const { Option } = Select;
 
-    const { students, setStudents, setModalVisible, school, edit } = props;
-    const [initialValues, setInitialValues] = useState({});
+    const { students, setStudents, setModalVisible, school, edit, toEdit } = props;
     const [gender, setGender] = useState(null);
     const [customGender, setCustomGender] = useState(null);
     const [form] = Form.useForm();
@@ -44,53 +43,65 @@ export default function StudentForm(props) {
 
     const onFinish = values => {
         console.log(values);
-        // console.log({...values, ...fieldsScdPage});
-        // form.validateFields()
-        //     .then((res, rej) => {
-        //         console.log(res, rej);
-        //     })
-        // form.
-        // form.resetFields();
-        // setModalVisible(false);
 
-        // const { username, password, firstname, lastname, gender, identityDoc, docType, birthDate, email, 
-        //     course, repFirstname, repLastname, phone, phoneCountryCode} = values;
-        // values = {
-        //     username, password, firstname, lastname, gender, identityDoc, docType, birthDate, email,
-        //     course, repFirstname, repLastname, phone: { number: phone, countryCode: phoneCountryCode, 
-        //     school };
-        // }
-        // if (edit) {
-        //     students[students.findIndex(s => s.username === initialValues.username)] = values;
-        //     setStudents([...students]);
-        // } else setStudents([...students, values]);
-
-        // form.resetFields();
+        const { username, password, firstname, lastname, gender, identityDoc, docType, birthDate, course, 
+            repFirstname, repLastname, repPhone, repPhoneCountryCode, repIdentityDoc } = values;
+        
+        const student = {
+            username, password, firstname, lastname, gender, identityDoc, docType, birthDate, course, school, 
+            representative: {
+                firstname: repFirstname,
+                lastname: repLastname,
+                identityDoc: repIdentityDoc,
+                phone: {
+                    number: repPhone,
+                    countryCode: repPhoneCountryCode,
+                }
+            }
+        }
+        if (edit) {
+            students[students.findIndex(s => s.username === toEdit.username)] = student;
+            setStudents([...students]);
+        } else setStudents([...students, student]);
+        
+        setModalVisible(false);
     };
 
-    // const getInitialValues = () => {
-    //     if (!edit) return { phoneCountryCode };
-    //     const { birthDate, gender, email, firstname, lastname, identityDoc, username,
-    //         phone: { number, countryCode } } = props.initialValues;
-
-    //     return {
-    //         email, firstname, lastname, identityDoc, username, gender,
-    //         phone: number,
-    //         phoneCountryCode: countryCode || phoneCountryCode,
-    //         birthDate: moment(birthDate),
-    //     };
-    // }
-
     useEffect(() => {
-        // form.resetFields();
-        // const initialValues = getInitialValues();
-
-        // const { gender } = initialValues;
-        // setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
-        // setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
-
-        // setInitialValues(initialValues);
+        if(edit) {
+            const { username, firstname, lastname, gender, identityDoc, docType, birthDate, course, 
+                representative: { firstname: repFirstname, lastname: repLastname, identityDoc: repIdentityDoc, 
+                phone: { number: repPhone, countryCode: repPhoneCountryCode } } } = toEdit;
+            // 
+            setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
+            setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
+            
+            form.setFieldsValue({
+                username, firstname, lastname, gender, identityDoc, docType, course, 
+                repFirstname, repLastname, repIdentityDoc, repPhone, repPhoneCountryCode,
+                birthDate: moment(birthDate)
+            });
+        }
     }, []);
+
+    // form.setFieldsValue({
+    //     "username": "p",
+    //     "password": "p",
+    //     "confirmPassword": "p",
+    //     "firstname": "p",
+    //     "lastname": "p",
+    //     "name": "p",
+    //     "docType": "Tarjeta de identidad",
+    //     "identityDoc": "1",
+    //     "birthDate": moment(),
+    //     "gender": "Masculino",
+    //     "course": "C03",
+    //     "repFirstname": "a",
+    //     "repLastname": "a",
+    //     "repName": "a",
+    //     "repPhoneCountryCode": "57",
+    //     "repPhone": "123"
+    // })
 
     return (
         <Form

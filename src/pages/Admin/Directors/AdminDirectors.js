@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import TableDirectors from '../../../components/Admin/TableDirectors';
-import RegisterDirectorForm from '../../../components/Admin/Forms/RegisterDirectorForm';
+import DirectorForm from '../../../components/Admin/Forms/DirectorForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
@@ -10,8 +10,6 @@ import './AdminDirectors.scss';
 
 export default function AdminDirectors(props) {
     const [directors, setDirectors] = useState([]);
-    const [resetForm, setResetForm] = useState(false);
-    // const {resetForm, setResetForm} = useState(false);
     const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow, 
         modalVisible, setModalVisible, setModalContent, setModalTitle } 
         = useContext(AdminContext);
@@ -19,12 +17,11 @@ export default function AdminDirectors(props) {
     useEffect(() => {
         if(addRow) {
             setModalContent(
-                <RegisterDirectorForm
+                <DirectorForm
                     directors={directors} 
                     setDirectors={setDirectors} 
                     setModalVisible={setModalVisible}
-                    resetForm={resetForm}
-                    setResetForm={setResetForm}
+                    school={school}
                 />
             )
             setModalTitle('Registrar Director');
@@ -36,17 +33,14 @@ export default function AdminDirectors(props) {
     
     useEffect(() => {
         if(editRow) {
-            const dir = directors.find(d => d.username === rowSel.username);
-
             setModalContent(
-                <RegisterDirectorForm
+                <DirectorForm
                     directors={directors} 
                     setDirectors={setDirectors} 
                     setModalVisible={setModalVisible}
-                    resetForm={resetForm}
-                    setResetForm={setResetForm}
+                    school={school}
                     edit
-                    initialValues={dir}
+                    toEdit={directors.find(d => d.username === rowSel.username)}
                 />
             );
             setModalTitle('Actualizar Director');
@@ -67,12 +61,6 @@ export default function AdminDirectors(props) {
             setDeleteRow(false);
         }
     }, [deleteRow]);
-
-    useEffect(() => {
-        console.log('modalVisible: ', modalVisible);
-        if(!modalVisible) {
-            setResetForm(true);}
-    }, [modalVisible])
 
     useEffect(() => (
         setDirectors(userApi.filter(u => u.school.code === school && u.role === 'director'))

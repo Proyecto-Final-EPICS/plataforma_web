@@ -15,12 +15,13 @@ export default function AdminStudents(props) {
 
     useEffect(() => {
         if(addRow) {
-            setModalContent(<StudentForm
-                students={students}
-                setStudents={setStudents}
-                setModalVisible={setModalVisible}
-                school={school}
-            />)
+            setModalContent(
+                <StudentForm
+                    students={students}
+                    setStudents={setStudents}
+                    setModalVisible={setModalVisible}
+                    school={school}
+                />)
             setModalVisible(true);
             setAddRow(false);
         }
@@ -28,7 +29,16 @@ export default function AdminStudents(props) {
 
     useEffect(() => {
         if(editRow) {
-            
+            setModalContent(
+                <StudentForm
+                    students={students}
+                    setStudents={setStudents}
+                    setModalVisible={setModalVisible}
+                    school={school}
+                    edit
+                    toEdit={students.find(s => s.username === rowSel.username)}
+                />)
+            setModalVisible(true);
             setEditRow(false);
         }
     }, [editRow]);
@@ -45,9 +55,9 @@ export default function AdminStudents(props) {
         }
     }, [deleteRow]);
 
-    useEffect(() => (
+    useEffect(() => {
         setStudents(studentApi.filter(s => s.school === school))
-    ), []);
+    }, []);
 
     return (
         <div className='admin-students'>
