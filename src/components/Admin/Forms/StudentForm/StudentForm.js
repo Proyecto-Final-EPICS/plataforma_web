@@ -20,7 +20,8 @@ export default function StudentForm(props) {
     // const [docType, setDocType] = useState('Tarjeta de identidad');
     const [form] = Form.useForm();
     const [step, setStep] = useState(1);
-    
+    const [fieldsScdPage, setFieldsScdPage] = useState({});
+
     const courses = courseApi.filter(c => c.school == school);
 
     const SelectDocType = (
@@ -50,14 +51,21 @@ export default function StudentForm(props) {
     );
 
     const onFinish = values => {
-        console.log(values);
+        // console.log({...values, ...fieldsScdPage});
+        form.validateFields()
+            .then((res, rej) => {
+                console.log(res, rej);
+            })
+        // form.
+        // form.resetFields();
         // setModalVisible(false);
 
         // const { username, password, firstname, lastname, gender, identityDoc, docType, birthDate, email, 
         //     course, repFirstname, repLastname, phone, phoneCountryCode} = values;
         // values = {
         //     username, password, firstname, lastname, gender, identityDoc, docType, birthDate, email,
-        //     course, repFirstname, repLastname, phone: { number: phone, countryCode: phoneCountryCode }
+        //     course, repFirstname, repLastname, phone: { number: phone, countryCode: phoneCountryCode, 
+        //     school };
         // }
         // if (edit) {
         //     students[students.findIndex(s => s.username === initialValues.username)] = values;
@@ -355,13 +363,16 @@ export default function StudentForm(props) {
                         <Button
                             id="student-form-back"
                             disabled={step == 1}
-                            onClick={() => setStep(step - 1)}
+                            onClick={() => {
+                                setFieldsScdPage(form.getFieldsValue());
+                                setStep(step - 1);
+                            }}
                         >Anterior</Button>
                     </Col>
                     
                     <Col className="student-form__options__end">
                         <Form.Item className="student-form__options__end__reset">
-                            <Button onClick={form.resetFields}>Limpiar campos</Button>
+                            <Button onClick={() => form.resetFields()}>Limpiar campos</Button>
                         </Form.Item>
                         <Form.Item className="student-form__options__end__submit">
                             <Button htmlType="submit" >
@@ -374,7 +385,10 @@ export default function StudentForm(props) {
                         <Button
                             id="student-form-next"
                             disabled={step == 2}
-                            onClick={() => setStep(step + 1)}
+                            onClick={() => {
+                                setFieldsScdPage(form.getFieldsValue());
+                                setStep(step + 1);
+                            }}
                         >Siguiente</Button>
                     </Col>
                     
