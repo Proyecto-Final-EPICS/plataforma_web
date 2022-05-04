@@ -19,16 +19,22 @@
         }
     }
 
-    &__name, &__repName {
-        margin-bottom: 0;
+    .student-form1 {
+        
     }
 
-    #docType-select {
-        width: 180px;
-    }
-
-    #custom-gender-input{
-        width: 200px;
+    .student-form2 {
+        &__name, &__repName {
+            margin-bottom: 0;
+        }
+    
+        #docType-select {
+            width: 180px;
+        }
+    
+        #custom-gender-input{
+            width: 200px;
+        }
     }
 
     &__options {

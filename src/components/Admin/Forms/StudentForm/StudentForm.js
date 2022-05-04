@@ -19,6 +19,8 @@ export default function StudentForm(props) {
     const [customGender, setCustomGender] = useState(null);
     // const [docType, setDocType] = useState('Tarjeta de identidad');
     const [form] = Form.useForm();
+    const [form1] = Form.useForm();
+    const [form2] = Form.useForm();
     const [step, setStep] = useState(1);
     const [fieldsScdPage, setFieldsScdPage] = useState({});
 
@@ -102,25 +104,31 @@ export default function StudentForm(props) {
     }, []);
 
     return (
-        <Form
-            className="student-form"
+        <Form 
+            className='student-form'
             form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            // initialValues={initialValues}
-            initialValues={{
-                docType: 'Tarjeta de identidad',
-                repPhoneCountryCode: '57',
-            }}
-            layout="vertical"
         >
             <Steps current={step} className='student-form__steps'>
                 <Step key={1} title="Paso 1"/>
                 <Step key={2} title="Paso 2"/>
             </Steps>
+            
             {step === 1 ?
-                // STEP 1***************************************************************************************
-                <>
+            // STEP 1***************************************************************************************
+            <Form
+                className="student-form1"
+                form={form1}
+                // onFinish={onFinish}
+                // onFinishFailed={onFinishFailed}
+                // initialValues={initialValues}
+                initialValues={{
+                    docType: 'Tarjeta de identidad',
+                    repPhoneCountryCode: '57',
+                }}
+                layout="vertical"
+            >
                 <Form.Item
                     name="username"
                     label="Usuario"
@@ -178,7 +186,7 @@ export default function StudentForm(props) {
                 </Row>
 
                 <Form.Item
-                    className="student-form__name"
+                    className="student-form1__name"
                     name="name"
                     label="Nombre"
                     required
@@ -234,7 +242,7 @@ export default function StudentForm(props) {
                 </Form.Item>
 
                 <Form.Item
-                    className="student-form__gender"
+                    className="student-form1__gender"
                     name="gender"
                     label="Género"
                     required
@@ -271,10 +279,21 @@ export default function StudentForm(props) {
                             : null}
                     </Row>
                 </Form.Item>
-                </>
-            : 
+            </Form>
+            :
             // STEP 2***************************************************************************************
-                <>
+            <Form
+                className="student-form2"
+                form={form2}
+                // onFinish={onFinish}
+                // onFinishFailed={onFinishFailed}
+                // initialValues={initialValues}
+                initialValues={{
+                    docType: 'Tarjeta de identidad',
+                    repPhoneCountryCode: '57',
+                }}
+                layout="vertical"
+            >
                 <Divider orientation="left" plain>Curso</Divider>
                 <Form.Item
                     name="course"
@@ -289,7 +308,7 @@ export default function StudentForm(props) {
                 
                 <Divider orientation="left" plain>Representante Legal</Divider>
                 <Form.Item
-                    className="student-form__repName"
+                    className="student-form2__repName"
                     name="repName"
                     label="Nombre"
                     required
@@ -350,49 +369,47 @@ export default function StudentForm(props) {
                         </Form.Item>
                     </Col>
                 </Row>
-                </>
-            }
-            
-            {/* Sección Final */}
-                <Row
-                    className='student-form__options'
-                    justify='center'
-                    gutter={8}
-                >
-                    <Col className="student-form__options__back">
-                        <Button
-                            id="student-form-back"
-                            disabled={step == 1}
-                            onClick={() => {
-                                setFieldsScdPage(form.getFieldsValue());
-                                setStep(step - 1);
-                            }}
-                        >Anterior</Button>
-                    </Col>
-                    
-                    <Col className="student-form__options__end">
-                        <Form.Item className="student-form__options__end__reset">
-                            <Button onClick={() => form.resetFields()}>Limpiar campos</Button>
-                        </Form.Item>
-                        <Form.Item className="student-form__options__end__submit">
-                            <Button htmlType="submit" >
-                                {edit ? "Actualizar" : "Finalizar"}
-                            </Button>
-                        </Form.Item>
-                    </Col>
+                {/* Sección Final *********************************************************************/}
+                    <Row
+                        className='student-form__options'
+                        justify='center'
+                        gutter={8}
+                    >
+                        <Col className="student-form__options__back">
+                            <Button
+                                id="student-form-back"
+                                disabled={step == 1}
+                                onClick={() => {
+                                    setFieldsScdPage(form.getFieldsValue());
+                                    setStep(step - 1);
+                                }}
+                            >Anterior</Button>
+                        </Col>
+                        
+                        <Col className="student-form__options__end">
+                            <Form.Item className="student-form__options__end__reset">
+                                <Button onClick={() => form.resetFields()}>Limpiar campos</Button>
+                            </Form.Item>
+                            <Form.Item className="student-form__options__end__submit">
+                                <Button htmlType="submit" >
+                                    {edit ? "Actualizar" : "Finalizar"}
+                                </Button>
+                            </Form.Item>
+                        </Col>
 
-                    <Col className="student-form__options__next">
-                        <Button
-                            id="student-form-next"
-                            disabled={step == 2}
-                            onClick={() => {
-                                setFieldsScdPage(form.getFieldsValue());
-                                setStep(step + 1);
-                            }}
-                        >Siguiente</Button>
-                    </Col>
-                    
-                </Row>
+                        <Col className="student-form__options__next">
+                            <Button
+                                id="student-form-next"
+                                disabled={step == 2}
+                                onClick={() => {
+                                    setFieldsScdPage(form.getFieldsValue());
+                                    setStep(step + 1);
+                                }}
+                            >Siguiente</Button>
+                        </Col>
+                        
+                    </Row>
+            </Form>}
         </Form>
     );
 }
