@@ -1,23 +1,18 @@
 [
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
-    "role": "professor",
+    "username": "prof1",
+    "school": "C01",
     "birthDate": "2022-03-13T04:21:03.767Z",
     "email": "prof1@epics.com",
     "firstname": "Professor",
     "gender": "Femenino",
     "identityDoc": "123",
     "lastname": "Epics",
-    "password": "pass",
     "phone": {
       "countryCode": "57",
       "number": "123"
     },
     "photo": "https://randomuser.me/api/portraits/women/0.jpg",
-    "username": "prof1",
     "courses": [
       {
         "name": "Curso 01",
@@ -48,24 +43,19 @@
     }
   },
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
-    "role": "professor",
+    "username": "prof2",
+    "school": "C01",
     "birthDate": "2022-03-13T04:21:03.767Z",
     "email": "prof2@epics.com",
     "firstname": "Professor",
     "gender": "Masculino",
     "identityDoc": "123",
     "lastname": "Epics",
-    "password": "pass",
     "phone": {
       "countryCode": "57",
       "number": "123"
     },
     "photo": "https://randomuser.me/api/portraits/men/0.jpg",
-    "username": "prof2",
     "courses": [
       {
         "name": "Curso 02",
@@ -91,24 +81,19 @@
     }
   },
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
-    "role": "professor",
+    "username": "prof1",
+    "school": "C01",
     "birthDate": "2022-03-13T04:21:03.767Z",
     "email": "prof3@epics.com",
     "firstname": "Professor",
     "gender": "Masculino",
     "identityDoc": "123",
     "lastname": "Epics",
-    "password": "pass",
     "phone": {
       "countryCode": "57",
       "number": "123"
     },
     "photo": "https://randomuser.me/api/portraits/women/1.jpg",
-    "username": "prof3",
     "courses": [
       {
         "name": "Curso 02",

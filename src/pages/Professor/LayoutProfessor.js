@@ -10,7 +10,7 @@ import MenuSider from '../../components/Professor/MenuSider/MenuSider';
 
 import ProfessorContext from '../../components/Professor/ProfessorContext'
 
-import userApi from '../../mock_data/collections/user.json';
+import professorApi from '../../mock_data/collections/professor.json';
 
 //Hooks
 import useAuth from '../../hooks/useAuth';
@@ -28,15 +28,7 @@ export default function LayoutProfessor(props){
     const [userInfo, setUserInfo] = useState({});
     
     useEffect(() => {
-        const data = userApi.find(p => p.username == username);
-        // if(!data) {
-        //     window.location.pathname = '/login';
-        //     window.location.reload();
-        // }
-        console.log(username);
-        console.log(data);
-        
-        const {firstname, lastname, phone, email} = data;
+        const { firstname, lastname, phone, email } = professorApi.find(p => p.username == username);
         setUserInfo({username, firstname, lastname, phone, email});
     }, []);
 

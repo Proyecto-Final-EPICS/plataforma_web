@@ -4,15 +4,14 @@ import DirectorForm from '../../../components/Admin/Forms/DirectorForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
-import userApi from '../../../mock_data/collections/user.json';
+import directorApi from '../../../mock_data/collections/director.json';
 
 import './AdminDirectors.scss';
 
 export default function AdminDirectors(props) {
     const [directors, setDirectors] = useState([]);
     const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow, 
-        modalVisible, setModalVisible, setModalContent, setModalTitle } 
-        = useContext(AdminContext);
+        setModalVisible, setModalContent, setModalTitle } = useContext(AdminContext);
     
     useEffect(() => {
         if(addRow) {
@@ -26,7 +25,6 @@ export default function AdminDirectors(props) {
             )
             setModalTitle('Registrar Director');
             setModalVisible(true);
-            // setResetForm(true);
             setAddRow(false);
         }
     }, [addRow]);
@@ -45,7 +43,6 @@ export default function AdminDirectors(props) {
             );
             setModalTitle('Actualizar Director');
             setModalVisible(true);
-            // setResetForm(true);
             setEditRow(false);
         }
     }, [editRow]);
@@ -63,7 +60,7 @@ export default function AdminDirectors(props) {
     }, [deleteRow]);
 
     useEffect(() => (
-        setDirectors(userApi.filter(u => u.school.code === school && u.role === 'director'))
+        setDirectors(directorApi.filter(d => d.school === school))
     ), []);
 
     return (

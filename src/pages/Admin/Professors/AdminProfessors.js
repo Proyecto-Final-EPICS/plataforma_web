@@ -3,14 +3,14 @@ import TableProfessors from '../../../components/Admin/TableProfessors';
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
-import userApi from '../../../mock_data/collections/user.json';
+import professorApi from '../../../mock_data/collections/professor.json';
 
 import './AdminProfessors.scss';
 
 export default function AdminProfessors(props) {
     const [professors, setProfessors] = useState([]);
-    const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow } 
-        = useContext(AdminContext);
+    const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, 
+        setDeleteRow } = useContext(AdminContext);
 
     useEffect(() => {
         if(editRow) {
@@ -39,7 +39,7 @@ export default function AdminProfessors(props) {
     }, [deleteRow]);
 
     useEffect(() => (
-        setProfessors(userApi.filter(u => u.school.code === school && u.role === 'professor'))
+        setProfessors(professorApi.filter(p => p.school === school))
     ), []);
 
     return (

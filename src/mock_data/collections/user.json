@@ -1,197 +1,72 @@
 [
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
+    "username": "dir1",
     "role": "director",
-    "birthDate": "2022-03-13T04:21:03.767Z",
-    "email": "dir1@epics.com",
     "firstname": "Director",
-    "gender": "Femenino",
-    "identityDoc": "123",
     "lastname": "Epics",
-    "password": "pass",
-    "phone": {
-      "countryCode": "57",
-      "number": "123"
-    },
-    "photo": "https://randomuser.me/api/portraits/women/0.jpg",
-    "username": "dir1"
+    "password": "pass"
   },
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
+    "username": "dir2",
     "role": "director",
-    "birthDate": "2022-03-13T04:21:03.767Z",
-    "email": "dir2@epics.com",
     "firstname": "Director",
-    "gender": "Masculino",
-    "identityDoc": "123",
     "lastname": "Epics",
-    "password": "pass",
-    "phone": {
-      "countryCode": "57",
-      "number": "123"
-    },
-    "photo": "https://randomuser.me/api/portraits/men/0.jpg",
-    "username": "dir2"
+    "password": "pass"
   },
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
+    "username": "dir3",
     "role": "director",
-    "birthDate": "2022-03-13T04:21:03.767Z",
-    "email": "dir3@epics.com",
     "firstname": "Director",
-    "gender": "a",
-    "identityDoc": "123",
     "lastname": "Epics",
-    "password": "pass",
-    "phone": {
-      "countryCode": "58",
-      "number": "123"
-    },
-    "photo": "https://randomuser.me/api/portraits/men/0.jpg",
-    "username": "dir3"
+    "password": "pass"
   },
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
-    "role": "professor",
-    "birthDate": "2022-03-13T04:21:03.767Z",
-    "email": "prof1@epics.com",
-    "firstname": "Professor",
-    "gender": "Femenino",
-    "identityDoc": "123",
-    "lastname": "Epics",
-    "password": "pass",
-    "phone": {
-      "countryCode": "57",
-      "number": "123"
-    },
-    "photo": "https://randomuser.me/api/portraits/women/0.jpg",
     "username": "prof1",
-    "courses": [
-      {
-        "name": "Curso 01",
-        "code": "C01",
-        "level": "B1"
-      },
-      {
-        "name": "Curso 02",
-        "code": "C02",
-        "level": "C2"
-      },
-      {
-        "name": "Curso 04",
-        "code": "C04",
-        "level": "A2"
-      },
-      {
-        "name": "Curso 05",
-        "code": "C05",
-        "level": "A1"
-      }
-    ],
-    "curriculum": {
-      "degrees": [
-        "Doctorado en Procesos de Formación en Espacios Virtuales"
-      ],
-      "description": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía. Se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal."
-    }
+    "role": "professor",
+    "firstname": "Professor",
+    "lastname": "Epics",
+    "password": "pass"
   },
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
-    "role": "professor",
-    "birthDate": "2022-03-13T04:21:03.767Z",
-    "email": "prof2@epics.com",
-    "firstname": "Professor",
-    "gender": "Masculino",
-    "identityDoc": "123",
-    "lastname": "Epics",
-    "password": "pass",
-    "phone": {
-      "countryCode": "57",
-      "number": "123"
-    },
-    "photo": "https://randomuser.me/api/portraits/men/0.jpg",
     "username": "prof2",
-    "courses": [
-      {
-        "name": "Curso 02",
-        "code": "C02",
-        "level": "C2"
-      },
-      {
-        "name": "Curso 03",
-        "code": "C03",
-        "level": "A2"
-      },
-      {
-        "name": "Curso 04",
-        "code": "C04",
-        "level": "A2"
-      }
-    ],
-    "curriculum": {
-      "degrees": [
-        "Pedagogía y Docencia"
-      ],
-      "description": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía. Se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal."
-    }
+    "role": "professor",
+    "firstname": "Professor",
+    "lastname": "Epics",
+    "password": "pass"
   },
   {
-    "school": {
-      "name": "Colegio 01",
-      "code": "C01"
-    },
-    "role": "professor",
-    "birthDate": "2022-03-13T04:21:03.767Z",
-    "email": "prof3@epics.com",
-    "firstname": "Professor",
-    "gender": "Masculino",
-    "identityDoc": "123",
-    "lastname": "Epics",
-    "password": "pass",
-    "phone": {
-      "countryCode": "57",
-      "number": "123"
-    },
-    "photo": "https://randomuser.me/api/portraits/women/1.jpg",
     "username": "prof3",
-    "courses": [
-      {
-        "name": "Curso 02",
-        "code": "C02",
-        "level": "C2"
-      },
-      {
-        "name": "Curso 03",
-        "code": "C03",
-        "level": "A2"
-      },
-      {
-        "name": "Curso 05",
-        "code": "C05",
-        "level": "A1"
-      }
-    ],
-    "curriculum": {
-      "degrees": [
-        "Pedagogía y Docencia",
-        "Doctorado en Procesos de Formación en Espacios Virtuales"
-      ],
-      "description": "El pan, del latín panis, es un alimento básico que forma parte de la dieta tradicional en Europa, Medio Oriente, India, América y Oceanía. Se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal."
-    }
+    "role": "professor",
+    "firstname": "Professor",
+    "lastname": "Epics",
+    "password": "pass"
+  },
+  {
+    "username": "student1",
+    "role": "student",
+    "firstname": "Francisco",
+    "lastname": "Trincao",
+    "password": "pass"
+  },
+  {
+    "username": "student2",
+    "role": "student",
+    "firstname": "Miralem",
+    "lastname": "Pjanic",
+    "password": "pass"
+  },
+  {
+    "username": "student3",
+    "role": "student",
+    "firstname": "Johana",
+    "lastname": "White",
+    "password": "pass"
+  },
+  {
+    "username": "student4",
+    "role": "student",
+    "firstname": "Diana",
+    "lastname": "Ramírez",
+    "password": "pass"
   }
 ]
