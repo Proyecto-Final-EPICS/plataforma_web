@@ -1,7 +1,11 @@
 @import '../../../../scss/index.scss';
 
 .student-form {
-    
+
+    .ant-tabs-content-holder {
+        width: 400px;
+    }
+
     &__steps {
         margin: 15px 0 30px 0;
         
@@ -19,27 +23,19 @@
         }
     }
 
-    .student-form1 {
-        
+    &__name, &__repName {
+        margin-bottom: 0;
     }
 
-    .student-form2 {
-        &__name, &__repName {
-            margin-bottom: 0;
-        }
-    
-        #docType-select {
-            width: 180px;
-        }
-    
-        #custom-gender-input{
-            width: 200px;
-        }
+    #docType-select {
+        width: 180px;
+    }
+
+    #custom-gender-input{
+        // width: 200px;
     }
 
     &__options {
-        display: flex;
-        justify-content: space-between;
         
         button {
             border: none;
@@ -66,5 +62,4 @@
             
         }
     }
-
 }

@@ -101,6 +101,7 @@ export default function LayoutAdmin(props) {
                         <Content className="layout-admin__content">
 
                             <Modal
+                                className='admin-modal'
                                 isVisible={modalVisible}
                                 setIsVisible={setModalVisible}
                                 title={modalTitle}
