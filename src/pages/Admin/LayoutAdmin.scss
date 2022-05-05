@@ -5,26 +5,47 @@
 
     &__sider {
 
-        &__logo {
+        &__head {
             display: flex;
-            height: 92px;
-            font-weight: 500;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-    
-            h1 {
-                color: white;
-            }
-    
-            &:hover {
-                cursor: pointer;
-                & > h1 {
-                    // font-weight: 650;
-                    font-size: 17px;
+
+            &__back {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background-color: $background-blue-dark2;
+                padding: 0 10px;
+
+                span {
+                    color: white;
+                }
+
+                &:hover {
+                    font-size: 16px;
                 }
             }
-        }    
+
+            &__logo {
+                display: flex;
+                font-weight: 500;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                flex-grow: 1;
+                height: 92px;
+        
+                h1 {
+                    color: white;
+                }
+        
+                &:hover {
+                    cursor: pointer;
+                    & > h1 {
+                        // font-weight: 650;
+                        font-size: 17px;
+                    }
+                }
+            }
+        }
     }
 
     &__header {

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import TableCourses from '../../../components/Admin/TableCourses';
+import CourseForm from '../../../components/Admin/Forms/CourseForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
@@ -9,22 +10,42 @@ import './AdminCourses.scss';
 
 export default function AdminCourses(props) {
     const [courses, setCourses] = useState([]);
-    const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow } 
-        = useContext(AdminContext);
-
-    useEffect(() => {
-        if(editRow) {
-            
-            setEditRow(false);
-        }
-    }, [editRow]);
-
+    const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow, 
+        setModalVisible, setModalContent, setModalTitle } = useContext(AdminContext);
+    
     useEffect(() => {
         if(addRow) {
-            
+            setModalContent(
+                <CourseForm
+                    courses={courses} 
+                    setCourses={setCourses} 
+                    setModalVisible={setModalVisible}
+                    school={school}
+                />
+            )
+            setModalTitle('Registrar Curso');
+            setModalVisible(true);
             setAddRow(false);
         }
     }, [addRow]);
+    
+    useEffect(() => {
+        if(editRow) {
+            setModalContent(
+                <CourseForm
+                    courses={courses} 
+                    setCourses={setCourses} 
+                    setModalVisible={setModalVisible}
+                    school={school}
+                    edit
+                    toEdit={courses.find(c => c.code === rowSel.code)}
+                />
+            );
+            setModalTitle('Actualizar Curso');
+            setModalVisible(true);
+            setEditRow(false);
+        }
+    }, [editRow]);
     
     useEffect(() => {
         if(deleteRow) {

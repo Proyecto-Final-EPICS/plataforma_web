@@ -11,7 +11,7 @@ import './AdminStudents.scss';
 export default function AdminStudents(props) {
     const [students, setStudents] = useState([]);
     const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow,
-        modalVisible, setModalVisible, setModalContent } = useContext(AdminContext);
+        setModalVisible, setModalContent, setModalTitle } = useContext(AdminContext);
 
     useEffect(() => {
         if(addRow) {
@@ -22,6 +22,7 @@ export default function AdminStudents(props) {
                     setModalVisible={setModalVisible}
                     school={school}
                 />)
+            setModalTitle('Registrar Estudiante');
             setModalVisible(true);
             setAddRow(false);
         }
@@ -38,6 +39,7 @@ export default function AdminStudents(props) {
                     edit
                     toEdit={students.find(s => s.username === rowSel.username)}
                 />)
+            setModalTitle('Actualizar Estudiante');
             setModalVisible(true);
             setEditRow(false);
         }

@@ -11,8 +11,28 @@ import './AdminDirectors.scss';
 export default function AdminDirectors(props) {
     const [directors, setDirectors] = useState([]);
     const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow, 
-        setModalVisible, setModalContent, setModalTitle } = useContext(AdminContext);
+        setModalVisible, setModalContent, setModalTitle, search } = useContext(AdminContext);
     
+    const getFilteredDirectors = () => {
+        let fxdSearch = search.trim();
+        
+        if(fxdSearch) {
+            fxdSearch = fxdSearch.toLowerCase();
+
+            return directors.filter(d => (
+                d.username.includes(fxdSearch) 
+                || d.identityDoc.includes(fxdSearch)
+                || d.lastname.toLowerCase().includes(fxdSearch)
+                || d.firstname.toLowerCase().includes(fxdSearch)
+                || d.email.includes(fxdSearch)
+            ))
+        } else return directors;
+    }
+
+    useEffect(() => {
+        setRowSel(null);
+    }, [search])
+
     useEffect(() => {
         if(addRow) {
             setModalContent(
@@ -66,7 +86,7 @@ export default function AdminDirectors(props) {
     return (
         <div className='admin-directors'>
             <TableDirectors 
-                directors={directors}
+                directors={getFilteredDirectors()}
             />
         </div>
     )

@@ -13,28 +13,7 @@
       "number": "123"
     },
     "photo": "https://randomuser.me/api/portraits/women/0.jpg",
-    "courses": [
-      {
-        "name": "Curso 01",
-        "code": "C01",
-        "level": "B1"
-      },
-      {
-        "name": "Curso 02",
-        "code": "C02",
-        "level": "C2"
-      },
-      {
-        "name": "Curso 04",
-        "code": "C04",
-        "level": "A2"
-      },
-      {
-        "name": "Curso 05",
-        "code": "C05",
-        "level": "A1"
-      }
-    ],
+    "courses": ["C01", "C02", "C04", "C05"],
     "curriculum": {
       "degrees": [
         "Doctorado en Procesos de Formación en Espacios Virtuales"
@@ -56,23 +35,7 @@
       "number": "123"
     },
     "photo": "https://randomuser.me/api/portraits/men/0.jpg",
-    "courses": [
-      {
-        "name": "Curso 02",
-        "code": "C02",
-        "level": "C2"
-      },
-      {
-        "name": "Curso 03",
-        "code": "C03",
-        "level": "A2"
-      },
-      {
-        "name": "Curso 04",
-        "code": "C04",
-        "level": "A2"
-      }
-    ],
+    "courses": ["C02", "C03", "C04"],
     "curriculum": {
       "degrees": [
         "Pedagogía y Docencia"
@@ -94,23 +57,7 @@
       "number": "123"
     },
     "photo": "https://randomuser.me/api/portraits/women/1.jpg",
-    "courses": [
-      {
-        "name": "Curso 02",
-        "code": "C02",
-        "level": "C2"
-      },
-      {
-        "name": "Curso 03",
-        "code": "C03",
-        "level": "A2"
-      },
-      {
-        "name": "Curso 05",
-        "code": "C05",
-        "level": "A1"
-      }
-    ],
+    "courses": ["C02", "C03", "C05"],
     "curriculum": {
       "degrees": [
         "Pedagogía y Docencia",

@@ -18,11 +18,11 @@ import './ProfessorHome.scss';
 export default function ProfessorHome(){
     const {username} = useContext(ProfessorContext).userInfo;
     const [apps, setApps] = useState([]);
-
-    const filterCourses = () => coursesApi.filter(c => c.professors.some(p => p.username == username));
+    const [courses, setCourses] = useState([]);
 
     useEffect(() => {
         setApps(appsApi);
+        setCourses(coursesApi.filter(c => c.professors.some(p => p.username == username)));
     }, []);
 
     return (
@@ -32,7 +32,7 @@ export default function ProfessorHome(){
                 <div className="professor-home__content__sec professor-home__courses">
                     <h1 className="professor-home__content__sec__title">Cursos</h1>
                     <div className="professor-home__content__sec__content">
-                        <GridCourses courses={filterCourses()}/>
+                        <GridCourses courses={courses}/>
                     </div>
                 </div>
                 </Col>

@@ -4,12 +4,24 @@
         "name": "Curso 01",
         "code": "C01",
         "level": "B1",
-        "period": "2021",
+        "capacity": 20,
         "professors": [
             {
                 "firstname": "Professor",
                 "lastname": "Epics",
                 "username": "prof1"
+            }
+        ],
+        "students": [
+            {
+                "username": "student1",
+                "firstname": "Francisco",
+                "lastname": "Trincao"
+            },
+            {
+                "username": "student2",
+                "firstname": "Miralem",
+                "lastname": "Pjanic"
             }
         ],
         "apps": [
@@ -30,7 +42,7 @@
         "name": "Curso 02",
         "code": "C02",
         "level": "C2",
-        "period": "2021",
+        "capacity": 20,
         "professors": [
             {
                 "firstname": "Professor",
@@ -48,6 +60,7 @@
                 "username": "prof3"
             }
         ],
+        "students": [],
         "apps": [
             {
                 "name": "App1",
@@ -76,7 +89,7 @@
         "name": "Curso 03",
         "code": "C03",
         "level": "A2",
-        "period": "2021",
+        "capacity": 20,
         "professors": [
             {
                 "firstname": "Professor",
@@ -89,6 +102,7 @@
                 "username": "prof3"
             }
         ],
+        "students": [],
         "apps": [
             {
                 "name": "App2",
@@ -102,7 +116,7 @@
         "name": "Curso 04",
         "code": "C04",
         "level": "A2",
-        "period": "2021",
+        "capacity": 20,
         "professors": [
             {
                 "firstname": "Professor",
@@ -113,6 +127,18 @@
                 "firstname": "Professor",
                 "lastname": "Epics",
                 "username": "prof2"
+            }
+        ],
+        "students": [
+            {
+                "username": "student3",
+                "firstname": "Johana",
+                "lastname": "White"
+            },
+            {
+                "username": "student4",
+                "firstname": "Diana",
+                "lastname": "Ramírez"
             }
         ],
         "apps": [
@@ -133,7 +159,7 @@
         "name": "Curso 05",
         "code": "C05",
         "level": "A1",
-        "period": "2021",
+        "capacity": 20,
         "professors": [
             {
                 "firstname": "Professor",
@@ -146,6 +172,7 @@
                 "username": "prof3"
             }
         ],
+        "students": [],
         "apps": [
             {
                 "name": "App1",

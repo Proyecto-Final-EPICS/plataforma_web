@@ -3,7 +3,6 @@ import {Input, Button, Space} from 'antd';
 import { Link } from 'react-router-dom';
 import qs from 'query-string';
 import { SearchOutlined } from '@ant-design/icons';
-// import Highlighter from 'react-highlight-words';
 
 //Custom filter
 export function tableCustomFilters(dataIndex, query){
@@ -16,29 +15,6 @@ export function tableCustomFilters(dataIndex, query){
     const handleReset = clearFilters => {
         clearFilters();
     };
-
-    // const handleSearchLink = (location, selectedKeys) => {
-    //     if(selectedKeys[0]) {
-    //         console.log('a');
-    //         query = {
-    //             ...query,
-    //             professors: selectedKeys[0],
-    //         }
-    //         console.log(query);
-    //     }else {
-    //         console.log('b');
-    //         const temp = query;
-    //         query = {};
-    //         for(let key in temp) if(key !== 'professors') query[key] = temp[key];
-            
-    //         // console.log(location);
-    //         return {
-    //             ...location,
-    //             pathname: '/director/courses',
-    //             search: qs.stringify(query),
-    //         }
-    //     }
-    // }
 
     return {
         filterDropdown: columnProps => (
@@ -69,20 +45,6 @@ export function tableCustomFilters(dataIndex, query){
                 return false;
             }else return true;
         },
-
-        // onFilterDropdownVisibleChange: () => {},
-
-        // render: text => (
-        //     // searchedColumn === dataIndex ? (
-        //     //     <Highlighter
-        //     //         highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-        //     //         searchWords={[searchText]}
-        //     //         autoEscape
-        //     //         textToHighlight={text ? text.toString() : ''}
-        //     //     />
-        //     // ):text
-        //     text
-        // ),
     }
 
     function FilterDropdown(props) {
@@ -106,7 +68,6 @@ export function tableCustomFilters(dataIndex, query){
                 />
 
                 <Space>
-                    {/* <Link to={(location) => handleSearchLink(location, selectedKeys)}> */}
                     <Link to={{
                         pathname: '/home/courses',
                         search: qs.stringify({
@@ -126,7 +87,6 @@ export function tableCustomFilters(dataIndex, query){
                     </Button>
                     </Link>
 
-                    {/* <Link to={(location) => handleSearchLink(location, selectedKeys)}> */}
                     <Link to={{
                         pathname: '/home/courses',
                         search: qs.stringify({

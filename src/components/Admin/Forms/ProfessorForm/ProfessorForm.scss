@@ -1,0 +1,37 @@
+@import '../../../../scss/index.scss';
+
+.prof-form {
+    width: 500px;
+
+    &__name {
+        margin-bottom: 0;
+    }
+
+    &__options {
+
+        button {
+            border: none;
+            background-color: #999;
+            color: white;
+
+            &:hover, &:focus {
+                background-color: #999;
+                color: white;
+            }
+
+            &:hover {
+                filter: brightness(110%);
+            }
+        }
+
+        &__end {
+            display: flex;
+            gap: 10px;
+    
+            button, button:hover, button:focus {
+                background-color: $background-purple;
+            }
+            
+        }
+    }
+}

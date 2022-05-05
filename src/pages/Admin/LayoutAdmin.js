@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Layout } from 'antd';
-import { Route, Redirect, Switch, matchPath } from 'react-router-dom';
+import { Link, Route, Redirect, Switch, matchPath } from 'react-router-dom';
 
 import {
-    HomeOutlined, UserOutlined, TeamOutlined, BookOutlined, BankOutlined, SmileOutlined
+    HomeOutlined, UserOutlined, TeamOutlined, BookOutlined, BankOutlined, SmileOutlined, LeftOutlined
 } from '@ant-design/icons';
 
 import MenuSider from './../../components/Admin/MenuSider';
@@ -61,9 +61,6 @@ export default function LayoutAdmin(props) {
     }, [modalVisible]);
 
     // useEffect(() => {
-    //     console.log('useEffect')
-    // }, [])
-    // useEffect(() => {
     //     const s2 = getSchool();
     //     if(school !== s2) setSchool(s2);
     // });
@@ -80,12 +77,19 @@ export default function LayoutAdmin(props) {
             }}>
             <Layout className='layout-admin'>
                 <Sider className='layout-admin__sider' collapsed={menuCollapsed}>
-                    <div
-                        // key="/home/epics"
-                        onClick={() => setMenuCollapsed(!menuCollapsed)}
-                        className="layout-admin__sider__logo"
-                    >
-                        <h1>{menuCollapsed ? "EI" : "EPICS IEEE"}</h1>
+                    <div className='layout-admin__sider__head'>
+
+                        {school && !menuCollapsed && 
+                        <Link to='/schools' className='layout-admin__sider__head__back'>
+                            <div><LeftOutlined/></div>
+                        </Link>}
+                        
+                        <div
+                            onClick={() => setMenuCollapsed(!menuCollapsed)}
+                            className="layout-admin__sider__head__logo"
+                        >
+                            <h1>{menuCollapsed ? "EI" : "EPICS IEEE"}</h1>
+                        </div>
                     </div>
                     <MenuSider
                         selectedKey={menuSelectedKey}

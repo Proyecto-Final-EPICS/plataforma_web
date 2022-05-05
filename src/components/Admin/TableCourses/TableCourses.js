@@ -21,14 +21,14 @@ export default function TableCourses(props) {
             dataIndex: 'level',
         },
         {
-            title: 'Período',
-            dataIndex: 'period',
+            title: 'Capacidad',
+            dataIndex: 'capacity',
         },
     ]
 
-    const data = courses.map(({ code, name, level, period }, 
+    const data = courses.map(({ code, name, level, capacity }, 
         key) => (
-        { key, code, name, level, period }
+        { key, code, name, level, capacity }
     ));
 
     const rowSelection = {
