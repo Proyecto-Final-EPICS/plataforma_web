@@ -5,7 +5,7 @@ import qs from 'query-string';
 
 //Componentes
 import GamesFilters from '../../../components/Director/GamesFilters';
-import ListGames from '../../../components/Director/ListGames';
+import GamesStore  from '../../../components/Director/GamesStore';
 
 //API
 import gamesApi from './../../../mock_data/collections/game.json';
@@ -30,7 +30,7 @@ export default function DirectorGames() {
                 <GamesFilters/>
             </Header>
             <Content className='director-games__content'>
-                <ListGames games={games}/>
+                <GamesStore  games={games}/>
             </Content>
         </Layout>
     );

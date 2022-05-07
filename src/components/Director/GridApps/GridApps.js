@@ -24,7 +24,7 @@ export default function GridApps (props) {
                             <h1>{name}</h1>
                         </Link>
                         <h2>{`Por: ${developers.map(d => d.student).join(', ')}`}</h2>
-                        {/* <h2>{`Nivel requerido: ${levelReq}`}</h2> */}
+                        {/* <h2>{`Nivel requerido: ${level}`}</h2> */}
                         {/* </div> */}
                     </li>
                 );

@@ -15,13 +15,8 @@ import studentApi from '../../../mock_data/collections/student.json';
 import sessionGame from '../../../mock_data/collections/sessionGame.json'
 
 // Íconos
-import {
-    UserOutlined,
-    EyeOutlined, 
-    RocketOutlined, 
-    CalendarOutlined,
-    BookOutlined, 
-} from '@ant-design/icons';
+import { UserOutlined, EyeOutlined, RocketOutlined, CalendarOutlined, 
+    BookOutlined } from '@ant-design/icons';
 
 //Componentes
 import MenuSider from '../../../components/Statistic/Sider/MenuSider';
@@ -31,12 +26,17 @@ import Stats from '../../../components/Statistic/Stats';
 // Contexto
 import StatisticHomeContext from '../../../components/Statistic/StatisticHomeContext';
 
+// Hooks
+import useAuth from '../../../hooks/useAuth';
+
 //Estilos
 import './StatisticHome.scss';
 
 export default function StatisticHome(){
     const { Sider, Content } = Layout;
-    const paramOptions = getParameters(); //Lista de parámetros válidos
+    const { username, userType, school } = useAuth();
+    
+    const paramOptions = getParameters(username, userType, school); //Lista de parámetros válidos
     
     // Query actual a validar
     const [query, setQuery] = useState(qs.parse(window.location.search));
@@ -78,8 +78,6 @@ export default function StatisticHome(){
     const checkData = () => {
         if(query.cur) {
             const [courses, students] = statisticFilterElems(sessionGame, query, courseApi, studentApi);
-            // console.log(courses);
-            // console.log(students);
             setData(query.elem === 'cur' ? courses : students);
         }
     }
@@ -106,8 +104,8 @@ export default function StatisticHome(){
         //     // Para evitar reload https://stackoverflow.com/questions/10970078/modifying-a-query-string-without-reloading-the-page
         //     window.history.pushState({path:newurl},'',newurl);
         // }
-        console.log('setting query:');
-        console.log(validQuery);
+        // console.log('setting query:');
+        // console.log(validQuery);
 
         setQuery(validQuery);
         setIsValidQuery(true);
@@ -141,8 +139,8 @@ export default function StatisticHome(){
                     paramOptions={paramOptions} 
                     query={query}
                     updateParam={updateParam} 
-                />:null
-                }
+                />:null}
+
                 <div className="submit">
                     {!siderCollapsed?
                         <Link to={queryUrl}>
@@ -223,13 +221,16 @@ function getValidQuery(paramOptions, query) {
     return newQuery;
 }
 
-function getParameters() {
+function getParameters(username, userType, school) {
+    let courses = courseApi.filter(c => c.school == school);
+    if(userType == 'professor') courses = courses.filter(c => c.professors.some(p => p.username == username));
+
     return [
         {
             name: 'cur',
             type: 'check',
             title: 'Cursos',
-            options: courseApi.map(({ code, name }) => (
+            options: courses.map(({ code, name }) => (
                 { name: code, value: name }
             )),
             icon: BookOutlined,

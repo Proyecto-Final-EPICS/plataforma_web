@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { Table } from 'antd';
 
 import AdminContext from '../AdminContext';
@@ -7,7 +7,23 @@ import { getAgeFromBirthDate } from '../../../libraries/General/utils';
 
 export default function TableProfessors(props) {
     const { professors } = props;
-    const { rowSel, setRowSel } = useContext(AdminContext);
+    const { rowSel, setRowSel, search } = useContext(AdminContext);
+
+    const getFilteredProfessors = () => {
+        let fxdSearch = search.trim();
+        
+        if(fxdSearch) {
+            fxdSearch = fxdSearch.toLowerCase();
+
+            return professors.filter(d => (
+                d.username.toLowerCase().includes(fxdSearch) 
+                || d.identityDoc === fxdSearch
+                || d.lastname.toLowerCase().includes(fxdSearch)
+                || d.firstname.toLowerCase().includes(fxdSearch)
+                || d.email.includes(fxdSearch)
+            ))
+        } else return professors;
+    }
 
     const columns = [
         {
@@ -47,8 +63,8 @@ export default function TableProfessors(props) {
         },
     ]
 
-    const data = professors.map(({ firstname, lastname, username, identityDoc: id, email, phone, gender, 
-        birthDate }, key) => (
+    const data = getFilteredProfessors().map(({ firstname, lastname, username, identityDoc: id, email, 
+        phone, gender, birthDate }, key) => (
         {
             key, firstname, lastname, username, id, email, phone, gender,
             age: getAgeFromBirthDate(birthDate)
@@ -60,6 +76,11 @@ export default function TableProfessors(props) {
         onChange: (selectedRowKeys, selectedRows) => setRowSel(selectedRows[0]),
         selectedRowKeys: rowSel ? [rowSel.key] : [],
     }
+
+    useEffect(() => {
+        setRowSel(null);
+    }, [search]);
+
     return (
         <Table
             dataSource={data}

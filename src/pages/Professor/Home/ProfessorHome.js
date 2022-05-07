@@ -1,50 +1,79 @@
 //Liberias
 import { useState, useEffect, useContext } from 'react';
-import { Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
+import { Row, Col, Button } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
 
 //Componentes
 import GridCourses from './../../../components/Professor/GridCourses';
-import ListApps from './../../../components/Professor/ListApps';
+import ListGames from './../../../components/Professor/ListGames';
 
 // Mock Data
-import coursesApi from '../../../mock_data/collections/course.json'
-import appsApi from '../../../mock_data/collections/app.json'
+import courseApi from '../../../mock_data/collections/course.json'
+import gameApi from '../../../mock_data/collections/game.json'
 
 import ProfessorContext from '../../../components/Professor/ProfessorContext';
+
+import qs from 'query-string';
 
 //Estilos
 import './ProfessorHome.scss';
 
 export default function ProfessorHome(){
-    const {username} = useContext(ProfessorContext).userInfo;
-    const [apps, setApps] = useState([]);
+    const { userInfo } = useContext(ProfessorContext);
+    const [games, setGames] = useState([]);
     const [courses, setCourses] = useState([]);
 
+    const redirectStatistics = () => {
+        const query = {cur: []};
+        courses.forEach(c => query.cur.push(c.code));
+        
+        return {
+            pathname: '/statistics',
+            search: qs.stringify(query),
+        }
+    }
+
     useEffect(() => {
-        setApps(appsApi);
-        setCourses(coursesApi.filter(c => c.professors.some(p => p.username == username)));
-    }, []);
+        const { school, username } = userInfo;
+        setCourses(courseApi.filter(c => c.school == school 
+            && c.professors.some(p => p.username == username)));
+
+        setGames(gameApi.filter(g => g.school == school));
+    }, [userInfo]);
 
     return (
         <div className="professor-home">
-            <Row className="professor-home__content" gutter={32}>
+            <Row gutter={32}>
                 <Col span={14}>
-                <div className="professor-home__content__sec professor-home__courses">
-                    <h1 className="professor-home__content__sec__title">Cursos</h1>
-                    <div className="professor-home__content__sec__content">
+                <div className="professor-home__sec">
+                    <h1 className="professor-home__sec__title">Cursos</h1>
+                    <div className="professor-home__sec__content">
                         <GridCourses courses={courses}/>
                     </div>
                 </div>
                 </Col>
                 <Col span={10}>
-                <div className="professor-home__content__sec professor-home__apps">
-                    <h1 className="professor-home__content__sec__title">Aplicaciones</h1>
-                    <div className="professor-home__content__sec__content">
-                        <ListApps apps={apps}/>
+                <div className="professor-home__sec">
+                    <h1 className="professor-home__sec__title">Juegos</h1>
+                    <div className="professor-home__sec__content">
+                        <ListGames games={games}/>
                     </div>
                 </div>
                 </Col>
             </Row>
+            <div className='professor-home__sec professor-home__stats'>
+                <Link
+                    to={redirectStatistics}
+                    target="_blank" 
+                    referrerPolicy="no-referrer"
+                >
+                    <Button type='primary'>
+                        Ver Estadísticas
+                        <ArrowRightOutlined />
+                    </Button>
+                </Link>
+            </div>
         </div>
     );
 }

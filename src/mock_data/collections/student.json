@@ -12,6 +12,7 @@
         "gender": "Masculino",
         "course": "C02",
         "school": "C01",
+        "photo": "https://thispersondoesnotexist.com/image",
         "representative": {
             "firstname": "Rep",
             "lastname": "Lastname",
@@ -35,6 +36,7 @@
         "gender": "Masculino",
         "course": "C01",
         "school": "C01",
+        "photo": "https://thispersondoesnotexist.com/image",
         "representative": {
             "firstname": "Rep",
             "lastname": "Lastname",
@@ -58,6 +60,7 @@
         "gender": "Femenino",
         "course": "C02",
         "school": "C01",
+        "photo": "https://thispersondoesnotexist.com/image",
         "representative": {
             "firstname": "Rep",
             "lastname": "Lastname",
@@ -81,6 +84,7 @@
         "gender": "Femenino",
         "course": "C03",
         "school": "C01",
+        "photo": "https://thispersondoesnotexist.com/image",
         "representative": {
             "firstname": "Rep",
             "lastname": "Lastname",

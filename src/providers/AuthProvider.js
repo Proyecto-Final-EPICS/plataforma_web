@@ -1,9 +1,10 @@
 //Liberias
-import React,{useState,createContext,useEffect} from 'react';
+import { useState, createContext, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 
 //Api
 import { getAccessTokenApi, logout } from '../api/auth';
+import userApi from '../mock_data/collections/user.json';
 
 export const AuthContext = createContext();
 
@@ -14,14 +15,15 @@ export default function AuthProvider(props) {
         username: '',
         userType: null,
         isLoading: false,
+        school: ''
     });
     
     useEffect(()=>{
         checkUserLogin(user, setUser);
         setAuthDone(true);
     }, []);
+
     return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
-    //Se está pasando el usuario a toda la web con value={user}
 }
 
 function checkUserLogin(user, setUser){
@@ -31,11 +33,13 @@ function checkUserLogin(user, setUser){
     if(!accessToken){
         console.log("Token caducado o inexistente");//aca debería ir el accesstoken
         logout();
+
         setUser({
             userId: NaN,
             username: '',
             userType: 'noUser',
             isLoading: false,
+            school: '',
         });
     }else{
         // setUser({
@@ -43,16 +47,18 @@ function checkUserLogin(user, setUser){
         //     isLoading: false,
         // })
         let userType = localStorage.getItem('userType');
-        
         if(!userType || userType==='null') {
             userType = prompt('User type:');
             localStorage.setItem('userType', userType);
         }
+
+        const username = jwtDecode(accessToken).sub.user;
         setUser({
             userId: 0,
-            username: jwtDecode(accessToken).sub.user,
+            username,
             userType, //admin director professor noUser
             isLoading: false,
+            school: userApi.find(u => u.username === username).school,
         });
     }
 }

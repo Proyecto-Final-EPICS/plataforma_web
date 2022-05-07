@@ -1,8 +1,9 @@
 [
     {
+        "id": "C01-C01",
+        "code": "C01",
         "school": "C01",
         "name": "Curso 01",
-        "code": "C01",
         "level": "B1",
         "capacity": 20,
         "professors": [
@@ -22,25 +23,31 @@
                 "username": "student2",
                 "firstname": "Miralem",
                 "lastname": "Pjanic"
-            }
-        ],
-        "apps": [
-            {
-                "name": "App3",
-                "code": "app3",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
             },
             {
-                "name": "App4",
-                "code": "app4",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+                "username": "student3",
+                "firstname": "Miralem",
+                "lastname": "Pjanic"
+            },
+            {
+                "username": "student4",
+                "firstname": "Miralem",
+                "lastname": "Pjanic"
+            }
+        ],
+        "games": [
+            {
+                "id": "C01-J03",
+                "code": "J03",
+                "name": "Juego 03"
             }
         ]
     },
     {
+        "id": "C01-C02",
+        "code": "C02",
         "school": "C01",
         "name": "Curso 02",
-        "code": "C02",
         "level": "C2",
         "capacity": 20,
         "professors": [
@@ -61,33 +68,24 @@
             }
         ],
         "students": [],
-        "apps": [
+        "games": [
             {
-                "name": "App1",
-                "code": "app3",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+                "id": "C01-J01",
+                "code": "J01",
+                "name": "Juego 01"
             },
             {
-                "name": "App3",
-                "code": "app4",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
-            },
-            {
-                "name": "App4",
-                "code": "app3",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
-            },
-            {
-                "name": "App5",
-                "code": "app4",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+                "id": "C01-J03",
+                "code": "J03",
+                "name": "Juego 03"
             }
         ]
     },
     {
+        "id": "C01-C03",
+        "code": "C03",
         "school": "C01",
         "name": "Curso 03",
-        "code": "C03",
         "level": "A2",
         "capacity": 20,
         "professors": [
@@ -103,18 +101,29 @@
             }
         ],
         "students": [],
-        "apps": [
+        "games": [
             {
-                "name": "App2",
-                "code": "app2",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+                "id": "C01-J01",
+                "code": "J01",
+                "name": "Juego 01"
+            },
+            {
+                "id": "C01-J02",
+                "code": "J02",
+                "name": "Juego 02"
+            },
+            {
+                "id": "C01-J03",
+                "code": "J03",
+                "name": "Juego 03"
             }
         ]
     },
     {
+        "id": "C01-C04",
+        "code": "C04",
         "school": "C01",
         "name": "Curso 04",
-        "code": "C04",
         "level": "A2",
         "capacity": 20,
         "professors": [
@@ -141,23 +150,19 @@
                 "lastname": "Ramírez"
             }
         ],
-        "apps": [
+        "games": [
             {
-                "name": "App2",
-                "code": "app2",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
-            },
-            {
-                "name": "App4",
-                "code": "app4",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+                "id": "C01-J02",
+                "code": "J02",
+                "name": "Juego 02"
             }
         ]
     },
     {
+        "id": "C01-C05",
+        "code": "C05",
         "school": "C01",
         "name": "Curso 05",
-        "code": "C05",
         "level": "A1",
         "capacity": 20,
         "professors": [
@@ -173,11 +178,16 @@
             }
         ],
         "students": [],
-        "apps": [
+        "games": [
             {
-                "name": "App1",
-                "code": "app1",
-                "logo": "https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304573_960_720.png"
+                "id": "C01-J02",
+                "code": "J02",
+                "name": "Juego 02"
+            },
+            {
+                "id": "C01-J03",
+                "code": "J03",
+                "name": "Juego 03"
             }
         ]
     }

@@ -11,7 +11,7 @@ import './MenuSider.scss';
 
 function MenuSider(props) {
 	const { selectedKey, setSelectedKey, items } = props;
-    const { setRowSel } = useContext(AdminContext);
+    const { setRowSel, setSearch } = useContext(AdminContext);
 
     const onLinkClick = to => to !== window.location.pathname && setRowSel(null);
 
@@ -20,7 +20,12 @@ function MenuSider(props) {
         window.location.reload();
     }
 
-    const onSelectItem = e => e.key !== 'logout' && setSelectedKey(e.key);
+    const onSelectItem = e => {
+        if(e.key !== 'logout') {
+            setSelectedKey(e.key);
+            setSearch('');
+        }
+    };
 
 	return (
         <Menu

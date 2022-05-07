@@ -1,7 +1,7 @@
 //Librerías
-import {useState, useEffect} from 'react';
-import { Layout, Row} from 'antd';
-import {Route,Switch,Redirect} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Layout, Row } from 'antd';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 //Componentes
 import MenuTop from '../../components/General/MenuTop';
@@ -10,26 +10,25 @@ import MenuSider from '../../components/Professor/MenuSider/MenuSider';
 
 import ProfessorContext from '../../components/Professor/ProfessorContext'
 
-import professorApi from '../../mock_data/collections/professor.json';
-
-//Hooks
 import useAuth from '../../hooks/useAuth';
+
+import professorApi from '../../mock_data/collections/professor.json';
 
 //Estilos
 import './LayoutProfessor.scss';
 
 export default function LayoutProfessor(props){
-    const {Header, Content, Footer} = Layout;
+    const { Sider, Header, Content, Footer } = Layout;
     const { routes } = props;
-    const {username, isLoading} = useAuth();
+    const { username, isLoading } = useAuth();
 
-    const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);
+    const [menuSelectedKey, setMenuSelectedKey] = useState('/' + window.location.pathname.split('/')[1]);
     const [menuCollapsed, setMenuCollapsed] = useState(false);
     const [userInfo, setUserInfo] = useState({});
-    
+
     useEffect(() => {
-        const { firstname, lastname, phone, email } = professorApi.find(p => p.username == username);
-        setUserInfo({username, firstname, lastname, phone, email});
+        const { firstname, lastname, phone, email, school } = professorApi.find(p => p.username == username);
+        setUserInfo({username, firstname, lastname, phone, email, school});
     }, []);
 
     if(!username && !isLoading) return <Redirect to="/login"/>;
@@ -44,25 +43,26 @@ export default function LayoutProfessor(props){
                 <Header className="layout-professor__header">
                     <MenuTop callback={() => window.location.href = '/home'}/>
                 </Header>
-                <Content className="layout-professor__content">
+                <Content>
                     <Layout>
-                        <MenuSider
-                            selectedKey={menuSelectedKey}
-                            setSelectedKey={setMenuSelectedKey}
-                            collapsed={menuCollapsed}
-                            setCollapsed={setMenuCollapsed}
-                        />
+                        <Sider className='layout-professor__sider' collapsed={menuCollapsed}>
+                            <div
+                                onClick={() => setMenuCollapsed(!menuCollapsed)}
+                                className="layout-professor__sider__logo"
+                            >
+                                {menuCollapsed ? "EI" : "EPICS IEEE"}
+                            </div>
+                            <MenuSider
+                                selectedKey={menuSelectedKey}
+                                setSelectedKey={setMenuSelectedKey}
+                            />
+                        </Sider>
                         <Layout
-                            className='layout-professor__content__layout'
                             style={{ marginLeft: menuCollapsed ? "80px" : "200px" }}
                         >
-                            <Content>
-                                <Row>
-                                    <Breadcrumbs/>
-                                </Row>
-                                <div className="layout-professor__content__layout__content">
-                                    <LoadRoutes routes={routes}/>
-                                </div>
+                            <Breadcrumbs/>
+                            <Content className='layout-professor__content'>
+                                <LoadRoutes routes={routes}/>
                             </Content>
                         </Layout>
                     </Layout>

@@ -1,20 +1,10 @@
 @import '../../../scss/index.scss';
 
-.professor-sider {
-    position: fixed;
-    left: 0;
-    top: 65px;
-    height: 100vh;
-    overflow: auto;
-    background: $background-orange-light2;
-
-    &__menu {
-        margin-top: 20px;
-        background-color: $background-orange-light2;
-    }
+.professor-sider-menu {
+    margin-top: 20px;
+    background-color: $background-orange-light2;
 
     &__item {
-        
         span {
             color: black !important;
         }
@@ -26,16 +16,5 @@
 
     .ant-menu-item-selected {
         background-color: $background-orange !important;
-    }
-
-    &__logo {
-        text-align: center;
-        padding-top: 20px;
-        font-weight: 500;
-
-        &:hover {
-            font-weight: 650;
-            cursor: pointer;
-        }
     }
 }

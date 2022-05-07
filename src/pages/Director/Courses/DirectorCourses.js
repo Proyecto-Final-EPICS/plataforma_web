@@ -52,7 +52,7 @@ export default function DirectorCourses() {
                 </Content>
                 
                 <Link
-                    to = {redirectStatistics}
+                    to={redirectStatistics}
                     target="_blank" 
                     referrerPolicy="no-referrer"
                 >

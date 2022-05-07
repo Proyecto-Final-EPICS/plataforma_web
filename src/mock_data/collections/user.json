@@ -4,69 +4,79 @@
     "role": "director",
     "firstname": "Director",
     "lastname": "Epics",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "dir2",
     "role": "director",
     "firstname": "Director",
     "lastname": "Epics",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "dir3",
     "role": "director",
     "firstname": "Director",
     "lastname": "Epics",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "prof1",
     "role": "professor",
     "firstname": "Professor",
     "lastname": "Epics",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "prof2",
     "role": "professor",
     "firstname": "Professor",
     "lastname": "Epics",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "prof3",
     "role": "professor",
     "firstname": "Professor",
     "lastname": "Epics",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "student1",
     "role": "student",
     "firstname": "Francisco",
     "lastname": "Trincao",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "student2",
     "role": "student",
     "firstname": "Miralem",
     "lastname": "Pjanic",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "student3",
     "role": "student",
     "firstname": "Johana",
     "lastname": "White",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   },
   {
     "username": "student4",
     "role": "student",
     "firstname": "Diana",
     "lastname": "Ramírez",
-    "password": "pass"
+    "password": "pass",
+    "school": "C01"
   }
 ]

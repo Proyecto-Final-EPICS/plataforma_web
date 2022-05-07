@@ -14,8 +14,6 @@ import useAuth from '../../hooks/useAuth';
 //Estilos
 import './LayoutStatistic.scss';
 
-//...
-
 export default function LayoutStatistic(props) {
     const { routes } = props;
     const { username, isLoading } = useAuth();

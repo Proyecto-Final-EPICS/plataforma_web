@@ -9,7 +9,7 @@ import LayoutStatistic from '../pages/Statistic';
 
 //Pages for everybody
 import Login from '../pages/Login';
-import SignUp from '../pages/Signup';
+// import SignUp from '../pages/Signup';
 import Error404 from '../pages/Error';
 
 //Pages Admin
@@ -30,9 +30,11 @@ import DirectorProfessors from '../pages/Director/Professors';
 
 //Pages Professor
 import ProfessorHome from '../pages/Professor/Home';
+import ProfessorCourse from '../pages/Professor/Course';
+import ProfessorGames from '../pages/Professor/Games';
+import ProfessorGame from '../pages/Professor/Game';
 import ProfessorProfile from '../pages/Professor/Profile';
 import ProfessorCalendar from '../pages/Professor/Calendar';
-import ProfessorGrades from '../pages/Professor/Grades';
 import ProfessorInstitution from '../pages/Professor/Institution';
 
 //Pages Statistic
@@ -116,6 +118,21 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             exact: true
         },
         {
+            path: "/statistics",
+            component: LayoutStatistic,
+            exact: false,
+            routes: [
+                {
+                    path: "/statistics",
+                    component: StatisticHome,
+                    exact: true
+                },
+                {
+                    component: Error404
+                }
+            ]
+        },
+        {
             path: "/",
             component: LayoutDirector,
             exact: false,
@@ -151,6 +168,16 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             ]
         },
         {
+            component: Error404
+        }
+    ],
+    professor: [
+        {
+            path: '/',
+            component: () => <Redirect to="/home"/>,
+            exact: true
+        },
+        {
             path: "/statistics",
             component: LayoutStatistic,
             exact: false,
@@ -166,16 +193,6 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             ]
         },
         {
-            component: Error404
-        }
-    ],
-    professor: [
-        {
-            path: '/',
-            component: () => <Redirect to="/home"/>,
-            exact: true
-        },
-        {
             path: "/",
             component: LayoutProfessor,
             exact: false,
@@ -183,7 +200,22 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                 {
                     path: "/home",
                     component: ProfessorHome,
-                    exact: true
+                    exact: true,
+                },
+                {
+                    path: "/home/:course",
+                    component: ProfessorCourse,
+                    exact: true,
+                },
+                {
+                    path: "/home/:course/game-store",
+                    component: ProfessorGames,
+                    exact: true,
+                },
+                {
+                    path: "/home/:course/game-store/:game",
+                    component: ProfessorGame,
+                    exact: true,
                 },
                 {
                     path: "/profile",
@@ -196,28 +228,8 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                     exact: true
                 },
                 {
-                    path: "/grades",
-                    component: ProfessorGrades,
-                    exact: true
-                },
-                {
                     path: "/institution",
                     component: ProfessorInstitution,
-                    exact: true
-                },
-                {
-                    component: Error404
-                }
-            ]
-        },
-        {
-            path: "/statistics",
-            component: LayoutStatistic,
-            exact: false,
-            routes: [
-                {
-                    path: "/statistics",
-                    component: StatisticHome,
                     exact: true
                 },
                 {

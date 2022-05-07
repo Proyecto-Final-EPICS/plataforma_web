@@ -2,59 +2,22 @@
 
 .professor-home {
 
-    &__content {
-        &__sec {
+    &__sec {
 
-            &__content {
-                border-radius: 10px;
-                border: 1px #ddd solid;
-            }
+        &__content {
+            border-radius: 10px;
+            // border: 1px #ddd solid;
+        }
 
-            &__title {
-                font-size: 18px;
-                text-align: center;
-                margin-bottom: 10px;
-            }
-
-            .professor-courses {
-                
-                &__el {
-                    background-color: $background-orange-light;
-                    box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
-                    border: none;
-                    transition: background .2s;
-
-                    &:hover {
-                        background: $primary-color-hover;
-                    }
-                }
-            }
-            // padding: 10px 20px;
+        &__title {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
         }
     }
+
+    &__stats {
+        margin-top: 40px;
+        text-align: right;
+    }
 }
-
-// .home-professor{
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     height: 50vh;
-//     margin-top: 50px;
-
-//     &__content{
-//         width: 20em;
-//         height: 100%;
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         border-radius: 18px;
-//         box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
-//         background: $background-orange;
-//         transition: all .2s;
-
-//         &:hover{
-//             background: $primary-color-hover;
-//         }
-//     }
-
-// }
