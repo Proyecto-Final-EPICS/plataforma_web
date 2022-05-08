@@ -208,12 +208,12 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                     exact: true,
                 },
                 {
-                    path: "/home/:course/game-store",
+                    path: "/games",
                     component: ProfessorGames,
                     exact: true,
                 },
                 {
-                    path: "/home/:course/game-store/:game",
+                    path: "/games/:game",
                     component: ProfessorGame,
                     exact: true,
                 },

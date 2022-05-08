@@ -20,28 +20,21 @@ export default function ProfessorGames() {
     const { Content, Header } = Layout;
     const { userInfo } = useContext(ProfessorContext);
     const [games, setGames] = useState([]);
-    const [course, setCourse] = useState('');
-
-    const getCourse = () => {
-        const matchCourse = matchPath(window.location.pathname, { path: '/home/:course' });
-        return matchCourse && matchCourse.params.course;
-    }
 
     useEffect(() => {
         const { school } = userInfo;
         if(!school) return;
 
-        setCourse(getCourse());
         setGames(gameApi.filter(g => g.school == school));
     }, [userInfo]);
     
     return (
         <Layout className='professor-games'>
             <Header className='professor-games__header'>
-                <GamesFilters course={course}/>
+                <GamesFilters/>
             </Header>
             <Content className='professor-games__content'>
-                <GameStore games={games} course={course}/>
+                <GameStore games={games}/>
             </Content>
         </Layout>
     );

@@ -18,13 +18,20 @@ import professorApi from '../../mock_data/collections/professor.json';
 import './LayoutProfessor.scss';
 
 export default function LayoutProfessor(props){
+    const getMenuSelectedKey = () => '/' + window.location.pathname.split('/')[1];
+
     const { Sider, Header, Content, Footer } = Layout;
     const { routes } = props;
     const { username, isLoading } = useAuth();
 
-    const [menuSelectedKey, setMenuSelectedKey] = useState('/' + window.location.pathname.split('/')[1]);
+    const [menuSelectedKey, setMenuSelectedKey] = useState(getMenuSelectedKey());
     const [menuCollapsed, setMenuCollapsed] = useState(false);
     const [userInfo, setUserInfo] = useState({});
+
+    (() => {
+        const k = getMenuSelectedKey();
+        if(menuSelectedKey !== k) setMenuSelectedKey(k);
+    })();
 
     useEffect(() => {
         const { firstname, lastname, phone, email, school } = professorApi.find(p => p.username == username);

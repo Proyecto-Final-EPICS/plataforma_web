@@ -3,7 +3,7 @@ import {useContext} from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
-    HomeOutlined, UserOutlined, DesktopOutlined, CalendarOutlined, BankOutlined, FileSearchOutlined
+    HomeOutlined, UserOutlined, DesktopOutlined, CalendarOutlined, BankOutlined, FileSearchOutlined, BookOutlined
 } from '@ant-design/icons';
 
 import ProfessorContext from '../ProfessorContext';
@@ -29,25 +29,31 @@ function MenuSider(props){
         >
             <Menu.Item key="/home" className="professor-sider-menu__item" icon={<HomeOutlined/>}>
                 <Link to={"/home"}>
-                <span className="nav-text">Inicio</span>
+                <span>Inicio</span>
+                </Link>
+            </Menu.Item>
+
+            <Menu.Item key="/games" className="professor-sider-menu__item" icon={<BookOutlined/>}>
+                <Link to={"/games"}>
+                <span>Juegos</span>
                 </Link>
             </Menu.Item>
 
             <Menu.Item key="/profile" className="professor-sider-menu__item" icon={<UserOutlined/>}>
                 <Link to={"/profile"}>
-                <span className="nav-text">{parseName()}</span>
+                <span>{parseName()}</span>
                 </Link>
             </Menu.Item>
 
             <Menu.Item key="/calendar" className="professor-sider-menu__item" icon={<CalendarOutlined/>}>
                 <Link to={"/calendar"}>
-                <span className="nav-text">Calendario</span>
+                <span>Calendario</span>
                 </Link>
             </Menu.Item>
 
             <Menu.Item key="/institution" className="professor-sider-menu__item" icon={<BankOutlined/>}>
                 <Link to={"/institution"}>
-                <span className="nav-text">Institución</span>
+                <span>Institución</span>
                 </Link>
             </Menu.Item>
         </Menu>

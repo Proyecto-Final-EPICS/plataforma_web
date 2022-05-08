@@ -41,8 +41,8 @@ export default function ProfessorCourse() {
 
 	return (
 		<>
-			{course &&
-			<div className='professor-course'>
+		{course &&
+		<div className='professor-course'>
 			<Row className='professor-course__row' gutter={32}>
 				<Col span={10}>
 				<div className='professor-course__summ'>
@@ -74,15 +74,10 @@ export default function ProfessorCourse() {
 
 				<Col className='professor-course__games' span={7}>
 					<h1 className='professor-course__title'>Juegos</h1>
-					<ListGames games={games}/>
-					<div className='professor-course__games__store'>
-						<Link to={`/home/${course.code}/game-store`}>
-							<Button type='primary' >Ver más</Button>
-						</Link>
-					</div>
+					<ListGames games={games} course={course.code}/>
 				</Col>
 			</Row>
-			</div>}
+		</div>}
 		</>
 	);
 }

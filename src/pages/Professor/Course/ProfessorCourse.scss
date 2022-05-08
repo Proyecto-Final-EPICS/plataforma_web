@@ -9,7 +9,7 @@
         padding: 40px 20px 20px 40px !important;
         // width: 800px;
         height: 320px;
-        border: 1px solid #ccc;
+        border: 1px solid #ddd;
         border-radius: 5px;
 
         h1 {
@@ -26,16 +26,8 @@
         }
     }
 
-    .professor-students,.professor-games {
+    .professor-students, .professor-games {
         max-height: 284px;
-    }
-
-    &__games {
-
-        &__store {
-            text-align: right;
-            margin-top: 10px;
-        }
     }
 
     &__title {

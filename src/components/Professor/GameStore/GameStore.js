@@ -4,7 +4,7 @@ import { List } from 'antd';
 import './GameStore.scss';
 
 export default function GameStore(props) {
-    const { games, course } = props;
+    const { games } = props;
 
     return (
         <List
@@ -15,15 +15,15 @@ export default function GameStore(props) {
             //     pageSize: 3,
             // }}
             dataSource={games}
-            renderItem={props => <Game {...props} course={course}/>}
+            renderItem={Game}
             bordered
         />
     );
 }
 
 function Game(props) {
-    const { code, name, shortDescription, devs, skills, logo, course } = props;
-    const linkTo = `/home/${course}/game-store/${code}`
+    const { code, name, shortDescription, devs, skills, logo } = props;
+    const linkTo = `/games/${code}`
 
     return (
         <List.Item

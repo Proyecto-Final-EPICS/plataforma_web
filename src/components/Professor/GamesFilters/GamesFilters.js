@@ -9,7 +9,6 @@ import './GamesFilters.scss';
 
 export default function GamesFilters(props) {
 
-    const { course } = props;
     const [categoriesVisible, setCategoriesVisible] = useState(false);
     const [categories, setCategories] = useState([]);
     const [levelVisible, setLevelVisible] = useState(false);
