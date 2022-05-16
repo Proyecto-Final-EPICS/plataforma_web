@@ -1,7 +1,9 @@
-{
-  "username": "admin",
-  "role": "admin",
-  "firstname": "Hola",
-  "lastname": "Soy Admin",
-  "password": "Pass"
-}
+[
+  {
+    "username": "admin",
+    "role": "admin",
+    "firstname": "Hola",
+    "lastname": "Soy Admin",
+    "password": "Pass"
+  }
+]

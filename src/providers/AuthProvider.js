@@ -30,6 +30,6 @@ function checkUserLogin(setUser){
     }else{
         const username = jwtDecode(accessToken).sub.user;
         let user = userApi.find(u => u.username === username);
-        setUser(user ? user : adminApi.username === username ? adminApi : {});
+        setUser(user ? user : adminApi[0].username === username ? adminApi[0] : {});
     }
 }
