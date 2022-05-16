@@ -17,18 +17,18 @@
 		],
 		"modules": [
 			{
-				"id": "vocab1",
-				"topic": "Vocabulary - part 1",
+				"code": "vocab1",
+				"name": "Vocabulary - part 1",
 				"img": "https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png"
 			},
 			{
-				"id": "vocab2",
-				"topic": "Vocabulary - part 2",
+				"code": "vocab2",
+				"name": "Vocabulary - part 2",
 				"img": "https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png"
 			},
 			{
-				"id": "fam",
-				"topic": "Family members",
+				"code": "fam",
+				"name": "Family members",
 				"img": "https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png"
 			}
 		],
@@ -67,18 +67,18 @@
 		],
 		"modules": [
 			{
-				"id": "west-cult",
-				"topic": "Western cultures",
+				"code": "west-cult",
+				"name": "Western cultures",
 				"img": "https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png"
 			},
 			{
-				"id": "east-cult",
-				"topic": "Eastern cultures",
+				"code": "east-cult",
+				"name": "Eastern cultures",
 				"img": "https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png"
 			},
 			{
-				"id": "com",
-				"topic": "Effective communication",
+				"code": "com",
+				"name": "Effective communication",
 				"img": "https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png"
 			}
 		],
@@ -105,13 +105,13 @@
 		],
 		"modules": [
 			{
-				"id": "past-ten",
-				"topic": "Past tense",
+				"code": "past-ten",
+				"name": "Past tense",
 				"img": "https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png"
 			},
 			{
-				"id": "fut-ten",
-				"topic": "Future tense",
+				"code": "fut-ten",
+				"name": "Future tense",
 				"img": "https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png"
 			}
 		],

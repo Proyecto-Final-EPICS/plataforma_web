@@ -1,32 +1,27 @@
 //Liberias
-import { useState, useEffect, useContext } from 'react';
-import { matchPath } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Layout } from 'antd';
-// import qs from 'query-string';
 
 //Componentes
 import GamesFilters from '../../../components/Professor/GamesFilters';
-import GameStore  from '../../../components/Professor/GameStore';
+import ListGames  from '../../../components/Professor/ListGames';
 
 //API
 import gameApi from './../../../mock_data/collections/game.json';
 
-import ProfessorContext from '../../../components/Professor/ProfessorContext';
+import useAuth from '../../../hooks/useAuth';
 
 //Estilo
 import './ProfessorGames.scss'
 
 export default function ProfessorGames() {
     const { Content, Header } = Layout;
-    const { userInfo } = useContext(ProfessorContext);
     const [games, setGames] = useState([]);
+    const { school } = useAuth();
 
     useEffect(() => {
-        const { school } = userInfo;
-        if(!school) return;
-
         setGames(gameApi.filter(g => g.school == school));
-    }, [userInfo]);
+    }, []);
     
     return (
         <Layout className='professor-games'>
@@ -34,7 +29,7 @@ export default function ProfessorGames() {
                 <GamesFilters/>
             </Header>
             <Content className='professor-games__content'>
-                <GameStore games={games}/>
+                <ListGames games={games}/>
             </Content>
         </Layout>
     );

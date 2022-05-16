@@ -59,7 +59,13 @@ export default function ChartSettings(props) {
 
 			<div className="stats-form__submit">
             <Form.Item>
-                <Button htmlType="submit" type="primary">Aplicar</Button>
+                <Button 
+					className='button-orange' 
+					htmlType="submit" 
+					type="primary"
+				>
+					Aplicar
+				</Button>
             </Form.Item>
             </div>
 

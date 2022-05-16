@@ -1,19 +1,20 @@
 @import '../../../scss/index.scss';
 
-.director-sider{
-    position: fixed;
-    left: 0;
-    top: 65px;
-    height: 100vh;
-    overflow: auto;
-    background: $background-orange-light2;
+.director-sider-menu {
+    margin-top: 20px;
+    background-color: $background-orange-light2;
 
-    &__menu{
-        margin-top: 20px;
-        background-color: $background-orange-light2;
+    &__item {
+        span {
+            color: black !important;
+        }
+
+        &:hover {
+            background-color: $background-orange-light;
+        }
     }
 
-    &__item{
-        background: $background-orange;
+    .ant-menu-item-selected {
+        background-color: $background-orange !important;
     }
 }

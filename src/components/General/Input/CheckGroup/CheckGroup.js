@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Checkbox, Space } from "antd";
 
 export default function CheckGroup(props) {
-    const {name, options, checked, update} = props;
+    const { name, options, checked, update, dir } = props;
     const [optionsChecked, setOptionsChecked] = useState([]);
     const [checkedAll, setCheckedAll] = useState(false);
 
@@ -11,7 +11,7 @@ export default function CheckGroup(props) {
         else {
             setOptionsChecked(list);
             setCheckedAll(false);
-            update(name, list);
+            if(update) update(name, list);
         }
     }
 
@@ -19,7 +19,7 @@ export default function CheckGroup(props) {
         setCheckedAll(checkOperation);
         const temp = checkOperation ? options : [];
         setOptionsChecked(temp);
-        update(name, temp);
+        if(update) update(name, temp);
     }
 
     useEffect(() => {
@@ -27,13 +27,14 @@ export default function CheckGroup(props) {
     }, []);
 
     return (
-        <Space direction="vertical">
+        <>
+        {options.length ? <Space direction={dir}>
             <Checkbox.Group 
                 className="check-group" 
                 value={optionsChecked}
                 onChange={onCheckOne}
             >
-                <Space direction="vertical">
+                <Space direction={dir}>
                 {options.map((op, index) => (
                     <Checkbox 
                         className="check-group__item"
@@ -46,13 +47,14 @@ export default function CheckGroup(props) {
                 </Space>
             </Checkbox.Group>
             
-            <Checkbox 
+            {options.length > 1 && <Checkbox 
                 className="check-all" 
                 onChange={e => onCheckAll(e.target.checked)} 
                 checked={checkedAll}
             >
                 Todos
-            </Checkbox>
-        </Space>
+            </Checkbox>}
+        </Space> : null}
+        </>
     )
 }

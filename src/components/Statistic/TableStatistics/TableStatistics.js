@@ -8,7 +8,6 @@ import StatisticHomeContext from '../StatisticHomeContext';
 export default function TableStatistics(props) {
     const { data } = props;
     const { query } = useContext(StatisticHomeContext);
-    // const [courses, students] = data;
     
     return(
         <>

@@ -6,7 +6,7 @@ import {Layout, Tabs, Button} from 'antd';
 import qs from 'query-string';
 
 // Funciones
-import statisticFilterElems from '../../../libraries/Statistic/statisticFilterElems';
+import { statisticFilterElems } from '../../../libraries/General/utils';
 
 // Mock Data
 import gameApi from '../../../mock_data/collections/game.json';
@@ -32,11 +32,11 @@ import useAuth from '../../../hooks/useAuth';
 //Estilos
 import './StatisticHome.scss';
 
-export default function StatisticHome(){
+export default function StatisticHome() {
     const { Sider, Content } = Layout;
-    const { username, userType, school } = useAuth();
+    const { username, role, school } = useAuth();
     
-    const paramOptions = getParameters(username, userType, school); //Lista de parámetros válidos
+    const paramOptions = getParameters(username, role, school); //Lista de parámetros válidos
     
     // Query actual a validar
     const [query, setQuery] = useState(qs.parse(window.location.search));
@@ -221,9 +221,9 @@ function getValidQuery(paramOptions, query) {
     return newQuery;
 }
 
-function getParameters(username, userType, school) {
+function getParameters(username, role, school) {
     let courses = courseApi.filter(c => c.school == school);
-    if(userType == 'professor') courses = courses.filter(c => c.professors.some(p => p.username == username));
+    if(role == 'professor') courses = courses.filter(c => c.professors.some(p => p.username == username));
 
     return [
         {

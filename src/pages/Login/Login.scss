@@ -17,7 +17,7 @@
         }
 
         &__form {
-            background-color: $background-purple-dark;
+            background-color: $background-purple-light;
             padding: 20px;
             border-radius: 10%;
             height: 62vh;
@@ -32,16 +32,6 @@
                color: $font-purple-dark;
             }
 
-            &__sign-up {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                margin-top: 10px;
-                
-                button {
-                    color: $font-purple-dark;
-                }
-            }
         }
     }
 }

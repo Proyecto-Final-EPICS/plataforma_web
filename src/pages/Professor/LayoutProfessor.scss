@@ -1,6 +1,16 @@
 @import '../../scss/index.scss';
 
-.layout-professor{
+.layout-professor {
+
+    &__header {
+        position: fixed;
+        width: 100%;
+        display: flex;
+        padding: 0;
+        height: 65px;
+        background: $background-purple;
+        z-index: 100;
+    }
 
     &__sider {
         position: fixed;
@@ -21,18 +31,6 @@
             }
         }
     }
-    
-    &__header{
-        position: fixed;
-        // top: 0;
-        // left: 0;
-        width: 100%;
-        display: flex;
-        padding: 0;
-        height: 65px;
-        background-color: $background-purple;
-        z-index: 100;
-    }
 
     &__content{
         padding: 20px 30px;
@@ -40,5 +38,6 @@
 
     &__footer{
         padding: 32px;
+        text-align: center;
     }
 }

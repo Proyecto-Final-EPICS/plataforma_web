@@ -1,24 +1,18 @@
 //Liberias
-import {useContext} from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Menu } from 'antd';
-import {
-    HomeOutlined, UserOutlined, DesktopOutlined, CalendarOutlined, BankOutlined, FileSearchOutlined, BookOutlined
-} from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, CalendarOutlined, BankOutlined, BookOutlined } from '@ant-design/icons';
 
-import ProfessorContext from '../ProfessorContext';
+import useAuth from '../../../hooks/useAuth';
 
 //Estilos
 import './MenuSider.scss';
 
 function MenuSider(props){
-    const {selectedKey, setSelectedKey} = props;
-    const {userInfo} = useContext(ProfessorContext);
+    const { selectedKey, setSelectedKey } = props;
+    const { firstname, lastname } = useAuth();
     
-    const parseName = () => (
-        userInfo.firstname?
-        `${userInfo.firstname.split()[0]} ${userInfo.lastname.split()[0]}` : "Perfil"
-    );
+    const parseName = () => firstname ? `${firstname.split()[0]} ${lastname.split()[0]}` : "Perfil";
 
     return(
         <Menu 

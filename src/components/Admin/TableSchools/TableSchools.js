@@ -1,8 +1,25 @@
+import { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Table, Button } from 'antd';
 
+import AdminContext from '../AdminContext';
+
 export default function TableSchools(props) {
     const { schools } = props;
+    const { rowSel, setRowSel, search } = useContext(AdminContext);
+
+    const getFilteredSchools = () => {
+        let fxdSearch = search.trim();
+        
+        if(fxdSearch) {
+            fxdSearch = fxdSearch.toLowerCase();
+
+            return schools.filter(c => (
+                c.code.toLowerCase().includes(fxdSearch) 
+                || c.name.toLowerCase().includes(fxdSearch)
+            ))
+        } else return schools;
+    }
 
     const columns = [
         {
@@ -16,9 +33,9 @@ export default function TableSchools(props) {
         },
         {
             title: 'Ubicación',
-            dataIndex: 'loc',
-            render: (_, {loc}) => (
-                <div>{`${loc.city}, ${loc.country}`}</div>
+            dataIndex: 'location',
+            render: (_, {location: {city, region, country}}) => (
+                <div>{`${city}, ${region}, ${country}`}</div>
             )
         },
         {
@@ -26,21 +43,36 @@ export default function TableSchools(props) {
             "key": "action",
             render: (_, record) => (
                 <Link to={`/schools/${record.code}`}>
-                <Button type="primary">Ver</Button>
+                    <Button
+                        className='button-purple' 
+                        type="primary"
+                    >
+                        Ver
+                    </Button>
                 </Link>
             )
         },
     ]
 
-    const data = schools.map(({name, code, location: loc}, key) => (
-        { key, name, code, loc }
+    const data = getFilteredSchools().map(({ name, code, location }, key) => (
+        { key, name, code, location }
     ));
+
+    const rowSelection = {
+        type: 'radio',
+        onChange: (selectedRowKeys, selectedRows) => setRowSel(selectedRows[0]),
+        selectedRowKeys: rowSel ? [rowSel.key] : [],
+    }
+
+    useEffect(() => {
+        setRowSel(null);
+    }, [search]);
 
     return (
         <Table
             dataSource={data}
             columns={columns}
+            rowSelection={rowSelection}
         />
     );
-
 }

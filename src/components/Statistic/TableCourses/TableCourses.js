@@ -1,20 +1,28 @@
 import { Table, Button } from 'antd';
+import { genFilters } from '../../../libraries/General/utils';
 
 export default function TableCourses(props) {
     const { courses } = props;
+    
+    const data = courses.map((course, index) => {
+        console.log(course);
+        const { name, code, level, professors, games, capacity, students, sessions } = course;
+        let totTime = 0, accuracy = 0;
 
-    const genFilters = prop => {
-        const filters = [];
-        courses.forEach(course => {
-            if(!filters.some(f => f.value === course[prop])) {
-                filters.push({
-                    text: course[prop],
-                    value: course[prop],
-                });
-            }
+        sessions.forEach(s => {
+            totTime += s.totTime;
+            accuracy += s.accuracy;
         });
-        return filters;
-    }
+
+        return {
+            name, code, level, professors, games, 
+            capacity: `${students.length}/${capacity}`,
+            totTime: totTime.toFixed(1),
+            avTime: (totTime / sessions.length).toFixed(1),
+            accuracy: (accuracy / sessions.length).toFixed(2),
+            key: index,
+        }
+    });
 
     const columns = [
         {
@@ -23,7 +31,6 @@ export default function TableCourses(props) {
             key: 'name',
             fixed: 'left',
             width: 60,
-            // ...tableCustomFilters('name', query),
         },
         {
             title: 'Código',
@@ -31,7 +38,6 @@ export default function TableCourses(props) {
             key: 'code',
             fixed: 'left',
             width: 60,
-            // ...tableCustomFilters('id', query),
         },
         {
             title: 'Nivel',
@@ -39,8 +45,7 @@ export default function TableCourses(props) {
             key: 'level',
             fixed: 'left',
             width: 40,
-            // defaultSortOrder: 'descend',
-            filters: genFilters('level'),
+            filters: genFilters(data, 'level'),
             onFilter: (value, record) => record.level.indexOf(value) === 0, 
         },
         {
@@ -67,32 +72,16 @@ export default function TableCourses(props) {
             fixed: 'right',
             width: 80,
             render: (_, record) => (
-                <Button type="primary" onClick={() => console.log('jsjsjs')}>
+                <Button 
+                    className='button-purple'
+                    type="primary" 
+                    onClick={() => console.log('jsjsjs')}
+                >
                     Ver más
                 </Button>
             )
         },
     ];
-
-    const data = courses.map((course, index) => {
-        const {name, code, level, sessions} = course;
-        let totTime = 0, accuracy = 0, highestLevel = NaN;
-
-        sessions.forEach(s => {
-            totTime += s.totTime;
-            accuracy += s.accuracy;
-            if(isNaN(highestLevel) || s.highestLevel >= highestLevel) highestLevel = s.highestLevel;
-        });
-
-        const row = {
-            name, code, level,
-            accuracy: accuracy / sessions.length,
-            totTime: totTime / 36000,
-            avTime: totTime / sessions.length / 36000,
-            key: index,
-        }
-        return row;
-    });
 
     return (
         <Table

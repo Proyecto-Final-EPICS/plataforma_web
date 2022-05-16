@@ -10,3 +10,23 @@
     border: 1px solid $error !important;
     background-color: $background-error;
 }
+
+.button-purple {
+    background-color: $background-purple;
+    border-color: $background-purple;
+
+    &:hover, &:focus {
+        background-color: $background-purple-light;
+        border-color: $background-purple-light;
+    }
+}
+
+.button-orange {
+    background-color: $background-orange-light;
+    border-color: $background-orange-light;
+
+    &:hover, &:focus {
+        background-color: $background-orange-light2;
+        border-color: $background-orange-light2;
+    }
+}

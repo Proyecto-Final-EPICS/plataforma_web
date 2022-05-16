@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Layout } from 'antd';
-import { Link, Route, Redirect, Switch, matchPath } from 'react-router-dom';
+import { Link, Route, Switch, matchPath } from 'react-router-dom';
 
 import {
     HomeOutlined, UserOutlined, TeamOutlined, BookOutlined, BankOutlined, SmileOutlined, LeftOutlined
@@ -10,7 +10,6 @@ import MenuSider from './../../components/Admin/MenuSider';
 import MenuTop from '../../components/Admin/MenuTop';
 import Modal from '../../components/General/Modal';
 
-import useAuth from '../../hooks/useAuth';
 import AdminContext from '../../components/Admin/AdminContext';
 
 import "./LayoutAdmin.scss";
@@ -19,7 +18,6 @@ export default function LayoutAdmin(props) {
     // console.log('layoooout');
     const { routes } = props;
     const { Sider, Header, Content, Footer } = Layout;
-    const { username, isLoading } = useAuth();
 
     const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);
     const [menuCollapsed, setMenuCollapsed] = useState(false);
@@ -60,73 +58,61 @@ export default function LayoutAdmin(props) {
         }
     }, [modalVisible]);
 
-    // useEffect(() => {
-    //     const s2 = getSchool();
-    //     if(school !== s2) setSchool(s2);
-    // });
+    return (
+        <AdminContext.Provider value={{
+            rowSel, setRowSel, school, search, setSearch, deleteRow, setDeleteRow, 
+            editRow, setEditRow, addRow, setAddRow, modalVisible, setModalVisible, 
+            modalContent, setModalContent, modalTitle, setModalTitle, 
+        }}>
+        <Layout className='layout-admin'>
+            <Sider className='layout-admin__sider' collapsed={menuCollapsed}>
+                <div className='layout-admin__sider__head'>
 
-    if(!username && !isLoading) return <Redirect to="/login"/>;
-
-    if(username && !isLoading) {
-        if(window.location.pathname == "/") return <Redirect to="/home"/>;
-        return (
-            <AdminContext.Provider value={{
-                rowSel, setRowSel, school, search, setSearch, deleteRow, setDeleteRow, 
-                editRow, setEditRow, addRow, setAddRow, modalVisible, setModalVisible, 
-                modalContent, setModalContent, modalTitle, setModalTitle, 
-            }}>
-            <Layout className='layout-admin'>
-                <Sider className='layout-admin__sider' collapsed={menuCollapsed}>
-                    <div className='layout-admin__sider__head'>
-
-                        {school && !menuCollapsed && 
-                        <Link to='/schools' className='layout-admin__sider__head__back'>
-                            <div><LeftOutlined/></div>
-                        </Link>}
-                        
-                        <div
-                            onClick={() => setMenuCollapsed(!menuCollapsed)}
-                            className="layout-admin__sider__head__logo"
-                        >
-                            <h1>{menuCollapsed ? "EI" : "EPICS IEEE"}</h1>
-                        </div>
+                    {school && !menuCollapsed && 
+                    <Link to='/schools' className='layout-admin__sider__head__back'>
+                        <div><LeftOutlined/></div>
+                    </Link>}
+                    
+                    <div
+                        onClick={() => setMenuCollapsed(!menuCollapsed)}
+                        className="layout-admin__sider__head__logo"
+                    >
+                        <h1>{menuCollapsed ? "EI" : "EPICS IEEE"}</h1>
                     </div>
-                    <MenuSider
-                        selectedKey={menuSelectedKey}
-                        setSelectedKey={setMenuSelectedKey}
-                        items={menuItems}
-                    />
-                </Sider> 
-                <Content>
-                    <Layout>
-                        <Header className='layout-admin__header'>
-                            <MenuTop collectionSelected={collectionSelected()}/>
-                        </Header>
-                        <Content className="layout-admin__content">
+                </div>
+                <MenuSider
+                    selectedKey={menuSelectedKey}
+                    setSelectedKey={setMenuSelectedKey}
+                    items={menuItems}
+                />
+            </Sider> 
+            <Content>
+                <Layout>
+                    <Header className='layout-admin__header'>
+                        <MenuTop collectionSelected={collectionSelected()}/>
+                    </Header>
+                    <Content className="layout-admin__content">
 
-                            <Modal
-                                className='admin-modal'
-                                isVisible={modalVisible}
-                                setIsVisible={setModalVisible}
-                                title={modalTitle}
-                            >
-                                {modalContent}
-                            </Modal>
-                            <LoadRouters routes={routes}/>
+                        <Modal
+                            className='admin-modal'
+                            isVisible={modalVisible}
+                            setIsVisible={setModalVisible}
+                            title={modalTitle}
+                        >
+                            {modalContent}
+                        </Modal>
+                        <LoadRouters routes={routes}/>
 
-                        </Content>
-                        <Footer className="layout-admin__footer">
-                            EPICS IEEE
-                        </Footer>
-                    </Layout>
+                    </Content>
+                    <Footer className="layout-admin__footer">
+                        EPICS IEEE
+                    </Footer>
+                </Layout>
 
-                </Content>
-            </Layout>
-            </AdminContext.Provider>
-        )
-    }
-
-    return null;
+            </Content>
+        </Layout>
+        </AdminContext.Provider>
+    )
 }
 
 function LoadRouters(props) {

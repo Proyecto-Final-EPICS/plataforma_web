@@ -18,6 +18,8 @@ import {
     EditOutlined, 
 } from '@ant-design/icons';
 
+import './Stats.scss';
+
 export default function Stats(props) {
     const variables = getVariables();
 
@@ -114,7 +116,6 @@ export default function Stats(props) {
                 :null
                 }
                 <Button 
-                    className="stats__chart__btn"
                     icon={<EditOutlined/>} 
                     shape="circle" 
                     size="large"

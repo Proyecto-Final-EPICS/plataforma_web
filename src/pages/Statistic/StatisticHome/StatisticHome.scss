@@ -3,30 +3,10 @@
 .statistic-home {
 
     &__sider {
-        position: absolute;
+        position: fixed;
         height: 100%;
-        // margin-right: 20px;
         background-color: $background-orange-light2;
-
-        .menu {
-            margin-top: 20px;
-            background-color: $background-orange-light2;
-
-            &__sub {
-                background-color: $background-orange;
-
-                .param {
-                    background-color: $background-orange-light;
-                    .padding-left {
-                        padding: 8px 0 8px 16px;
-
-                    }
-                    .padding {
-                        padding: 8px;
-                    }
-                }
-            }
-        }
+        overflow-y: auto;
 
         .submit {
             margin-top: 20px;
@@ -43,21 +23,17 @@
 
     &__content {
         padding: 20px 40px;
-        
-        .stats {
-            &__chart {
-                &__btn {
-                    right: 40px;
-                    bottom: 34px;
-                    position: absolute;
-                    z-index: 10;
-                    // transition: visibility 0s linear 0s, opacity 300ms;
-                }
-            }
-        }
     }
 }
 
 .ant-layout-sider-trigger {
     background: $background-purple;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: $background-purple;
+}
+
+.ant-tabs-tab:hover {
+    color: $background-purple;
 }

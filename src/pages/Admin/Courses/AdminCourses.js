@@ -20,7 +20,6 @@ export default function AdminCourses(props) {
                     courses={courses} 
                     setCourses={setCourses} 
                     setModalVisible={setModalVisible}
-                    school={school}
                 />
             )
             setModalTitle('Registrar Curso');
@@ -36,7 +35,6 @@ export default function AdminCourses(props) {
                     courses={courses} 
                     setCourses={setCourses} 
                     setModalVisible={setModalVisible}
-                    school={school}
                     edit
                     toEdit={courses.find(c => c.code === rowSel.code)}
                 />
@@ -65,9 +63,7 @@ export default function AdminCourses(props) {
 
     return (
         <div className='admin-courses'>
-            <TableCourses 
-                courses={courses}
-            />
+            <TableCourses courses={courses}/>
         </div>
     )
 }

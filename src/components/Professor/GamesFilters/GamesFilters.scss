@@ -1,23 +1,10 @@
 @import '../../../scss/index.scss';
 
 .professor-games-filters {
-    background-color: $background-purple-light;
+    background-color: $background-purple-light2;
     padding: 0px 20px;
     display: flex;
     // justify-content: space-around;
-
-    &__back {
-        background-color: transparent;
-        border: none;
-        color: white;
-
-        &:hover {
-            // background-color: darken($color: $background-purple-light, $amount: );
-            background-color: $background-purple-light;
-            filter: brightness(90%);
-            color: white;
-        }
-    }
 
     &__drop-down {
         margin: 0 40px;

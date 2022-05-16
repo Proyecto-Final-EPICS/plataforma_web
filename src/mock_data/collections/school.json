@@ -1,19 +1,23 @@
 [
     {
-        "name": "Colegio 01",
         "code": "C01",
+        "name": "Colegio 01",
+        "courses": ["C01", "C02", "C03", "C04", "C05"],
         "foundation": "2022-03-13T04:21:03.767Z",
         "location": {
             "country": "Colombia",
+            "region": "Atlantico",
             "city": "Barranquilla"
         }
     },
     {
-        "name": "Colegio 02",
         "code": "C02",
+        "name": "Colegio 02",
+        "courses": [],
         "foundation": "2022-03-13T04:21:03.767Z",
         "location": {
             "country": "Colombia",
+            "region": "Atlantico",
             "city": "Barranquilla"
         }
     }

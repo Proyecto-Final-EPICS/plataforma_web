@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
-import {Button, Dropdown, Menu, Space} from 'antd';
-import { DownOutlined, LeftOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Space} from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 import CheckGroup from './../../../components/General/Input/CheckGroup';
 
@@ -115,6 +114,7 @@ function CheckGroupFilter(props) {
                 options={getNames()}
                 checked={getChecked()}
                 update={update}
+                dir='vertical'
             />
         </Menu>
     );

@@ -1,0 +1,23 @@
+@import '../../../scss/index.scss';
+
+.breadcrumbs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: $background-purple-light2;
+    text-align: left;
+    padding: 80px 1px 4px 25px;
+    // color: white !important;
+    font-family: 'Secular one', sans-serif;
+    font-size: 1.2em;
+    span {
+        color: white;
+    }
+}
+
+.bc {
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+

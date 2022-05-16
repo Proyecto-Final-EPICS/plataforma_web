@@ -1,37 +1,29 @@
 //Liberias
-import React, { useState, useEffect } from 'react';
-import { Layout } from 'antd';
-import qs from 'query-string';
+import { useState, useEffect } from 'react';
 
 //Componentes
-import GamesFilters from '../../../components/Director/GamesFilters';
-import GamesStore  from '../../../components/Director/GamesStore';
+import TableGames from '../../../components/Director/TableGames';
 
 //API
-import gamesApi from './../../../mock_data/collections/game.json';
+import gameApi from '../../../mock_data/collections/game.json';
+
+import useAuth from '../../../hooks/useAuth';
 
 //Estilo
 import './DirectorGames.scss'
 
 export default function DirectorGames() {
-    const { Content, Header } = Layout;
     const [games, setGames] = useState([]);
-    const query = qs.parse(window.location.search);
-
-    const appGames = () => gamesApi.filter(g => g.appCode === query.app);
+    const { school } = useAuth();
 
     useEffect(() => {
-        setGames(appGames());
+        setGames(gameApi.filter(g => g.school == school));
     }, []);
     
     return (
-        <Layout className='director-games'>
-            <Header className='director-games__header'>
-                <GamesFilters/>
-            </Header>
-            <Content className='director-games__content'>
-                <GamesStore  games={games}/>
-            </Content>
-        </Layout>
+        <div className='director-games'>
+            <div className='director-games__title'>Juegos</div>
+            <TableGames games={games} />
+        </div>
     );
 }

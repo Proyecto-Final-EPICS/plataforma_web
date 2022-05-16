@@ -1,0 +1,10 @@
+@import '../../../../scss/index.scss';
+
+.professor-game-form {
+	padding: 0px 40px;
+
+    &__games {
+        max-width: 400px;
+        overflow-x: auto;
+    }
+}

@@ -43,6 +43,7 @@ export default function MenuTop(props) {
                     placeholder="Buscar"
                     prefix={<SearchOutlined/>}
                     onPressEnter={e => setSearch(e.target.value)}
+                    disabled={!collectionSelected}
                 />
                 </div>
             </div>

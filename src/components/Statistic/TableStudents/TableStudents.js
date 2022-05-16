@@ -1,24 +1,45 @@
 import { Table, Button } from 'antd';
+import { genFilters, parseName } from '../../../libraries/General/utils';
 
 import { getAgeFromBirthDate } from '../../../libraries/General/utils';
 
 export default function TableStudents(props) {
     const { students } = props;
     console.log(students);
-    
-    const genFilters = prop => {
-        const filters = [];
-        students.forEach(student => {
-            if(!filters.some(f => f.value === student[prop])) {
-                filters.push({
-                    text: student[prop],
-                    value: student[prop],
-                });
+
+    const data = students.map((student, index) => {
+        let totTime = 0;
+        let accuracy = 0;
+        let lastCon = null, lastConMilis = 0;
+        
+        // Se filtran aquellas sesiones cuya app se encuentra en la consulta
+        // console.log(student);
+        student.sessions.forEach(s => {
+            // if(s.app.code)
+            accuracy += s.accuracy;
+            totTime += s.totTime;
+            const date = new Date(s.date);
+            const dateMilis = date.getTime();
+            if(dateMilis > lastConMilis) {
+                lastConMilis = dateMilis;
+                lastCon = date;
             }
         });
-        return filters;
-    }
 
+        const { username, firstname, lastname, birthDate, identityDoc: id, gender, course } = student;
+
+        return {
+            username, id, gender, course, 
+            name: parseName(firstname, lastname),
+            age: getAgeFromBirthDate(birthDate),
+            totTime: totTime.toFixed(1),
+            avTime: (totTime / student.sessions.length).toFixed(1),
+            accuracy: (accuracy / student.sessions.length).toFixed(2),
+            lastCon: lastCon.toDateString(),
+            key: index,
+        };
+    });
+    
     const columns = [
         {
             title: 'Nombre',
@@ -26,7 +47,13 @@ export default function TableStudents(props) {
             key: 'name',
             fixed: 'left',
             width: 60,
-            // ...tableCustomFilters('name', query),
+        },
+        {
+            title: 'Usuario',
+            dataIndex: 'username',
+            key: 'username',
+            fixed: 'left',
+            width: 60,
         },
         {
             title: 'Identificación',
@@ -34,7 +61,6 @@ export default function TableStudents(props) {
             key: 'id',
             fixed: 'left',
             width: 40,
-            // ...tableCustomFilters('id', query),
         },
         {
             title: 'Edad',
@@ -42,7 +68,6 @@ export default function TableStudents(props) {
             key: 'age',
             fixed: 'left',
             width: 40,
-            // defaultSortOrder: 'descend',
             sorter: (a, b) => a.birthDate - b.birthDate,
         },
         {
@@ -51,7 +76,7 @@ export default function TableStudents(props) {
             key: 'gender',
             fixed: 'left',
             width: 50,
-            filters: genFilters('gender'),
+            filters: genFilters(data, 'gender'),
             onFilter: (value, record) => record.gender.indexOf(value) === 0,
         },
         {
@@ -60,7 +85,7 @@ export default function TableStudents(props) {
             key: 'course',
             fixed: 'left',
             width: 40,
-            filters: genFilters('course'),
+            filters: genFilters(data, 'course'),
             onFilter: (value, record) => record.course.indexOf(value) === 0,
         },
         {
@@ -93,47 +118,16 @@ export default function TableStudents(props) {
             fixed: 'right',
             width: 50,
             render: (_, record) => (
-                <Button type="primary" onClick={() => console.log('jsjsjs')}>
+                <Button 
+                    className='button-purple'
+                    type="primary" 
+                    onClick={() => console.log('jsjsjs')}
+                >
                     Ver más
                 </Button>
             )
         },
     ];
-
-    const data = students.map((student, index) => {
-        let totTime = 0;
-        let accuracy = 0;
-        let lastCon = null, lastConMilis = 0;
-        
-        // Se filtran aquellas sesiones cuya app se encuentra en la consulta
-        // console.log(student);
-        student.sessions.forEach(s => {
-            // if(s.app.code)
-            accuracy += s.accuracy;
-            totTime += s.totTime;
-            const date = new Date(s.date);
-            const dateMilis = date.getTime();
-            if(dateMilis > lastConMilis) {
-                lastConMilis = dateMilis;
-                lastCon = date;
-            }
-        });
-        // totTime /= 3600 * 1000
-
-        const {firstname, lastname, birthDate, identityDoc: id, gender, course} = student;
-        const name = firstname + ' ' + lastname;
-
-        const row = {
-            name, id, gender, course, 
-            age: getAgeFromBirthDate(birthDate),
-            totTime: totTime.toFixed(1),
-            avTime: (totTime / student.sessions.length).toFixed(1),
-            accuracy: (accuracy / student.sessions.length).toFixed(2),
-            lastCon: lastCon.toDateString(),
-            key: index,
-        };
-        return row;
-    });
 
     return (
         <Table

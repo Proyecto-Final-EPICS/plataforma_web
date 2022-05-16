@@ -30,12 +30,13 @@ function App(){
 }
 
 function SwitchRoute(props) {
-  const {routes} = props;
-  const userType = useAuth().userType || 'noUser';
+  const { routes } = props;
+  const role = useAuth().role || 'noUser';
+  console.log(role);
 
   return (
     <Switch>
-      {routes[userType].map((route, index) => (
+      {routes[role].map((route, index) => (
         <RouteWithSubRoutes key={index} {...route}/>
       ))}
     </Switch>

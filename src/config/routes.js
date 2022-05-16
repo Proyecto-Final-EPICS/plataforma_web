@@ -9,7 +9,6 @@ import LayoutStatistic from '../pages/Statistic';
 
 //Pages for everybody
 import Login from '../pages/Login';
-// import SignUp from '../pages/Signup';
 import Error404 from '../pages/Error';
 
 //Pages Admin
@@ -23,8 +22,9 @@ import AdminStudents from '../pages/Admin/Students';
 
 //Pages Director
 import DirectorHome from '../pages/Director/Home';
-import DirectorApps from '../pages/Director/Apps';
+// import DirectorApps from '../pages/Director/Apps';
 import DirectorGames from '../pages/Director/Games';
+import DirectorGame from '../pages/Director/Game';
 import DirectorCourses from '../pages/Director/Courses';
 import DirectorProfessors from '../pages/Director/Professors';
 
@@ -148,13 +148,13 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                     exact: true
                 },
                 {
-                    path: "/apps",
-                    component: DirectorApps,
+                    path: "/games",
+                    component: DirectorGames,
                     exact: true
                 },
                 {
-                    path: "/apps/details",
-                    component: DirectorGames,
+                    path: "/games/:game",
+                    component: DirectorGame,
                     exact: true
                 },
                 {

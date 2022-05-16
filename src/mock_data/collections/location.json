@@ -1,0 +1,48 @@
+[
+    {
+        "value": "Colombia",
+        "label": "Colombia",
+        "children": [
+            {
+                "value": "Atlantico",
+                "label": "Atlantico",
+                "children": [
+                    {
+                        "value": "Barranquilla",
+                        "label": "Barranquilla"
+                    },
+                    {
+                        "value": "Soledad",
+                        "label": "Soledad"
+                    }
+                ]
+            },
+            {
+                "value": "Antioquia",
+                "label": "Antioquia",
+                "children": [
+                    {
+                        "value": "Medellin",
+                        "label": "Medellin"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "Venezuela",
+        "label": "Venezuela",
+        "children": [
+            {
+                "value": "Tachira",
+                "label": "Tachira",
+                "children": [
+                    {
+                        "value": "San Cristobal",
+                        "label": "San Cristobal"
+                    }
+                ]
+            }
+        ]
+    }
+]

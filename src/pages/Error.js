@@ -1,14 +1,10 @@
 import {Redirect} from 'react-router-dom';
-
-import './Error.scss';
-// import { getAccessTokenApi } from '../api/auth';
-
 import useAuth from '../hooks/useAuth';
 
-export default function Error404(){
-    const {userType} = useAuth();
+import './Error.scss';
 
-    if(userType == 'noUser') return <Redirect to="/login"/>;
+export default function Error404(){
+    if(!useAuth().username) return <Redirect to="/login"/>;
 
     return (
         <div className='error-page'>

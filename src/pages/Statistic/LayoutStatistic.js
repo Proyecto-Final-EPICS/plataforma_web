@@ -1,46 +1,29 @@
-import {Layout} from 'antd';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import { Layout } from 'antd';
+import { Route, Switch } from 'react-router-dom';
 
 //Componentes
 import MenuTop from '../../components/Statistic/MenuTop';
-import Breadcrumbs from '../../components/Statistic/Breadcrumbs';
-
-//Paginas
-import Login from '../../pages/Login';
-
-//Hooks
-import useAuth from '../../hooks/useAuth';
 
 //Estilos
 import './LayoutStatistic.scss';
 
 export default function LayoutStatistic(props) {
     const { routes } = props;
-    const { username, isLoading } = useAuth();
-    
     const { Header, Content, Footer } = Layout;
     
-    if(!username && !isLoading) return <Redirect to="/login"/>;
-
-    if(username && !isLoading) {
-        return (
-            <Layout className="layout-statistic">
-                <Header className="layout-statistic__header">
-                    <MenuTop/>
-                </Header>
-                <Content className="layout-statistic__c">
-                    <div className="layout-statistic__content">
-                        <LoadRoutes routes={routes}/>
-                    </div>
-                </Content>
-                <Footer style={{textAlign:'center'}} className="layout-statistic__footer">
-                    <span> &copy; EPICS IEEE</span>
-                </Footer>
-            </Layout>
-        );
-    }
-    
-    return null;
+    return (
+        <Layout className="layout-statistic">
+            <Header className="layout-statistic__header">
+                <MenuTop/>
+            </Header>
+            <Content>
+                <LoadRoutes routes={routes}/>
+            </Content>
+            <Footer style={{textAlign:'center'}} className="layout-statistic__footer">
+                <span> &copy; EPICS IEEE</span>
+            </Footer>
+        </Layout>
+    );
 }
 
 function LoadRoutes({routes}){

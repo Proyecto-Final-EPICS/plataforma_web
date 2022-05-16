@@ -26,5 +26,4 @@ function willExpireToken(exp){
 
 export function logout(){
     localStorage.removeItem(ACCESS_TOKEN);
-    localStorage.removeItem("userType");
 }

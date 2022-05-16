@@ -1,8 +1,6 @@
 //Liberias
-import { useState, useEffect } from 'react';
-import { Form, Input, Button, DatePicker, Radio, Row, Col, Select, InputNumber } from 'antd';
-// import {  } from '@ant-design/icons';
-import moment from 'moment';
+import { useEffect } from 'react';
+import { Form, Input, Button, Row, Col, Select, InputNumber } from 'antd';
 
 //Estilos
 import './CourseForm.scss';
@@ -10,8 +8,7 @@ import './CourseForm.scss';
 export default function CourseForm(props) {
     const { Option } = Select;
 
-    const { courses, setCourses, setModalVisible, school, edit, toEdit } = props;
-    // const { capacity, setCapacity } = useState(20);
+    const { courses, setCourses, setModalVisible, edit, toEdit } = props;
     const [form] = Form.useForm();
     
     const resetFields = () => form.resetFields();

@@ -1,65 +1,72 @@
 //Liberías
 import { useState } from 'react';
 import { Layout } from 'antd';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
 import DirectorContext from '../../components/Director/DirectorContext';
 
 //Componentes
 import MenuTop from '../../components/General/MenuTop';
 import MenuSider from '../../components/Director/MenuSider';
-
-//Hooks
-import useAuth from '../../hooks/useAuth';
+import Breadcrumbs from '../../components/General/Breadcrumbs';
 
 //Estilos
 import "./LayoutDirector.scss";
 
 export default function LayoutDirector(props) {
+    const getMenuSelectedKey = () => '/' + window.location.pathname.split('/')[1];
+
+    const { Header, Sider, Content, Footer } = Layout;
     const { routes } = props;
+
+    const [menuSelectedKey, setMenuSelectedKey] = useState(getMenuSelectedKey());
     const [menuCollapsed, setMenuCollapsed] = useState(false);
-    const [menuSelectedKey, setMenuSelectedKey] = useState(window.location.pathname);
-    
-    const { Header, Content, Footer } = Layout;
-    
-    const {username, isLoading} = useAuth();
 
-    if(!username && !isLoading) return <Redirect to="/login"/>;
+    (() => {
+        const k = getMenuSelectedKey();
+        if(menuSelectedKey !== k) setMenuSelectedKey(k);
+    })();
 
-    if(username && !isLoading) {
-        if(window.location.pathname == "/"){ 
-            
-            return <Redirect to="/home"/>;}
-        return (
-            <DirectorContext.Provider value={{
-                setMenuSelectedKey,
-            }}>
-            
-            <Layout className="layout-director">
-                <Content>
-                    <Header className="layout-director__header">
-                        {/* <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} /> */}
-                        <MenuTop callback={() => setMenuCollapsed(!menuCollapsed)}/>
-                    </Header>
-                    <MenuSider 
-                        menuCollapsed={menuCollapsed} 
-                        setSelectedKey={setMenuSelectedKey}
-                        selectedKey={menuSelectedKey}
-                        // className="menu-sider"
-                    />
-                    <Layout className="layout-director__layout" style={{ marginLeft: menuCollapsed ? "80px" : "200px" }}>
-                        <Content className="layout-director__layout__content">
+    return (
+        <DirectorContext.Provider value={{
+            setMenuSelectedKey,
+        }}>
+        
+        <Layout className="layout-director">
+            <Header className="layout-director__header">
+                <MenuTop callback={() => setMenuCollapsed(!menuCollapsed)}/>
+            </Header>
+            <Content>
+                <Layout>
+                    <Sider className="layout-director__sider" collapsed={menuCollapsed}>
+                        <div
+                            onClick={() => setMenuCollapsed(!menuCollapsed)}
+                            className="layout-director__sider__logo"
+                        >
+                            {menuCollapsed ? "EI" : "EPICS IEEE"}
+                        </div>
+                        <MenuSider 
+                            menuCollapsed={menuCollapsed} 
+                            setSelectedKey={setMenuSelectedKey}
+                            selectedKey={menuSelectedKey}
+                        />
+                    </Sider>
+                    <Layout style={{ marginLeft: menuCollapsed ? "80px" : "200px" }}>
+                        <Breadcrumbs />
+                        
+                        <Content className="layout-director__content">
                             <LoadRouters routes={routes}/>
                         </Content>
+                        
                         <Footer className="layout-director__footer">
-                            EPICS IEEE
+                            <span> &copy; EPICS IEEE</span>
                         </Footer>
                     </Layout>
-                </Content>
-            </Layout>
-            </DirectorContext.Provider>
-        );
-    }
-    return null;
+                </Layout>
+            </Content>
+        </Layout>
+        </DirectorContext.Provider>
+    );
 }
 
 function LoadRouters(props) {

@@ -1,12 +1,9 @@
 @import '../../scss/index.scss';
 
 .layout-director {
-    transition: margin-left 0.2s;
     
     &__header {
-        position: sticky;
-        top: 0;
-        left: 0;
+        position: fixed;
         width: 100%;
         display: flex;
         padding: 0;
@@ -15,9 +12,28 @@
         z-index: 100;
     }
 
-    &__layout{
-        
-        
+    &__sider {
+        position: fixed;
+        left: 0;
+        top: 65px;
+        height: 100vh;
+        overflow: auto;
+        background: $background-orange-light2;
+
+        &__logo {
+            text-align: center;
+            padding-top: 20px;
+            font-weight: 500;
+    
+            &:hover {
+                font-weight: 650;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__content {
+        padding: 20px 40px;
     }
 
     &__footer{

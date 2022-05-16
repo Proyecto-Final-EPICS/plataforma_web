@@ -4,6 +4,8 @@ import CheckGroup from '../../../General/Input/CheckGroup';
 import RadioGroup from '../../../General/Input/RadioGroup';
 import PeriodPicker from '../../../General/Input/PeriodPicker';
 
+import './MenuSider.scss';
+
 export default function MenuSider(props) {
     const {SubMenu} = Menu;
     const {paramOptions, query, updateParam} = props;
@@ -31,12 +33,12 @@ export default function MenuSider(props) {
 
 	return (
         <Menu 
-            className="menu"
+            className="statistics-sider-menu"
             mode="inline"
         >
             {paramOptions.map((param, i) => (
                 <SubMenu 
-                    className="menu__sub"
+                    className="statistics-sider-menu__sub"
                     title={param.title} 
                     icon={<param.icon/>} key={i}
                 >
@@ -48,6 +50,7 @@ export default function MenuSider(props) {
                             options={param.options.map(op => op.value)}
                             checked={getSelOptions(param)}
                             update={updateParam}
+                            dir='vertical'
                         />
                         </div>
                     :param.type === 'radio' ?

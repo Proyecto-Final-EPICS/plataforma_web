@@ -41,7 +41,7 @@ function MenuSider(props) {
                     icon={<i.icon/>}
                 >
                     <Link to={i.to} onClick={() => onLinkClick(i.to)}>
-                        <span className="nav-text">{i.text}</span>
+                        <span>{i.text}</span>
                     </Link>
                 </Menu.Item>
             ))}
@@ -51,7 +51,7 @@ function MenuSider(props) {
                 icon={<LogoutOutlined/>}
                 onClick={onLogout}
             >
-                <span className='nav-text'>Logout</span>
+                <span>Logout</span>
             </Menu.Item>
         </Menu>
 	);
