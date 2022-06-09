@@ -28,8 +28,6 @@ function checkUserLogin(setUser){
         console.log("Token caducado o inexistente");//aca debería ir el accesstoken
         logout();
     }else{
-        const username = jwtDecode(accessToken).sub.user;
-        let user = userApi.find(u => u.username === username);
-        setUser(user ? user : adminApi[0].username === username ? adminApi[0] : {});
+        setUser(jwtDecode(accessToken).sub);
     }
 }

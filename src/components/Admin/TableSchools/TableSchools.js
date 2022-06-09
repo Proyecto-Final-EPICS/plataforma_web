@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Table, Button } from 'antd';
+import { parseLocation, parsePhone } from '../../../libraries/General/utils';
 
 import AdminContext from '../AdminContext';
 
@@ -23,9 +24,8 @@ export default function TableSchools(props) {
 
     const columns = [
         {
-            title: 'Código',
-            dataIndex: 'code',
-
+            title: 'ID',
+            dataIndex: 'id',
         },
         {
             title: 'Nombre',
@@ -34,9 +34,10 @@ export default function TableSchools(props) {
         {
             title: 'Ubicación',
             dataIndex: 'location',
-            render: (_, {location: {city, region, country}}) => (
-                <div>{`${city}, ${region}, ${country}`}</div>
-            )
+        },
+        {
+            title: 'Contacto',
+            dataIndex: 'phone',
         },
         {
             "title": "Acción",
@@ -54,9 +55,15 @@ export default function TableSchools(props) {
         },
     ]
 
-    const data = getFilteredSchools().map(({ name, code, location }, key) => (
-        { key, name, code, location }
-    ));
+    const data = getFilteredSchools().map(
+        ({ school_name: name, id_school: id, contact_phone, location }, key) => (
+            { 
+                key, name, id, 
+                location: parseLocation(location), 
+                phone: parsePhone(contact_phone)
+            }
+        )
+    );
 
     const rowSelection = {
         type: 'radio',

@@ -6,16 +6,14 @@ import jwtDecode from 'jwt-decode';
 
 export function getAccessTokenApi(){
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
+    if(!accessToken) return null;
 
-    if(!accessToken ) return null;
-    else{
-        let decToken;
-        try {
-            decToken = jwtDecode(accessToken);
-        }catch(e) {return null}
+    let decToken;
+    try {
+        decToken = jwtDecode(accessToken);
+    }catch(e) {return null}
 
-        return willExpireToken(decToken.exp) ? null : accessToken; //Retorna null si venció, sino retorna el token
-    }
+    return willExpireToken(decToken.exp) ? null : accessToken; //Retorna null si venció, sino retorna el token
 }
 
 function willExpireToken(exp){

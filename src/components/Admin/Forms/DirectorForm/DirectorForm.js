@@ -35,7 +35,7 @@ export default function DirectorForm(props) {
         
         const director = {
             username, password, firstname, lastname, gender, identityDoc, birthDate, email, school,
-            phone: {number, countryCode}
+            phone: { number, countryCode }
         }
         
         if(edit) {

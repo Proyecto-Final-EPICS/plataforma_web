@@ -22,11 +22,11 @@ export function prueba(){
 }
 
 export function signinAPI(data){
-    const url = `${basePath}/professor`;
+    const url = `${basePath}/login`;
     const params = {
         method: "POST",
-        body:JSON.stringify(data),
-        headers:{
+        body: JSON.stringify(data),
+        headers: {
             "Content-Type":"application/json"
         }
     }

@@ -4,7 +4,7 @@ import {Form, Input, Button, notification} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 //API
-import {signinAPI} from'../../../api/users'
+import {login as loginAPI} from'../../../api/user'
 
 //Utils
 import {ACCESS_TOKEN, USER_TYPE} from '../../../utils/constants'
@@ -17,10 +17,10 @@ export default function LoginForm(){
     const login = async values => {
         if(!values.username || !values.password) return;
     
-        const result = await signinAPI(values);
+        const result = await loginAPI(values);
         const {token} = result;
         
-        if (token === "none") {
+        if (!token || token === "none") {
             notification["error"]({
                 message:"Contraseña o usuario incorrecto"
             });
