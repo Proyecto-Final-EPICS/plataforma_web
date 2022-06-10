@@ -15,6 +15,8 @@ import courseApi from '../../../mock_data/collections/course.json';
 import gameApi from '../../../mock_data/collections/game.json';
 import studentApi from '../../../mock_data/collections/student.json';
 
+import { getCourseFromSchool } from '../../../api/course';
+
 import './ProfessorCourse.scss';
 
 export default function ProfessorCourse() {
@@ -24,7 +26,7 @@ export default function ProfessorCourse() {
 	const [modalVisible, setModalVisible] = useState(false);
 	const [modalTitle, setModalTitle] = useState('');
 	const [modalContent, setModalContent] = useState(null);
-	const { school } = useAuth();
+	const { id_school } = useAuth();
 
 	const addGame = () => {
 		const otherGames = gameApi.filter(g => !games.some(g2 => g2.id === g.id));
@@ -59,12 +61,19 @@ export default function ProfessorCourse() {
     }
 
 	useEffect(() => {
-		const id = `${school}-${getCourse()}`;
-		const course = courseApi.find(c => c.id == id);
+		console.log(id_school);
+		// const id = `${id_school}-${getCourse()}`;
+		// const course = courseApi.find(c => c.id == id);
 
-		setCourse(course);
-		setStudents(course.students.map(s => studentApi.find(s2 => s2.username == s.username)));
-		setGames(course.games.map(g => gameApi.find(g2 => g2.code == g.code)));
+		// setCourse(course);
+		getCourseFromSchool(id_school, getCourse()).then(json => {
+			console.log(json);
+			setCourse(json);
+			setStudents(json.students);
+		});
+		// setStudents(course.students.map(s => studentApi.find(s2 => s2.username == s.username)));
+		// setGames(course.games.map(g => gameApi.find(g2 => g2.code == g.code)));
+		
 	}, []);
 
 	return (

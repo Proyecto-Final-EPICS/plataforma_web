@@ -12,7 +12,7 @@ import { addSchool, editSchool, getSchools } from '../../../../api/school';
 export default function SchoolForm(props) {
     const { Option } = Select;
     
-    const { schools, setSchools, setModalVisible, edit, toEdit } = props;
+    const { schools, setSchools, setModalVisible, edit, toEdit, setRowSel } = props;
     const [form] = Form.useForm();
     const resetFields = () => form.resetFields();
     const onFinishFailed = err => console.log(err);
@@ -40,7 +40,10 @@ export default function SchoolForm(props) {
         };
         const updateSchools = () => getSchools().then(json => setSchools(json));
         
-        if(edit) editSchool(toEdit.id_school, school).then(updateSchools);
+        if(edit) {
+            editSchool(toEdit.id_school, school).then(updateSchools);
+            setRowSel(null)
+        }
         else addSchool(school).then(updateSchools);
 
         setModalVisible(false);

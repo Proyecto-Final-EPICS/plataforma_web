@@ -85,5 +85,4 @@ export default function TableProfessors(props) {
             rowSelection={rowSelection}
         />
     );
-
 }

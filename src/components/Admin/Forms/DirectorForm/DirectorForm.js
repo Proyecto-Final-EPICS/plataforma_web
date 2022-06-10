@@ -12,7 +12,7 @@ import './DirectorForm.scss';
 export default function DirectorForm(props) {
     const { Option } = Select;
 
-    const { directors, setDirectors, setModalVisible, school, edit, toEdit } = props;
+    const { directors, setDirectors, setModalVisible, school, edit, toEdit, setRowSel } = props;
     const [gender, setGender] = useState(null);
     const [customGender, setCustomGender] = useState(null);
     const [form] = Form.useForm();
@@ -41,7 +41,10 @@ export default function DirectorForm(props) {
         
         const updateDirectors = () => getDirectorsFromSchool(school).then(json => setDirectors(json));
         
-        if(edit) editDirector(toEdit.username, director).then(updateDirectors);
+        if(edit) {
+            editDirector(toEdit.username, director).then(updateDirectors);
+            setRowSel(null);
+        }
         else addDirector(director).then(updateDirectors);
 
         // if(edit) {

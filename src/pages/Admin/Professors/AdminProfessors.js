@@ -39,6 +39,7 @@ export default function AdminProfessors(props) {
                     school={school}
                     edit
                     toEdit={professors.find(p => p.username === rowSel.username)}
+                    setRowSel={setRowSel}
                 />
             );
             setModalTitle('Actualizar Profesor');

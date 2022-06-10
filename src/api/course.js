@@ -33,8 +33,8 @@ export function getCourseFromSchool(id_school, course_code) {
         .catch(err => err.message);
 }
 
-export function addCourse(data) {
-    const url = `${basePath}/course`;
+export function addCourse(id_school, data) {
+    const url = `${basePath}/school/${id_school}/course`;
     const params = {
         method: 'POST',
         headers: {
@@ -50,8 +50,8 @@ export function addCourse(data) {
         .catch(err => err.message);
 }
 
-export function editCourse(course_code, data) {
-    const url = `${basePath}/course/${course_code}`;
+export function editCourse(id_school, course_code, data) {
+    const url = `${basePath}/school/${id_school}/course/${course_code}`;
     const params = {
         method: 'PUT',
         headers: {
@@ -67,8 +67,8 @@ export function editCourse(course_code, data) {
         .catch(err => err.message);
 }
 
-export function delCourse(course_code) {
-    const url = `${basePath}/course/${course_code}`;
+export function delCourse(id_school, course_code) {
+    const url = `${basePath}/school/${id_school}/course/${course_code}`;
     const params = {
         method: 'DELETE',
         headers: {

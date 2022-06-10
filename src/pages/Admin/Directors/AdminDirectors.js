@@ -39,6 +39,7 @@ export default function AdminDirectors(props) {
                     school={school}
                     edit
                     toEdit={directors.find(d => d.username === rowSel.username)}
+                    setRowSel={setRowSel}
                 />
             );
             setModalTitle('Actualizar Director');

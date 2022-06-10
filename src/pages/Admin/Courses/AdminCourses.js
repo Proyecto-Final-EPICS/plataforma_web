@@ -4,7 +4,7 @@ import CourseForm from '../../../components/Admin/Forms/CourseForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
-import courseApi from '../../../mock_data/collections/course.json';
+import { delCourse, getCoursesFromSchool } from '../../../api/course';
 
 import './AdminCourses.scss';
 
@@ -20,6 +20,7 @@ export default function AdminCourses(props) {
                     courses={courses} 
                     setCourses={setCourses} 
                     setModalVisible={setModalVisible}
+                    school={school}
                 />
             )
             setModalTitle('Registrar Curso');
@@ -35,8 +36,10 @@ export default function AdminCourses(props) {
                     courses={courses} 
                     setCourses={setCourses} 
                     setModalVisible={setModalVisible}
+                    school={school}
                     edit
                     toEdit={courses.find(c => c.code === rowSel.code)}
+                    setRowSel={setRowSel}
                 />
             );
             setModalTitle('Actualizar Curso');
@@ -47,18 +50,14 @@ export default function AdminCourses(props) {
     
     useEffect(() => {
         if(deleteRow) {
-            // setCourses(courses.filter(c => c.code !== rowSel.code))
-            const temp = courses;
-            temp.splice(temp.findIndex(c => c.code === rowSel.code), 1)
-            setCourses(temp);
-
+            delCourse(school, rowSel.code).then(json => setCourses(json));
             setRowSel(null);
             setDeleteRow(false);
         }
     }, [deleteRow]);
 
     useEffect(() => (
-        setCourses(courseApi.filter(c => c.school === school))
+        getCoursesFromSchool(school).then(json => setCourses(json))
     ), []);
 
     return (

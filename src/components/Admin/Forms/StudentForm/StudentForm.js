@@ -14,7 +14,7 @@ export default function StudentForm(props) {
     const { TabPane } = Tabs;
     const { Option } = Select;
 
-    const { students, setStudents, setModalVisible, school, edit, toEdit } = props;
+    const { students, setStudents, setModalVisible, school, edit, toEdit, setRowSel } = props;
     const [courses, setCourses] = useState([]);
     const [gender, setGender] = useState(null);
     const [customGender, setCustomGender] = useState(null);
@@ -71,7 +71,10 @@ export default function StudentForm(props) {
         const updateStudents = () => getStudentsFromSchool(school).then(json => setStudents(json));
         
         console.log(student);
-        if(edit) editStudent(toEdit.username, student).then(updateStudents);
+        if(edit) {
+            editStudent(toEdit.username, student).then(updateStudents);
+            setRowSel(null);
+        }
         else addStudent(student).then(updateStudents);
         
         setModalVisible(false);

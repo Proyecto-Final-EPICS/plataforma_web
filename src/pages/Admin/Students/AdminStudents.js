@@ -38,6 +38,7 @@ export default function AdminStudents(props) {
                     school={school}
                     edit
                     toEdit={students.find(s => s.username === rowSel.username)}
+                    setRowSel={setRowSel}
                 />)
             setModalTitle('Actualizar Estudiante');
             setModalVisible(true);

@@ -30,9 +30,6 @@ export default function AdminSchools(props) {
     
     useEffect(() => {
         if(editRow) {
-            // console.log(rowSel);
-            // console.log(schools);
-            // return;
             setModalContent(
                 <SchoolForm
                     schools={schools} 
@@ -40,6 +37,7 @@ export default function AdminSchools(props) {
                     setModalVisible={setModalVisible}
                     edit
                     toEdit={schools.find(s => s.id_school === rowSel.id)}
+                    setRowSel={setRowSel}
                 />
             );
             setModalTitle('Actualizar Colegio');
