@@ -4,7 +4,7 @@ import StudentForm from '../../../components/Admin/Forms/StudentForm/StudentForm
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
-import studentApi from '../../../mock_data/collections/student.json';
+import { delStudent, getStudentsFromSchool } from '../../../api/student';
 
 import './AdminStudents.scss';
 
@@ -47,19 +47,15 @@ export default function AdminStudents(props) {
 
     useEffect(() => {
         if(deleteRow) {
-            // setStudents(students.filter(s => s.username !== rowSel.username))
-            const temp = students;
-            temp.splice(temp.findIndex(s => s.username === rowSel.username), 1)
-            setStudents(temp);
-
+            delStudent(rowSel.username).then(json => setStudents(json));
             setRowSel(null);
             setDeleteRow(false);
         }
     }, [deleteRow]);
 
-    useEffect(() => {
-        setStudents(studentApi.filter(s => s.school === school))
-    }, []);
+    useEffect(() => (
+        getStudentsFromSchool(school).then(json => setStudents(json))
+    ), []);
 
     return (
         <div className='admin-students'>

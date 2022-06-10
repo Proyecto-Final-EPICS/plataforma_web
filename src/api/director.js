@@ -1,99 +1,82 @@
-import {basePath} from './config';
+import { basePath } from './config';
+import { ACCESS_TOKEN } from '../utils/constants';
 
-//Endpoint para traer todos los colegios
-export function getColegiosApi(){
-    const url = `${basePath}/school`;
+export function getDirectorsFromSchool(id_school) {
+    const url = `${basePath}/school/${id_school}/rector`;
     const params = {
         method: 'GET',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         }
-    }
-    
-    return fetch(url,params)
-    .then(response => {
-        return response.json();
-    })
-    .then(result => {
-        return result;
-    })
-    .catch(err => {
-        return err.message;
-    })
+    };
+
+    return fetch(url, params)
+        .then(res => res.json())
+        .then(json => json)
+        .catch(err => err.message);
 }
 
-//Endpoint para traer todos los profesores
-export function getProfessorsApi(){
-    const url = `${basePath}/professor`;
+export function getDirectorFromSchool(id_school, username) {
+    const url = `${basePath}/school/${id_school}/rector/${username}`;
     const params = {
         method: 'GET',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         }
-    }
-    
-    return fetch(url,params)
-    .then(response => {
-        return response.json();
-    })
-    .then(result => {
-        return result;
-    })
-    .catch(err => {
-        return err.message;
-    })
+    };
+
+    return fetch(url, params)
+        .then(res => res.json())
+        .then(json => json)
+        .catch(err => err.message);
 }
 
-//Endpoint para traer todos los videojuegos
-export function getVideogamesApi(){
-    const url = `${basePath}/detailsGame`;
+export function addDirector(data) {
+    const url = `${basePath}/rector`;
     const params = {
-        method: 'GET',
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json"
-        }
-    }
-    
-    return fetch(url,params)
-    .then(response => {
-        return response.json();
-    })
-    .then(result => {
-        return result;
-    })
-    .catch(err => {
-        return err.message;
-    })
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(url, params)
+        .then(res => res.json())
+        .then(json => json)
+        .catch(err => err.message);
 }
 
-//Endpoint para agregar un estudiante
-export function addStudent(info){
-    const data = {
-        schoolName: info.schoolName,
-        students:{
-            studentName: info.students.studentName,
-            age: info.students.age,
-            username: info.students.username,
-            password: info.students.password
-        }
-    }
-    const url = `${basePath}/student`;
+export function editDirector(username, data) {
+    const url = `${basePath}/rector/${username}`;
     const params = {
         method: 'PUT',
-        body: JSON.stringify(data),
-        headers:{
-            "Content-Type":"application/json"
-        }
-    }
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        },
+        body: JSON.stringify(data)
+    };
 
-    return fetch(url,params)
-    .then(response => {
-        return response.json()
-    })
-    .then(result => {
-        return result;
-    })
-    .catch(err => {
-        return err.message;
-    })
+    return fetch(url, params)
+        .then(res => res.json())
+        .then(json => json)
+        .catch(err => err.message);
+}
+
+export function delDirector(username) {
+    const url = `${basePath}/rector/${username}`;
+    const params = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        },
+    };
+
+    return fetch(url, params)
+        .then(res => res.json())
+        .then(json => json)
+        .catch(err => err.message);
 }

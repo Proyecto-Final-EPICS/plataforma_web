@@ -43,7 +43,7 @@ export default function TableSchools(props) {
             "title": "Acción",
             "key": "action",
             render: (_, record) => (
-                <Link to={`/schools/${record.code}`}>
+                <Link to={`/schools/${record.id}`}>
                     <Button
                         className='button-purple' 
                         type="primary"

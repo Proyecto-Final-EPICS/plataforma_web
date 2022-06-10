@@ -4,8 +4,6 @@ import jwtDecode from 'jwt-decode';
 
 //Api
 import { getAccessTokenApi, logout } from '../api/auth';
-import userApi from '../mock_data/collections/user.json';
-import adminApi from '../mock_data/collections/admin.json';
 
 export const AuthContext = createContext();
 

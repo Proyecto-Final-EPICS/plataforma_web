@@ -1,0 +1,2 @@
+import {basePath} from './config';
+

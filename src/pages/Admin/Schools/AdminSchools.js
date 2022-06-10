@@ -50,12 +50,6 @@ export default function AdminSchools(props) {
     
     useEffect(() => {
         if(deleteRow) {
-            // setSchools(schools.filter(c => c.id_school !== rowSel.id_school))
-
-            // const temp = schools;
-            // temp.splice(temp.findIndex(s=> s.id_school === rowSel.id), 1)
-            // setSchools(temp);
-
             delSchool(rowSel.id).then(json => setSchools(json));
 
             setRowSel(null);

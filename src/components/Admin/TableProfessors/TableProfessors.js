@@ -3,7 +3,7 @@ import { Table } from 'antd';
 
 import AdminContext from '../AdminContext';
 
-import { getAgeFromBirthDate } from '../../../libraries/General/utils';
+import { parsePhone } from '../../../libraries/General/utils';
 
 export default function TableProfessors(props) {
     const { professors } = props;
@@ -15,12 +15,12 @@ export default function TableProfessors(props) {
         if(fxdSearch) {
             fxdSearch = fxdSearch.toLowerCase();
 
-            return professors.filter(d => (
-                d.username.toLowerCase().includes(fxdSearch) 
-                || d.identityDoc === fxdSearch
-                || d.lastname.toLowerCase().includes(fxdSearch)
-                || d.firstname.toLowerCase().includes(fxdSearch)
-                || d.email.includes(fxdSearch)
+            return professors.filter(p => (
+                p.username.toLowerCase().includes(fxdSearch) 
+                || p.identity_doc === fxdSearch
+                || p.lastname.toLowerCase().includes(fxdSearch)
+                || p.firstname.toLowerCase().includes(fxdSearch)
+                || p.email.includes(fxdSearch)
             ))
         } else return professors;
     }
@@ -32,7 +32,7 @@ export default function TableProfessors(props) {
         },
         {
             title: 'Cédula',
-            dataIndex: 'id',
+            dataIndex: 'identity_doc',
         },
         {
             title: 'Apellidos',
@@ -57,17 +57,14 @@ export default function TableProfessors(props) {
         {
             title: 'Teléfono',
             dataIndex: 'phone',
-            render: (_, {phone}) => (
-                <div>{`+${phone.countryCode} ${phone.number}`}</div>
-            )
         },
     ]
 
-    const data = getFilteredProfessors().map(({ firstname, lastname, username, identityDoc: id, email, 
-        phone, gender, birthDate }, key) => (
+    const data = getFilteredProfessors().map(({ firstname, lastname, username, identity_doc, email, 
+        phone, gender, age }, key) => (
         {
-            key, firstname, lastname, username, id, email, phone, gender,
-            age: getAgeFromBirthDate(birthDate)
+            key, firstname, lastname, username, identity_doc, email, gender, age, 
+            phone: parsePhone(phone),
         }
     ));
 

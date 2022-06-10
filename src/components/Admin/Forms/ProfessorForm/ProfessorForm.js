@@ -4,6 +4,8 @@ import { Form, Input, Button, DatePicker, Radio, Row, Col, Select } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import moment from 'moment';
 
+import { addProfessor, editProfessor, getProfessorsFromSchool } from '../../../../api/professor';
+
 //Estilos
 import './ProfessorForm.scss';
 
@@ -16,10 +18,10 @@ export default function ProfessorForm(props) {
     const [form] = Form.useForm();
 
     const SelectPhoneCountryCode = (
-        <Form.Item name="phoneCountryCode" noStyle>
+        <Form.Item name='phoneCountryCode' noStyle>
             <Select>
-                <Option value="57">+57</Option>
-                <Option value="58">+58</Option>
+                <Option value='57'>+57</Option>
+                <Option value='58'>+58</Option>
             </Select>
         </Form.Item>
     );
@@ -28,52 +30,51 @@ export default function ProfessorForm(props) {
     const onFinishFailed = err => console.log(err);
     
     const onFinish = values => {
-        console.log(values);
-        
-        const { username, password, firstname, lastname, gender, identityDoc, birthDate, email, 
-            phone: number, phoneCountryCode: countryCode } = values;
+        const { username, password, firstname, lastname, gender, identityDoc: identity_doc, 
+            birthDate: birth_date, email, phone: number, phoneCountryCode: country_code } = values;
         
         const professor = {
-            username, password, firstname, lastname, gender, identityDoc, birthDate, email, school,
-            phone: { number, countryCode }
+            username, password, firstname, lastname, gender, identity_doc, email, birth_date, 
+            phone: { number, country_code },
+            id_school: school
         }
+        const updateProfessors = () => getProfessorsFromSchool(school).then(json => setProfessors(json));
         
-        if(edit) {
-            professors[professors.findIndex(d => d.username === toEdit.username)] = professor;
-            setProfessors([...professors]);
-        }else setProfessors([...professors, professor]);
+        if(edit) editProfessor(toEdit.username, professor).then(updateProfessors);
+        else addProfessor(professor).then(updateProfessors);
 
         setModalVisible(false);
     };
 
     useEffect(() => {
         if(edit) {
-            const { username, firstname, lastname, gender, identityDoc, docType, birthDate, email, 
-                phone: { number: phone, countryCode: phoneCountryCode } } = toEdit;
+            const { username, firstname, lastname, gender, identity_doc: identityDoc, 
+                birth_date: { $date }, email, 
+                phone: { number: phone, country_code: phoneCountryCode } } = toEdit;
             // 
             setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
             setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
             
             form.setFieldsValue({
-                username, firstname, lastname, gender, identityDoc, docType, email, 
+                username, firstname, lastname, gender, identityDoc, email, 
                 phone, phoneCountryCode,
-                birthDate: moment(birthDate)
+                birthDate: moment($date)
             });
         }
     }, []);
 
     return (
         <Form
-            className="prof-form"
+            className='prof-form'
             form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             initialValues={{phoneCountryCode: '57'}}
-            layout="vertical"
+            layout='vertical'
         >
             <Form.Item
-                name="username"
-                label="Usuario"
+                name='username'
+                label='Usuario'
                 required
                 rules={[
                     {
@@ -87,8 +88,8 @@ export default function ProfessorForm(props) {
             <Row gutter={8}>
                 <Col span={12}>
                     <Form.Item
-                        name="password"
-                        label="Contraseña"
+                        name='password'
+                        label='Contraseña'
                         required
                         rules={[
                             {
@@ -97,13 +98,13 @@ export default function ProfessorForm(props) {
                             }
                         ]}
                     >
-                        <Input type="password" prefix={<LockOutlined/>}/>
+                        <Input type='password' prefix={<LockOutlined/>}/>
                     </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="confirmPassword"
-                        label="Confirmar contraseña"
+                        name='confirmPassword'
+                        label='Confirmar contraseña'
                         required
                         dependencies={['password']}
                         hasFeedback
@@ -122,21 +123,21 @@ export default function ProfessorForm(props) {
                             })
                         ]}
                     >
-                        <Input type="password" prefix={<LockOutlined/>}/>
+                        <Input type='password' prefix={<LockOutlined/>}/>
                     </Form.Item>
                 </Col>
             </Row>
 
             <Form.Item
-                className="prof-form__name"
-                name="name"
-                label="Nombre"
+                className='prof-form__name'
+                name='name'
+                label='Nombre'
                 required
             >
-            <Row gutter={8} className="prof-form__name__row">
-                <Col span={12} className="prof-form__name__col">
+            <Row gutter={8} className='prof-form__name__row'>
+                <Col span={12} className='prof-form__name__col'>
                 <Form.Item
-                    name="firstname"
+                    name='firstname'
                     rules={[
                         {
                             required: true,
@@ -144,13 +145,13 @@ export default function ProfessorForm(props) {
                         }
                     ]}
                 >
-                    <Input placeholder="Nombres"/>
+                    <Input placeholder='Nombres'/>
                 </Form.Item>
                 </Col>
                 
-                <Col span={12} className="prof-form__name__col">
+                <Col span={12} className='prof-form__name__col'>
                 <Form.Item
-                    name="lastname"
+                    name='lastname'
                     rules={[
                         {
                             required: true,
@@ -158,7 +159,7 @@ export default function ProfessorForm(props) {
                         }
                     ]}
                 >
-                    <Input placeholder="Apellidos"/>
+                    <Input placeholder='Apellidos'/>
                 </Form.Item>
                 </Col>
             </Row>
@@ -167,16 +168,16 @@ export default function ProfessorForm(props) {
             <Row gutter={8}>
                 <Col span={12}>
                     <Form.Item
-                        name="identityDoc"
-                        label="Cédula"
+                        name='identityDoc'
+                        label='Cédula'
                     >
                         <Input />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="birthDate"
-                        label="Fecha de nacimiento"
+                        name='birthDate'
+                        label='Fecha de nacimiento'
                         required
                         rules={[
                             {
@@ -185,15 +186,15 @@ export default function ProfessorForm(props) {
                             }
                         ]}
                     >
-                        <DatePicker placeholder="Seleccionar"/>
+                        <DatePicker placeholder='Seleccionar'/>
                     </Form.Item>
                 </Col>
             </Row>
 
             <Form.Item
-                className="prof-form__gender"
-                name="gender"
-                label="Género"
+                className='prof-form__gender'
+                name='gender'
+                label='Género'
                 required
                 rules={[
                     {
@@ -208,8 +209,8 @@ export default function ProfessorForm(props) {
                     value={gender}
                     onChange={e => setGender(e.target.value)}
                 >
-                    <Radio.Button value="Masculino">Masculino</Radio.Button>
-                    <Radio.Button value="Femenino">Femenino</Radio.Button>
+                    <Radio.Button value='Masculino'>Masculino</Radio.Button>
+                    <Radio.Button value='Femenino'>Femenino</Radio.Button>
                     {gender !== 'Otro'?
                     <Radio.Button value={'Otro'}>Otro</Radio.Button>
                     :null}
@@ -219,8 +220,8 @@ export default function ProfessorForm(props) {
                 {gender === 'Otro'?
                 <Col>
                     <Input
-                        id="custom-gender-input" 
-                        placeholder="Género personalizado" 
+                        id='custom-gender-input' 
+                        placeholder='Género personalizado' 
                         value={customGender}
                         onChange={e => setCustomGender(e.target.value)}
                     />
@@ -232,8 +233,8 @@ export default function ProfessorForm(props) {
             <Row gutter={8}>
                 <Col span={14}>
                     <Form.Item
-                        name="email"
-                        label="Email"
+                        name='email'
+                        label='Email'
                         required
                         rules={[
                             {
@@ -242,13 +243,13 @@ export default function ProfessorForm(props) {
                             }
                         ]}
                     >
-                        <Input type="email" prefix={<MailOutlined/>}/>
+                        <Input type='email' prefix={<MailOutlined/>}/>
                     </Form.Item>
                 </Col>
                 <Col span={10}>
                     <Form.Item
-                        name="phone"
-                        label="Teléfono"
+                        name='phone'
+                        label='Teléfono'
                         required
                         rules={[
                             {
@@ -267,15 +268,15 @@ export default function ProfessorForm(props) {
                 justify='center'
                 gutter={8}
             >
-                <Col className="prof-form__options__reset">
+                <Col className='prof-form__options__reset'>
                     <Form.Item>
                         <Button onClick={resetFields}>Limpiar campos</Button>
                     </Form.Item>
                 </Col>
 
-                <Col className="prof-form__options__submit">
+                <Col className='prof-form__options__submit'>
                     <Form.Item>
-                        <Button htmlType="submit">{edit?"Actualizar":"Finalizar"}</Button>
+                        <Button htmlType='submit'>{edit?'Actualizar':'Finalizar'}</Button>
                     </Form.Item>
                 </Col>
             </Row>

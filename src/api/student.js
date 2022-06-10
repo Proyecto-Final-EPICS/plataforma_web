@@ -1,38 +1,38 @@
 import { basePath } from './config';
 import { ACCESS_TOKEN } from '../utils/constants';
 
-export function getSchools() {
-    const url = `${basePath}/school`;
+export function getStudentsFromSchool(id_school) {
+    const url = `${basePath}/school/${id_school}/student`;
     const params = {
         method: 'GET',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         }
-    }
-    
+    };
+
     return fetch(url, params)
         .then(res => res.json())
         .then(json => json)
-        .catch(err => err.message)
+        .catch(err => err.message);
 }
 
-export function getSchool(id_school) {
-    const url = `${basePath}/school/${id_school}`;
+export function getStudentFromSchool(id_school, username) {
+    const url = `${basePath}/school/${id_school}/student/${username}`;
     const params = {
         method: 'GET',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         }
-    }
-    
+    };
+
     return fetch(url, params)
         .then(res => res.json())
         .then(json => json)
-        .catch(err => err.message)
+        .catch(err => err.message);
 }
 
-export function addSchool(data) {
-    const url = `${basePath}/school`;
+export function addStudent(data) {
+    const url = `${basePath}/student`;
     const params = {
         method: 'POST',
         headers: {
@@ -48,8 +48,8 @@ export function addSchool(data) {
         .catch(err => err.message);
 }
 
-export function editSchool(id_school, data) {
-    const url = `${basePath}/school/${id_school}`;
+export function editStudent(username, data) {
+    const url = `${basePath}/student/${username}`;
     const params = {
         method: 'PUT',
         headers: {
@@ -62,21 +62,21 @@ export function editSchool(id_school, data) {
     return fetch(url, params)
         .then(res => res.json())
         .then(json => json)
-        .catch(err => err.message)
+        .catch(err => err.message);
 }
 
-export function delSchool(id_school) {
-    const url = `${basePath}/school/${id_school}`;
+export function delStudent(username) {
+    const url = `${basePath}/student/${username}`;
     const params = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
-        }
+        },
     };
 
     return fetch(url, params)
         .then(res => res.json())
         .then(json => json)
-        .catch(err => err.message)
+        .catch(err => err.message);
 }

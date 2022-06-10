@@ -4,7 +4,7 @@ import DirectorForm from '../../../components/Admin/Forms/DirectorForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
-import directorApi from '../../../mock_data/collections/director.json';
+import { delDirector, getDirectorsFromSchool } from '../../../api/director';
 
 import './AdminDirectors.scss';
 
@@ -49,18 +49,14 @@ export default function AdminDirectors(props) {
     
     useEffect(() => {
         if(deleteRow) {
-            // setDirectors(directors.filter(d => d.username !== rowSel.username))
-            const temp = directors;
-            temp.splice(temp.findIndex(d => d.username === rowSel.username), 1)
-            setDirectors(temp);
-
+            delDirector(rowSel.username).then(json => setDirectors(json));
             setRowSel(null);
             setDeleteRow(false);
         }
     }, [deleteRow]);
 
     useEffect(() => (
-        setDirectors(directorApi.filter(d => d.school === school))
+        getDirectorsFromSchool(school).then(json => setDirectors(json))
     ), []);
 
     return (

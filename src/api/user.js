@@ -1,4 +1,4 @@
-import {basePath} from './config';
+import { basePath } from './config';
 
 export function login(data){
     const url = `${basePath}/login`;
@@ -6,18 +6,12 @@ export function login(data){
         method: "POST",
         body: JSON.stringify(data),
         headers: {
-            "Content-Type":"application/json"
+            'Content-Type': 'application/json'
         }
     }
 
-    return fetch(url,params)
-    .then(response => {
-        return response.json()
-    })
-    .then(result => {
-        return result;
-    })
-    .catch(err => {
-        return err.message;
-    })
+    return fetch(url, params)
+        .then(res => res.json())
+        .then(json => json)
+        .catch(err => err.message);
 }

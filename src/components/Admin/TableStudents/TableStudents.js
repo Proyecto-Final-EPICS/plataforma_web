@@ -3,7 +3,7 @@ import { Table } from 'antd';
 
 import AdminContext from '../AdminContext';
 
-import { getAgeFromBirthDate } from '../../../libraries/General/utils';
+import { parsePhone } from '../../../libraries/General/utils';
 
 export default function TableStudents(props) {
     const { students } = props;
@@ -17,7 +17,7 @@ export default function TableStudents(props) {
 
             return students.filter(s => (
                 s.username.toLowerCase().includes(fxdSearch) 
-                || s.identityDoc === fxdSearch
+                || s.identity_doc === fxdSearch
                 || s.lastname.toLowerCase().includes(fxdSearch)
                 || s.firstname.toLowerCase().includes(fxdSearch)
                 || s.course.toLowerCase().includes(fxdSearch)
@@ -36,10 +36,10 @@ export default function TableStudents(props) {
         },
         {
             title: 'Identificación',
-            dataIndex: 'id',
+            dataIndex: 'identity_doc',
         },
         {
-            title: 'Apellidos',
+            title: 'Apellido',
             dataIndex: 'lastname',
         },
         {
@@ -53,17 +53,14 @@ export default function TableStudents(props) {
         {
             title: 'Edad',
             dataIndex: 'age',
-            // render: (_, { birthDate }) => (
-            //     <div>{getAgeFromBirthDate(birthDate)}</div>
-            // ),
         },
-    ]
-
-    const data = getFilteredStudents().map(({ username, firstname, lastname, identityDoc: id, course, 
-        gender, birthDate }, key) => (
+    ];
+    console.log(getFilteredStudents());
+    const data = getFilteredStudents().map(({ username, firstname, lastname, identity_doc, course, 
+        gender, age, phone }, key) => (
         {
-            key, username, firstname, lastname, id, gender, course,
-            age: getAgeFromBirthDate(birthDate),
+            key, username, firstname, lastname, identity_doc, gender, course, age,
+            phone: parsePhone(phone)
         }
     ));
 
@@ -71,7 +68,7 @@ export default function TableStudents(props) {
         type: 'radio',
         onChange: (selectedRowKeys, selectedRows) => setRowSel(selectedRows[0]),
         selectedRowKeys: rowSel ? [rowSel.key] : [],
-    }
+    };
 
     useEffect(() => {
         setRowSel(null);
@@ -84,5 +81,4 @@ export default function TableStudents(props) {
             rowSelection={rowSelection}
         />
     );
-
 }
