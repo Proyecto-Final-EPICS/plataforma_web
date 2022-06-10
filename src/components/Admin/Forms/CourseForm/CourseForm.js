@@ -2,33 +2,40 @@
 import { useEffect } from 'react';
 import { Form, Input, Button, Row, Col, Select, InputNumber } from 'antd';
 
+import { addCourse, editCourse, getCoursesFromSchool } from '../../../../api/course';
+
 //Estilos
 import './CourseForm.scss';
 
 export default function CourseForm(props) {
     const { Option } = Select;
 
-    const { courses, setCourses, setModalVisible, edit, toEdit } = props;
+    const { courses, setCourses, setModalVisible, school, edit, toEdit, setRowSel } = props;
     const [form] = Form.useForm();
     
     const resetFields = () => form.resetFields();
     const onFinishFailed = err => console.log(err);
     
-    const onFinish = course => {
+    const onFinish = values => {
+
+        const course = { ...values, id_school: school }
+        
         console.log(course);
+        const updateCourses = () => getCoursesFromSchool(school).then(json => setCourses(json));
         
         if(edit) {
-            courses[courses.findIndex(c => c.code === toEdit.code)] = course;
-            setCourses([...courses]);
-        }else setCourses([...courses, course]);
+            editCourse(school, toEdit.code, course).then(updateCourses);
+            setRowSel(null);
+        }
+        else addCourse(school, course).then(updateCourses);
 
         setModalVisible(false);
     };
 
     useEffect(() => {
         if(edit) {
-            const { code, name, level, capacity } = toEdit;
-            form.setFieldsValue({code, name, level, capacity});
+            const { code, name, level, period, capacity } = toEdit;
+            form.setFieldsValue({code, name, level, period, capacity});
         }
     }, []);
 
@@ -75,7 +82,22 @@ export default function CourseForm(props) {
             </Row>
 
             <Row gutter={8}>
-                <Col span={10}>
+                <Col span={9}>
+                    <Form.Item
+                        name="period"
+                        label="Período"
+                        required
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Campo requerido',
+                            }
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </Col>
+                <Col span={9}>
                     <Form.Item
                         name="level"
                         label="Nivel"
@@ -97,7 +119,7 @@ export default function CourseForm(props) {
                         </Select>
                     </Form.Item>
                 </Col>
-                <Col span={14}>
+                <Col span={6}>
                     <Form.Item
                         name="capacity"
                         label="Capacidad"

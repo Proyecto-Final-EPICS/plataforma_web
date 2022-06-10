@@ -185,6 +185,14 @@ export function parseName(firstname, lastname) {
     return `${firstname.split()[0]} ${lastname.split()[0]}`;
 }
 
+export function parsePhone({country_code, number}) {
+    return `+${country_code} ${number}`;
+}
+
+export function parseLocation({city, region, country}) {
+    return `${city}, ${region}, ${country}`;
+}
+
 export function genFilters (col, prop) {
     const filters = [];
     col.forEach(el => {

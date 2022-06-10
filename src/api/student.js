@@ -1,8 +1,8 @@
 import { basePath } from './config';
 import { ACCESS_TOKEN } from '../utils/constants';
 
-export function getDirectorsFromSchool(id_school) {
-    const url = `${basePath}/school/${id_school}/rector`;
+export function getStudentsFromSchool(id_school) {
+    const url = `${basePath}/school/${id_school}/student`;
     const params = {
         method: 'GET',
         headers: {
@@ -16,8 +16,8 @@ export function getDirectorsFromSchool(id_school) {
         .catch(err => err.message);
 }
 
-export function getDirectorFromSchool(id_school, username) {
-    const url = `${basePath}/school/${id_school}/rector/${username}`;
+export function getStudentFromSchool(id_school, username) {
+    const url = `${basePath}/school/${id_school}/student/${username}`;
     const params = {
         method: 'GET',
         headers: {
@@ -31,8 +31,8 @@ export function getDirectorFromSchool(id_school, username) {
         .catch(err => err.message);
 }
 
-export function addDirector(data) {
-    const url = `${basePath}/rector`;
+export function addStudent(data) {
+    const url = `${basePath}/student`;
     const params = {
         method: 'POST',
         headers: {
@@ -48,8 +48,8 @@ export function addDirector(data) {
         .catch(err => err.message);
 }
 
-export function editDirector(username, data) {
-    const url = `${basePath}/rector/${username}`;
+export function editStudent(username, data) {
+    const url = `${basePath}/student/${username}`;
     const params = {
         method: 'PUT',
         headers: {
@@ -65,8 +65,8 @@ export function editDirector(username, data) {
         .catch(err => err.message);
 }
 
-export function delDirector(username) {
-    const url = `${basePath}/rector/${username}`;
+export function delStudent(username) {
+    const url = `${basePath}/student/${username}`;
     const params = {
         method: 'DELETE',
         headers: {

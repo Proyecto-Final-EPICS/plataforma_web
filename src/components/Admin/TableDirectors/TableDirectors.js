@@ -3,7 +3,7 @@ import { Table } from 'antd';
 
 import AdminContext from '../AdminContext';
 
-import { getAgeFromBirthDate } from '../../../libraries/General/utils';
+import { parsePhone } from '../../../libraries/General/utils';
 
 export default function TableDirectors(props) {
     const { directors } = props;
@@ -17,7 +17,7 @@ export default function TableDirectors(props) {
 
             return directors.filter(d => (
                 d.username.toLowerCase().includes(fxdSearch) 
-                || d.identityDoc === fxdSearch
+                || d.identity_doc === fxdSearch
                 || d.lastname.toLowerCase().includes(fxdSearch)
                 || d.firstname.toLowerCase().includes(fxdSearch)
                 || d.email.includes(fxdSearch)
@@ -32,7 +32,7 @@ export default function TableDirectors(props) {
         },
         {
             title: 'Cédula',
-            dataIndex: 'id',
+            dataIndex: 'identity_doc',
         },
         {
             title: 'Apellidos',
@@ -57,17 +57,14 @@ export default function TableDirectors(props) {
         {
             title: 'Teléfono',
             dataIndex: 'phone',
-            render: (_, {phone}) => (
-                <div>{`+${phone.countryCode} ${phone.number}`}</div>
-            )
         },
     ]
 
-    const data = getFilteredDirectors().map(({ firstname, lastname, username, identityDoc: id, email, 
-        phone, gender, birthDate }, key) => (
+    const data = getFilteredDirectors().map(({ firstname, lastname, username, identity_doc, email, 
+        phone, gender, age }, key) => (
         {
-            key, firstname, lastname, username, id, email, phone, gender,
-            age: getAgeFromBirthDate(birthDate)
+            key, firstname, lastname, username, identity_doc, email, gender, age,
+            phone: parsePhone(phone)
         }
     ));
 

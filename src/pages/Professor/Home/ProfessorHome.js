@@ -9,8 +9,10 @@ import GridCourses from './../../../components/Professor/GridCourses';
 import ListGamesMini from './../../../components/Professor/ListGamesMini';
 
 // Mock Data
-import courseApi from '../../../mock_data/collections/course.json'
-import gameApi from '../../../mock_data/collections/game.json'
+// import courseApi from '../../../mock_data/collections/course.json'
+// import gameApi from '../../../mock_data/collections/game.json'
+import { getCoursesFromSchool } from '../../../api/course';
+import { getGamesFromSchool } from '../../../api/game';
 
 import useAuth from '../../../hooks/useAuth';
 
@@ -22,7 +24,7 @@ import './ProfessorHome.scss';
 export default function ProfessorHome() {
     const [games, setGames] = useState([]);
     const [courses, setCourses] = useState([]);
-    const { username, school } = useAuth();
+    const { username, id_school } = useAuth();
 
     const redirectStatistics = () => {
         const query = {cur: []};
@@ -34,10 +36,18 @@ export default function ProfessorHome() {
     }
 
     useEffect(() => {
-        setCourses(courseApi.filter(c => c.school == school 
-            && c.professors.some(p => p.username == username)));
-        setGames(gameApi.filter(g => g.school == school));
+        console.log(id_school);
+        getCoursesFromSchool(id_school).then(json => {console.log(json); setCourses(json)})
+        // getGamesFromSchool(id_school).then(json => console.log(json))
+        // setCourses(courseApi.filter(c => c.id_school == id_school 
+        //     && c.professors.some(p => p.username == username)));
+        // setGames(gameApi.filter(g => g.id_school == id_school));
     }, []);
+
+    useEffect(() => {
+        // console.log(id_school);
+        // getCoursesFromSchool(id_school).then(json => console.log(json))
+    }, [id_school])
 
     return (
         <div className="professor-home">

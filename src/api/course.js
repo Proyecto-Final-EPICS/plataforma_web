@@ -1,12 +1,13 @@
 import { basePath } from './config';
 import { ACCESS_TOKEN } from '../utils/constants';
 
-export function getDirectorsFromSchool(id_school) {
-    const url = `${basePath}/school/${id_school}/rector`;
+export function getCoursesFromSchool(id_school) {
+    const url = `${basePath}/school/${id_school}/course`;
     const params = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
         }
     };
 
@@ -16,12 +17,13 @@ export function getDirectorsFromSchool(id_school) {
         .catch(err => err.message);
 }
 
-export function getDirectorFromSchool(id_school, username) {
-    const url = `${basePath}/school/${id_school}/rector/${username}`;
+export function getCourseFromSchool(id_school, course_code) {
+    const url = `${basePath}/school/${id_school}/course/${course_code}`;
     const params = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
         }
     };
 
@@ -31,8 +33,8 @@ export function getDirectorFromSchool(id_school, username) {
         .catch(err => err.message);
 }
 
-export function addDirector(data) {
-    const url = `${basePath}/rector`;
+export function addCourse(id_school, data) {
+    const url = `${basePath}/school/${id_school}/course`;
     const params = {
         method: 'POST',
         headers: {
@@ -48,8 +50,8 @@ export function addDirector(data) {
         .catch(err => err.message);
 }
 
-export function editDirector(username, data) {
-    const url = `${basePath}/rector/${username}`;
+export function editCourse(id_school, course_code, data) {
+    const url = `${basePath}/school/${id_school}/course/${course_code}`;
     const params = {
         method: 'PUT',
         headers: {
@@ -65,8 +67,8 @@ export function editDirector(username, data) {
         .catch(err => err.message);
 }
 
-export function delDirector(username) {
-    const url = `${basePath}/rector/${username}`;
+export function delCourse(id_school, course_code) {
+    const url = `${basePath}/school/${id_school}/course/${course_code}`;
     const params = {
         method: 'DELETE',
         headers: {

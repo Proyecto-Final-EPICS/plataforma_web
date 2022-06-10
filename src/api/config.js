@@ -1,2 +1,2 @@
-export const basePath = "https://vip-epics-dev.herokuapp.com";
-// export const basePath = "http://localhost:5000";
+export const basePath = "https://vip-epics-api.herokuapp.com/v2.0/web";
+// export const basePath = "http://localhost:5000/v2.0/web";

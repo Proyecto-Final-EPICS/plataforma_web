@@ -4,7 +4,7 @@ import ProfessorForm from '../../../components/Admin/Forms/ProfessorForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
-import professorApi from '../../../mock_data/collections/professor.json';
+import { delProfessor, getProfessorsFromSchool } from '../../../api/professor';
 
 import './AdminProfessors.scss';
 
@@ -39,6 +39,7 @@ export default function AdminProfessors(props) {
                     school={school}
                     edit
                     toEdit={professors.find(p => p.username === rowSel.username)}
+                    setRowSel={setRowSel}
                 />
             );
             setModalTitle('Actualizar Profesor');
@@ -49,18 +50,14 @@ export default function AdminProfessors(props) {
     
     useEffect(() => {
         if(deleteRow) {
-            // setProfessors(professors.filter(p => p.username !== rowSel.username))
-            const temp = professors;
-            temp.splice(temp.findIndex(p => p.username === rowSel.username), 1)
-            setProfessors(temp);
-
+            delProfessor(rowSel.username).then(json => setProfessors(json));
             setRowSel(null);
             setDeleteRow(false);
         }
     }, [deleteRow]);
 
     useEffect(() => (
-        setProfessors(professorApi.filter(p => p.school === school))
+        getProfessorsFromSchool(school).then(json => setProfessors(json))
     ), []);
 
     return (

@@ -4,8 +4,6 @@ import jwtDecode from 'jwt-decode';
 
 //Api
 import { getAccessTokenApi, logout } from '../api/auth';
-import userApi from '../mock_data/collections/user.json';
-import adminApi from '../mock_data/collections/admin.json';
 
 export const AuthContext = createContext();
 
@@ -28,8 +26,6 @@ function checkUserLogin(setUser){
         console.log("Token caducado o inexistente");//aca debería ir el accesstoken
         logout();
     }else{
-        const username = jwtDecode(accessToken).sub.user;
-        let user = userApi.find(u => u.username === username);
-        setUser(user ? user : adminApi[0].username === username ? adminApi[0] : {});
+        setUser(jwtDecode(accessToken).sub);
     }
 }

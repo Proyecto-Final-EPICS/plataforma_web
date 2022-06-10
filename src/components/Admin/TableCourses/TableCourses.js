@@ -35,13 +35,17 @@ export default function TableCourses(props) {
             dataIndex: 'level',
         },
         {
+            title: 'Período',
+            dataIndex: 'period',
+        },
+        {
             title: 'Capacidad',
             dataIndex: 'capacity',
         },
     ]
-
-    const data = getFilteredCourses().map(({ code, name, level, capacity }, key) => (
-        { key, code, name, level, capacity }
+    console.log(getFilteredCourses());
+    const data = getFilteredCourses().map(({ code, name, level, period, capacity }, key) => (
+        { key, code, name, level, period, capacity }
     ));
 
     const rowSelection = {
@@ -61,5 +65,4 @@ export default function TableCourses(props) {
             rowSelection={rowSelection}
         />
     );
-
 }

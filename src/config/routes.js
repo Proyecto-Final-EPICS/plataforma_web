@@ -111,7 +111,7 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
             component: Error404,
         }
     ],
-    director: [
+    rector: [
         {
             path: '/',
             component: () => <Redirect to="/home"/>,
