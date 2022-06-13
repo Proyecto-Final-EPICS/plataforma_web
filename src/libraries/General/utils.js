@@ -102,7 +102,7 @@ export function tableCustomFilters(dataIndex, query) {
 };
 
 export function statisticFilterElems(sessionsApi, query, courseApi, studentApi) {
-    console.log(sessionsApi);
+    // console.log(sessionsApi);
     // console.log(query);
     // Límites de fecha
     const from = new Date(query.from.split('-').reverse()).getTime(), 

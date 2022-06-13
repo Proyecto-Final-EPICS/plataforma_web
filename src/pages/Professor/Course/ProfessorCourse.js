@@ -11,10 +11,6 @@ import ListGamesMini from '../../../components/Professor/ListGamesMini';
 
 import useAuth from '../../../hooks/useAuth';
 
-import courseApi from '../../../mock_data/collections/course.json';
-import gameApi from '../../../mock_data/collections/game.json';
-import studentApi from '../../../mock_data/collections/student.json';
-
 import { getCourseFromSchool } from '../../../api/course';
 
 import './ProfessorCourse.scss';
