@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { List } from 'antd';
 
 import './ListGames.scss';
+import { parseName } from '../../../libraries/General/utils';
 
 export default function GameStore(props) {
     const { games } = props;
@@ -22,13 +23,13 @@ export default function GameStore(props) {
 }
 
 function Game(props) {
-    const { code, name, shortDescription, devs, skills, logo } = props;
+    const { code, name, shortDescription, devs, topic, logo } = props;
     const linkTo = `/games/${code}`
 
     return (
         <List.Item
             key={code}
-            actions={skills.map(s => <div>{s}</div>)}
+            actions={[`Tópico: ${topic}`]}
             extra={
                 <Link to={linkTo}>
                 <img
@@ -41,9 +42,9 @@ function Game(props) {
         >
             <List.Item.Meta
                 title={<Link to={linkTo}>{name}</Link>}
-                description={`Por: ${devs.map(
-                    d => d.type == 'student' ? `${d.firstname} ${d.lastname}`: d.name
-                    ).join(', ')}`}
+                description={`Por: ${devs.map(({ firstname, lastname }) => (
+                    parseName(firstname, lastname)
+                )).join(', ')}`}
             />
             {shortDescription}
         </List.Item>

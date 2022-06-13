@@ -66,6 +66,7 @@ export default function ProfessorForm(props) {
             setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
             setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
             setCourses(toEdit.courses ? toEdit.courses.map(c => c.code) : [])
+            console.log(toEdit.courses.map(c => c.code));
 
             form.setFieldsValue({
                 username, firstname, lastname, gender, identity_doc, email, 
@@ -277,7 +278,7 @@ export default function ProfessorForm(props) {
                         </Col>
                     </Row>
                 </TabPane>
-                <TabPane key='1' tab='Información Adicional' forceRender>
+                <TabPane key='1' tab='Información Adicional'>
                     <Form.Item
                         name="courses"
                         label="Cursos"

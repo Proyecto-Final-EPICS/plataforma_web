@@ -18,6 +18,7 @@ import studentApi from '../../../mock_data/collections/student.json';
 import { getCourseFromSchool } from '../../../api/course';
 
 import './ProfessorCourse.scss';
+import { getSchool } from '../../../api/school';
 
 export default function ProfessorCourse() {
 	const [course, setCourse] = useState(null);
@@ -29,28 +30,35 @@ export default function ProfessorCourse() {
 	const { id_school } = useAuth();
 
 	const addGame = () => {
-		const otherGames = gameApi.filter(g => !games.some(g2 => g2.id === g.id));
-		if(!otherGames.length) return message.info('Este curso tiene todos los juegos disponibles');
-
-		setModalContent(<GameForm
-			setModalVisible={setModalVisible}
-			games={games}
-			setGames={setGames}
-			otherGames={otherGames}
-		/>);
-		setModalTitle('Añadir Juego(s)');
-		setModalVisible(true);
+		getSchool(id_school).then(json => {
+			const otherGames = json.games.filter(g => !games.some(g2 => g2.code === g.code));
+			if(!otherGames.length) return message.info('Este curso tiene todos los juegos disponibles');
+	
+			setModalContent(
+				<GameForm
+					id_school={id_school}
+					course_code={course.code}
+					setModalVisible={setModalVisible}
+					games={otherGames}
+					setGames={setGames}
+				/>);
+			setModalTitle('Añadir Juego(s)');
+			setModalVisible(true);
+		})
 	}
 
 	const remGame = () => {
 		if(!games.length) return message.info('Este curso no tiene juegos');
 
-		setModalContent(<GameForm
-			setModalVisible={setModalVisible}
-			games={games}
-			setGames={setGames}
-			rem
-		/>);
+		setModalContent(
+			<GameForm
+				id_school={id_school}
+				course_code={course.code}
+				setModalVisible={setModalVisible}
+				games={games}
+				setGames={setGames}
+				rem
+			/>);
 		setModalTitle('Retirar Juego(s)');
 		setModalVisible(true);
 	}
@@ -61,19 +69,12 @@ export default function ProfessorCourse() {
     }
 
 	useEffect(() => {
-		console.log(id_school);
-		// const id = `${id_school}-${getCourse()}`;
-		// const course = courseApi.find(c => c.id == id);
-
-		// setCourse(course);
 		getCourseFromSchool(id_school, getCourse()).then(json => {
 			console.log(json);
 			setCourse(json);
 			setStudents(json.students);
+			setGames(json.games);
 		});
-		// setStudents(course.students.map(s => studentApi.find(s2 => s2.username == s.username)));
-		// setGames(course.games.map(g => gameApi.find(g2 => g2.code == g.code)));
-		
 	}, []);
 
 	return (
@@ -118,21 +119,21 @@ export default function ProfessorCourse() {
 
 				<Col className='professor-course__games' span={7}>
 					<h1 className='professor-course__title'>Juegos</h1>
-					<ListGamesMini games={games} course={course.code}/>
+					<ListGamesMini games={games}/>
 					<div className='professor-course__games__options'>
 						<Button 
 							className='button-purple' 
 							onClick={addGame} 
 							type='primary'
 						>
-								Añadir
+							Añadir
 						</Button>
 						<Button 
 							className='button-purple' 
 							onClick={remGame} 
 							type='primary'
 						>
-								Retirar
+							Retirar
 						</Button>
 					</div>
 				</Col>

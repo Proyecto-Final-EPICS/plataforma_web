@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 
 import { parseName, getAgeFromBirthDate } from '../../../libraries/General/utils';
 
-import professorApi from '../../../mock_data/collections/professor.json';
+import { getProfessorFromSchool } from '../../../api/professor';
 
 import './ProfessorProfile.scss';
 
@@ -14,10 +14,10 @@ export default function ProfessorProfile(props) {
 	const [professor, setProfessor] = useState(null);
 	const [photoButtonVisible, setPhotoButtonVisible] = useState(false);
 
-	const { username } = useAuth();
+	const { username, id_school } = useAuth();
 
 	useEffect(() => {
-		setProfessor(professorApi.find(p => p.username === username));
+		getProfessorFromSchool(id_school, username).then(json => setProfessor(json));
 	}, []);
 
 	return (
@@ -67,11 +67,11 @@ export default function ProfessorProfile(props) {
 							<Row gutter={20} className='professor-profile__info__data__row'>
 								<Col span={9} className='professor-profile__info__data__col'>
 									Cédula
-									<Input disabled value={professor.identityDoc}/>
+									<Input disabled value={professor.identity_doc}/>
 								</Col>
 								<Col span={5} className='professor-profile__info__data__col'>
 									Edad
-									<Input disabled value={getAgeFromBirthDate(professor.birthDate)}/>
+									<Input disabled value={professor.age}/>
 								</Col>
 								<Col span={10} className='professor-profile__info__data__col'>
 									Género
@@ -121,7 +121,7 @@ export default function ProfessorProfile(props) {
 									Teléfono
 									<Input
 										disabled
-										value={`+${professor.phone.countryCode} ${professor.phone.number}`}
+										value={`+${professor.phone.country_code} ${professor.phone.number}`}
 									/>
 								</Col>
 							</Row>

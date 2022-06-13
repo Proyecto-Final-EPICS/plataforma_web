@@ -10,11 +10,15 @@ import routes from './config/routes';
 import AuthProvider from './providers/AuthProvider';
 import useAuth from './hooks/useAuth';
 
+// import { helloApi } from './api/web';
+
 //Estilos
 import './App.scss';
 
 function App(){
   const [authDone, setAuthDone] = useState(false);
+
+  // helloApi().then(json => console.log(json));
 
   return (
     //Siempre se va a utilizar el AuthProvider, comprobar si el user esta logeado
@@ -31,12 +35,12 @@ function App(){
 
 function SwitchRoute(props) {
   const { routes } = props;
-  const role = useAuth().role || 'noUser';
+  const { role } = useAuth();
   console.log(role);
 
   return (
     <Switch>
-      {routes[role].map((route, index) => (
+      {routes[role || 'noUser'].map((route, index) => (
         <RouteWithSubRoutes key={index} {...route}/>
       ))}
     </Switch>
