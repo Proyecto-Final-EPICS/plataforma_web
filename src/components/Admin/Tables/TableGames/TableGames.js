@@ -59,7 +59,7 @@ export default function TableGames(props) {
         },
     ]
 
-    // console.log(getFilteredGames());
+    console.log(getFilteredGames());
     const data = getFilteredGames().map(({ code, name, level, topic, devs, modules, 
         launch_date: { $date } }, key) => (
         {

@@ -246,7 +246,7 @@ function getValidQuery(paramOptions, query) {
 async function getParameters(username, role, id_school){
     const school = await getSchool(id_school);
 
-    const courses = role == 'director' ? 
+    const courses = role == 'rector' ? 
         school.courses : role == 'professor' ? 
         (await getProfessorFromSchool(id_school, username)).courses : [];
     //
@@ -279,13 +279,13 @@ async function getParameters(username, role, id_school){
             )),
             icon: RocketOutlined,
         },
-        {
-            name: 'dis',
-            type: 'check',
-            title: 'Discapacidad visual',
-            options: [{name: 'op1', value: 'Op1'}, {name: 'op2', value: 'Op2'}],
-            icon: EyeOutlined,
-        },
+        // {
+        //     name: 'dis',
+        //     type: 'check',
+        //     title: 'Discapacidad visual',
+        //     options: [{name: 'op1', value: 'Op1'}, {name: 'op2', value: 'Op2'}],
+        //     icon: EyeOutlined,
+        // },
         {
             name: 'period',
             type: 'period',

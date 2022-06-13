@@ -51,7 +51,7 @@ export default function AdminGames(props) {
             delGame(school, rowSel.code).then(() => (
                 getGamesFromSchool(school).then(json => {
                     setGames(json);
-                    setRowSel(null)
+                    setRowSel(null);
                 })
             ));
             setRowSel(null);

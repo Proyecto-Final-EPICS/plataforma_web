@@ -20,7 +20,6 @@ export default function DirectorCourses() {
     const redirectStatistics = () => {
         const query = {cur: []};
         selectedRowKeys.forEach(el => query.cur.push(courses[el].code));
-        
         return {
             pathname: '/statistics',
             search: qs.stringify(query),
