@@ -14,8 +14,8 @@ export default function StudentForm(props) {
     const { TabPane } = Tabs;
     const { Option } = Select;
 
-    const { students, setStudents, setModalVisible, school, edit, toEdit, setRowSel } = props;
-    const [courses, setCourses] = useState([]);
+    const { setStudents, setModalVisible, school, edit, toEdit, setRowSel } = props;
+    const [schoolCourses, setSchoolCourses] = useState([]);
     const [gender, setGender] = useState(null);
     const [customGender, setCustomGender] = useState(null);
     const [form] = Form.useForm();
@@ -30,7 +30,7 @@ export default function StudentForm(props) {
     );
 
     const SelectRepPhoneCountryCode = (
-        <Form.Item name='repPhoneCountryCode' noStyle>
+        <Form.Item name='rep_phone_country_code' noStyle>
             <Select>
                 <Option value='57'>+57</Option>
                 <Option value='58'>+58</Option>
@@ -53,18 +53,18 @@ export default function StudentForm(props) {
     const onFinish = values => {
         const { username, password, firstname, lastname, gender, identity_doc, email, 
             doc_type, birth_date, course, phone: number, phone_country_code: country_code,
-            repFirstname, repLastname, repPhone, repPhoneCountryCode, repIdentityDoc } = values;
+            rep_firstname, rep_lastname, rep_phone, rep_phone_country_code, rep_identity_doc } = values;
         // 
         const student = {
             username, password, firstname, lastname, gender, identity_doc, doc_type, birth_date, 
             course, email, phone: { number, country_code }, id_school: school,  
             legal_rep: {
-                firstname: repFirstname,
-                lastname: repLastname,
-                identity_doc: repIdentityDoc,
+                firstname: rep_firstname,
+                lastname: rep_lastname,
+                identity_doc: rep_identity_doc,
                 phone: {
-                    number: repPhone,
-                    country_code: repPhoneCountryCode,
+                    number: rep_phone,
+                    country_code: rep_phone_country_code,
                 }
             }
         }
@@ -81,25 +81,25 @@ export default function StudentForm(props) {
     };
 
     useEffect(() => {
-        getCoursesFromSchool(school).then(json => setCourses(json.map(c => c.code)));
+        getCoursesFromSchool(school).then(json => setSchoolCourses(json.map(c => c.code)));
 
         if(edit) {
             const { username, firstname, lastname, gender, identity_doc, doc_type, 
                 course, phone: { number: phone, country_code: phone_country_code },
                 birth_date: { $date }, email,
                 legal_rep: { 
-                    firstname: repFirstname, lastname: repLastname, identity_doc: repIdentityDoc, 
-                    phone: { number: repPhone, countryCode: repPhoneCountryCode } 
+                    firstname: rep_firstname, lastname: rep_lastname, identity_doc: rep_identity_doc, 
+                    phone: { number: rep_phone, countryCode: rep_phone_country_code } 
                 } } = toEdit;
             // 
             setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
             setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
             
             form.setFieldsValue({
-                username, firstname, lastname, gender, identity_doc, doc_type, course, 
-                phone, phone_country_code, email, 
-                repFirstname, repLastname, repIdentityDoc, repPhone, repPhoneCountryCode,
-                birth_date: moment($date)
+                username, firstname, lastname, gender, identity_doc, doc_type,  
+                phone, phone_country_code, email, course, 
+                rep_firstname, rep_lastname, rep_identity_doc, rep_phone, rep_phone_country_code,
+                birth_date: moment($date),
             });
         }
     }, []);
@@ -111,7 +111,7 @@ export default function StudentForm(props) {
             initialValues={{
                 doc_type: 'Tarjeta de identidad',
                 phone_country_code: '57',
-                repPhoneCountryCode: '57',
+                rep_phone_country_code: '57',
             }}
             layout='vertical'
             onFinish={onFinish}
@@ -150,7 +150,7 @@ export default function StudentForm(props) {
                         </Col>
                         <Col span={12}>
                             <Form.Item
-                                name='confirmPassword'
+                                name='confirm_password'
                                 label='Confirmar contraseña'
                                 required
                                 dependencies={['password']}
@@ -324,7 +324,7 @@ export default function StudentForm(props) {
                         ]}
                     >
                         <Select>
-                            {courses.map((c, i) => (
+                            {schoolCourses.map((c, i) => (
                                 <Option key={i} value={c}>{c}</Option>
                             ))}
                         </Select>
@@ -335,14 +335,14 @@ export default function StudentForm(props) {
                     <Divider orientation='left' plain>Representante Legal</Divider>
                     <Form.Item
                         className='student-form__repName'
-                        name='repName'
+                        name='rep_name'
                         label='Nombre'
                         required
                     >
                         <Row gutter={8}>
                             <Col span={12}>
                                 <Form.Item
-                                    name='repFirstname'
+                                    name='rep_firstname'
                                     rules={[
                                         {
                                             required: true,
@@ -356,7 +356,7 @@ export default function StudentForm(props) {
 
                             <Col span={12}>
                                 <Form.Item
-                                    name='repLastname'
+                                    name='rep_lastname'
                                     rules={[
                                         {
                                             required: true,
@@ -372,7 +372,7 @@ export default function StudentForm(props) {
                     <Row gutter={8}>
                         <Col>
                             <Form.Item
-                                name='repIdentityDoc'
+                                name='rep_identity_doc'
                                 label='Cédula'
                             >
                                 <Input />
@@ -381,7 +381,7 @@ export default function StudentForm(props) {
                         
                         <Col>
                             <Form.Item
-                                name='repPhone'
+                                name='rep_phone'
                                 label='Teléfono'
                                 required
                                 rules={[

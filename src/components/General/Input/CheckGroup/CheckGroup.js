@@ -22,9 +22,7 @@ export default function CheckGroup(props) {
         if(update) update(name, temp);
     }
 
-    useEffect(() => {
-        onCheckOne(checked);
-    }, []);
+    useEffect(() => onCheckOne(checked), []);
 
     return (
         <>

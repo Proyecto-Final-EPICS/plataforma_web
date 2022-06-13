@@ -12,7 +12,7 @@ import { addSchool, editSchool, getSchools } from '../../../../api/school';
 export default function SchoolForm(props) {
     const { Option } = Select;
     
-    const { schools, setSchools, setModalVisible, edit, toEdit, setRowSel } = props;
+    const { setSchools, setModalVisible, edit, toEdit, setRowSel } = props;
     const [form] = Form.useForm();
     const resetFields = () => form.resetFields();
     const onFinishFailed = err => console.log(err);

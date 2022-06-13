@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import TableSchools from '../../../components/Admin/TableSchools';
+import TableSchools from '../../../components/Admin/Tables/TableSchools';
 import SchoolForm from '../../../components/Admin/Forms/SchoolForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
@@ -17,7 +17,6 @@ export default function AdminSchools(props) {
         if(addRow) {
             setModalContent(
                 <SchoolForm
-                    schools={schools} 
                     setSchools={setSchools} 
                     setModalVisible={setModalVisible}
                 />
@@ -32,7 +31,6 @@ export default function AdminSchools(props) {
         if(editRow) {
             setModalContent(
                 <SchoolForm
-                    schools={schools} 
                     setSchools={setSchools} 
                     setModalVisible={setModalVisible}
                     edit
@@ -48,15 +46,19 @@ export default function AdminSchools(props) {
     
     useEffect(() => {
         if(deleteRow) {
-            delSchool(rowSel.id).then(json => setSchools(json));
-
+            delSchool(rowSel.id).then(() => (
+                getSchools().then(json => {
+                    setSchools(json);
+                    setRowSel(null);
+                })
+            ));
             setRowSel(null);
             setDeleteRow(false);
         }
     }, [deleteRow]);
 
     useEffect(() => (
-        getSchools().then(res => setSchools(res))
+        getSchools().then(json => setSchools(json))
     ), []);
 
     return (

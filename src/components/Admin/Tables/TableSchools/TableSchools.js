@@ -1,9 +1,9 @@
 import { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Table, Button } from 'antd';
-import { parseLocation, parsePhone } from '../../../libraries/General/utils';
+import { parseLocation, parsePhone } from '../../../../libraries/General/utils';
 
-import AdminContext from '../AdminContext';
+import AdminContext from '../../AdminContext';
 
 export default function TableSchools(props) {
     const { schools } = props;
@@ -71,9 +71,7 @@ export default function TableSchools(props) {
         selectedRowKeys: rowSel ? [rowSel.key] : [],
     }
 
-    useEffect(() => {
-        setRowSel(null);
-    }, [search]);
+    useEffect(() => setRowSel(null), [search]);
 
     return (
         <Table

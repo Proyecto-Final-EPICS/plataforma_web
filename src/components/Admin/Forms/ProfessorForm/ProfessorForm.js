@@ -15,7 +15,7 @@ export default function ProfessorForm(props) {
     const { TabPane } = Tabs;
     const { Option } = Select;
 
-    const { professors, setProfessors, setModalVisible, school, edit, toEdit, setRowSel } = props;
+    const { setProfessors, setModalVisible, school, edit, toEdit, setRowSel } = props;
     const [schoolCourses, setSchoolCourses] = useState([]);
     const [courses, setCourses] = useState([]);
     const [gender, setGender] = useState(null);
@@ -23,7 +23,7 @@ export default function ProfessorForm(props) {
     const [form] = Form.useForm();
 
     const SelectPhoneCountryCode = (
-        <Form.Item name='phoneCountryCode' noStyle>
+        <Form.Item name='phone_country_code' noStyle>
             <Select>
                 <Option value='57'>+57</Option>
                 <Option value='58'>+58</Option>
@@ -35,8 +35,8 @@ export default function ProfessorForm(props) {
     const onFinishFailed = err => console.log(err);
     
     const onFinish = values => {
-        const { username, password, firstname, lastname, gender, identityDoc: identity_doc, 
-            birthDate: birth_date, email, phone: number, phoneCountryCode: country_code } = values;
+        const { username, password, firstname, lastname, gender, identity_doc, 
+            birth_date, email, phone: number, phone_country_code: country_code } = values;
             
         const professor = {
             username, password, firstname, lastname, gender, identity_doc, email, birth_date, 
@@ -52,24 +52,25 @@ export default function ProfessorForm(props) {
         }
         else addProfessor(professor).then(updateProfessors);
 
-        // setModalVisible(false);
+        setModalVisible(false);
     };
 
     useEffect(() => {
         getCoursesFromSchool(school).then(json => setSchoolCourses(json.map(c => c.code)));
 
         if(edit) {
-            const { username, firstname, lastname, gender, identity_doc: identityDoc, 
+            const { username, firstname, lastname, gender, identity_doc, 
                 birth_date: { $date }, email, 
-                phone: { number: phone, country_code: phoneCountryCode } } = toEdit;
+                phone: { number: phone, country_code: phone_country_code } } = toEdit;
             // 
             setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
             setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
-            
+            setCourses(toEdit.courses ? toEdit.courses.map(c => c.code) : [])
+
             form.setFieldsValue({
-                username, firstname, lastname, gender, identityDoc, email, 
-                phone, phoneCountryCode,
-                birthDate: moment($date)
+                username, firstname, lastname, gender, identity_doc, email, 
+                phone, phone_country_code,
+                birth_date: moment($date)
             });
         }
     }, []);
@@ -80,7 +81,7 @@ export default function ProfessorForm(props) {
             form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            initialValues={{phoneCountryCode: '57'}}
+            initialValues={{phone_country_code: '57'}}
             layout='vertical'
         >
             <Tabs defaultActiveKey='0' tabPosition='left' centered>
@@ -116,7 +117,7 @@ export default function ProfessorForm(props) {
                         </Col>
                         <Col span={12}>
                             <Form.Item
-                                name='confirmPassword'
+                                name='confirm_password'
                                 label='Confirmar contraseña'
                                 required
                                 dependencies={['password']}
@@ -181,7 +182,7 @@ export default function ProfessorForm(props) {
                     <Row gutter={8}>
                         <Col span={12}>
                             <Form.Item
-                                name='identityDoc'
+                                name='identity_doc'
                                 label='Cédula'
                             >
                                 <Input />
@@ -189,7 +190,7 @@ export default function ProfessorForm(props) {
                         </Col>
                         <Col span={12}>
                             <Form.Item
-                                name='birthDate'
+                                name='birth_date'
                                 label='Fecha de nacimiento'
                                 required
                                 rules={[
@@ -276,14 +277,14 @@ export default function ProfessorForm(props) {
                         </Col>
                     </Row>
                 </TabPane>
-                <TabPane key='1' tab='Información Adicional'>
+                <TabPane key='1' tab='Información Adicional' forceRender>
                     <Form.Item
                         name="courses"
                         label="Cursos"
                     >
                         <CheckGroup
                             options={schoolCourses}
-                            checked={edit ? [toEdit.courses.map(c => c.code)] : []}
+                            checked={courses}
                             dir='vertical'
                             update={(_, list) => setCourses(list)}
                         />

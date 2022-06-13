@@ -18,6 +18,7 @@ import AdminSchool from '../pages/Admin/School';
 import AdminDirectors from '../pages/Admin/Directors';
 import AdminProfessors from '../pages/Admin/Professors';
 import AdminCourses from '../pages/Admin/Courses';
+import AdminGames from '../pages/Admin/Games';
 import AdminStudents from '../pages/Admin/Students';
 
 //Pages Director
@@ -95,6 +96,11 @@ const routes = {//Es el sistema de rutas, el array contiene todas las rutas
                 {
                     path: "/schools/:school/courses",
                     component: AdminCourses,
+                    exact: true
+                },
+                {
+                    path: "/schools/:school/games",
+                    component: AdminGames,
                     exact: true
                 },
                 {

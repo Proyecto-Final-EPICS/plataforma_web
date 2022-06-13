@@ -12,13 +12,13 @@ import './DirectorForm.scss';
 export default function DirectorForm(props) {
     const { Option } = Select;
 
-    const { directors, setDirectors, setModalVisible, school, edit, toEdit, setRowSel } = props;
+    const { setDirectors, setModalVisible, school, edit, toEdit, setRowSel } = props;
     const [gender, setGender] = useState(null);
     const [customGender, setCustomGender] = useState(null);
     const [form] = Form.useForm();
 
     const SelectPhoneCountryCode = (
-        <Form.Item name='phoneCountryCode' noStyle>
+        <Form.Item name='phone_country_code' noStyle>
             <Select>
                 <Option value='57'>+57</Option>
                 <Option value='58'>+58</Option>
@@ -30,14 +30,15 @@ export default function DirectorForm(props) {
     const onFinishFailed = err => console.log(err);
     
     const onFinish = values => {
-        const { username, password, firstname, lastname, gender, identityDoc: identity_doc, 
-            birthDate: birth_date, email, phone: number, phoneCountryCode: country_code } = values;
+        const { username, password, firstname, lastname, gender, identity_doc, 
+            birth_date, email, phone: number, phone_country_code: country_code } = values;
         
         const director = {
             username, password, firstname, lastname, gender, identity_doc, email, birth_date, 
             phone: { number, country_code },
             id_school: school
         }
+        console.log(director);
         
         const updateDirectors = () => getDirectorsFromSchool(school).then(json => setDirectors(json));
         
@@ -47,27 +48,22 @@ export default function DirectorForm(props) {
         }
         else addDirector(director).then(updateDirectors);
 
-        // if(edit) {
-        //     directors[directors.findIndex(d => d.username === toEdit.username)] = director;
-        //     setDirectors([...directors]);
-        // }else setDirectors([...directors, director]);
-
         setModalVisible(false);
     };
 
     useEffect(() => {
         if(edit) {
-            const { username, firstname, lastname, gender, identity_doc: identityDoc, 
+            const { username, firstname, lastname, gender, identity_doc, 
                 birth_date: { $date }, email, 
-                phone: { number: phone, country_code: phoneCountryCode } } = toEdit;
+                phone: { number: phone, country_code: phone_country_code } } = toEdit;
             // 
             setGender(gender == 'Masculino' || gender == 'Femenino' ? gender : 'Otro');
             setCustomGender(gender !== 'Masculino' && gender !== 'Femenino' ? gender : null);
             
             form.setFieldsValue({
-                username, firstname, lastname, gender, identityDoc, email, 
-                phone, phoneCountryCode,
-                birthDate: moment($date)
+                username, firstname, lastname, gender, identity_doc, email, 
+                phone, phone_country_code,
+                birth_date: moment($date)
             });
         }
     }, []);
@@ -78,7 +74,7 @@ export default function DirectorForm(props) {
             form={form}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            initialValues={{phoneCountryCode: '57'}}
+            initialValues={{phone_country_code: '57'}}
             layout='vertical'
         >
             <Form.Item
@@ -112,7 +108,7 @@ export default function DirectorForm(props) {
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name='confirmPassword'
+                        name='confirm_password'
                         label='Confirmar contraseña'
                         required
                         dependencies={['password']}
@@ -177,7 +173,7 @@ export default function DirectorForm(props) {
             <Row gutter={8}>
                 <Col span={12}>
                     <Form.Item
-                        name='identityDoc'
+                        name='identity_doc'
                         label='Cédula'
                     >
                         <Input />
@@ -185,7 +181,7 @@ export default function DirectorForm(props) {
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name='birthDate'
+                        name='birth_date'
                         label='Fecha de nacimiento'
                         required
                         rules={[

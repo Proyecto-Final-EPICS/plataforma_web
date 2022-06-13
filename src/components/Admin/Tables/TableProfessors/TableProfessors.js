@@ -1,9 +1,9 @@
 import { useEffect, useContext } from 'react';
 import { Table } from 'antd';
 
-import AdminContext from '../AdminContext';
+import AdminContext from '../../AdminContext';
 
-import { parsePhone } from '../../../libraries/General/utils';
+import { parsePhone } from '../../../../libraries/General/utils';
 
 export default function TableProfessors(props) {
     const { professors } = props;
@@ -74,9 +74,7 @@ export default function TableProfessors(props) {
         selectedRowKeys: rowSel ? [rowSel.key] : [],
     }
 
-    useEffect(() => {
-        setRowSel(null);
-    }, [search]);
+    useEffect(() => setRowSel(null), [search]);
 
     return (
         <Table

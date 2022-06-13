@@ -1,28 +1,28 @@
 import { useState, useEffect, useContext } from 'react';
-import TableDirectors from '../../../components/Admin/Tables/TableDirectors';
-import DirectorForm from '../../../components/Admin/Forms/DirectorForm';
+import TableGames from '../../../components/Admin/Tables/TableGames';
+import GameForm from '../../../components/Admin/Forms/GameForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
 
-import { delDirector, getDirectorsFromSchool } from '../../../api/director';
+import { delGame, getGamesFromSchool } from '../../../api/game';
 
-import './AdminDirectors.scss';
+import './AdminGames.scss';
 
-export default function AdminDirectors(props) {
-    const [directors, setDirectors] = useState([]);
+export default function AdminGames(props) {
+    const [games, setGames] = useState([]);
     const { school, rowSel, setRowSel, addRow, setAddRow, editRow, setEditRow, deleteRow, setDeleteRow, 
         setModalVisible, setModalContent, setModalTitle } = useContext(AdminContext);
     
     useEffect(() => {
         if(addRow) {
             setModalContent(
-                <DirectorForm
-                    setDirectors={setDirectors} 
+                <GameForm
+                    setGames={setGames} 
                     setModalVisible={setModalVisible}
                     school={school}
                 />
             )
-            setModalTitle('Registrar Director');
+            setModalTitle('Registrar Juego');
             setModalVisible(true);
             setAddRow(false);
         }
@@ -31,16 +31,16 @@ export default function AdminDirectors(props) {
     useEffect(() => {
         if(editRow) {
             setModalContent(
-                <DirectorForm
-                    setDirectors={setDirectors} 
+                <GameForm
+                    setGames={setGames} 
                     setModalVisible={setModalVisible}
                     school={school}
                     edit
-                    toEdit={directors.find(d => d.username === rowSel.username)}
+                    toEdit={games.find(g => g.code === rowSel.code)}
                     setRowSel={setRowSel}
                 />
             );
-            setModalTitle('Actualizar Director');
+            setModalTitle('Actualizar Juego');
             setModalVisible(true);
             setEditRow(false);
         }
@@ -48,10 +48,10 @@ export default function AdminDirectors(props) {
     
     useEffect(() => {
         if(deleteRow) {
-            delDirector(rowSel.username).then(() => (
-                getDirectorsFromSchool(school).then(json => {
-                    setDirectors(json);
-                    setRowSel(null);
+            delGame(school, rowSel.code).then(() => (
+                getGamesFromSchool(school).then(json => {
+                    setGames(json);
+                    setRowSel(null)
                 })
             ));
             setRowSel(null);
@@ -60,14 +60,12 @@ export default function AdminDirectors(props) {
     }, [deleteRow]);
 
     useEffect(() => (
-        getDirectorsFromSchool(school).then(json => setDirectors(json))
+        getGamesFromSchool(school).then(json => setGames(json))
     ), []);
 
     return (
-        <div className='admin-directors'>
-            <TableDirectors 
-                directors={directors}
-            />
+        <div className='admin-games'>
+            <TableGames games={games}/>
         </div>
     )
 }

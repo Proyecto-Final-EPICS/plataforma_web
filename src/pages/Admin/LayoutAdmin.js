@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { Link, Route, Switch, matchPath } from 'react-router-dom';
 
 import {
-    HomeOutlined, UserOutlined, TeamOutlined, BookOutlined, BankOutlined, SmileOutlined, LeftOutlined
+    HomeOutlined, UserOutlined, TeamOutlined, BookOutlined, BankOutlined, SmileOutlined, LeftOutlined, RocketOutlined
 } from '@ant-design/icons';
 
 import MenuSider from './../../components/Admin/MenuSider';
@@ -178,6 +178,12 @@ function getMenuItems(school) {
             text: 'Estudiantes',
             icon: SmileOutlined,
             to: `/schools/${school}/students`,
+            isCollection: true,
+        },
+        {
+            text: 'Juegos',
+            icon: RocketOutlined,
+            to: `/schools/${school}/games`,
             isCollection: true,
         },
     ]

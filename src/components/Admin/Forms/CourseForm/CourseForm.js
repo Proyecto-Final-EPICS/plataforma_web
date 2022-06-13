@@ -10,7 +10,7 @@ import './CourseForm.scss';
 export default function CourseForm(props) {
     const { Option } = Select;
 
-    const { courses, setCourses, setModalVisible, school, edit, toEdit, setRowSel } = props;
+    const { setCourses, setModalVisible, school, edit, toEdit, setRowSel } = props;
     const [form] = Form.useForm();
     
     const resetFields = () => form.resetFields();

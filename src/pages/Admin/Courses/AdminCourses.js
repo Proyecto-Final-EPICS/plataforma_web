@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import TableCourses from '../../../components/Admin/TableCourses';
+import TableCourses from '../../../components/Admin/Tables/TableCourses';
 import CourseForm from '../../../components/Admin/Forms/CourseForm';
 
 import AdminContext from '../../../components/Admin/AdminContext';
@@ -17,7 +17,6 @@ export default function AdminCourses(props) {
         if(addRow) {
             setModalContent(
                 <CourseForm
-                    courses={courses} 
                     setCourses={setCourses} 
                     setModalVisible={setModalVisible}
                     school={school}
@@ -33,7 +32,6 @@ export default function AdminCourses(props) {
         if(editRow) {
             setModalContent(
                 <CourseForm
-                    courses={courses} 
                     setCourses={setCourses} 
                     setModalVisible={setModalVisible}
                     school={school}
@@ -50,7 +48,12 @@ export default function AdminCourses(props) {
     
     useEffect(() => {
         if(deleteRow) {
-            delCourse(school, rowSel.code).then(json => setCourses(json));
+            delCourse(school, rowSel.code).then(() => (
+                getCoursesFromSchool(school).then(json => {
+                    setCourses(json);
+                    setRowSel(null);
+                })
+            ));
             setRowSel(null);
             setDeleteRow(false);
         }

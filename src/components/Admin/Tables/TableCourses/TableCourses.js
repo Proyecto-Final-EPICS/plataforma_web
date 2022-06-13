@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { Table } from 'antd';
 
-import AdminContext from '../AdminContext';
+import AdminContext from '../../AdminContext';
 
 export default function TableCourses(props) {
     const { courses } = props;
@@ -54,9 +54,7 @@ export default function TableCourses(props) {
         selectedRowKeys: rowSel ? [rowSel.key] : [],
     }
 
-    useEffect(() => {
-        setRowSel(null);
-    }, [search]);
+    useEffect(() => setRowSel(null), [search]);
 
     return (
         <Table

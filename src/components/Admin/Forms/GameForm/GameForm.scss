@@ -1,0 +1,74 @@
+@import '../../../../scss/index.scss';
+
+.game-form {
+    width: 700px;
+    // .ant-tabs-content-holder {
+    //     width: 600px;
+    // }
+
+    &__dev_id_school {
+        flex-direction: row !important;
+        
+        .ant-form-item-control-input {
+            justify-content: flex-end;
+        }
+
+        .ant-form-item-control-input-content {
+            max-width: 90%;
+        }
+    }
+
+    &__list {
+        overflow-y: auto;
+        height: 400px;
+        margin-bottom: 0;
+        border: #e1e1e1 1px solid;
+        border-radius: 4px;
+        padding: 2px 12px;
+
+        &__item {
+            &__input {
+                margin-bottom: 14px;
+            }
+        }
+    }
+
+    &__list-options {
+        text-align: end;
+
+        button {
+            margin: 10px 2px;
+            border: none;
+            background-color: #bbb;
+            color: white;
+        }
+    }
+
+    &__options {
+
+        button {
+            border: none;
+            background-color: #999;
+            color: white;
+
+            &:hover, &:focus {
+                background-color: #999;
+                color: white;
+            }
+
+            &:hover {
+                filter: brightness(110%);
+            }
+        }
+
+        &__end {
+            display: flex;
+            gap: 10px;
+    
+            button, button:hover, button:focus {
+                background-color: $background-purple;
+            }
+            
+        }
+    }
+}

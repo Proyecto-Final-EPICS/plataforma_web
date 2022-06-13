@@ -1,28 +1,28 @@
 import { useEffect, useContext } from 'react';
 import { Table } from 'antd';
 
-import AdminContext from '../AdminContext';
+import AdminContext from '../../AdminContext';
 
-import { parsePhone } from '../../../libraries/General/utils';
+import { parsePhone } from '../../../../libraries/General/utils';
 
-export default function TableStudents(props) {
-    const { students } = props;
+export default function TableDirectors(props) {
+    const { directors } = props;
     const { rowSel, setRowSel, search } = useContext(AdminContext);
 
-    const getFilteredStudents = () => {
+    const getFilteredDirectors = () => {
         let fxdSearch = search.trim();
         
         if(fxdSearch) {
             fxdSearch = fxdSearch.toLowerCase();
 
-            return students.filter(s => (
-                s.username.toLowerCase().includes(fxdSearch) 
-                || s.identity_doc === fxdSearch
-                || s.lastname.toLowerCase().includes(fxdSearch)
-                || s.firstname.toLowerCase().includes(fxdSearch)
-                || s.course.toLowerCase().includes(fxdSearch)
+            return directors.filter(d => (
+                d.username.toLowerCase().includes(fxdSearch) 
+                || d.identity_doc === fxdSearch
+                || d.lastname.toLowerCase().includes(fxdSearch)
+                || d.firstname.toLowerCase().includes(fxdSearch)
+                || d.email.includes(fxdSearch)
             ))
-        } else return students;
+        } else return directors;
     }
 
     const columns = [
@@ -31,15 +31,11 @@ export default function TableStudents(props) {
             dataIndex: 'username',
         },
         {
-            title: 'Curso',
-            dataIndex: 'course',
-        },
-        {
-            title: 'Identificación',
+            title: 'Cédula',
             dataIndex: 'identity_doc',
         },
         {
-            title: 'Apellido',
+            title: 'Apellidos',
             dataIndex: 'lastname',
         },
         {
@@ -54,12 +50,20 @@ export default function TableStudents(props) {
             title: 'Edad',
             dataIndex: 'age',
         },
-    ];
-    console.log(getFilteredStudents());
-    const data = getFilteredStudents().map(({ username, firstname, lastname, identity_doc, course, 
-        gender, age, phone }, key) => (
         {
-            key, username, firstname, lastname, identity_doc, gender, course, age,
+            title: 'Email',
+            dataIndex: 'email',
+        },
+        {
+            title: 'Teléfono',
+            dataIndex: 'phone',
+        },
+    ]
+
+    const data = getFilteredDirectors().map(({ firstname, lastname, username, identity_doc, email, 
+        phone, gender, age }, key) => (
+        {
+            key, firstname, lastname, username, identity_doc, email, gender, age,
             phone: parsePhone(phone)
         }
     ));
@@ -68,11 +72,9 @@ export default function TableStudents(props) {
         type: 'radio',
         onChange: (selectedRowKeys, selectedRows) => setRowSel(selectedRows[0]),
         selectedRowKeys: rowSel ? [rowSel.key] : [],
-    };
+    }
 
-    useEffect(() => {
-        setRowSel(null);
-    }, [search]);
+    useEffect(() => setRowSel(null), [search]);
 
     return (
         <Table
@@ -81,4 +83,5 @@ export default function TableStudents(props) {
             rowSelection={rowSelection}
         />
     );
+
 }
