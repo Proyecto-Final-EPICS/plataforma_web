@@ -43,7 +43,7 @@ export default function TableCourses(props) {
             dataIndex: 'capacity',
         },
     ]
-    console.log(getFilteredCourses());
+    // console.log(getFilteredCourses());
     const data = getFilteredCourses().map(({ code, name, level, period, capacity }, key) => (
         { key, code, name, level, period, capacity }
     ));

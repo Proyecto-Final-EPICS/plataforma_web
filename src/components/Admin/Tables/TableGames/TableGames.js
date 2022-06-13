@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react';
 import { Table } from 'antd';
 
 import AdminContext from '../../AdminContext';
+import { parseName } from '../../../../libraries/General/utils';
 
 export default function TableGames(props) {
     const { games } = props;
@@ -58,11 +59,13 @@ export default function TableGames(props) {
         },
     ]
 
-    console.log(getFilteredGames());
-    const data = getFilteredGames().map(({ code, name, level, topic, devs, modules, launch_date }, key) => (
+    // console.log(getFilteredGames());
+    const data = getFilteredGames().map(({ code, name, level, topic, devs, modules, 
+        launch_date: { $date } }, key) => (
         {
-            key, code, name, level, topic, launch_date, 
-            devs: devs.map(d => d.student),
+            key, code, name, level, topic, 
+            launch_date: new Date($date).toDateString(),
+            devs: devs.map(d => parseName(d.firstname, d.lastname)),
             modules: modules.map(m => m.name)
         }
     ));

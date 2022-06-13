@@ -55,7 +55,7 @@ export default function TableStudents(props) {
             dataIndex: 'age',
         },
     ];
-    console.log(getFilteredStudents());
+    // console.log(getFilteredStudents());
     const data = getFilteredStudents().map(({ username, firstname, lastname, identity_doc, course, 
         gender, age, phone }, key) => (
         {
