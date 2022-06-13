@@ -1,6 +1,6 @@
 @import '../../../scss/index.scss';
 
-.Home{
+.director-home {
     background: $background-purple-light;
     text-align: center;
     padding-top: 1.5em;
@@ -8,7 +8,7 @@
     height: 5em;
     border-radius: 18px;
 
-    h1{
+    h1 {
         color: white;
         font-size: 18px;
     }

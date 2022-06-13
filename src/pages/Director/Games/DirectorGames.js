@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import TableGames from '../../../components/Director/TableGames';
 
 //API
-import gameApi from '../../../mock_data/collections/game.json';
+import { getGamesFromSchool } from '../../../api/game';
 
 import useAuth from '../../../hooks/useAuth';
 
@@ -14,10 +14,10 @@ import './DirectorGames.scss'
 
 export default function DirectorGames() {
     const [games, setGames] = useState([]);
-    const { school } = useAuth();
+    const { id_school } = useAuth();
 
     useEffect(() => {
-        setGames(gameApi.filter(g => g.school == school));
+        getGamesFromSchool(id_school).then(json => setGames(json));
     }, []);
     
     return (

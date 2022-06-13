@@ -7,11 +7,12 @@ export default function TableCourses(props) {
     const { courses, selectedRowKeys, setSelectedRowKeys } = props;
     const query = qs.parse(window.location.search);
 
-    const data = courses.map(({ code, name, level, professors, games, capacity, students }, index) => (
+    const data = courses.map(({ code, name, level, professors, games, period, capacity, students }, 
+      index) => (
       { 
-        code, name, level, 
-        professors: professors.map(({ firstname, lastname }) => parseName(firstname, lastname)),
-        games: games.map(({ name }) => name),
+        code, name, level, period, 
+        professors: professors.map(({ firstname, lastname }) => parseName(firstname, lastname)), 
+        games: games.map(({ name }) => name), 
         capacity: `${students.length}/${capacity}`,
         key: index
       }
@@ -19,9 +20,9 @@ export default function TableCourses(props) {
 
     const columns = [
       {
-          title: 'Código',
-          dataIndex: 'code',
-          key: 'code',
+        title: 'Código',
+        dataIndex: 'code',
+        key: 'code',
       },
       {
           title: 'Nombre',
@@ -29,30 +30,30 @@ export default function TableCourses(props) {
           key: 'name',
       },
       {
-          title: 'Nivel',
-          dataIndex: 'level',
-          key: 'level',
-          filters: genFilters(data, 'level'),
+        title: 'Período',
+        dataIndex: 'period',
+        key: 'period',
       },
       {
-          title: 'Capacidad',
-          dataIndex: 'capacity',
-          key: 'capacity',
+        title: 'Nivel',
+        dataIndex: 'level',
+        key: 'level',
+        filters: genFilters(data, 'level'),
       },
       {
-          title: 'Profesores',
-          dataIndex: 'professors',
-          key: 'professors',
-          ...tableCustomFilters('professors', query),
-          defaultFilteredValue: query.professors ? [query.professors] : [],
-          render: (_, record) => record.professors.map((professor, index) => (
-              <div key={index}>{professor}</div>
-          )),
-          // render: (_, record) => record.professors.map((prof, index) => {
-          //     const name = `${prof.firstname} ${prof.lastname}`+
-          //     index==record.professors.length-1?'':', ';
-          //     <span>{name}</span>
-          // }),
+        title: 'Profesores',
+        dataIndex: 'professors',
+        key: 'professors',
+        ...tableCustomFilters('professors', query),
+        defaultFilteredValue: query.professors ? [query.professors] : [],
+        render: (_, record) => record.professors.map((professor, index) => (
+            <div key={index}>{professor}</div>
+        )),
+        // render: (_, record) => record.professors.map((prof, index) => {
+        //     const name = `${prof.firstname} ${prof.lastname}`+
+        //     index==record.professors.length-1?'':', ';
+        //     <span>{name}</span>
+        // }),
       },
       {
         title: 'Juegos',
@@ -61,6 +62,11 @@ export default function TableCourses(props) {
         render: (_, record) => record.games.map((g, index) => (
           <div key={index}>{g}</div>
         )),
+      },
+      {
+        title: 'Capacidad',
+        dataIndex: 'capacity',
+        key: 'capacity',
       }
     ];
     

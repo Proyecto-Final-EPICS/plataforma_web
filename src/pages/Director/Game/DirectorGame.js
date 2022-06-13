@@ -5,7 +5,7 @@ import { matchPath } from 'react-router-dom';
 import Game from '../../../components/Director/Game';
 
 //API
-import gameApi from '../../../mock_data/collections/game.json';
+import { getGameFromSchool } from '../../../api/game';
 
 import useAuth from '../../../hooks/useAuth';
 
@@ -14,7 +14,7 @@ import './DirectorGame.scss';
 
 export default function DirectorGame() {
     const [game, setGame] = useState(null);
-    const { school } = useAuth();
+    const { id_school } = useAuth();
 
     const getGame = () => {
         const matchGame = matchPath(window.location.pathname, { path: '/games/:game' });
@@ -22,13 +22,8 @@ export default function DirectorGame() {
     }
     
     useEffect(() => {
-        const gameId = `${school}-${getGame()}`;
-        setGame(gameApi.find(g => g.id == gameId));
+        getGameFromSchool(id_school, getGame()).then(json => setGame(json));
     }, []);
     
-    return (
-        <>
-        {game && <Game game={game}/>}
-        </>
-    );
+    return game && <Game game={game}/>;
 }

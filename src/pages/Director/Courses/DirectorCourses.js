@@ -7,16 +7,15 @@ import { Button } from 'antd';
 //Componentes
 import TableCourses from '../../../components/Director/TableCourses';
 
-import courseApi from '../../../mock_data/collections/course.json'
-
 //Estilos
 import './DirectorCourses.scss';
 import useAuth from '../../../hooks/useAuth';
+import { getCoursesFromSchool } from '../../../api/course';
 
 export default function DirectorCourses() {
     const [courses, setCourses] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const { school } = useAuth();
+    const { id_school } = useAuth();
     
     const redirectStatistics = () => {
         const query = {cur: []};
@@ -29,7 +28,7 @@ export default function DirectorCourses() {
     }
 
     useEffect(() => {
-        setCourses(courseApi.filter(c => c.school == school));
+        getCoursesFromSchool(id_school).then(json => setCourses(json));
     }, []);
 
     return (

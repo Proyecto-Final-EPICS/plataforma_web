@@ -8,7 +8,8 @@ import TableProfessors from '../../../components/Director/TableProfessors';
 import ProfessorProfile from '../../../components/Director/ProfessorProfile';
 import Modal from '../../../components/General/Modal';
 
-import professorApi from '../../../mock_data/collections/professor.json'
+import { getProfessorsFromSchool } from '../../../api/professor';
+import useAuth from '../../../hooks/useAuth';
 
 //Estilos
 import './DirectorProfessors.scss';
@@ -19,6 +20,8 @@ export default function DirectorProfessors() {
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
     const [modalContent, setModalContent] = useState(null);
+
+    const { id_school } = useAuth();
     
     const seeProfessor = username => {
         const professor = professors.find(p => p.username == username);
@@ -27,7 +30,7 @@ export default function DirectorProfessors() {
     }
 
     useEffect(() => {
-        setProfessors(professorApi);
+        getProfessorsFromSchool(id_school).then(json => setProfessors(json));
     }, []);
     
     return (

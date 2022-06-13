@@ -7,12 +7,9 @@ import DirectorContext from '../../../components/Director/DirectorContext';
 import './ProfessorProfile.scss';
 
 export default function ProfessorProfile (props) {
-    const { professor: { firstname, lastname, photo, phone, email, 
-        curriculum: { degrees, description } } } = props;
+    const { professor: { firstname, lastname, photo, phone, email, courses } } = props;
 
-    const { setMenuSelectedKey } = useContext(DirectorContext);
-
-    console.log(lastname);
+    // const { setMenuSelectedKey } = useContext(DirectorContext);
 
     return (
         <div className="director-professor-profile">
@@ -21,18 +18,18 @@ export default function ProfessorProfile (props) {
                 <h1 className="title">{firstname+' '+lastname}</h1>
             </div>
 
+            <div><h2>Departmento</h2></div>
+            {/* 
             <div className='director-professor-profile__degrees' >
-                {degrees.map((deg, index) => (
-                    <h2 className="title" key={index}>{deg}</h2>
+                {courses.map((course, index) => (
+                    <h2 className="title" key={index}>{course.name}</h2>
                 ))}
-            </div>
+            </div> */}
 
-            <h3 className="director-professor-profile__email">{email}</h3>
-            <br/>
-            <h3 className="director-professor-profile__phone">
-                {`+${phone.countryCode} ${phone.number}`}
-            </h3>
-            <p className="director-professor-profile__desc">{description}</p>
+            <h3>{email}</h3><br/>
+            <h3>{`+${phone.country_code} ${phone.number}`}</h3><br/>
+            <h4>Cursos: {courses.map(c => c.code).join(', ')}</h4><br/>
+            {/* <p className="director-professor-profile__desc">{description}</p> */}
 
             <div className='director-professor-profile__options'>
                 <Link>

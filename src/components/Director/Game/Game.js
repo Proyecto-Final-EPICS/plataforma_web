@@ -1,9 +1,11 @@
 import { Row, Col } from "antd";
 
+import { parseName } from '../../../libraries/General/utils';
+
 import './Game.scss';
 
 export default function Game(props) {
-    const { game: { logo, name, devs, code, topics, level, skills, modules, description } } = props;
+    const { game: { logo, name, devs, code, topic, level, modules, description } } = props;
 
     return (
         <div className='game'>
@@ -23,8 +25,8 @@ export default function Game(props) {
                             <div className='game__summ__info__devs'>
                                 <div className='game__h2'>
                                     <b>Por: </b>
-                                    {devs.map(d => (
-                                        d.type == 'student' ? `${d.firstname} ${d.lastname}`: d.name
+                                    {devs.map(({ firstname, lastname }) => (
+                                        parseName(firstname, lastname)
                                     )).join(', ')}
                                 </div>
                             </div>
@@ -33,13 +35,10 @@ export default function Game(props) {
                                     <b>Código: </b>{code}
                                 </div>
                                 <div className='game__h2'>
-                                    <b>Tópicos: </b>{topics.join(', ')}
+                                    <b>Tópico: </b>{topic}
                                 </div>
                                 <div className='game__h2'>
                                     <b>Nivel: </b>{level}
-                                </div>
-                                <div className='game__h2'>
-                                    <b>Skills: </b>{skills.join(', ')}
                                 </div>
                             </div>
                         </div>
@@ -68,10 +67,10 @@ function GameModules(props) {
       <div className='game-modules'>
         <div className='game-modules__title'>Módulos</div>
         <ul className='game-modules__content'>
-            {modules.map(({code, name, img}) => (
-              <li key={code}>
+            {modules.map(({ name }, i) => (
+              <li key={i}>
                 <img 
-                  src={img} 
+                  src={'https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png'} 
                   alt={`Logo de módulo ${name}`}
                   width={100}
                 />
