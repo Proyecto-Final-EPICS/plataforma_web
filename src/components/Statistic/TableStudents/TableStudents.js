@@ -1,11 +1,9 @@
 import { Table, Button } from 'antd';
 import { genFilters, parseName } from '../../../libraries/General/utils';
 
-import { getAgeFromBirthDate } from '../../../libraries/General/utils';
-
 export default function TableStudents(props) {
     const { students } = props;
-    console.log(students);
+    if(!students || !students.length || !students[0]['username']) return null;
 
     const data = students.map((student, index) => {
         let totTime = 0;
@@ -15,7 +13,6 @@ export default function TableStudents(props) {
         // Se filtran aquellas sesiones cuya app se encuentra en la consulta
         // console.log(student);
         student.sessions.forEach(s => {
-            // if(s.app.code)
             accuracy += s.accuracy;
             totTime += s.totTime;
             const date = new Date(s.date);
@@ -26,15 +23,14 @@ export default function TableStudents(props) {
             }
         });
 
-        const { username, firstname, lastname, birthDate, identityDoc: id, gender, course } = student;
+        const { username, firstname, lastname, age, identity_doc, gender, course, sessions } = student;
 
         return {
-            username, id, gender, course, 
+            username, identity_doc, gender, course, age, 
             name: parseName(firstname, lastname),
-            age: getAgeFromBirthDate(birthDate),
             totTime: totTime.toFixed(1),
-            avTime: (totTime / student.sessions.length).toFixed(1),
-            accuracy: (accuracy / student.sessions.length).toFixed(2),
+            avTime: (totTime / sessions.length).toFixed(1),
+            accuracy: (accuracy / sessions.length).toFixed(2),
             lastCon: lastCon.toDateString(),
             key: index,
         };
@@ -57,7 +53,7 @@ export default function TableStudents(props) {
         },
         {
             title: 'Identificación',
-            dataIndex: 'id',
+            dataIndex: 'identity_doc',
             key: 'id',
             fixed: 'left',
             width: 40,

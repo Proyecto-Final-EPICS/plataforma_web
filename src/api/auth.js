@@ -1,19 +1,18 @@
 //Configuraciones
-import {ACCESS_TOKEN} from '../utils/constants';
+import { ACCESS_TOKEN } from '../utils/constants';
 
 //Liberias
 import jwtDecode from 'jwt-decode';
 
 export function getAccessTokenApi(){
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
-    if(!accessToken) return null;
+    if(!accessToken || accessToken == 'none') return null;
 
-    let decToken;
     try {
-        decToken = jwtDecode(accessToken);
-    }catch(e) {return null}
-
-    return willExpireToken(decToken.exp) ? null : accessToken; //Retorna null si venció, sino retorna el token
+        return willExpireToken(jwtDecode(accessToken).exp) ? null : accessToken; //Retorna null si venció, sino retorna el token
+    }catch(e) {
+        return null;
+    }
 }
 
 function willExpireToken(exp){

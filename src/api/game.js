@@ -1,5 +1,5 @@
 import { basePath } from './config';
-import { ACCESS_TOKEN } from '../utils/constants';
+import { getAccessTokenApi } from './auth';
 import qs from 'query-string'
 
 export function getGamesFromSchool(id_school) {
@@ -8,7 +8,7 @@ export function getGamesFromSchool(id_school) {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         }
     };
 
@@ -24,7 +24,7 @@ export function getGameFromSchool(id_school, game_code) {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         }
     };
 
@@ -40,7 +40,7 @@ export function addGame(id_school, data) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
         body: JSON.stringify(data)
     };
@@ -57,7 +57,7 @@ export function editGame(id_school, game_code, data) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
         body: JSON.stringify(data)
     };
@@ -74,7 +74,7 @@ export function delGame(id_school, game_code) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
     };
 
@@ -90,7 +90,7 @@ export function addGameToCourse(id_school, course_code, data) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
         body: JSON.stringify(data)
     };
@@ -107,7 +107,7 @@ export function delGameFromCourse(id_school, course_code, game_code) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
     };
 
@@ -123,7 +123,7 @@ export function addGamesToCourse(id_school, course_code, data) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
         body: JSON.stringify(data)
     };
@@ -140,7 +140,7 @@ export function delGamesFromCourse(id_school, course_code, games_code) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
     };
 

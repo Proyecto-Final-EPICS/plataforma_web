@@ -3,6 +3,7 @@ import { genFilters } from '../../../libraries/General/utils';
 
 export default function TableCourses(props) {
     const { courses } = props;
+    if(!courses || !courses.length || !courses[0]['code']) return null;
     
     const data = courses.map((course, index) => {
         console.log(course);

@@ -8,12 +8,6 @@ import qs from 'query-string';
 // Funciones
 import { statisticFilterElems } from '../../../libraries/General/utils';
 
-// Mock Data
-import gameApi from '../../../mock_data/collections/game.json';
-import courseApi from '../../../mock_data/collections/course.json';
-import studentApi from '../../../mock_data/collections/student.json';
-import sessionGame from '../../../mock_data/collections/sessionGame.json'
-
 // Íconos
 import { UserOutlined, EyeOutlined, RocketOutlined, CalendarOutlined, 
     BookOutlined } from '@ant-design/icons';
@@ -31,23 +25,32 @@ import useAuth from '../../../hooks/useAuth';
 
 //Estilos
 import './StatisticHome.scss';
+import { getSchool } from '../../../api/school';
+import { getProfessorFromSchool } from '../../../api/professor';
+import { getCoursesFromSchool } from '../../../api/course';
+import { getSessionsFromGame } from '../../../api/sessionGame';
+import { getStudentsFromCourse } from '../../../api/student';
 
 export default function StatisticHome() {
     const { Sider, Content } = Layout;
-    const { username, role, school } = useAuth();
+    const { username, role, id_school } = useAuth();
     
-    const paramOptions = getParameters(username, role, school); //Lista de parámetros válidos
-    
-    // Query actual a validar
-    const [query, setQuery] = useState(qs.parse(window.location.search));
-    
-    // Nueva búsqueda por parámetros
-    const [paramSearch, setParamSearch] = useState({});
-    
+    const [paramOptions, setParamOptions] = useState([]); //Lista de parámetros válidos
+
+    const [query, setQuery] = useState(qs.parse(window.location.search)); // Query actual a validar
+    const [isValidQuery, setIsValidQuery] = useState(false);
+
+    const [paramSearch, setParamSearch] = useState({}); // Nueva búsqueda por parámetros
+
     // const [updateQuery, setUpdateQuery] = useState(false);
     const [data, setData] = useState([]);
+    // const [isValidData, setIsValidData] = useState(false);
+
+    const [gameSessions, setGameSessions] = useState([]);
+    const [students, setStudents] = useState([]);
+    const [courses, setCourses] = useState([]);
+
     const [siderCollapsed, setSiderCollapsed] = useState(false);
-    const [isValidQuery, setIsValidQuery] = useState(false);
 
     const updateParam = (name, config) => {
         const param = paramOptions.find(param => param.name === name);
@@ -76,9 +79,12 @@ export default function StatisticHome() {
     }
 
     const checkData = () => {
-        if(query.cur) {
-            const [courses, students] = statisticFilterElems(sessionGame, query, courseApi, studentApi);
-            setData(query.elem === 'cur' ? courses : students);
+        // setIsValidData(false);
+
+        if(query.cur && isValidQuery) {
+            const [courses_, students_] = statisticFilterElems(gameSessions, query, courses, students);
+            console.log(courses_, students_);
+            setData(query.elem === 'cur' ? courses_ : students_);
         }
     }
 
@@ -92,9 +98,15 @@ export default function StatisticHome() {
         }
     }
 
-    const applyChanges = () => setQuery(getValidQuery(paramOptions, {...query, ...paramSearch}));
+    const applyChanges = () => {
+        // setIsValidQuery(false);
+        setQuery(getValidQuery(paramOptions, {...query, ...paramSearch}))
+    };
 
-    useEffect(() => {
+    useEffect(async () => {
+        const paramOptions = await getParameters(username, role, id_school);
+        setParamOptions(paramOptions);
+        
         const validQuery = getValidQuery(paramOptions, query);
         const queryString = `?${qs.stringify(validQuery)}`;
         
@@ -104,16 +116,29 @@ export default function StatisticHome() {
         //     // Para evitar reload https://stackoverflow.com/questions/10970078/modifying-a-query-string-without-reloading-the-page
         //     window.history.pushState({path:newurl},'',newurl);
         // }
-        // console.log('setting query:');
-        // console.log(validQuery);
 
-        setQuery(validQuery);
+        const courses = await getCoursesFromSchool(id_school);
+        const students = [];
+        courses.forEach(async c => (
+            students.push(...(await getStudentsFromCourse(id_school, c.code)))
+        ))
+        setCourses(courses);
+        setStudents(students);
+        setGameSessions(await getSessionsFromGame(id_school, query.game));
+
         setIsValidQuery(true);
+        setQuery(validQuery);
     }, []);
 
     useEffect(() => {
+        // console.log(query);
         checkData();
     }, [query])
+
+    // useEffect(() => {
+    //     console.log(data);
+    //     setIsValidData(true);
+    // }, [data])
 
     // useEffect(() => {
     //     if(updateQuery) {
@@ -121,11 +146,10 @@ export default function StatisticHome() {
     //         setUpdateQuery(false);
     //     }
     // }, [updateQuery]);
+    // return null;
 
     return (
-        <StatisticHomeContext.Provider value={{
-            query
-        }}>
+        <StatisticHomeContext.Provider value={{query}}>
         <Layout className="statistic-home">
             <Sider
                 className="statistic-home__sider"
@@ -158,9 +182,7 @@ export default function StatisticHome() {
             <Layout>
                 <Content
                     className="statistic-home__content"
-                    style={{
-                        "marginLeft": siderCollapsed? "80px" : "240px"
-                    }}
+                    style={{ "marginLeft": siderCollapsed? "80px" : "240px" }}
                 >
                     <Tabs type="card">
                         <Tabs.TabPane tab="Registros" key="0">
@@ -170,7 +192,7 @@ export default function StatisticHome() {
                         <Tabs.TabPane tab="Gráficas" key="1">
                             <Stats data={data}/>
                         </Tabs.TabPane>
-                    </Tabs> 
+                    </Tabs>
                 </Content>
             </Layout>
         </Layout>
@@ -221,9 +243,15 @@ function getValidQuery(paramOptions, query) {
     return newQuery;
 }
 
-function getParameters(username, role, school) {
-    let courses = courseApi.filter(c => c.school == school);
-    if(role == 'professor') courses = courses.filter(c => c.professors.some(p => p.username == username));
+async function getParameters(username, role, id_school){
+    const school = await getSchool(id_school);
+
+    const courses = role == 'director' ? 
+        school.courses : role == 'professor' ? 
+        (await getProfessorFromSchool(id_school, username)).courses : [];
+    //
+    if(!courses) courses = [];
+    const games = school.games || [];
 
     return [
         {
@@ -244,9 +272,9 @@ function getParameters(username, role, school) {
         },
         {
             name: 'game',
-            type: 'check',
-            title: 'Juegos',
-            options: gameApi.map(({ code, name }) => (
+            type: 'radio',
+            title: 'Juego',
+            options: games.map(({ code, name }) => (
                 { name: code, value: name }
             )),
             icon: RocketOutlined,
@@ -262,14 +290,14 @@ function getParameters(username, role, school) {
             name: 'period',
             type: 'period',
             title: 'Período',
-            // options: [
-            //     {name: 'from', value: new Date(Date.now() - 60 * 24 * 3600 * 1000).toLocaleDateString().replaceAll('/', '-')},
-            //     {name: 'to', value: new Date(Date.now()).toLocaleDateString().replaceAll('/', '-')}
-            // ],
             options: [
-                {name: 'from', value: new Date('2021/10/01').toLocaleDateString().replaceAll('/', '-')},
-                {name: 'to', value: new Date('2021/12/01').toLocaleDateString().replaceAll('/', '-')}
+                {name: 'from', value: new Date(Date.now() - 30 * 24 * 3600 * 1000).toLocaleDateString().replaceAll('/', '-')},
+                {name: 'to', value: new Date(Date.now()).toLocaleDateString().replaceAll('/', '-')}
             ],
+            // options: [
+            //     {name: 'from', value: new Date('2021/10/01').toLocaleDateString().replaceAll('/', '-')},
+            //     {name: 'to', value: new Date('2021/12/01').toLocaleDateString().replaceAll('/', '-')}
+            // ],
             icon: CalendarOutlined,
         },
     ];

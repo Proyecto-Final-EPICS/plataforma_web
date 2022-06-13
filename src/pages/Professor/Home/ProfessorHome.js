@@ -3,19 +3,16 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Button } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
+import qs from 'query-string';
 
 //Componentes
 import GridCourses from './../../../components/Professor/GridCourses';
 import ListGamesMini from './../../../components/Professor/ListGamesMini';
 
-// Mock Data
-import { getCoursesFromSchool } from '../../../api/course';
-import { getGamesFromSchool } from '../../../api/game';
+// API
 import { getProfessorFromSchool } from '../../../api/professor';
 
 import useAuth from '../../../hooks/useAuth';
-
-import qs from 'query-string';
 
 //Estilos
 import './ProfessorHome.scss';
@@ -37,7 +34,7 @@ export default function ProfessorHome() {
 
     useEffect(() => {
         getProfessorFromSchool(id_school, username).then(json => setCourses(json.courses));
-        getSchool(id_school).then(json => setGames(json.games))
+        getSchool(id_school).then(json => setGames(json.games));
     }, []);
 
     return (

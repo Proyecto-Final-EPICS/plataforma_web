@@ -1,9 +1,11 @@
 //Liberías
-import React from 'react';
 import { Layout } from '../../../node_modules/antd';
 
 //Componentes
 import LoginForm from '../../components/General/LoginForm';
+
+
+import { helloApi } from '../../api/web';
 
 //Estilos
 import './Login.scss';
@@ -12,7 +14,10 @@ import './Login.scss';
 import Logo from '../../assets/img/palanca-de-mando.png';
 
 export default function Login(){
+    helloApi().then(json => console.log(json));
+    
     const { Content } = Layout;
+    
     return (
         <Layout className="sign-in">
             <Content className = "sign-in__content">

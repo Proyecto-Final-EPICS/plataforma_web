@@ -101,62 +101,58 @@ export function tableCustomFilters(dataIndex, query) {
     }
 };
 
-export function statisticFilterElems(sessions, query, courseApi, studentApi) {
-
+export function statisticFilterElems(sessionsApi, query, courseApi, studentApi) {
+    // console.log(sessionsApi);
+    // console.log(query);
     // Límites de fecha
     const from = new Date(query.from.split('-').reverse()).getTime(), 
         to = new Date(query.to.split('-').reverse()).getTime();
     
     // Filtrado de sesiones por fecha
-    sessions = sessions.filter(s => {
+    const sessions = sessionsApi.filter(s => {
         const date = new Date(s.endTime).getTime();
         return date >= from && date <= to //&& s.games.some(g => query.app.includes(g.name));
     });
-
+    
+    // console.log(sessions);
     // Filtrado de los juegos de las sesiones
-    sessions.forEach(s => s.games = s.games.filter(g => query.game.includes(g.code)));
+    // sessions.forEach(s => s.games = s.games.filter(g => query.game.includes(g.code)));
 
     // Filtrado de cursos
     const courses = courseApi
         .filter(c => query.cur.includes(c.code))
-        .map(c => ({
-            ...c, sessions: [], 
-        }));
+        .map(c => ({ ...c, sessions: [] }));
 
     let students = [];
     sessions.forEach(session => {
         // Buscamos si este estudiante ya fue añadido
         let student = students.find(s => s.username === session.student.username);
         if(!student) { //Si no, lo añadimos
-            student = {...session.student};
+            // student = {...session.student};
+            const { student: { username, first_name: firstname, last_name: lastname, course } } = session;
+            student = { username, firstname, lastname, course };
 
             // Si el estudiante no pertenece a ningún curso, se descarta
-            if(!courses.some(c => c.code === student.course)) return;
+            // if(!courses.some(c => c.code === student.course)) return;
 
             student.sessions = [];
             students.push(student);
         }
 
         // Se añade más data
-        const studentFull = studentApi.find(s => s.username === student.username);
-        student.identityDoc = studentFull.identityDoc;
-        student.gender = studentFull.gender;
-        student.birthDate = studentFull.birthDate;
+        const { identity_doc, gender, age } = studentApi.find(s => s.username === student.username);
+        student.identity_doc = identity_doc;
+        student.gender = gender;
+        student.age = age;
         
         const date = session.endTime;
         const totTime = (new Date(session.endTime).getTime() - new Date(session.startTime).getTime()) 
             / 1000 / 3600;
         let accuracy = 0;
-        let cont = 0;
-        
-        session.games.forEach(game => {
-            game.levels.forEach(level => {
-                cont++;
-                accuracy += level.accuracy;
-            });
-        });
-        // accuracy = cont ? accuracy / cont : 0;
-        accuracy = cont && accuracy / cont;
+        const numLevels = session.game.levels.length;
+
+        session.game.levels.forEach(level => accuracy += level.accuracy);
+        accuracy = numLevels && accuracy / numLevels;
 
         // Se almacenan los datos de la sesión en cada array
         student.sessions.push({ date, totTime, accuracy });

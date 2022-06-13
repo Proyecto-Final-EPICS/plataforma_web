@@ -1,5 +1,5 @@
 import { basePath } from './config';
-import { ACCESS_TOKEN } from '../utils/constants';
+import { getAccessTokenApi } from './auth';
 
 export function getStudentsFromSchool(id_school) {
     const url = `${basePath}/school/${id_school}/student`;
@@ -31,13 +31,28 @@ export function getStudentFromSchool(id_school, username) {
         .catch(err => err.message);
 }
 
+export function getStudentsFromCourse(id_school, course_code) {
+    const url = `${basePath}/school/${id_school}/course/${course_code}/student`;
+    const params = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    return fetch(url, params)
+        .then(res => res.json())
+        .then(json => json)
+        .catch(err => err.message);
+}
+
 export function addStudent(data) {
     const url = `${basePath}/student`;
     const params = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
         body: JSON.stringify(data)
     };
@@ -54,7 +69,7 @@ export function editStudent(username, data) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
         body: JSON.stringify(data)
     };
@@ -71,7 +86,7 @@ export function delStudent(username) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
     };
 

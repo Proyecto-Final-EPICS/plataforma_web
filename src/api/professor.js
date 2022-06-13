@@ -1,5 +1,5 @@
 import { basePath } from './config';
-import { ACCESS_TOKEN } from '../utils/constants';
+import { getAccessTokenApi } from './auth';
 
 export function getProfessorsFromSchool(id_school) {
     const url = `${basePath}/school/${id_school}/professor`;
@@ -37,7 +37,7 @@ export function addProfessor(data) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
         body: JSON.stringify(data)
     };
@@ -54,7 +54,7 @@ export function editProfessor(username, data) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
         body: JSON.stringify(data)
     };
@@ -71,7 +71,7 @@ export function delProfessor(username) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+            Authorization: `Bearer ${getAccessTokenApi()}`
         },
     };
 

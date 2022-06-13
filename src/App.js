@@ -10,15 +10,11 @@ import routes from './config/routes';
 import AuthProvider from './providers/AuthProvider';
 import useAuth from './hooks/useAuth';
 
-// import { helloApi } from './api/web';
-
 //Estilos
 import './App.scss';
 
 function App(){
   const [authDone, setAuthDone] = useState(false);
-
-  // helloApi().then(json => console.log(json));
 
   return (
     //Siempre se va a utilizar el AuthProvider, comprobar si el user esta logeado

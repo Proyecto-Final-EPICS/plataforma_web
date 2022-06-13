@@ -4,15 +4,12 @@ import LineChart from '../Charts/LineChart';
 import BarChart from '../Charts/BarChart';
 import ChartSettings from '../ChartSettings';
 import Modal from '../../General/Modal';
-import { Statistic, Card, Row, Col, Button } from 'antd';
+import { Statistic, Row, Col, Button } from 'antd';
 
 import {
     ArrowUpOutlined, 
     ArrowDownOutlined, 
     FileSearchOutlined, 
-    // FrownOutlined, 
-    // MehOutlined, 
-    // SmileOutlined, 
     MinusOutlined, 
     ClockCircleOutlined, 
     EditOutlined, 
