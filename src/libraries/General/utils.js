@@ -102,8 +102,8 @@ export function tableCustomFilters(dataIndex, query) {
 };
 
 export function statisticFilterElems(sessionsApi, query, courseApi, studentApi) {
-    console.log(sessionsApi);
-    console.log(query);
+    // console.log(sessionsApi);
+    // console.log(query);
     // Límites de fecha
     const from = new Date(query.from.split('-').reverse()).getTime(), 
         to = new Date(query.to.split('-').reverse()).getTime();
@@ -111,7 +111,7 @@ export function statisticFilterElems(sessionsApi, query, courseApi, studentApi) 
     // Filtrado de sesiones por fecha
     const sessions = sessionsApi.filter(s => {
         if (query.game != s.game.code) return false;
-        
+
         const date = new Date(s.endTime).getTime();
         return date >= from && date <= to;
     });
@@ -138,7 +138,7 @@ export function statisticFilterElems(sessionsApi, query, courseApi, studentApi) 
             if(!courses.some(c => c.code === student.course)) return;
             students.push(student);
         }
-        console.log(student.username);
+        // console.log(student.username);
 
         // Se añade más data
         const { identity_doc, gender, age } = studentApi.find(s => s.username === student.username);

@@ -19,10 +19,10 @@ export default function AdminSchool(props) {
 
     return school ? (
         <>
-            <div>{school.id_school}</div>
+            {/* <div>{school.id_school}</div>
             <div>{school.school_name}</div>
             <div>{parsePhone(school.contact_phone)}</div>
-            <div>{parseLocation(school.location)}</div>
+            <div>{parseLocation(school.location)}</div> */}
         </>
     ) : null;
 }

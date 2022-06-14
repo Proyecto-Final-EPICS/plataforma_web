@@ -81,7 +81,7 @@ export default function StatisticHome() {
 
         if(query.cur && isValidQuery) {
             const [courses_, students_] = statisticFilterElems(gameSessions, query, courses, students);
-            console.log(courses_, students_);
+            // console.log(courses_, students_);
             setData(query.elem === 'cur' ? courses_ : students_);
         }
     }
@@ -97,6 +97,7 @@ export default function StatisticHome() {
     }
 
     const applyChanges = () => {
+        // setIsValidQuery(false);
         setQuery(getValidQuery(paramOptions, {...query, ...paramSearch}));
     };
 
@@ -123,13 +124,14 @@ export default function StatisticHome() {
         setStudents(students);
         setGameSessions(await getSessionsFromGame(id_school, query.game));
 
-        setIsValidQuery(true);
         setQuery(validQuery);
+        setIsValidQuery(true);
     }, []);
 
-    useEffect(async () => (
-        setGameSessions(await getSessionsFromGame(id_school, query.game))
-    ), [query]);
+    useEffect(async () => {
+        setGameSessions(await getSessionsFromGame(id_school, query.game));
+        // setIsValidQuery(true);
+    }, [query]);
 
     useEffect(() => checkData(), [gameSessions]);
 
@@ -186,6 +188,7 @@ export default function StatisticHome() {
 }
 
 function getValidQuery(paramOptions, query) {
+    // console.log(query);
     const newQuery = {};
     
     paramOptions.forEach(param => {
@@ -199,9 +202,9 @@ function getValidQuery(paramOptions, query) {
                     newQuery[param.name] = query[param.name].
                         filter(q => param.options.some(o => o.name === q));
                     
-                    if(!newQuery[param.name].length) newQuery[param.name] = [param.options[0].name];
+                    // if(!newQuery[param.name].length) newQuery[param.name] = [param.options[0].name];
 
-                }else newQuery[param.name] = [param.options[0].name]; //Primera opción por defecto
+                }else newQuery[param.name] = [];
                 break;
                 
             case 'radio':
@@ -224,7 +227,7 @@ function getValidQuery(paramOptions, query) {
                 break;
         }
     })
-
+    console.log(newQuery);
     return newQuery;
 }
 

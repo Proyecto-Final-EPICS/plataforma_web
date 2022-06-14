@@ -6,7 +6,6 @@ export default function TableCourses(props) {
     if(!courses || !courses.length || !courses[0]['code']) courses = [];
     
     const data = courses.map((course, index) => {
-        console.log(course);
         const { name, code, level, professors, games, capacity, students, sessions } = course;
         let totTime = 0, accuracy = 0;
 
