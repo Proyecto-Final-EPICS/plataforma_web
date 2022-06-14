@@ -102,16 +102,18 @@ export function tableCustomFilters(dataIndex, query) {
 };
 
 export function statisticFilterElems(sessionsApi, query, courseApi, studentApi) {
-    // console.log(sessionsApi);
-    // console.log(query);
+    console.log(sessionsApi);
+    console.log(query);
     // Límites de fecha
     const from = new Date(query.from.split('-').reverse()).getTime(), 
         to = new Date(query.to.split('-').reverse()).getTime();
     
     // Filtrado de sesiones por fecha
     const sessions = sessionsApi.filter(s => {
+        if (query.game != s.game.code) return false;
+        
         const date = new Date(s.endTime).getTime();
-        return date >= from && date <= to //&& s.games.some(g => query.app.includes(g.name));
+        return date >= from && date <= to;
     });
     
     // console.log(sessions);
@@ -130,12 +132,10 @@ export function statisticFilterElems(sessionsApi, query, courseApi, studentApi) 
         if(!student) { //Si no, lo añadimos
             // student = {...session.student};
             const { student: { username, first_name: firstname, last_name: lastname, course } } = session;
-            student = { username, firstname, lastname, course };
+            student = { username, firstname, lastname, course, sessions: [] };
 
             // Si el estudiante no pertenece a ningún curso, se descarta
-            // if(!courses.some(c => c.code === student.course)) return;
-
-            student.sessions = [];
+            if(!courses.some(c => c.code === student.course)) return;
             students.push(student);
         }
         console.log(student.username);
@@ -149,11 +149,11 @@ export function statisticFilterElems(sessionsApi, query, courseApi, studentApi) 
         const date = session.endTime;
         const totTime = (new Date(session.endTime).getTime() - new Date(session.startTime).getTime()) 
             / 1000 / 3600;
-        let accuracy = 0;
-        const numLevels = session.game.levels.length;
+        let accuracy = session.game.score / 100;
+        // const numLevels = session.game.levels.length;
 
-        session.game.levels.forEach(level => accuracy += level.accuracy);
-        accuracy = numLevels && accuracy / numLevels;
+        // session.game.levels.forEach(level => accuracy += level.accuracy);
+        // accuracy = numLevels && accuracy / numLevels;
 
         // Se almacenan los datos de la sesión en cada array
         student.sessions.push({ date, totTime, accuracy });

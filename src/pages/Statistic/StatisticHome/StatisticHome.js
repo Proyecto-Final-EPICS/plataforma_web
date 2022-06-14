@@ -42,9 +42,7 @@ export default function StatisticHome() {
 
     const [paramSearch, setParamSearch] = useState({}); // Nueva búsqueda por parámetros
 
-    // const [updateQuery, setUpdateQuery] = useState(false);
     const [data, setData] = useState([]);
-    // const [isValidData, setIsValidData] = useState(false);
 
     const [gameSessions, setGameSessions] = useState([]);
     const [students, setStudents] = useState([]);
@@ -99,8 +97,7 @@ export default function StatisticHome() {
     }
 
     const applyChanges = () => {
-        // setIsValidQuery(false);
-        setQuery(getValidQuery(paramOptions, {...query, ...paramSearch}))
+        setQuery(getValidQuery(paramOptions, {...query, ...paramSearch}));
     };
 
     useEffect(async () => {
@@ -130,23 +127,11 @@ export default function StatisticHome() {
         setQuery(validQuery);
     }, []);
 
-    useEffect(() => {
-        // console.log(query);
-        checkData();
-    }, [query])
+    useEffect(async () => (
+        setGameSessions(await getSessionsFromGame(id_school, query.game))
+    ), [query]);
 
-    // useEffect(() => {
-    //     console.log(data);
-    //     setIsValidData(true);
-    // }, [data])
-
-    // useEffect(() => {
-    //     if(updateQuery) {
-    //         setQuery(getValidQuery(paramOptions, {...query, ...paramSearch}));
-    //         setUpdateQuery(false);
-    //     }
-    // }, [updateQuery]);
-    // return null;
+    useEffect(() => checkData(), [gameSessions]);
 
     return (
         <StatisticHomeContext.Provider value={{query}}>

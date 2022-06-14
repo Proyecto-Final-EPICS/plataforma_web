@@ -2,8 +2,8 @@ import { Table, Button } from 'antd';
 import { genFilters } from '../../../libraries/General/utils';
 
 export default function TableCourses(props) {
-    const { courses } = props;
-    if(!courses || !courses.length || !courses[0]['code']) return null;
+    let courses = props.courses;
+    if(!courses || !courses.length || !courses[0]['code']) courses = [];
     
     const data = courses.map((course, index) => {
         console.log(course);

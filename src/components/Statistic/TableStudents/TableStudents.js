@@ -2,8 +2,8 @@ import { Table, Button } from 'antd';
 import { genFilters, parseName } from '../../../libraries/General/utils';
 
 export default function TableStudents(props) {
-    const { students } = props;
-    if(!students || !students.length || !students[0]['username']) return null;
+    let students = props.students;
+    if(!students || !students.length || !students[0]['username']) students = [];
 
     const data = students.map((student, index) => {
         let totTime = 0;
