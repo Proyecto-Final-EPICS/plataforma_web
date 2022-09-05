@@ -1,74 +1,60 @@
-# Getting Started with Create React App
+# EPICS IEEE Web For Schools
+Web platform for schools data visualization and management separated by system admininstrator, director and professor roles.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project part of the EPICS initiative at IEEE, which aims to support the English learning process for people with visual disabilities through a mobile application, in its goal of increasing inclusion. It has a special focus on high school students and includes tools for schools to manage the learning process in the form of a web platform.
 
-## Available Scripts
+<img src="https://user-images.githubusercontent.com/73978713/188342308-fbd4c58a-ad48-4e39-926a-48d597b4d228.png" height="400">
 
-In the project directory, you can run:
+## Built With
 
-### `npm start`
+ - [Visual Studio Code](https://code.visualstudio.com)
+ - [Sass](https://sass-lang.com)
+ - [ReactJS](https://es.reactjs.org)
+ - [React Router](https://v5.reactrouter.com)
+ - [Ant Design](https://ant.design)
+ - [JWT](https://jwt.io)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Views
+### Admin
+<img src="https://user-images.githubusercontent.com/73978713/188342647-9c4a9376-6172-4948-a1fc-04ab2a701bb5.png" height="400">
+<img src="https://user-images.githubusercontent.com/73978713/188342640-9b8bb785-7074-412b-8b23-d256a352b63e.png" height="400">
+<img src="https://user-images.githubusercontent.com/73978713/188342669-4889beb1-1d05-413b-af83-e9dada4b6dbd.png" height="400">
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Professor
+<img src="https://user-images.githubusercontent.com/73978713/188342767-482ffa7e-58ae-46a0-8f29-16805d5df1f7.png" height="400">
+<img src="https://user-images.githubusercontent.com/73978713/188342772-11ab086e-ce7b-45d1-bce6-5ed8c6ce8353.png" height="400">
+<img src="https://user-images.githubusercontent.com/73978713/188342783-2739f330-1ad3-4c18-8cb5-fb01cff46d21.png" height="400">
+<img src="https://user-images.githubusercontent.com/73978713/188342784-e7599a83-a8ba-497c-a80a-62f2ed022813.png" height="400">
 
-### `npm test`
+### Professor - Director
+<img src="https://user-images.githubusercontent.com/73978713/188342792-82bb0795-ecc9-4447-96ff-80b9ecf44bd1.png" height="400">
+<img src="https://user-images.githubusercontent.com/73978713/188342796-67ae5f70-f724-41ff-9970-5f3a449b0879.png" height="400">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
+You can clone this repsitory to get the source code
 
-### `npm run build`
+    git clone https://github.com/leovergaramarq/EPICS-IEEE-web-for-schools.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running Application
+### Requirements
+ - [Node.js](https://nodejs.org/es/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    npm install
 
-### `npm run eject`
+Run the application
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    npm start
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Authors
+### Aug 2021 - Jun 2022
+ - Leonardo Vergara - [leovergaramarq](https://github.com/leovergaramarq)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### May 2021 and older
+ - Diego Albor - [Daalb](https://github.com/Daalb)
+ - [lpotte](https://github.com/lpotte)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-# Project Guide
-
-To get started with the project, you can read [this guide](https://drive.google.com/file/d/1gUoOlRzM2l2Wa3cxmAVP4uOctktxp6WQ/view?usp=sharing).
+## Acknowledgements
+ - [https://this-person-does-not-exist.com](https://this-person-does-not-exist.com)
+ - [https://randomuser.me](https://randomuser.me)
