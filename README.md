@@ -1,4 +1,4 @@
-# EPICS IEEE Web For Schools
+# EPICS IEEE - Web For Schools
 Web platform for schools data visualization and management separated by system admininstrator, director and professor roles.
 
 Project part of the EPICS initiative at IEEE, which aims to support the English learning process for people with visual disabilities through a mobile application, in its goal of increasing inclusion. It has a special focus on high school students and includes tools for schools to manage the learning process in the form of a web platform.
